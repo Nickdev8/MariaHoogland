@@ -4,11 +4,11 @@
 
 <div class="mt-8">
     <div class="text-center w-full">
-      <h1 class="text-9xl font-extrabold text-gray-800 dark:text-gray-100">404</h1>
-      <h2 class="mt-4 text-2xl font-semibold text-gray-700 dark:text-gray-300">
+      <h1 class="text-9xl font-extrabold text-gray-800">404</h1>
+      <h2 class="mt-4 text-2xl font-semibold text-gray-700">
         Oops! Page not found.
       </h2>
-      <p class="mt-2 text-gray-600 dark:text-gray-400">
+      <p class="mt-2 text-gray-600">
         Looks like it still had to be designed
       </p>
       <a

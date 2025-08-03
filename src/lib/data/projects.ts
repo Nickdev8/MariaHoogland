@@ -29,27 +29,6 @@ export const mainProjects: SmallProject[] = [
 	}
 ];
 
-// the images in the main page at the bottom
-export interface UnderImage {
-	src: string;
-	alt: string;
-}
-
-export const underImages: UnderImage[] = [
-	{
-		src: '/images/projects/garagewoning.jpg',
-		alt: 'Moderne architectuur met grote glaspartijen'
-	},
-	{
-		src: '/images/projects/uitbouw.jpg',
-		alt: 'dit is een uitbouw'
-	},
-	{
-		src: '/images/projects/woning-ijburg.jpg',
-		alt: 'Moderne architectuur met grote glaspartijen'
-	}
-];
-
 // all the projects in /portfolio
 export interface Project {
 	slug: string;
