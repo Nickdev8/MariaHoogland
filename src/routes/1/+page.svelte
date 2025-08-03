@@ -33,12 +33,12 @@
 		</div>
 		<div class="grid grid-cols-2 gap-4">
 			<img
-				src="/images/FotoAbout-1.jpg"
+				src="/images/maria.jpg"
 				alt="Maria Hoogland"
 				class="h-48 w-full rounded-lg object-cover shadow-lg"
 			/>
 			<img
-				src="/images/4-uitbouw-2-1-1.jpg"
+				src="/images/projects/uitbouw.jpg"
 				alt="Een voorbeeldproject"
 				class="h-48 w-full rounded-lg object-cover shadow-lg"
 			/>
@@ -48,7 +48,7 @@
 {#if data.mainProjects.length}
 	<section
 		class="bg-cover bg-left bg-no-repeat py-16"
-		style="background-image: url('/images/mainbackgroundimage.png')"
+		style="background-image: url('/images/Mainbg.png')"
 	>
 		<div class="mx-auto max-w-screen-xl px-4">
 			<h2 class="mb-12 text-center text-4xl font-extrabold tracking-wide text-textcolor">

@@ -26,7 +26,7 @@
 <section
 	class="bg-white py-16"
 	style="
-    background-image: url('/images/mainbaackgroundimage.png');
+    background-image: url('/images/Mainbg.png');
     background-position: center left;
     background-repeat: no-repeat;
   "
@@ -45,7 +45,7 @@
 				</div>
 				<!-- Image -->
 				<img
-					src="/images/FotoAbout-1.jpg"
+					src="/images/maria.jpg"
 					alt="Maria Hoogland"
 					class="w-full rounded-lg object-cover shadow-lg"
 				/>
@@ -57,7 +57,7 @@
 			<div class="flex w-full max-w-sm flex-col items-start space-y-6 md:max-w-md">
 				<!-- Image -->
 				<img
-					src="/images/4-uitbouw-2-1-1.jpg"
+					src="/images/projects/uitbouw.jpg"
 					alt="Een voorbeeldproject"
 					class="w-full rounded-lg object-cover shadow-lg"
 				/>
