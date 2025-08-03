@@ -29,9 +29,8 @@ export interface UnderImage {
 }
 
 export const underImages: UnderImage[] = [
-	{ src: '/images/hero.jpg', alt: 'Moderne architectuur met grote glaspartijen' },
 	{
-		src: '/images/6-woning-ijburg-3-1-890x664.jpg',
+		src: '/images/projects/6-woning-ijburg-3-1-890x664.jpg',
 		alt: 'Moderne architectuur met grote glaspartijen'
 	},
 	{
