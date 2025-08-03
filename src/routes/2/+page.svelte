@@ -1,77 +1,10 @@
 <script lang="ts">
-	const mainProjects = [
-		{
-			title: 'dit is een eerste project',
-			subtitle: 'met een piep kleine uitleg over het project',
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			sublink: 'uitbouw'
-		},
-		{
-			title: 'Tijdloze Architectuur die Generaties Inspireert en Verbindt',
-			subtitle:
-				'Samen met uw ideeën en mijn creativiteit en ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			sublink: 'uitbouw'
-		},
-		{
-			title: ' Inspireert en Verbindt',
-			subtitle:
-				' ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			sublink: 'uitbouw'
-		},
-		{
-			title: ' Inspireert en Verbindt',
-			subtitle:
-				' ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			sublink: 'uitbouw'
-		}
-	];
-
-	const underImages = [
-		{
-			src: '/images/hero.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/6-woning-ijburg-3-1-890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/4-uitbouw-2--890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/6-woning-ijburg-3-1-890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/4-uitbouw-2--890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/6-woning-ijburg-3-1-890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/4-uitbouw-2--890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		}
-	];
+  export let data: {
+    mainProjects: typeof import('$lib/data/projects.ts').mainProjects,
+    underImages: typeof import('$lib/data/projects.ts').underImages
+  };
 </script>
+
 
 <section class="bg-white py-10">
 	<div class="container mx-auto px-6 text-center">
@@ -138,12 +71,12 @@
 	</div>
 </section>
 
-{#if mainProjects.length > 0}
+{#if data.mainProjects.length > 0}
 	<section class="bg-gray-50 py-16">
 		<div class="container mx-auto px-6">
 			<h2 class="mb-12 text-center text-3xl font-bold text-textcolor">Uitgelichte Projecten</h2>
 			<div class="grid gap-8 md:grid-cols-3">
-				{#each mainProjects as project}
+				{#each data.mainProjects as project}
 					<div class="flex flex-col rounded-lg bg-white shadow transition hover:shadow-lg">
 						<img
 							src={project.src}
@@ -169,13 +102,13 @@
 	</section>
 {/if}
 
-{#if underImages.length > 0}
+{#if data.underImages.length > 0}
 	<section class="py-16">
 		<div class="container mx-auto px-6">
 			<div class="mt-8">
 				<h3 class="mb-4 text-xl font-semibold">Bonus Pictures</h3>
 				<div class="columns-1 gap-4 [column-fill:balance] sm:columns-2 lg:columns-4">
-					{#each underImages as image}
+					{#each data.underImages as image}
 						<button
 							type="button"
 							class="mb-4 w-full cursor-pointer break-inside-avoid overflow-hidden rounded-lg shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
