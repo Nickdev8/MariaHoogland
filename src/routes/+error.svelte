@@ -3,7 +3,7 @@
 </svelte:head>
 
 <div class="mt-8">
-    <div class="text-center max-w-md">
+    <div class="text-center w-full">
       <h1 class="text-9xl font-extrabold text-gray-800 dark:text-gray-100">404</h1>
       <h2 class="mt-4 text-2xl font-semibold text-gray-700 dark:text-gray-300">
         Oops! Page not found.

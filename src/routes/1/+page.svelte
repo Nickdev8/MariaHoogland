@@ -1,50 +1,8 @@
 <script lang="ts">
-	const mainProjects = [
-		{
-			title: 'Tijdloze Architectuur die Generaties Inspireert en Verbindt',
-			subtitle:
-				'Samen met uw ideeën en mijn creativiteit en ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			sublink: 'uitbouw'
-		},
-		{
-			title: 'Tijdloze Architectuur die Generaties Inspireert en Verbindt',
-			subtitle:
-				'Samen met uw ideeën en mijn creativiteit en ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			sublink: 'uitbouw'
-		},
-		{
-			title: 'Tijdloze Architectuur die Generaties Inspireert en Verbindt',
-			subtitle:
-				'Samen met uw ideeën en mijn creativiteit en ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			sublink: 'uitbouw'
-		}
-	];
-
-	const underImages = [
-		{ src: '/images/hero.jpg', alt: 'Moderne architectuur met grote glaspartijen' },
-		{
-			src: '/images/6-woning-ijburg-3-1-890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{ src: '/images/4-uitbouw-2--890x664.jpg', alt: 'Moderne architectuur met grote glaspartijen' },
-		{ src: '/images/hero.jpg', alt: 'Moderne architectuur met grote glaspartijen' },
-		{
-			src: '/images/6-woning-ijburg-3-1-890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{
-			src: '/images/3-garagewoning-6-890x664.jpg',
-			alt: 'Moderne architectuur met grote glaspartijen'
-		},
-		{ src: '/images/4-uitbouw-2--890x664.jpg', alt: 'Moderne architectuur met grote glaspartijen' }
-	];
+  export let data: {
+    mainProjects: typeof import('$lib/data/projects.ts').mainProjects,
+    underImages: typeof import('$lib/data/projects.ts').underImages
+  };
 </script>
 
 <!-- Hero Section -->
@@ -87,7 +45,7 @@
 		</div>
 	</div>
 </section>
-{#if mainProjects.length}
+{#if data.mainProjects.length}
 	<section
 		class="bg-cover bg-left bg-no-repeat py-16"
 		style="background-image: url('/images/mainbackgroundimage.png')"
@@ -97,7 +55,7 @@
 				Uitgelichte Projecten
 			</h2>
 			<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-				{#each mainProjects as project}
+				{#each data.mainProjects as project}
 					<a
 						href={project.sublink}
 						class="group block transform overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-500 ease-in-out hover:-translate-y-2 hover:shadow-2xl"
@@ -111,7 +69,7 @@
 							<!-- gradient overlay -->
 							<div
 								class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-50"
-							/>
+							></div>
 						</div>
 						<div class="flex h-full flex-col p-6">
 							<h3
@@ -136,12 +94,12 @@
 {/if}
 
 <!-- Gallery Section -->
-{#if underImages.length}
+{#if data.underImages.length}
 	<section class="bg-white py-16">
 		<div class="mx-auto max-w-screen-xl px-4">
 			<h2 class="mb-6 text-2xl font-semibold">Pictures</h2>
 			<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-				{#each underImages as { src, alt }}
+				{#each data.underImages as { src, alt }}
 					<button type="button" class="transform transition hover:scale-105 focus:outline-none">
 						<img {src} {alt} loading="lazy" class="h-40 w-full rounded-lg object-cover shadow" />
 					</button>
