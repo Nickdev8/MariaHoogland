@@ -1,3 +1,7 @@
+<script lang="ts">
+  import { Instagram, Linkedin } from '@lucide/svelte';
+</script>
+
 <footer class="bg-secondary text-white mt-16">
   <div class="container mx-auto py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
     <!-- About -->
@@ -39,12 +43,11 @@
       <div class="flex space-x-4">
         <a href="https://nl.linkedin.com/in/maria-hoogland-499ab1b2" target="_blank"
            class="transform hover:scale-110 transition text-2xl">
-          <!-- replace with your SVG or icon component -->
-          🔗
+          <Linkedin/>
         </a>
         <a href="https://www.instagram.com/architect_amh/" target="_blank"
            class="transform hover:scale-110 transition text-2xl">
-          📸
+          <Instagram/>
         </a>
       </div>
     </div>
