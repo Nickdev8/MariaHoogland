@@ -1,4 +1,3 @@
-
 // the projects desplayed on the main page
 export interface SmallProject {
 	title: string;
@@ -30,7 +29,6 @@ export const mainProjects: SmallProject[] = [
 	}
 ];
 
-
 // the images in the main page at the bottom
 export interface UnderImage {
 	src: string;
@@ -52,21 +50,38 @@ export const underImages: UnderImage[] = [
 	}
 ];
 
-
-
 // all the projects in /portfolio
 export interface Project {
+	slug: string;
 	title: string;
 	subtitle: string;
-	firstimagesrc: string;
-	sublink: string;
+	description: string;
+	mainImage: string;
+	caption: string;
+	gallery?: string[]; // optional
 }
+
 export const projects: Project[] = [
 	{
-		title: 'Tijdloze Architectuur die Generaties Inspireert en Verbindt',
-		subtitle:
-			'Samen met uw ideeën en mijn creativiteit en ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
-		firstimagesrc: '/images/projects/garagewoning.jpg',
-		sublink: 'example'
-	},
+		slug: 'uitbouw',
+		title: 'Haarlemse uitbouw',
+		subtitle: 'extra stukje huis van huise',
+		description: `
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla suscipit 
+			accumsan ante sit amet molestie. Aliquam in nunc orci. Curabitur scelerisque 
+			lacus vitae faucibus euismod. Phasellus varius accumsan ligula, in eleifend erat.
+		`,
+		mainImage: '/images/projects/garagewoning.jpg',
+		caption: 'Dit is a caption. Over de foto hierboven',
+		gallery: [
+			'/images/projects/uitbouw.jpg',
+			'/images/projects/woning-ijburg.jpg',
+			'/images/projects/uitbouw.jpg',
+			'/images/projects/garagewoning.jpg',
+			'/images/projects/woning-ijburg.jpg',
+			'/images/projects/garagewoning.jpg',
+			'/images/projects/woning-ijburg.jpg',
+			'/images/projects/garagewoning.jpg'
+		]
+	}
 ];
