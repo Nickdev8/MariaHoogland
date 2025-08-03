@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
-
-	// 👇 import Lucide icons
 	import { MapPin, Phone as PhoneIcon, Mail as MailIcon } from '@lucide/svelte';
 
 	let formResult: { success?: boolean; message?: string; error?: string } = {};
@@ -15,133 +13,173 @@
 	let message = '';
 </script>
 
-<div
-	style="
-			background-image: url('/images/mainbg.png');
-			background-position: center left;
-			background-repeat: no-repeat;"
->
-	<div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 py-12 lg:grid-cols-2">
-		<!-- LEFT COLUMN: static contact info -->
-		<div class="space-y-4">
-			<h2 class="text-4xl font-semibold text-sky-400">Contact</h2>
-			<p class="text-gray-700">Ir. ING Maria Hoogland</p>
-			<p class="text-gray-600">
-				BNA lidnummer 16076<br />
-				Bureau Architectenregister 1.070515.028<br />
-				BTW nr. NL 0020.80.940.B82<br />
-				Kamer van Koophandel nummer: 34325681
+<div class="bg-gray-50/50">
+	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-x-16 px-6 py-24 lg:grid-cols-2">
+		<!-- LEFT COLUMN: Contact Information -->
+		<div class="max-w-xl lg:max-w-lg">
+			<h2 class="text-3xl font-bold tracking-tight text-gray-900">Neem contact op</h2>
+			<p class="mt-4 text-lg leading-8 text-gray-600">
+				Heeft u een vraag of wilt u een project bespreken? Vul het formulier in of neem direct
+				contact op via onderstaande gegevens.
 			</p>
 
-			<p class="inline-flex items-center text-gray-700">
-				<!-- Lucide MapPin -->
-				<MapPin class="mr-2 h-5 w-5 text-gray-500" />
-				Lagedijk 10e 2064KT SPAARNDAM
-			</p>
+			<div class="mt-10 space-y-6 text-base leading-7 text-gray-600">
+				<div class="flex gap-x-4">
+					<div class="flex-none">
+						<span class="sr-only">Adres</span>
+						<MapPin class="h-7 w-6 text-gray-400" aria-hidden="true" />
+					</div>
+					<p>Lagedijk 10e, 2064KT SPAARNDAM</p>
+				</div>
+				<div class="flex gap-x-4">
+					<div class="flex-none">
+						<span class="sr-only">Telefoon</span>
+						<PhoneIcon class="h-7 w-6 text-gray-400" aria-hidden="true" />
+					</div>
+					<a href="tel:0645776029" class="hover:text-gray-900">06 45 77 60 29</a>
+				</div>
+				<div class="flex gap-x-4">
+					<div class="flex-none">
+						<span class="sr-only">Email</span>
+						<MailIcon class="h-7 w-6 text-gray-400" aria-hidden="true" />
+					</div>
+					<a href="mailto:architect@mariahoogland.nl" class="hover:text-gray-900"
+						>architect@mariahoogland.nl</a
+					>
+				</div>
+			</div>
 
-			<p class="inline-flex items-center font-medium text-sky-600">
-				<!-- Lucide Phone -->
-				<PhoneIcon class="mr-2 h-5 w-5" />
-				0645776029
-			</p>
-
-			<p class="inline-flex items-center text-gray-700">
-				<!-- Lucide Mail -->
-				<MailIcon class="mr-2 h-5 w-5 text-gray-500" />
-				architect@mariahoogland.nl
-			</p>
+			<div class="mt-10 border-t border-gray-200 pt-10">
+				<h3 class="text-base font-semibold text-gray-800">Bedrijfsgegevens</h3>
+				<p class="mt-4 text-sm text-gray-500">
+					Ir. ING Maria Hoogland<br />
+					BNA lidnummer: 16076<br />
+					Bureau Architectenregister: 1.070515.028<br />
+					KvK-nummer: 34325681<br />
+					BTW-nummer: NL 0020.80.940.B82
+				</p>
+			</div>
 		</div>
 
-		<!-- RIGHT COLUMN: the form -->
-		<form method="POST" use:enhance class="space-y-6 rounded-lg bg-white p-8">
-			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-				<!-- Naam -->
+		<!-- RIGHT COLUMN: Contact Form -->
+		<form
+			method="POST"
+			use:enhance
+			class="space-y-8 rounded-2xl bg-white p-8 shadow-lg lg:p-10"
+		>
+			<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+				<!-- Name -->
 				<div>
-					<label for="name" class="mb-1 block text-gray-600"> Naam </label>
-					<input
-						id="name"
-						name="name"
-						type="text"
-						bind:value={name}
-						required
-						class="w-full border-b border-gray-300 pb-1 outline-none focus:border-sky-400"
-						placeholder="Uw naam"
-					/>
+					<label for="name" class="block text-sm font-semibold leading-6 text-gray-900">
+						Naam
+					</label>
+					<div class="mt-2.5">
+						<input
+							type="text"
+							name="name"
+							id="name"
+							bind:value={name}
+							required
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							placeholder="Uw volledige naam"
+						/>
+					</div>
 				</div>
 
-				<!-- E-mail -->
+				<!-- Email -->
 				<div>
-					<label for="email" class="mb-1 block text-gray-600"> E-mail </label>
-					<input
-						id="email"
-						name="email"
-						type="email"
-						bind:value={email}
-						required
-						class="w-full border-b border-gray-300 pb-1 outline-none focus:border-sky-400"
-						placeholder="naam@voorbeeld.nl"
-					/>
+					<label for="email" class="block text-sm font-semibold leading-6 text-gray-900">
+						E-mailadres
+					</label>
+					<div class="mt-2.5">
+						<input
+							type="email"
+							name="email"
+							id="email"
+							bind:value={email}
+							required
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							placeholder="uwnaam@voorbeeld.nl"
+						/>
+					</div>
 				</div>
 
-				<!-- Telefoon -->
+				<!-- Phone -->
 				<div>
-					<label for="phone" class="mb-1 block text-gray-600"> Telefoon </label>
-					<input
-						id="phone"
-						name="phone"
-						type="tel"
-						bind:value={phone}
-						class="w-full border-b border-gray-300 pb-1 outline-none focus:border-sky-400"
-						placeholder="+31612345678"
-					/>
+					<label for="phone" class="block text-sm font-semibold leading-6 text-gray-900">
+						Telefoonnummer
+					</label>
+					<div class="mt-2.5">
+						<input
+							type="tel"
+							name="phone"
+							id="phone"
+							bind:value={phone}
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							placeholder="+31 6 12345678"
+						/>
+					</div>
 				</div>
 
-				<!-- Onderwerp -->
+				<!-- Subject -->
 				<div>
-					<label for="subject" class="mb-1 block text-gray-600"> Onderwerp </label>
-					<input
-						id="subject"
-						name="subject"
-						type="text"
-						bind:value={subject}
-						required
-						class="w-full border-b border-gray-300 pb-1 outline-none focus:border-sky-400"
-						placeholder="Onderwerp van uw bericht"
-					/>
+					<label for="subject" class="block text-sm font-semibold leading-6 text-gray-900">
+						Onderwerp
+					</label>
+					<div class="mt-2.5">
+						<input
+							type="text"
+							name="subject"
+							id="subject"
+							bind:value={subject}
+							required
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							placeholder="Korte omschrijving"
+						/>
+					</div>
 				</div>
 			</div>
 
-			<!-- Uw bericht (full width) -->
-			<div>
-				<label for="message" class="mb-1 block text-gray-600"> Uw bericht </label>
-				<textarea
-					id="message"
-					name="message"
-					bind:value={message}
-					rows="5"
-					required
-					class="w-full border-b border-gray-300 pb-1 outline-none focus:border-sky-400"
-					placeholder="Typ hier uw bericht…"
-				></textarea>
+			<!-- Message -->
+			<div class="sm:col-span-2">
+				<label for="message" class="block text-sm font-semibold leading-6 text-gray-900"
+					>Bericht</label
+				>
+				<div class="mt-2.5">
+					<textarea
+						name="message"
+						id="message"
+						bind:value={message}
+						rows="6"
+						required
+						class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+						placeholder="Laat hier uw bericht achter..."
+					></textarea>
+				</div>
 			</div>
 
-			<!-- Submit -->
-			<button
-				type="submit"
-				class="mt-4 rounded-md bg-sky-600 px-6 py-3 font-medium text-white shadow hover:bg-sky-700"
-			>
-				Versturen
-			</button>
+			<!-- Submit Button -->
+			<div class="mt-10">
+				<button
+					type="submit"
+					class="block w-full rounded-md bg-sky-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+				>
+					Bericht versturen
+				</button>
+			</div>
 
-			<!-- Feedback -->
+			<!-- Feedback Message -->
 			{#if formResult.success}
-				<p class="mt-4 text-green-600">
-					{formResult.message}
-				</p>
+				<div
+					class="rounded-md border border-green-300 bg-green-50 p-4 text-center"
+					role="alert"
+				>
+					<p class="text-sm font-medium text-green-800">{formResult.message}</p>
+				</div>
 			{:else if formResult.error}
-				<p class="mt-4 text-red-600">
-					{formResult.error}
-				</p>
+				<div class="rounded-md border border-red-300 bg-red-50 p-4 text-center" role="alert">
+					<p class="text-sm font-medium text-red-800">{formResult.error}</p>
+				</div>
 			{/if}
 		</form>
 	</div>

@@ -10,7 +10,7 @@ APP_NAME="maria-hoogland" # Name for pm2
 # Deploy target for node app
 REMOTE_DIR="/var/www/maria.nickesselman.nl/app"
 BUILD_DIR="build"
-ECOS_FILE="ecosystem.config.js"
+ECOS_FILE="ecosystem.config.cjs"
 
 # -------- BUILD LOCALLY --------
 echo "==> Installing dependencies & building"

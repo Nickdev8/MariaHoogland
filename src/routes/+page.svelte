@@ -1,5 +1,7 @@
 <script lang="ts">
-	// If you only use `data` for external props, switch to `export const data`
+	import { ArrowRight } from '@lucide/svelte';
+	import CountUp from '$lib/CountUp.svelte';
+	import { fade, slide } from 'svelte/transition';
 	export let data: {
 		mainProjects: typeof import('$lib/data/projects.ts').mainProjects;
 	};
@@ -9,30 +11,17 @@
 		alt: string;
 	}
 
-	/**
-	 * IMPORTANT: Vite’s `import.meta.glob` only processes files under `src/`, not the `static/` (public)
-	 * Move your `images/projects` folder to `src/lib/mainpageimages` (or similar) so glob can see them.
-	 */
 	const modules = import.meta.glob('/src/lib/mainpageimages/*.{jpg,png,webp}', {
-		// Eagerly load and get the raw URL string from each asset
 		query: '?url',
 		import: 'default',
 		eager: true
 	}) as Record<string, string>;
 
-	// Convert the imported URLs into our { src, alt } format
 	const underImages: UnderImage[] = Object.values(modules).map((src) => ({
 		src,
 		alt: friendlyAlt(src)
 	}));
 
-	// Debug: log to verify we actually have entries
-	console.log('Loaded underImages:', underImages);
-
-	/**
-	 * Generate a human-friendly alt from the filename
-	 * E.g. "garagewoning.jpg" → "Garagewoning"
-	 */
 	function friendlyAlt(src: string) {
 		const file = src.split('/').pop() || '';
 		const name = file.replace(/\.[^.]+$/, '');
@@ -40,118 +29,140 @@
 	}
 </script>
 
+
 <div
 	style="
-			background-image: url('/images/mainbg.png');
-			background-position: center left;
-			background-repeat: no-repeat;"
+	    background-image: url(/images/mainbg.png);  background-position: center left;  background-repeat: no-repeat;"
 >
-	<!-- Hero Section -->
-	<section class="bg-white py-16">
-		<div class="mx-auto max-w-screen-xl px-4 text-center">
-			<h1 class="text-4xl leading-tight font-extrabold sm:text-5xl">
-				<span class="bg-gradient-to-r from-[#00eeee] to-[#00cccc] bg-clip-text text-transparent">
-					Architect
-				</span>
-				Maria Hoogland
-			</h1>
-			<p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-				Samen met uw ideeën en mijn creativiteit en ervaring creëren we een verbouwing of
-				nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.
-			</p>
-		</div>
-	</section>
-
 	<!-- About Section -->
-	<section class="py-16">
-		<div class="mx-auto grid max-w-screen-xl grid-cols-1 items-center gap-8 px-4 md:grid-cols-2">
-			<div>
-				<h2 class="mb-4 text-3xl font-bold text-secondary">Over Maria Hoogland</h2>
-				<p class="text-gray-700">
-					Ik ben Maria Hoogland, recht door zee, met duidelijke afspraken vooraf, en altijd scherp
-					op de laatste ontwikkelingen in de sterk bewegende architectuurmarkt.
-				</p>
-			</div>
-			<div class="grid grid-cols-2">
-				<img
-					src="/images/maria.jpg"
-					alt="Maria Hoogland"
-					class="h-48 w-full rounded-l-lg object-cover shadow-lg"
-				/>
-				<img
-					src="/images/projects/uitbouw.jpg"
-					alt="Een voorbeeldproject"
-					class="h-48 w-full rounded-r-lg object-cover shadow-lg"
-				/>
-			</div>
-		</div>
-	</section>
-
-	{#if data.mainProjects.length}
-		<section class="bg-cover bg-left bg-no-repeat py-16">
-			<div class="mx-auto max-w-screen-xl px-4">
-				<h2 class="mb-12 text-center text-4xl font-extrabold tracking-wide text-textcolor">
-					Uitgelichte Projecten
-				</h2>
-				<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-					{#each data.mainProjects as project}
+	<section class="bg-white py-24 sm:py-32" in:fade={{ duration: 1000 }}>
+		<div
+			class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 lg:grid-cols-2"
+		>
+			<div class="lg:pr-8">
+				<div class="max-w-lg">
+					<h2 class="text-3xl font-bold tracking-tight text-secondary sm:text-4xl">
+						Laten we samen uw droomhuis realiseren
+					</h2>
+					<p class="mt-6 text-lg leading-8 text-secondary">
+						Heeft u een visie voor uw perfecte ruimte? Ik help u die te realiseren. Van het eerste
+						concept tot de laatste afwerking, ik ben uw toegewijde partner. Neem contact op voor
+						een vrijblijvend gesprek en laten we beginnen met het bouwen van uw toekomst.
+					</p>
+					<div class="mt-10 flex items-center gap-x-6">
 						<a
-							href={project.sublink}
-							class="group block transform overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-500 ease-in-out hover:-translate-y-2 hover:shadow-2xl"
+							href="/contact"
+							class="rounded-md bg-sky-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+							>Neem contact op</a
 						>
-							<div class="relative overflow-hidden">
-								<img
-									src={project.src}
-									alt={project.title}
-									class="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-								/>
-								<!-- gradient overlay -->
-								<div
-									class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-50"
-								></div>
-							</div>
-							<div class="flex h-full flex-col p-6">
-								<h3
-									class="mb-2 text-xl font-semibold text-gray-800 transition-colors duration-300 group-hover:text-black"
-								>
-									{project.title}
-								</h3>
-								<p class="mb-6 line-clamp-3 flex-1 text-gray-600">
-									{project.subtitle}
-								</p>
-								<span
-									class="inline-block translate-y-2 font-medium text-primary opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-								>
-									Lees meer →
-								</span>
-							</div>
-						</a>
-					{/each}
+						<a href="/portfolio" class="text-sm font-semibold leading-6 text-secondary"
+							>Bekijk mijn werk <span aria-hidden="true">→</span></a
+						>
+					</div>
 				</div>
 			</div>
-		</section>
-	{/if}
+			<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+				<img
+					src="/images/maria.jpg"
+					alt="Portret van architect Maria Hoogland"
+					class="aspect-[4/5] w-full rounded-2xl object-cover shadow-lg"
+					in:slide={{ y: 50, duration: 1000, delay: 200 }} />
+				<img
+					src="/images/projects/uitbouw.jpg"
+					alt="Detail van een modern huisontwerp"
+					class="md:mt-8 aspect-[4/5] w-full rounded-2xl object-cover shadow-lg"
+					in:slide={{ y: 50, duration: 1000, delay: 400 }} />
+			</div>
+		</div>
+	</section>
 </div>
 
-<!-- Gallery Section -->
-{#if underImages.length}
-	<section class="bg-white py-16">
-		<div class="mx-auto max-w-screen-xl px-4">
-			<h2 class="mb-6 text-2xl font-semibold">Pictures</h2>
-			<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-				{#each underImages as { src, alt }}
-					<button type="button" class="transform transition hover:scale-105 focus:outline-none">
-						<img {src} {alt} loading="lazy" class="h-40 w-full rounded-lg object-cover shadow" />
-					</button>
+<!-- Stats Section -->
+<section class="bg-slate-100 py-24 sm:py-32" in:fade={{ duration: 1000, delay: 500 }}>
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+		<div class="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
+			<div>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={2025-2004} suffix="+ " /></h3>
+				<p class="mt-2 text-lg leading-8 text-gray-600">Jaren ervaring</p>
+			</div>
+			<div>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={750} suffix="+ " /></h3>
+				<p class="mt-2 text-lg leading-8 text-gray-600">Afgeronde projecten</p>
+			</div>
+			<div>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={98} suffix="% " /></h3>
+				<p class="mt-2 text-lg leading-8 text-gray-600">Klanttevredenheid</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Featured Projects Section -->
+{#if data.mainProjects.length}
+	<section class="bg-white py-24 sm:py-32" in:fade={{ duration: 1000, delay: 1000 }}>
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="mx-auto max-w-2xl text-center">
+				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+					Uitgelichte Projecten
+				</h2>
+				<p class="mt-6 text-lg leading-8 text-gray-600">
+					Een selectie van projecten die de diversiteit en kwaliteit van mijn werk tonen.
+				</p>
+			</div>
+			<div
+				class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+			>
+				{#each data.mainProjects as project}
+					<a href={project.sublink} class="group block">
+						<div
+							class="overflow-hidden rounded-2xl shadow-lg transition-shadow duration-300 group-hover:shadow-2xl"
+						>
+							<img
+								src={project.src}
+								alt={project.title}
+								class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+							/>
+						</div>
+						<div class="p-4">
+							<h3 class="mt-2 text-lg font-semibold text-gray-900">{project.title}</h3>
+							<p class="mt-2 line-clamp-2 text-sm text-gray-600">{project.subtitle}</p>
+							<span
+								class="mt-4 inline-flex items-center font-medium text-sky-600 group-hover:text-sky-500"
+							>
+								Bekijk project
+								<ArrowRight class="ml-2 h-4 w-4" />
+							</span>
+						</div>
+					</a>
 				{/each}
 			</div>
 		</div>
 	</section>
-{:else}
-	<!-- Optional: show a message if no images found -->
-	<section class="bg-white py-16">
-		<div class="mx-auto max-w-screen-xl px-4 text-center text-gray-500">
-			<p>No project images found—make sure they live under <code>src/lib/mainpageimages</code>.</p>
+{/if}
+
+<!-- Gallery Section -->
+{#if underImages.length}
+	<section class="bg-slate-100 py-24 sm:py-32" in:fade={{ duration: 1000, delay: 1500 }}>
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="mx-auto max-w-2xl text-center">
+				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Impressies</h2>
+				<p class="mt-6 text-lg leading-8 text-gray-600">
+					Een visuele verzameling van details, materialen en momenten die mijn werk definiëren.
+				</p>
+			</div>
+			<div class="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+				{#each underImages as { src, alt }}
+					<div class="overflow-hidden rounded-lg">
+						<img
+							{src}
+							{alt}
+							loading="lazy"
+							class="h-48 w-full object-cover transition-transform duration-300 hover:scale-110"
+						/>
+					</div>
+				{/each}
+			</div>
 		</div>
 	</section>
 {/if}
+
