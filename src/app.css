@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --color-primary:           #00ffff;
+  --color-textcolor:           #000;
+  --color-secondary:         #555555;
+}
