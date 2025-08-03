@@ -3,8 +3,8 @@
   let isOpen = false;
   const links = [
     { label: 'Home', href: '/' },
-    { label: 'Portfolio', href: '/portfolio-amh' },
-    { label: 'Contact', href: '/get-a-quote' },
+    { label: 'Portfolio', href: '/portfolio' },
+    { label: 'Contact', href: '/contact' },
   ];
   const toggle = () => (isOpen = !isOpen);
 </script>

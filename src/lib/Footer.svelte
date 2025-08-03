@@ -8,7 +8,7 @@
   ];
 </script>
 
-<footer class="bg-secondary text-white mt-16">
+<footer class="bg-secondary text-white mt-4">
   <div class="container mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
     <!-- About -->
     <div class="text-center md:text-left">
