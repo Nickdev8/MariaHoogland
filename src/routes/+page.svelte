@@ -61,16 +61,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+			<div class="grid grid-cols-2 gap-4">
 				<img
 					src="/images/maria.jpg"
 					alt="Portret van architect Maria Hoogland"
-					class="aspect-[4/5] w-full rounded-2xl object-cover shadow-lg"
+					class="aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-lg"
 					in:slide={{ y: 50, duration: 1000, delay: 200 }} />
 				<img
 					src="/images/projects/uitbouw.jpg"
 					alt="Detail van een modern huisontwerp"
-					class="md:mt-8 aspect-[4/5] w-full rounded-2xl object-cover shadow-lg"
+					class="mt-8 aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-lg"
 					in:slide={{ y: 50, duration: 1000, delay: 400 }} />
 			</div>
 		</div>
