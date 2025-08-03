@@ -21,7 +21,7 @@
       {#each links as { label, href }}
         <a
           href={href}
-          class="relative font-medium text-white hover:text-gray-200 transition"
+          class="relative font-medium text-white hover:text-primary transition"
         >
           {label}
           <span class="absolute bottom-0 left-0 block h-0.5 w-0 bg-white transition-all group-hover:w-full"></span>

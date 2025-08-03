@@ -18,7 +18,7 @@ export const mainProjects: SmallProject[] = [
 		subtitle:
 			'Samen met uw ideeën en mijn creativiteit en ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
 		src: '/images/projects/uitbouw.jpg',
-		sublink: 'uitbouw'
+		sublink: 'uitbouw2'
 	},
 	{
 		title: 'Tijdloze Architectuur die Generaties Inspireert en Verbindt',
@@ -78,10 +78,18 @@ export const projects: Project[] = [
 			'/images/projects/woning-ijburg.jpg',
 			'/images/projects/uitbouw.jpg',
 			'/images/projects/garagewoning.jpg',
-			'/images/projects/woning-ijburg.jpg',
-			'/images/projects/garagewoning.jpg',
-			'/images/projects/woning-ijburg.jpg',
-			'/images/projects/garagewoning.jpg'
 		]
+	},
+	{
+		slug: 'uitbouw2',
+		title: 'Haarlemse uitbouw',
+		subtitle: 'extra stukje huis van huise',
+		description: `
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla suscipit 
+			accumsan ante sit amet molestie. Aliquam in nunc orci. Curabitur scelerisque 
+			lacus vitae faucibus euismod. Phasellus varius accumsan ligula, in eleifend erat.
+		`,
+		mainImage: '/images/projects/garagewoning.jpg',
+		caption: 'Dit is a caption. Over de foto hierboven',
 	}
 ];
