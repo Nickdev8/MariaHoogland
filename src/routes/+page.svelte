@@ -4,7 +4,8 @@
 	import { fade, slide } from 'svelte/transition';
 	export let data;
 
-  $: ({ mainProjects, stats } = data);
+  $: mainProjects = data?.mainProjects || [];
+  $: stats = data?.stats;
 
   console.log('Main Projects Data:', mainProjects);
 </script>
