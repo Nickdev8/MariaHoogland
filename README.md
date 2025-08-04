@@ -51,3 +51,12 @@ To run the project locally:
 ### Admin Login
 <img width="1223" height="1071" alt="image" src="https://github.com/user-attachments/assets/6a82bf42-8def-418c-9f32-c351d683741d" />
 *The login screen for the administrative backend.*
+
+
+<div align="center">
+  <a href="https://shipwrecked.hackclub.com/?t=ghrm" target="_blank">
+    <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/739361f1d440b17fc9e2f74e49fc185d86cbec14_badge.png" 
+         alt="This project is part of Shipwrecked, the world's first hackathon on an island!" 
+         style="width: 35%;">
+  </a>
+</div>
