@@ -1,8 +1,4 @@
-<div align="center">
-  <a href="https://mariahoogland.nl" target="_blank">
-    <img src="https://img.shields.io/badge/Live%20Website–mariahoogland.nl–blue?style=for-the-badge&logo=vercel" alt="Live Website" style="width:35%;" />
-  </a>
-</div>
+[![Live Website](https://img.shields.io/badge/Live%20Website-mariahoogland.nl-blue?style=for-the-badge&logo=vercel)](https://mariahoogland.nl)
 
 # Maria Hoogland Architect Portfolio
 
@@ -73,7 +69,7 @@ MariaHoogland/
 ├── svelte.config.js      # SvelteKit configuration
 └── vite.config.ts        # Vite configuration
 
-````
+```
 
 ---
 
@@ -146,8 +142,4 @@ All third-party assets and libraries are used in compliance with their respectiv
 
 ---
 
-<div align="center">
-  <a href="https://shipwrecked.hackclub.com/?t=ghrm" target="_blank">
-    <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/739361f1d440b17fc9e2f74e49fc185d86cbec14_badge.png" alt="Shipwrecked Hackathon" style="width:35%;" />
-  </a>
-</div>
+[![This project is part of Shipwrecked, the world\&#39;s first hackathon on an island!](https://hc-cdn.hel1.your-objectstorage.com/s/v3/739361f1d440b17fc9e2f74e49fc185d86cbec14_badge.png)](https://shipwrecked.hackclub.com/?t=ghrm)
