@@ -23,7 +23,7 @@ To run the project locally:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/NickDev8/MariaHoogland.git
+        git clone https://github.com/NickDev8/MariaHoogland.git
     cd MariaHoogland
     ```
 2.  **Install dependencies:**
@@ -49,6 +49,13 @@ To run the project locally:
 <img width="1223" height="1071" alt="image" src="https://github.com/user-attachments/assets/6a82bf42-8def-418c-9f32-c351d683741d" />
 *The login screen for the administrative backend.*
 
+<div align="center">
+  <a href="https://mariahoogland.nl" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Website-mariahoogland.nl-blue?style=for-the-badge&logo=vercel" 
+         alt="Live Website" 
+         style="width: 35%;">
+  </a>
+</div>
 
 <div align="center">
   <a href="https://shipwrecked.hackclub.com/?t=ghrm" target="_blank">
