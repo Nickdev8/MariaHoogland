@@ -1,0 +1,24 @@
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+export async function GET() {
+  const adminHtmlPath = join(process.cwd(), 'static', 'admin', 'index.html');
+
+  try {
+    const htmlContent = readFileSync(adminHtmlPath, 'utf-8');
+    return new Response(htmlContent, {
+      headers: {
+        'Content-Type': 'text/html',
+      },
+    });
+  } catch (error) {
+    console.error('Error reading admin HTML file:', error);
+    return new Response('Error loading admin page.', {
+      status: 500,
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+      
+    });
+  }
+}

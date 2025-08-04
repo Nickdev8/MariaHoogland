@@ -13,13 +13,15 @@
 	let selectedCategory = writable('Alles');
 	let filteredProjects = writable(data.projects);
 
+	$: if (data.projects) {
+		filteredProjects.set(data.projects.filter(p => 
+			$selectedCategory === 'Alles' ? true : p.category === $selectedCategory
+		));
+	}
+
 	function filterProjects(category: string) {
 		selectedCategory.set(category);
-		if (category === 'Alles') {
-			filteredProjects.set(data.projects);
-		} else {
-			filteredProjects.set(data.projects.filter((p) => p.category === category));
-		}
+		// The reactive statement above will handle the filtering
 	}
 </script>
 

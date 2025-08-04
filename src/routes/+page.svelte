@@ -2,31 +2,11 @@
 	import { ArrowRight } from '@lucide/svelte';
 	import CountUp from '$lib/CountUp.svelte';
 	import { fade, slide } from 'svelte/transition';
-	export let data: {
-		mainProjects: typeof import('$lib/data/projects.ts').mainProjects;
-	};
+	export let data;
 
-	interface UnderImage {
-		src: string;
-		alt: string;
-	}
+  $: ({ mainProjects, stats } = data);
 
-	const modules = import.meta.glob('/src/lib/mainpageimages/*.{jpg,png,webp}', {
-		query: '?url',
-		import: 'default',
-		eager: true
-	}) as Record<string, string>;
-
-	const underImages: UnderImage[] = Object.values(modules).map((src) => ({
-		src,
-		alt: friendlyAlt(src)
-	}));
-
-	function friendlyAlt(src: string) {
-		const file = src.split('/').pop() || '';
-		const name = file.replace(/\.[^.]+$/, '');
-		return name.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-	}
+  console.log('Main Projects Data:', mainProjects);
 </script>
 
 
@@ -98,7 +78,7 @@
 </section>
 
 <!-- Featured Projects Section -->
-{#if data.mainProjects.length}
+{#if data.mainProjects && Array.isArray(data.mainProjects) && data.mainProjects.length}
 	<section class="bg-white py-24 sm:py-32" in:fade={{ duration: 1000, delay: 1000 }}>
 		<div class="mx-auto max-w-7xl px-6 lg:px-8">
 			<div class="mx-auto max-w-2xl text-center">
@@ -134,32 +114,6 @@
 							</span>
 						</div>
 					</a>
-				{/each}
-			</div>
-		</div>
-	</section>
-{/if}
-
-<!-- Gallery Section -->
-{#if underImages.length}
-	<section class="bg-slate-100 py-24 sm:py-32" in:fade={{ duration: 1000, delay: 1500 }}>
-		<div class="mx-auto max-w-7xl px-6 lg:px-8">
-			<div class="mx-auto max-w-2xl text-center">
-				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Impressies</h2>
-				<p class="mt-6 text-lg leading-8 text-gray-600">
-					Een visuele verzameling van details, materialen en momenten die mijn werk definiëren.
-				</p>
-			</div>
-			<div class="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-				{#each underImages as { src, alt }}
-					<div class="overflow-hidden rounded-lg">
-						<img
-							{src}
-							{alt}
-							loading="lazy"
-							class="h-48 w-full object-cover transition-transform duration-300 hover:scale-110"
-						/>
-					</div>
 				{/each}
 			</div>
 		</div>
