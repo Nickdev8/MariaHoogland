@@ -37,9 +37,6 @@ To run the project locally:
     The site will be accessible at `http://localhost:5173` (or another port if 5173 is in use).
 
 ## Screenshots
-
-*(Replace these placeholders with actual screenshots of the website)*
-
 ### Homepage
 <img width="1488" height="544" alt="image" src="https://github.com/user-attachments/assets/db174a3a-bcf5-4d9c-ae63-315098699fc7" />
 *A general view of the website's main page.*
