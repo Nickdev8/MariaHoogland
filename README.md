@@ -49,5 +49,5 @@ To run the project locally:
 *An example of a project listing within the portfolio.*
 
 ### Admin Login
-<img width="882" height="1055" alt="image" src="https://github.com/user-attachments/assets/0135312a-7c63-457c-afeb-b00145596cdf" />
+<img width="1223" height="1071" alt="image" src="https://github.com/user-attachments/assets/6a82bf42-8def-418c-9f32-c351d683741d" />
 *The login screen for the administrative backend.*
