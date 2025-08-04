@@ -28,6 +28,7 @@ rsync -az --delete "./${BUILD_DIR}/" "${SSH_TARGET}:${REMOTE_DIR}/.svelte-kit/ou
 rsync -az "./package.json" "${SSH_TARGET}:${REMOTE_DIR}/"
 rsync -az "./package-lock.json" "${SSH_TARGET}:${REMOTE_DIR}/"
 rsync -az "./${ECOS_FILE}" "${SSH_TARGET}:${REMOTE_DIR}/"
+rsync -az "./svelte.config.js" "${SSH_TARGET}:${REMOTE_DIR}/"
 
 # -------- REMOTE SETUP --------
 echo "==> Setting up remote server"
