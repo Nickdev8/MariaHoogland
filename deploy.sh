@@ -8,8 +8,8 @@ SSH_TARGET="${USER}@${HOST}"
 APP_NAME="maria-hoogland" # Name for pm2
 
 # Deploy target for node app
-REMOTE_DIR="/var/www/maria.nickesselman.nl/app"
-BUILD_DIR="build"
+REMOTE_DIR="/var/www/mariahoogland.nl/app"
+BUILD_DIR=".svelte-kit/output/server"
 ECOS_FILE="ecosystem.config.cjs"
 
 # -------- BUILD LOCALLY --------
@@ -20,10 +20,11 @@ npm run build
 # -------- PREP REMOTE --------
 echo "==> Ensuring remote directory exists: ${REMOTE_DIR}"
 ssh "$SSH_TARGET" "mkdir -p '${REMOTE_DIR}'"
+ssh "$SSH_TARGET" "mkdir -p '${REMOTE_DIR}/${BUILD_DIR}'"
 
 # -------- RSYNC BUILD --------
 echo "==> Syncing build, package files, and ecosystem config"
-rsync -az --delete "./${BUILD_DIR}/" "${SSH_TARGET}:${REMOTE_DIR}/build/"
+rsync -az --delete "./${BUILD_DIR}/" "${SSH_TARGET}:${REMOTE_DIR}/.svelte-kit/output/server/"
 rsync -az "./package.json" "${SSH_TARGET}:${REMOTE_DIR}/"
 rsync -az "./package-lock.json" "${SSH_TARGET}:${REMOTE_DIR}/"
 rsync -az "./${ECOS_FILE}" "${SSH_TARGET}:${REMOTE_DIR}/"

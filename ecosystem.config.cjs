@@ -2,7 +2,9 @@ module.exports = {
   apps: [
     {
       name: 'maria-hoogland',
-      script: 'build/index.js',
+      script: '.svelte-kit/output/server/index.js',
+      interpreter: 'node',
+      args: '.svelte-kit/output/server/index.js',
       env: {
         NODE_ENV: 'production',
         PORT: '3001',
