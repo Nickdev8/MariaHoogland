@@ -82,15 +82,15 @@
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
 			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={2025-2004} suffix="+ " /></h3>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={data.stats.yearsOfExperience} suffix="+ " /></h3>
 				<p class="mt-2 text-lg leading-8 text-gray-600">Jaren ervaring</p>
 			</div>
 			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={750} suffix="+ " /></h3>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={data.stats.completedProjects} suffix="+ " /></h3>
 				<p class="mt-2 text-lg leading-8 text-gray-600">Afgeronde projecten</p>
 			</div>
 			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={98} suffix="% " /></h3>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={data.stats.customerSatisfaction} suffix="% " /></h3>
 				<p class="mt-2 text-lg leading-8 text-gray-600">Klanttevredenheid</p>
 			</div>
 		</div>
@@ -113,12 +113,12 @@
 				class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
 			>
 				{#each data.mainProjects as project}
-					<a href={project.sublink} class="group block">
+					<a href={`/${project.slug}`} class="group block">
 						<div
 							class="overflow-hidden rounded-2xl shadow-lg transition-shadow duration-300 group-hover:shadow-2xl"
 						>
 							<img
-								src={project.src}
+								src={project.mainImage}
 								alt={project.title}
 								class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
 							/>

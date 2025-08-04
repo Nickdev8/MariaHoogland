@@ -1,4 +1,4 @@
-import type { Actions } from './$types';
+import type { Actions } from './$types.ts';
 import { fail } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
 import {

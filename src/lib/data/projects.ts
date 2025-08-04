@@ -1,34 +1,10 @@
 
-// The projects displayed on the main page
-export interface SmallProject {
-	title: string;
-	subtitle: string;
-	src: string;
-	sublink: string;
-}
-export const mainProjects: SmallProject[] = [
-	{
-		title: 'Tijdloze Architectuur die Generaties Inspireert en Verbindt',
-		subtitle:
-			'Samen met uw ideeën en mijn creativiteit en ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
-		src: '/images/projects/garagewoning.jpg',
-		sublink: 'uitbouw-haarlem'
-	},
-	{
-		title: 'Tijdloze Architectuur die Generaties Inspireert en Verbindt',
-		subtitle:
-			'Samen met uw ideeën en mijn creativiteit en ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
-		src: '/images/projects/uitbouw.jpg',
-		sublink: 'woning-ijburg'
-	},
-	{
-		title: 'Tijdloze Architectuur die Generaties Inspireert en Verbindt',
-		subtitle:
-			'Samen met uw ideeën en mijn creativiteit en ervaring creëren we een verbouwing of nieuwbouwproject dat naadloos aansluit bij uw wensen, behoeftes en stijl.',
-		src: '/images/projects/woning-ijburg.jpg',
-		sublink: 'uitbouw-haarlem'
-	}
-];
+export const stats = {
+	startYear: 2004,
+	completedProjects: 750,
+	customerSatisfaction: 98
+};
+
 
 // all the projects in /portfolio
 export interface Project {
