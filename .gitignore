@@ -26,5 +26,4 @@ vite.config.ts.timestamp-*
 /static/images/*/*.*
 **/*.jpg
 
-
-ecosystem.config.cjs
+ecosystem.*
