@@ -60,7 +60,7 @@ Verzonden op: ${timestamp}
 
     try {
       await transporter.sendMail({
-        from: `"blog.nickesselman.nl" <${EMAIL_APP_USER}>`,
+        from: `"MariaHoogland.nl" <${EMAIL_APP_USER}>`,
         to: EMAIL_APP_TO_ADDRESS,
         replyTo: `"${name}" <${email}>`,
         subject: `Nieuw bericht: ${subject}`,
