@@ -41,13 +41,13 @@ To run the project locally:
 *(Replace these placeholders with actual screenshots of the website)*
 
 ### Homepage
-![Homepage Screenshot](static/images/screenshots/homepage.png)
+<img width="1488" height="544" alt="image" src="https://github.com/user-attachments/assets/db174a3a-bcf5-4d9c-ae63-315098699fc7" />
 *A general view of the website's main page.*
 
 ### Portfolio Page
-![Portfolio Page Screenshot](static/images/screenshots/portfolio.png)
+<img width="1352" height="722" alt="image" src="https://github.com/user-attachments/assets/9dbe7a02-b019-4e86-b2e6-752bf496bdaf" />
 *An example of a project listing within the portfolio.*
 
 ### Admin Login
-![Admin Login Screenshot](static/images/screenshots/admin-login.png)
+<img width="882" height="1055" alt="image" src="https://github.com/user-attachments/assets/0135312a-7c63-457c-afeb-b00145596cdf" />
 *The login screen for the administrative backend.*
