@@ -15,7 +15,7 @@ export interface Project {
 	description: string;
 	mainImage: string;
 	caption: string;
-	gallery?: string[]; // optional
+	gallery?: string[];
 }
 
 export const projects: Project[] = [
