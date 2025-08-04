@@ -1,58 +1,53 @@
-# Svelte library
+# Maria Hoogland Architect Portfolio
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+This repository hosts the official website for Maria Hoogland, a distinguished architect. The site serves as a comprehensive digital portfolio, showcasing her projects, detailing upcoming events, and providing an easy way for clients and collaborators to get in touch.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+## Features
 
-## Creating a project
+*   **Dynamic Portfolio:** Explore a curated collection of Maria Hoogland's architectural projects with detailed descriptions and imagery.
+*   **Event Listings:** Stay updated on exhibitions, talks, and other events involving Maria Hoogland.
+*   **Contact Form:** A straightforward way to connect for inquiries or collaborations.
+*   **Admin Panel:** A secure backend for managing projects, events, and other site content.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Technologies Used
 
-```sh
-# create a new project in the current directory
-npx sv create
+The website is built with modern web technologies to ensure a fast, responsive, and maintainable experience:
 
-# create a new project in my-app
-npx sv create my-app
-```
+*   **SvelteKit:** A powerful framework for building web applications, providing a highly efficient development experience.
+*   **TypeScript:** For robust and scalable code.
+*   **Vite:** A next-generation frontend tooling for a blazing fast development setup.
 
-## Developing
+## Getting Started
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+To run the project locally:
 
-```sh
-npm run dev
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/NickDev8/MariaHoogland.git
+    cd MariaHoogland
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+    The site will be accessible at `http://localhost:5173` (or another port if 5173 is in use).
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Screenshots
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+*(Replace these placeholders with actual screenshots of the website)*
 
-## Building
+### Homepage
+![Homepage Screenshot](static/images/screenshots/homepage.png)
+*A general view of the website's main page.*
 
-To build your library:
+### Portfolio Page
+![Portfolio Page Screenshot](static/images/screenshots/portfolio.png)
+*An example of a project listing within the portfolio.*
 
-```sh
-npm run package
-```
-
-To create a production version of your showcase app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```sh
-npm publish
-```
+### Admin Login
+![Admin Login Screenshot](static/images/screenshots/admin-login.png)
+*The login screen for the administrative backend.*
