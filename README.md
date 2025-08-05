@@ -8,16 +8,22 @@ A professional, responsive website showcasing the distinguished work of **Maria 
 
 ## Screenshots
 ### Homepage
-<img width="1488" height="544" alt="image" src="https://github.com/user-attachments/assets/db174a3a-bcf5-4d9c-ae63-315098699fc7" />
 *A general view of the website's main page.*
 
+
+<img width="788" height="294" alt="image" src="https://github.com/user-attachments/assets/db174a3a-bcf5-4d9c-ae63-315098699fc7" />
+
 ### Portfolio Page
-<img width="1352" height="722" alt="image" src="https://github.com/user-attachments/assets/9dbe7a02-b019-4e86-b2e6-752bf496bdaf" />
 *An example of a project listing within the portfolio.*
 
+
+<img width="702" height="372" alt="image" src="https://github.com/user-attachments/assets/9dbe7a02-b019-4e86-b2e6-752bf496bdaf" />
+
 ### Admin Login
-<img width="1223" height="1071" alt="image" src="https://github.com/user-attachments/assets/6a82bf42-8def-418c-9f32-c351d683741d" />
 *The login screen for the administrative backend.*
+
+
+<img width="623" height="471" alt="image" src="https://github.com/user-attachments/assets/6a82bf42-8def-418c-9f32-c351d683741d" />
 
 
 ---
