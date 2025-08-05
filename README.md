@@ -1,58 +1,145 @@
-# Svelte library
+[![Live Website](https://img.shields.io/badge/Live%20Website-mariahoogland.nl-blue?style=for-the-badge&logo=vercel)](https://mariahoogland.nl)
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+# Maria Hoogland Architect Portfolio
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+A professional, responsive website showcasing the distinguished work of **Maria Hoogland**, an award-winning architect. This repository contains all source code, assets, and configuration required to build and deploy her official online portfolio.
 
-## Creating a project
+---
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Table of Contents
 
-```sh
-# create a new project in the current directory
-npx sv create
+1. [Overview](#overview)  
+2. [Key Features](#key-features)  
+3. [Technology Stack](#technology-stack)  
+4. [Architecture & Structure](#architecture--structure)  
+5. [Getting Started](#getting-started)  
+6. [Deployment](#deployment)  
+7. [Contributing](#contributing)  
+8. [License & Attribution](#license--attribution)  
 
-# create a new project in my-app
-npx sv create my-app
+---
+
+## Overview
+
+Maria Hoogland’s portfolio website provides an engaging platform for clients, collaborators, and media to explore her architectural practice. Visitors can browse completed and ongoing projects, view upcoming events, and easily submit inquiries.
+
+---
+
+## Key Features
+
+- **Project Showcase**  
+  High-resolution galleries and in-depth case studies illustrating design process, materials, and finished structures.
+
+- **Event Calendar**  
+  Interactive listings of exhibitions, lectures, and industry engagements—with automatic updates via a secure CMS.
+
+- **Contact & Inquiries**  
+  A GDPR-compliant contact form that routes client messages directly to Maria’s studio email.
+
+- **Secure Admin Dashboard**  
+  Role-based access for content managers to create, edit, and publish project pages and event details.
+
+---
+
+## Technology Stack
+
+| Layer            | Tools & Frameworks         |
+| ---------------- | -------------------------- |
+| Frontend         | SvelteKit, TypeScript      |
+| Build & Bundling | Vite                       |
+| Styling          | Tailwind CSS               |
+| CMS & Authentication | Custom SvelteKit API, JWT |
+| Hosting & CDN    | Vercel                     |
+
+---
+
+## Architecture & Structure
+
 ```
 
-## Developing
+MariaHoogland/
+├── public/               # Static assets (images, favicon, robots.txt)
+├── src/
+│   ├── lib/              # Shared components & utilities
+│   ├── routes/           # SvelteKit page endpoints
+│   │   ├── +page.svelte  # Home, Portfolio, Events, Contact
+│   │   └── admin/        # Secure admin panel
+│   └── styles/           # Global styles & Tailwind config
+├── .env.example          # Environment variable template
+├── svelte.config.js      # SvelteKit configuration
+└── vite.config.ts        # Vite configuration
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+---
 
-## Building
+## Getting Started
 
-To build your library:
+**Prerequisites**  
+- Node.js ≥ 18  
+- npm ≥ 9  
 
-```sh
-npm run package
-```
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/NickDev8/MariaHoogland.git
+   cd MariaHoogland
 
-To create a production version of your showcase app:
 
-```sh
-npm run build
-```
+2. **Install dependencies**
 
-You can preview the production build with `npm run preview`.
+   ```bash
+   npm ci
+   ```
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+3. **Set up environment variables**
+   Copy `.env.example` to `.env` and populate your API keys, database URLs, and SMTP credentials.
 
-## Publishing
+4. **Run in development mode**
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+   ```bash
+   npm run dev
+   ```
 
-To publish your library to [npm](https://www.npmjs.com):
+   Open your browser at [http://localhost:5173](http://localhost:5173).
 
-```sh
-npm publish
-```
+---
+
+## Deployment
+
+This project is configured for zero-configuration deployments on Vercel:
+
+1. Connect the GitHub repository to your Vercel account.
+2. Define environment variables in your Vercel dashboard.
+3. Trigger a deployment via push to `main` or through the Vercel CLI:
+
+   ```bash
+   vercel --prod
+   ```
+
+---
+
+## Contributing
+
+We welcome contributions! To propose feature enhancements or bug fixes:
+
+1. Fork this repository.
+2. Create a feature branch:
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes and push to your fork.
+4. Open a Pull Request against `main` with a clear description of your changes.
+
+Please adhere to the existing code style and include any relevant tests.
+
+---
+
+## License & Attribution
+
+This project is licensed under the [MIT License](./LICENSE).
+All third-party assets and libraries are used in compliance with their respective licenses.
+
+---
+
+[![This project is part of Shipwrecked, the world\&#39;s first hackathon on an island!](https://hc-cdn.hel1.your-objectstorage.com/s/v3/739361f1d440b17fc9e2f74e49fc185d86cbec14_badge.png)](https://shipwrecked.hackclub.com/?t=ghrm)
