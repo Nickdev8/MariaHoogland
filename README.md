@@ -6,6 +6,22 @@ A professional, responsive website showcasing the distinguished work of **Maria 
 
 ---
 
+## Screenshots
+### Homepage
+<img width="1488" height="544" alt="image" src="https://github.com/user-attachments/assets/db174a3a-bcf5-4d9c-ae63-315098699fc7" />
+*A general view of the website's main page.*
+
+### Portfolio Page
+<img width="1352" height="722" alt="image" src="https://github.com/user-attachments/assets/9dbe7a02-b019-4e86-b2e6-752bf496bdaf" />
+*An example of a project listing within the portfolio.*
+
+### Admin Login
+<img width="1223" height="1071" alt="image" src="https://github.com/user-attachments/assets/6a82bf42-8def-418c-9f32-c351d683741d" />
+*The login screen for the administrative backend.*
+
+
+---
+
 ## Table of Contents
 
 1. [Overview](#overview)  
@@ -139,21 +155,6 @@ Please adhere to the existing code style and include any relevant tests.
 
 This project is licensed under the [MIT License](./LICENSE).
 All third-party assets and libraries are used in compliance with their respective licenses.
-
----
-
-## Screenshots
-### Homepage
-<img width="1488" height="544" alt="image" src="https://github.com/user-attachments/assets/db174a3a-bcf5-4d9c-ae63-315098699fc7" />
-*A general view of the website's main page.*
-
-### Portfolio Page
-<img width="1352" height="722" alt="image" src="https://github.com/user-attachments/assets/9dbe7a02-b019-4e86-b2e6-752bf496bdaf" />
-*An example of a project listing within the portfolio.*
-
-### Admin Login
-<img width="1223" height="1071" alt="image" src="https://github.com/user-attachments/assets/6a82bf42-8def-418c-9f32-c351d683741d" />
-*The login screen for the administrative backend.*
 
 ---
 
