@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import type { PageData } from './$types.ts';
 	import { writable } from 'svelte/store';
 	import { slide } from 'svelte/transition';
 
