@@ -142,4 +142,19 @@ All third-party assets and libraries are used in compliance with their respectiv
 
 ---
 
+## Screenshots
+### Homepage
+<img width="1488" height="544" alt="image" src="https://github.com/user-attachments/assets/db174a3a-bcf5-4d9c-ae63-315098699fc7" />
+*A general view of the website's main page.*
+
+### Portfolio Page
+<img width="1352" height="722" alt="image" src="https://github.com/user-attachments/assets/9dbe7a02-b019-4e86-b2e6-752bf496bdaf" />
+*An example of a project listing within the portfolio.*
+
+### Admin Login
+<img width="1223" height="1071" alt="image" src="https://github.com/user-attachments/assets/6a82bf42-8def-418c-9f32-c351d683741d" />
+*The login screen for the administrative backend.*
+
+---
+
 [![This project is part of Shipwrecked, the world\&#39;s first hackathon on an island!](https://hc-cdn.hel1.your-objectstorage.com/s/v3/739361f1d440b17fc9e2f74e49fc185d86cbec14_badge.png)](https://shipwrecked.hackclub.com/?t=ghrm)
