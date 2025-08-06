@@ -3,8 +3,8 @@
 
   const quickLinks = [
     { label: 'Home', href: '/' },
-    { label: 'Portfolio', href: '/portfolio-amh' },
-    { label: 'Contact', href: '/get-a-quote' },
+    { label: 'Portfolio', href: '/portfolio' },
+    { label: 'Contact', href: '/contact' },
   ];
 </script>
 
