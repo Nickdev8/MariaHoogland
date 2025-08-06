@@ -4,6 +4,7 @@
 	import { fade, slide } from 'svelte/transition';
 	export let data: {
 		mainProjects: typeof import('$lib/data/projects.ts').mainProjects;
+		projects: typeof import('$lib/data/projects.ts').projects;
 	};
 
 	interface UnderImage {
@@ -35,7 +36,7 @@
 	    background-image: url(/images/mainbg.png);  background-position: center left;  background-repeat: no-repeat;"
 >
 	<!-- About Section -->
-	<section class="bg-white py-24 sm:py-32" in:fade={{ duration: 1000 }}>
+	<section class="bg-white py-24 sm:py-8" in:fade={{ duration: 1000 }}>
 		<div
 			class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 lg:grid-cols-2"
 		>
@@ -139,6 +140,39 @@
 		</div>
 	</section>
 {/if}
+
+<!-- Testimonials Section -->
+<section class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wat klanten zeggen</h2>
+      <p class="mt-6 text-lg leading-8 text-gray-600">
+        Lees hoe anderen de samenwerking met Maria Hoogland hebben ervaren.
+      </p>
+    </div>
+    <div class="mx-auto mt-16 flow-root">
+      <div class="-my-12 divide-y divide-gray-200">
+        {#each data.projects.filter(p => p.testimonials) as project}
+          {#each project.testimonials as testimonial}
+            <div class="py-12">
+              <div class="max-w-4xl mx-auto">
+                <div class="text-center">
+                  <p class="text-xl font-medium leading-9 text-gray-900">“{testimonial.quote}”</p>
+                  <div class="mt-8">
+                    <div class="text-base">
+                      <p class="font-semibold text-gray-900">{testimonial.name}</p>
+                      <p class="mt-1 text-gray-500">Klant voor {project.title}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {/each}
+        {/each}
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Gallery Section -->
 {#if underImages.length}

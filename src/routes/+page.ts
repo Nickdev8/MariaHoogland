@@ -1,6 +1,9 @@
 import type { PageLoad } from './$types.ts';
-import { mainProjects } from '$lib/data/projects.ts';
+import { mainProjects, projects } from '$lib/data/projects';
 
-export const load: PageLoad = () => ({
-  mainProjects
-});
+export function load() {
+	return {
+		mainProjects,
+		projects
+	};
+}

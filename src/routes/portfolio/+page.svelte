@@ -1,36 +1,79 @@
 <script lang="ts">
 	import type { PageData } from './$types.ts';
-	import { writable } from 'svelte/store';
+	import { writable, derived } from 'svelte/store';
 	import { slide } from 'svelte/transition';
 
 	export let data: PageData;
 
-	const categories = [
-		'Alles',
-		...new Set(data.projects.map((p) => p.category))
-	];
+	const categories = ['Alles', ...new Set(data.projects.map((p) => p.category))];
 
 	let selectedCategory = writable('Alles');
-	let filteredProjects = writable(data.projects);
+	let searchQuery = writable('');
+
+	const filteredProjects = derived(
+		[selectedCategory, searchQuery],
+		([$selectedCategory, $searchQuery]) => {
+			let projects = data.projects;
+
+			if ($selectedCategory !== 'Alles') {
+				projects = projects.filter((p) => p.category === $selectedCategory);
+			}
+
+			if ($searchQuery) {
+				const lowerCaseQuery = $searchQuery.toLowerCase();
+				projects = projects.filter(
+					(p) =>
+						p.title.toLowerCase().includes(lowerCaseQuery) ||
+						p.subtitle.toLowerCase().includes(lowerCaseQuery) ||
+						p.category.toLowerCase().includes(lowerCaseQuery)
+				);
+			}
+
+			return projects;
+		}
+	);
 
 	function filterProjects(category: string) {
 		selectedCategory.set(category);
-		if (category === 'Alles') {
-			filteredProjects.set(data.projects);
-		} else {
-			filteredProjects.set(data.projects.filter((p) => p.category === category));
-		}
 	}
 </script>
 
 <div class="bg-gray-50/50">
-	<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+	<div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
 		<div class="mx-auto max-w-2xl text-center">
 			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Portfolio</h2>
 			<p class="mt-6 text-lg leading-8 text-gray-600">
 				Een selectie van mijn werk, van concept tot realisatie. Elk project vertelt een uniek
 				verhaal van samenwerking, creativiteit en vakmanschap.
 			</p>
+		</div>
+
+		<!-- Search Bar -->
+		<div class="mt-8 mx-auto max-w-lg">
+			<div class="relative">
+				<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+					<svg
+						class="h-5 w-5 text-gray-400"
+						viewBox="0 0 20 20"
+						fill="currentColor"
+						aria-hidden="true"
+					>
+						<path
+							fill-rule="evenodd"
+							d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+							clip-rule="evenodd"
+						/>
+					</svg>
+				</div>
+				<input
+					bind:value={$searchQuery}
+					type="text"
+					name="search"
+					id="search"
+					class="block w-full rounded-md border-0 bg-white py-2.5 pl-10 pr-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+					placeholder="Zoek projecten..."
+				/>
+			</div>
 		</div>
 
 		<!-- Filter Buttons -->
@@ -52,7 +95,7 @@
 
 		<!-- Project Grid -->
 		<div
-			class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 sm:mt-20 md:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+			class="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
 		>
 			{#each $filteredProjects as project (project.slug)}
 				<div in:slide|global={{ duration: 300 }}>

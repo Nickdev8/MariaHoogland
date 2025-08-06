@@ -3,6 +3,7 @@
   let isOpen = false;
   const links = [
     { label: 'Home', href: '/' },
+    { label: 'Over Mij', href: '/about' },
     { label: 'Portfolio', href: '/portfolio' },
     { label: 'Contact', href: '/contact' },
   ];
