@@ -150,6 +150,29 @@
 	</section>
 {/if}
 
+
+
+<!-- Stats Section -->
+<section class="bg-slate-100 py-16 sm:py-20" in:fade={{ duration: 1000, delay: 500 }}>
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+		<div class="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
+			<div>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={2025-2004} suffix="+ " /></h3>
+				<p class="mt-2 text-lg leading-8 text-gray-600">Jaren ervaring</p>
+			</div>
+			<div>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={750} suffix="+ " /></h3>
+				<p class="mt-2 text-lg leading-8 text-gray-600">Afgeronde projecten</p>
+			</div>
+			<div>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={98} suffix="% " /></h3>
+				<p class="mt-2 text-lg leading-8 text-gray-600">Klanttevredenheid</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+
 <!-- Testimonials Section -->
 <section class="bg-slate-50 py-16 sm:py-20">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -177,24 +200,3 @@
 </section>
 
 
-
-
-<!-- Stats Section -->
-<section class="bg-slate-100 py-16 sm:py-20" in:fade={{ duration: 1000, delay: 500 }}>
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		<div class="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
-			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={2025-2004} suffix="+ " /></h3>
-				<p class="mt-2 text-lg leading-8 text-gray-600">Jaren ervaring</p>
-			</div>
-			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={750} suffix="+ " /></h3>
-				<p class="mt-2 text-lg leading-8 text-gray-600">Afgeronde projecten</p>
-			</div>
-			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={98} suffix="% " /></h3>
-				<p class="mt-2 text-lg leading-8 text-gray-600">Klanttevredenheid</p>
-			</div>
-		</div>
-	</div>
-</section>
