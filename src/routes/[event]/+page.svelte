@@ -80,6 +80,9 @@
 		<div
 			class="bg-opacity-80 fixed inset-0 z-50 flex items-center justify-center bg-black/60"
 			on:click|self={closeLightbox}
+			on:keydown={(e) => { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') closeLightbox(); }}
+			role="button"
+			tabindex="0"
 			transition:fade
 		>
 			<div class="relative mx-4 max-h-full max-w-4xl p-4">
