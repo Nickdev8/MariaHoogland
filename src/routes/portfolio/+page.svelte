@@ -2,10 +2,11 @@
 	import type { PageData } from './$types.ts';
 	import { writable, derived } from 'svelte/store';
 	import { slide } from 'svelte/transition';
+	import type { Project } from '$lib/data/projects.ts';
 
-	export let data: PageData;
+	export let data: { projects: Project[] };
 
-	const categories = ['Alles', ...new Set(data.projects.map((p) => p.category))];
+	const categories: string[] = ['Alles', ...new Set(data.projects.map((p) => p.category))];
 
 	let selectedCategory = writable('Alles');
 	let searchQuery = writable('');
