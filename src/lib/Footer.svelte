@@ -52,7 +52,7 @@
 
     <!-- Socials -->
     <div class="text-center md:text-left">
-      <h5 class="text-primary text-xl font-semibold mb-3">Volg Ons</h5>
+      <h5 class="text-primary text-xl font-semibold mb-3">Volg Mij</h5>
       <div class="flex justify-center md:justify-start items-center space-x-6">
         <a
           href="https://nl.linkedin.com/in/maria-hoogland-499ab1b2"
