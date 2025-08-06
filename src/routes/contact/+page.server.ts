@@ -1,4 +1,4 @@
-import type { Actions } from './$types';
+import type { Actions } from './$types.ts';
 import { fail } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
 import {
@@ -43,24 +43,19 @@ export const actions: Actions = {
       return fail(400, { error: 'Vul een bericht in.' });
     }
 
-    const timestamp = new Date().toLocaleString('nl-NL', { timeZone: 'Europe/Amsterdam' });
-
     const fullText = `
-Naam: ${name}
-Email: ${email}
-Telefoon: ${phone}
-Onderwerp: ${subject}
+- Naam: ${name}
+- Email: ${email}
+- Telefoon: ${phone}
+- Onderwerp: ${subject}
 
 Bericht:
 ${message}
-
----
-Verzonden op: ${timestamp}
 `.trim();
 
     try {
       await transporter.sendMail({
-        from: `"blog.nickesselman.nl" <${EMAIL_APP_USER}>`,
+        from: `"AMH Website" <${EMAIL_APP_USER}>`,
         to: EMAIL_APP_TO_ADDRESS,
         replyTo: `"${name}" <${email}>`,
         subject: `Nieuw bericht: ${subject}`,
