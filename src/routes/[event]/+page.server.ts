@@ -1,6 +1,6 @@
-import type { PageLoad } from './$types';
+import type { PageLoad } from './$types.ts';
 import { error } from '@sveltejs/kit';
-import { projects } from '$lib/server/projects';
+import { projects } from '$lib/server/projects.ts';
 
 export const load: PageLoad = ({ params }) => {
   const project = projects.find((p) => p.slug === params.event);
@@ -11,3 +11,5 @@ export const load: PageLoad = ({ params }) => {
 
   return { project };
 };
+
+

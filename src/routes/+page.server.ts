@@ -1,5 +1,5 @@
 import type { PageLoad } from './$types';
-import { mainProjects, projects } from '$lib/server/projects';
+import { mainProjects, projects } from '$lib/server/projects.ts';
 
 export const load: PageLoad = () => {
 	return {

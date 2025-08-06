@@ -10,12 +10,12 @@ export interface Project {
   category: string;
   title: string;
   subtitle: string;
-  description: string; // This will now be the Markdown content
+  description: string;
   mainImage: string;
   caption: string;
   gallery?: string[];
   testimonials?: Testimonial[];
-  featured?: boolean; // Added for mainProjects filtering
+  featured?: boolean;
 }
 
 export interface SmallProject {
@@ -43,6 +43,7 @@ export const projects: Project[] = importAll(markdownFiles).map(({ slug, resolve
   console.log('Loaded project:', project.slug, project.title);
   return project;
 });
+
 
 console.log('All loaded projects:', projects);
 
