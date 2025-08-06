@@ -1,4 +1,7 @@
 import matter from 'gray-matter';
+import MarkdownIt from 'markdown-it';
+
+const md = new MarkdownIt({ breaks: true });
 
 export interface Testimonial {
   quote: string;
@@ -37,7 +40,7 @@ export const projects: Project[] = importAll(markdownFiles).map(({ slug, resolve
   const { data, content } = matter(resolver as string);
   const project = {
     slug,
-    description: content,
+    description: md.render(content),
     ...(data as Omit<Project, 'slug' | 'description'>),
   } as Project;
   console.log('Loaded project:', project.slug, project.title);

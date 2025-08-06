@@ -1,9 +1,11 @@
-import type { PageLoad } from './$types';
-import { mainProjects, projects } from '$lib/server/projects.ts';
+import { mainProjects, projects } from '$lib/server/projects';
+import { testimonials } from '$lib/server/testimonials';
+import type { PageServerLoad } from './$types';
 
-export const load: PageLoad = () => {
-	return {
-		mainProjects,
-		projects
-	};
+export const load: PageServerLoad = () => {
+  return {
+    mainProjects,
+    projects,
+    testimonials,
+  };
 };

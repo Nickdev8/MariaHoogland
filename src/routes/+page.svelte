@@ -2,9 +2,11 @@
 	import { ArrowRight } from '@lucide/svelte';
 	import CountUp from '$lib/CountUp.svelte';
 	import { fade, slide } from 'svelte/transition';
+  
 	export let data: {
 		mainProjects: typeof import('$lib/data/projects.ts').mainProjects;
 		projects: typeof import('$lib/data/projects.ts').projects;
+    testimonials: typeof import('$lib/server/testimonials.ts').testimonials;
 	};
 
 	interface UnderImage {
@@ -12,7 +14,7 @@
 		alt: string;
 	}
 
-	const modules = import.meta.glob('/src/lib/mainpageimages/*.{jpg,png,webp}', {
+	const modules = import.meta.glob('/src/lib/mainpageimages/*.{jpg,png,webp,jpeg}', {
 		query: '?url',
 		import: 'default',
 		eager: true
@@ -36,7 +38,7 @@
 	    background-image: url(/images/mainbg.png);  background-position: center left;  background-repeat: no-repeat;"
 >
 	<!-- About Section -->
-	<section class="bg-white py-24 sm:py-8" in:fade={{ duration: 1000 }}>
+	<section class="bg-white py-16 sm:py-20" in:fade={{ duration: 1000 }}>
 		<div
 			class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 lg:grid-cols-2"
 		>
@@ -69,7 +71,7 @@
 					class="aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-lg"
 					in:slide={{ duration: 1000, delay: 200 }} />
 				<img
-					src="/images/projects/uitbouw.jpg"
+					src="/images/heroimageproject.jpg"
 					alt="Detail van een modern huisontwerp"
 					class="mt-8 aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-lg"
 					in:slide={{ duration: 1000, delay: 400 }} />
@@ -78,29 +80,36 @@
 	</section>
 </div>
 
-<!-- Stats Section -->
-<section class="bg-slate-100 py-24 sm:py-32" in:fade={{ duration: 1000, delay: 500 }}>
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		<div class="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
-			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={2025-2004} suffix="+ " /></h3>
-				<p class="mt-2 text-lg leading-8 text-gray-600">Jaren ervaring</p>
+<!-- Gallery Section -->
+{#if underImages.length}
+	<section class="bg-slate-100 py-24 sm:py-32" in:fade={{ duration: 1000, delay: 1500 }}>
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="mx-auto max-w-2xl text-center">
+				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Impressies</h2>
+				<p class="mt-6 text-lg leading-8 text-gray-600">
+					Een visuele verzameling van details, materialen en momenten die mijn werk definiëren.
+				</p>
 			</div>
-			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={750} suffix="+ " /></h3>
-				<p class="mt-2 text-lg leading-8 text-gray-600">Afgeronde projecten</p>
-			</div>
-			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={98} suffix="% " /></h3>
-				<p class="mt-2 text-lg leading-8 text-gray-600">Klanttevredenheid</p>
+			<div class="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+				{#each underImages as { src, alt }}
+					<div class="overflow-hidden rounded-lg">
+						<img
+							{src}
+							{alt}
+							loading="lazy"
+							class="h-48 w-full object-cover transition-transform duration-300 hover:scale-110"
+						/>
+					</div>
+				{/each}
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{/if}
+
 
 <!-- Featured Projects Section -->
 {#if data.mainProjects.length}
-	<section class="bg-white py-24 sm:py-32" in:fade={{ duration: 1000, delay: 1000 }}>
+	<section class="bg-white py-16 sm:py-20" in:fade={{ duration: 1000, delay: 1000 }}>
 		<div class="mx-auto max-w-7xl px-6 lg:px-8">
 			<div class="mx-auto max-w-2xl text-center">
 				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -142,61 +151,50 @@
 {/if}
 
 <!-- Testimonials Section -->
-<section class="bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Wat klanten zeggen</h2>
-      <p class="mt-6 text-lg leading-8 text-gray-600">
-        Lees hoe anderen de samenwerking met Maria Hoogland hebben ervaren.
-      </p>
-    </div>
-    <div class="mx-auto mt-16 flow-root">
-      <div class="-my-12 divide-y divide-gray-200">
-        {#each data.projects.filter(p => p.testimonials) as project}
-          {#each project.testimonials ?? [] as testimonial}
-            <div class="py-12">
-              <div class="max-w-4xl mx-auto">
-                <div class="text-center">
-                  <p class="text-xl font-medium leading-9 text-gray-900">“{testimonial.quote}”</p>
-                  <div class="mt-8">
-                    <div class="text-base">
-                      <p class="font-semibold text-gray-900">{testimonial.name}</p>
-                      <p class="mt-1 text-gray-500">Klant voor {project.title}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          {/each}
-        {/each}
-      </div>
-    </div>
-  </div>
+<section class="bg-slate-50 py-16 sm:py-20">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+		<div class="mx-auto max-w-2xl text-center">
+			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+				Wat klanten zeggen
+			</h2>
+			<p class="mt-6 text-lg leading-8 text-gray-600">
+				Lees hoe anderen de samenwerking met Maria Hoogland hebben ervaren.
+			</p>
+		</div>
+		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
+			{#each data.testimonials as testimonial}
+				<div class="flex flex-col rounded-2xl bg-white p-8 shadow-lg">
+					<blockquote class="flex-grow text-lg leading-8 text-gray-700">
+						<p>“{testimonial.quote}”</p>
+					</blockquote>
+					<footer class="mt-6">
+						<div class="font-semibold text-gray-900">— {testimonial.name}</div>
+					</footer>
+				</div>
+			{/each}
+		</div>
+	</div>
 </section>
 
-<!-- Gallery Section -->
-{#if underImages.length}
-	<section class="bg-slate-100 py-24 sm:py-32" in:fade={{ duration: 1000, delay: 1500 }}>
-		<div class="mx-auto max-w-7xl px-6 lg:px-8">
-			<div class="mx-auto max-w-2xl text-center">
-				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Impressies</h2>
-				<p class="mt-6 text-lg leading-8 text-gray-600">
-					Een visuele verzameling van details, materialen en momenten die mijn werk definiëren.
-				</p>
+
+
+
+<!-- Stats Section -->
+<section class="bg-slate-100 py-16 sm:py-20" in:fade={{ duration: 1000, delay: 500 }}>
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+		<div class="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
+			<div>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={2025-2004} suffix="+ " /></h3>
+				<p class="mt-2 text-lg leading-8 text-gray-600">Jaren ervaring</p>
 			</div>
-			<div class="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-				{#each underImages as { src, alt }}
-					<div class="overflow-hidden rounded-lg">
-						<img
-							{src}
-							{alt}
-							loading="lazy"
-							class="h-48 w-full object-cover transition-transform duration-300 hover:scale-110"
-						/>
-					</div>
-				{/each}
+			<div>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={750} suffix="+ " /></h3>
+				<p class="mt-2 text-lg leading-8 text-gray-600">Afgeronde projecten</p>
+			</div>
+			<div>
+				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={98} suffix="% " /></h3>
+				<p class="mt-2 text-lg leading-8 text-gray-600">Klanttevredenheid</p>
 			</div>
 		</div>
-	</section>
-{/if}
-
+	</div>
+</section>

@@ -25,5 +25,7 @@ vite.config.ts.timestamp-*
 /static/images/*.*
 /static/images/*/*.*
 **/*.jpg
+**/*.png
+**/*.jpeg
 
 ecosystem.*
