@@ -1,5 +1,4 @@
 
-// The projects displayed on the main page
 export interface SmallProject {
 	title: string;
 	subtitle: string;
@@ -30,7 +29,6 @@ export const mainProjects: SmallProject[] = [
 	}
 ];
 
-// all the projects in /portfolio
 export interface Project {
 	slug: string;
 	category: string;
