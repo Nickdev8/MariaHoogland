@@ -53,7 +53,7 @@
 					<div class="mt-10 flex items-center gap-x-6">
 						<a
 							href="/contact"
-							class="rounded-md bg-sky-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+							class="rounded-md bg-sky-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-500"
 							>Neem contact op</a
 						>
 						<a href="/portfolio" class="text-sm font-semibold leading-6 text-secondary"
@@ -67,12 +67,12 @@
 					src="/images/maria.jpg"
 					alt="Portret van architect Maria Hoogland"
 					class="aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-lg"
-					in:slide={{ y: 50, duration: 1000, delay: 200 }} />
+					in:slide={{ duration: 1000, delay: 200 }} />
 				<img
 					src="/images/projects/uitbouw.jpg"
 					alt="Detail van een modern huisontwerp"
 					class="mt-8 aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-lg"
-					in:slide={{ y: 50, duration: 1000, delay: 400 }} />
+					in:slide={{ duration: 1000, delay: 400 }} />
 			</div>
 		</div>
 	</section>
@@ -153,7 +153,7 @@
     <div class="mx-auto mt-16 flow-root">
       <div class="-my-12 divide-y divide-gray-200">
         {#each data.projects.filter(p => p.testimonials) as project}
-          {#each project.testimonials as testimonial}
+          {#each project.testimonials ?? [] as testimonial}
             <div class="py-12">
               <div class="max-w-4xl mx-auto">
                 <div class="text-center">
