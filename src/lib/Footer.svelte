@@ -44,8 +44,8 @@
         </a>
       </p>
       <p class="text-base">
-        <a href="tel:+310612345678" class="hover:text-primary transition">
-          +31 6 1234 5678
+        <a href="tel:+31645776092" class="hover:text-primary transition">
+          +31 6 457 760 92
         </a>
       </p>
     </div>
@@ -71,6 +71,24 @@
           <Instagram size="24" />
         </a>
       </div>
+    </div>
+  </div>
+  <div class="border-t border-gray-600 py-4">
+    <div class="container mx-auto px-4 text-center text-sm text-gray-300">
+      <p>
+        Website gemaakt door
+        <a
+          href="https://nickesselman.nl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium hover:text-white transition"
+        >
+          Nick Esselman</a
+        >. Contact:
+        <a href="mailto:info@nickesselman.nl" class="font-medium hover:text-white transition"
+          >info@nickesselman.nl</a
+        >
+      </p>
     </div>
   </div>
 </footer>

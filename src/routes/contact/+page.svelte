@@ -67,6 +67,10 @@
 			use:enhance
 			class="space-y-8 rounded-2xl bg-white p-8 shadow-lg lg:p-10"
 		>
+			<div class="hidden" aria-hidden="true">
+				<label for="sanity_check">Do not fill this out</label>
+				<input type="text" name="sanity_check" id="sanity_check" tabindex="-1" autocomplete="off" />
+			</div>
 			<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
 				<!-- Name -->
 				<div>

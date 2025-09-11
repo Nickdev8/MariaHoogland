@@ -23,6 +23,7 @@ export const actions: Actions = {
   default: async ({ request }) => {
     const data = await request.formData();
 
+    const sanityCheck = data.get('sanity_check')?.toString();
     const name = data.get('name')?.toString().trim() || 'Anonymous';
     const email = data.get('email')?.toString().trim();
     const phone = data.get('phone')?.toString().trim();
@@ -43,7 +44,7 @@ export const actions: Actions = {
       return fail(400, { error: 'Vul een bericht in.' });
     }
 
-    const fullText = `
+    let fullText = `
 - Naam: ${name}
 - Email: ${email}
 - Telefoon: ${phone}
@@ -53,12 +54,26 @@ Bericht:
 ${message}
 `.trim();
 
+    let emailSubject = `Nieuw bericht: ${subject}`;
+
+    if (sanityCheck) {
+      emailSubject = `[MOGELIJK SPAM] ${emailSubject}`;
+      fullText = `
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! WAARSCHUWING: Mogelijk een bot!
+! Het verborgen "sanity_check" veld was ingevuld met: ${sanityCheck}
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+${fullText}
+`.trim();
+    }
+
     try {
       await transporter.sendMail({
         from: `"AMH Website" <${EMAIL_APP_USER}>`,
         to: EMAIL_APP_TO_ADDRESS,
         replyTo: `"${name}" <${email}>`,
-        subject: `Nieuw bericht: ${subject}`,
+        subject: emailSubject,
         text: fullText
       });
       return { success: true, message: 'Je bericht is succesvol verzonden!' };
