@@ -1,6 +1,31 @@
+<script lang="ts" context="module">
+	declare global {
+		interface Window {
+			turnstile?: {
+				render: (
+					container: HTMLElement,
+					options: {
+						sitekey: string;
+						callback: (token: string) => void;
+						'expired-callback'?: () => void;
+						'error-callback'?: () => void;
+					}
+				) => string;
+				reset: (widgetId: string) => void;
+			};
+			initTurnstile?: () => void;
+		}
+	}
+
+	export {};
+</script>
+
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
+	import type { SubmitFunction } from '@sveltejs/kit';
+	import { onMount } from 'svelte';
+	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public';
 	import { MapPin, Phone as PhoneIcon, Mail as MailIcon } from '@lucide/svelte';
 
 	let formResult: { success?: boolean; message?: string; error?: string } = {};
@@ -11,6 +36,88 @@
 	let phone = '';
 	let subject = '';
 	let message = '';
+
+	const initialTimestamp = Date.now().toString();
+	let formTimestamp = initialTimestamp;
+
+	const turnstileSiteKey = PUBLIC_TURNSTILE_SITE_KEY;
+	let turnstileToken = '';
+	const captchaRequired = Boolean(turnstileSiteKey);
+	let captchaValid = !captchaRequired;
+	let turnstileWidgetId: string | undefined;
+	let captchaContainer: HTMLDivElement | null = null;
+
+	const handleEnhance: SubmitFunction = () => {
+		return async ({ update, result }) => {
+			await update();
+
+			if (
+				turnstileSiteKey &&
+				typeof window !== 'undefined' &&
+				window.turnstile &&
+				turnstileWidgetId
+			) {
+				window.turnstile.reset(turnstileWidgetId);
+				captchaValid = false;
+				turnstileToken = '';
+			}
+
+			if (result.type !== 'error') {
+				formTimestamp = Date.now().toString();
+			}
+		};
+	};
+
+	onMount(() => {
+		formTimestamp = Date.now().toString();
+
+		if (!turnstileSiteKey || typeof window === 'undefined') {
+			return;
+		}
+
+		const renderTurnstile = () => {
+			if (!captchaContainer || !window.turnstile) {
+				return;
+			}
+
+			turnstileWidgetId = window.turnstile.render(captchaContainer, {
+				sitekey: turnstileSiteKey,
+				callback(token: string) {
+					turnstileToken = token;
+					captchaValid = true;
+				},
+				'error-callback'() {
+					captchaValid = false;
+					turnstileToken = '';
+				},
+				'expired-callback'() {
+					captchaValid = false;
+					turnstileToken = '';
+				}
+			});
+		};
+
+		const existingScript = document.querySelector<HTMLScriptElement>('script[data-turnstile]');
+
+		if (existingScript) {
+			if (window.turnstile) {
+				renderTurnstile();
+			}
+			return;
+		}
+
+		window.initTurnstile = () => {
+			renderTurnstile();
+		};
+
+		const script = document.createElement('script');
+		script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=initTurnstile';
+		script.async = true;
+		script.defer = true;
+		script.dataset.turnstile = 'true';
+		document.head.appendChild(script);
+	});
+
 </script>
 
 <div class="bg-gray-50/50">
@@ -64,13 +171,17 @@
 		<!-- RIGHT COLUMN: Contact Form -->
 		<form
 			method="POST"
-			use:enhance
+			use:enhance={handleEnhance}
 			class="space-y-8 rounded-2xl bg-white p-8 shadow-lg lg:p-10"
 		>
 			<div class="hidden" aria-hidden="true">
 				<label for="sanity_check">Do not fill this out</label>
 				<input type="text" name="sanity_check" id="sanity_check" tabindex="-1" autocomplete="off" />
 			</div>
+			<input type="hidden" name="form_timestamp" value={formTimestamp} />
+			{#if turnstileSiteKey}
+				<input type="hidden" name="turnstile_token" value={turnstileToken} />
+			{/if}
 			<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
 				<!-- Name -->
 				<div>
@@ -162,10 +273,21 @@
 				</div>
 			</div>
 
+			{#if turnstileSiteKey}
+				<div class="sm:col-span-2">
+					<div
+						bind:this={captchaContainer}
+						class="cf-turnstile flex justify-center"
+						data-sitekey={turnstileSiteKey}
+					></div>
+				</div>
+			{/if}
+
 			<!-- Submit Button -->
 			<div class="mt-10">
 				<button
 					type="submit"
+					disabled={!captchaValid}
 					class="block w-full rounded-md bg-sky-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500"
 				>
 					Bericht versturen
