@@ -1,8 +1,31 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap");
+
 @theme {
-  --color-primary:           #00ffff;
-  --color-textcolor:           #000;
-  --color-secondary:         #555555;
+  --color-primary: #73c7f2;
+  --color-primary-strong: #1f6fa7;
+  --color-primary-muted: #e6f2fb;
+  --color-textcolor: #0f172a;
+  --color-secondary: #1f2937;
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Urbanist", var(--font-sans);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-textcolor);
+    background-color: #f5f7fb;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#f5f7fb] text-neutral-900 antialiased;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
 }

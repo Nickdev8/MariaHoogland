@@ -1,90 +1,79 @@
 <script lang="ts">
-	import { Globe, PenTool, Users, Lightbulb } from '@lucide/svelte';
+	import { Landmark, Lightbulb, Sparkles, Users } from '@lucide/svelte';
+	import type { IconName, SiteContent } from '$lib/types/content';
+
+	export let data: { content: SiteContent };
+
+	const about = data.content.about;
+
+	const iconMap: Partial<Record<IconName, typeof Landmark>> = {
+		globe: Landmark,
+		sparkles: Sparkles,
+		users: Users,
+		lightbulb: Lightbulb
+	};
+
+	const resolveIcon = (icon: IconName) => iconMap[icon] ?? Landmark;
 </script>
 
-<div class="bg-white py-16 sm:py-8">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl lg:text-center">
-      <h2 class="text-base font-semibold leading-7 text-sky-600">Over Ons</h2>
-      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-        Een passie voor architectuur
-      </p>
-      <p class="mt-6 text-lg leading-8 text-gray-600">
-        Welkom bij het architectenbureau van Maria Hoogland, waar we geloven in de kracht van doordacht ontwerp om levens te verrijken en gemeenschappen te versterken. Ontdek ons verhaal, onze filosofie en het team achter onze projecten.
-      </p>
-    </div>
+<section class="relative overflow-hidden bg-neutral-950 text-white">
+	<div class="absolute inset-0">
+		<img
+			src="/images/heroimageproject.jpg"
+			alt="Architectonische details in avondlicht"
+			class="h-full w-full object-cover opacity-50"
+		/>
+		<div class="absolute inset-0 bg-neutral-950/70"></div>
+		<div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(115,199,242,0.35),rgba(15,23,42,0.95))]"></div>
+	</div>
 
-    <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-      <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-        <div class="relative pl-16">
-          <dt class="text-base font-semibold leading-7 text-gray-900">
-            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600">
-              <Globe class="h-6 w-6 text-white" />
-            </div>
-            Onze Filosofie
-          </dt>
-          <dd class="mt-2 text-base leading-7 text-gray-600">
-            Wij streven naar een architectuur die zowel esthetisch als functioneel is, met een diep respect voor de context en het milieu. Elk ontwerp is een dialoog tussen de wensen van de klant, de potentie van de locatie en onze creatieve visie.
-          </dd>
-        </div>
+	<div class="relative mx-auto max-w-4xl px-4 py-14 text-center sm:px-6 sm:py-18 lg:py-20">
+		<h1 class="mt-5 font-display text-2xl leading-tight sm:text-3xl lg:text-4xl">
+			{about.hero.title}
+		</h1>
+		<p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base">
+			{about.hero.body}
+		</p>
+	</div>
+</section>
 
-        <div class="relative pl-16">
-          <dt class="text-base font-semibold leading-7 text-gray-900">
-            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600">
-              <PenTool class="h-6 w-6 text-white" />
-            </div>
-            Duurzaam Ontwerpen
-          </dt>
-          <dd class="mt-2 text-base leading-7 text-gray-600">
-            Duurzaamheid is de kern van ons werk. We integreren energie-efficiënte oplossingen, gebruiken milieuvriendelijke materialen en ontwerpen gebouwen die flexibel en toekomstbestendig zijn, met een minimale ecologische voetafdruk.
-          </dd>
-        </div>
+<section class="bg-[#f5f7fb] py-20 sm:py-24 lg:py-28">
+	<div class="mx-auto max-w-6xl px-4 sm:px-6">
+		<div class="grid gap-8 sm:grid-cols-2">
+			{#each about.pillars as pillar}
+				<div class="rounded-3xl border border-neutral-200 bg-white/90 p-6 shadow-[0_20px_55px_rgba(15,23,42,0.08)] sm:p-8">
+					<span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
+						<svelte:component this={resolveIcon(pillar.icon)} class="h-6 w-6" />
+					</span>
+					<h2 class="mt-6 font-display text-xl text-neutral-900">{pillar.title}</h2>
+					<p class="mt-3 text-sm leading-relaxed text-neutral-600">{pillar.copy}</p>
+				</div>
+			{/each}
+		</div>
+	</div>
+</section>
 
-        <div class="relative pl-16">
-          <dt class="text-base font-semibold leading-7 text-gray-900">
-            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600">
-              <Users class="h-6 w-6 text-white" />
-            </div>
-            Klantgerichte Aanpak
-          </dt>
-          <dd class="mt-2 text-base leading-7 text-gray-600">
-            Uw visie staat centraal. We luisteren aandachtig naar uw wensen en vertalen deze naar een concreet ontwerp. Gedurende het hele proces, van de eerste schets tot de uiteindelijke oplevering, zorgen we voor een transparante communicatie en nauwe samenwerking.
-          </dd>
-        </div>
-
-        <div class="relative pl-16">
-          <dt class="text-base font-semibold leading-7 text-gray-900">
-            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600">
-              <Lightbulb class="h-6 w-6 text-white" />
-            </div>
-            Innovatie en Expertise
-          </dt>
-          <dd class="mt-2 text-base leading-7 text-gray-600">
-            Met een scherp oog voor detail en een passie voor innovatie, combineren we beproefde methoden met de nieuwste technologieën. Ons team beschikt over de expertise om complexe uitdagingen aan te gaan en unieke, hoogwaardige architectuur te realiseren.
-          </dd>
-        </div>
-      </dl>
-    </div>
-  </div>
-</div>
-
-<!-- Team Section -->
-<div class="bg-gray-50/50 py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Maak kennis met de architecte</h2>
-      <p class="mt-6 text-lg leading-8 text-gray-600">
-        Gedreven door een passie voor het creëren van betekenisvolle ruimtes, staat Maria Hoogland aan het roer van elk project, van concept tot realisatie.
-      </p>
-    </div>
-    <div class="mt-20 flex justify-center">
-      <ul role="list" class="max-w-sm">
-        <li>
-          <img class="aspect-[1/1] w-full rounded-2xl object-cover" src="/images/maria2.jpg" alt="Portretfoto van Maria Hoogland">
-          <h3 class="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">Maria Hoogland</h3>
-          <p class="text-base leading-7 text-gray-600">Oprichter & Architect</p>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+<section class="bg-white py-20 sm:py-24 lg:py-28">
+	<div class="mx-auto max-w-6xl px-4 sm:px-6">
+		<div class="grid gap-10 sm:gap-12 lg:grid-cols-[0.9fr,1.1fr] lg:items-center">
+			<div class="space-y-6">
+				<h2 class="font-display text-3xl text-neutral-900 sm:text-4xl">
+					{about.architect.name}
+				</h2>
+				<p class="text-xs uppercase tracking-[0.22em] text-primary sm:text-sm sm:tracking-[0.3em]">
+					{about.architect.title}
+				</p>
+				<p class="text-base leading-relaxed text-neutral-600">
+					{about.architect.bio}
+				</p>
+			</div>
+			<div class="overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-neutral-50/80 p-4 shadow-[0_22px_60px_rgba(15,23,42,0.08)]">
+				<img
+					src={about.architect.image}
+					alt={`Portret van ${about.architect.name}`}
+					class="w-full rounded-[2rem] object-cover"
+				/>
+			</div>
+		</div>
+	</div>
+</section>

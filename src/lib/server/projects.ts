@@ -28,27 +28,21 @@ export interface SmallProject {
   sublink: string;
 }
 
-const importAll = (r: Record<string, () => Promise<unknown>>) =>
-  Object.entries(r).map(([path, resolver]) => {
-    const slug = path.split('/').pop()?.replace('.md', '') || '';
-    return { slug, resolver };
-  });
+const markdownFiles = import.meta.glob('/src/content/projects/*.md', {
+	query: '?raw',
+	import: 'default',
+	eager: true
+}) as Record<string, string>;
 
-const markdownFiles = import.meta.glob('/src/content/projects/*.md', { query: '?raw', import: 'default', eager: true });
-
-export const projects: Project[] = importAll(markdownFiles).map(({ slug, resolver }) => {
-  const { data, content } = matter(resolver as string);
-  const project = {
-    slug,
-    description: md.render(content),
-    ...(data as Omit<Project, 'slug' | 'description'>),
-  } as Project;
-  console.log('Loaded project:', project.slug, project.title);
-  return project;
+export const projects: Project[] = Object.entries(markdownFiles).map(([path, rawContent]) => {
+	const slug = path.split('/').pop()?.replace('.md', '') ?? '';
+	const { data, content } = matter(rawContent);
+	return {
+		slug,
+		description: md.render(content),
+		...(data as Omit<Project, 'slug' | 'description'>)
+	};
 });
-
-
-console.log('All loaded projects:', projects);
 
 export const mainProjects: SmallProject[] = projects
   .filter((project) => project.featured)

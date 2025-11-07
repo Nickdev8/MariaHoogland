@@ -1,4 +1,4 @@
-import { projects } from '$lib/server/projects.ts';
+import { projects } from '$lib/server/projects';
 
 export function load() {
 	return {

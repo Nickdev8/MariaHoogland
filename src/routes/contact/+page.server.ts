@@ -4,9 +4,9 @@ import nodemailer from 'nodemailer';
 import {
   EMAIL_APP_USER,
   EMAIL_APP_PASSWORD,
-  EMAIL_APP_TO_ADDRESS,
-  TURNSTILE_SECRET_KEY
+  EMAIL_APP_TO_ADDRESS
 } from '$env/static/private';
+import { env as privateEnv } from '$env/dynamic/private';
 
 export const prerender = false;
 
@@ -21,6 +21,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const MIN_SUBMISSION_TIME_MS = 4000;
+const TURNSTILE_SECRET_KEY = privateEnv.TURNSTILE_SECRET_KEY;
 
 export const actions: Actions = {
   default: async (event) => {

@@ -9,8 +9,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "module": "nodenext",                // use lowercase
-    "moduleResolution": "nodenext",      // use lowercase
-    "allowImportingTsExtensions": true   // ← must be here
+    "module": "esnext",
+    "moduleResolution": "bundler"
   }
 }

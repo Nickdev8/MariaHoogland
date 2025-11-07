@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script module lang="ts">
 	declare global {
 		interface Window {
 			turnstile?: {
@@ -21,31 +21,38 @@
 </script>
 
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { enhance } from '$app/forms';
-	import type { SubmitFunction } from '@sveltejs/kit';
-	import { onMount } from 'svelte';
-	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public';
-	import { MapPin, Phone as PhoneIcon, Mail as MailIcon } from '@lucide/svelte';
+import { enhance } from '$app/forms';
+import type { SubmitFunction } from '@sveltejs/kit';
+import { onMount } from 'svelte';
+import { env as publicEnv } from '$env/dynamic/public';
+import { MapPin, Phone as PhoneIcon, Mail as MailIcon } from '@lucide/svelte';
+import type { SiteContent } from '$lib/types/content';
+import { page } from '$app/stores';
 
-	let formResult: { success?: boolean; message?: string; error?: string } = {};
-	$: formResult = $page.form ?? {};
+	let { data } = $props<{ data: { content: SiteContent } }>();
+	const contactContent = data.content.contact;
 
-	let name = '';
-	let email = '';
-	let phone = '';
-	let subject = '';
-	let message = '';
+let name = $state('');
+let email = $state('');
+let phone = $state('');
+let subject = $state('');
+let message = $state('');
 
-	const initialTimestamp = Date.now().toString();
-	let formTimestamp = initialTimestamp;
+const initialTimestamp = Date.now().toString();
+let formTimestamp = $state(initialTimestamp);
 
-	const turnstileSiteKey = PUBLIC_TURNSTILE_SITE_KEY;
-	let turnstileToken = '';
-	const captchaRequired = Boolean(turnstileSiteKey);
-	let captchaValid = !captchaRequired;
-	let turnstileWidgetId: string | undefined;
-	let captchaContainer: HTMLDivElement | null = null;
+const turnstileSiteKey = publicEnv.PUBLIC_TURNSTILE_SITE_KEY;
+let turnstileToken = $state('');
+const captchaRequired = Boolean(turnstileSiteKey);
+let captchaValid = $state(!captchaRequired);
+let turnstileWidgetId: string | undefined;
+let captchaContainer = $state<HTMLDivElement | null>(null);
+
+	const infoIcon: Record<string, typeof MapPin> = {
+		address: MapPin,
+		phone: PhoneIcon,
+		email: MailIcon
+	};
 
 	const handleEnhance: SubmitFunction = () => {
 		return async ({ update, result }) => {
@@ -120,193 +127,178 @@
 
 </script>
 
-<div class="bg-gray-50/50">
-	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-x-16 px-6 py-24 lg:grid-cols-2">
-		<!-- LEFT COLUMN: Contact Information -->
-		<div class="max-w-xl lg:max-w-lg">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900">Neem contact op</h2>
-			<p class="mt-4 text-lg leading-8 text-gray-600">
-				Heeft u een vraag of wilt u een project bespreken? Vul het formulier in of neem direct
-				contact op via onderstaande gegevens.
-			</p>
+<section class="relative overflow-hidden bg-neutral-950 text-white">
+	<div class="absolute inset-0">
+		<img
+			src="/images/heroimageproject.jpg"
+			alt="Architectonische details met avondlicht"
+			class="h-full w-full object-cover opacity-50"
+		/>
+		<div class="absolute inset-0 bg-neutral-950/70"></div>
+		<div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(115,199,242,0.3),rgba(17,24,39,0.9))]"></div>
+	</div>
 
-			<div class="mt-10 space-y-6 text-base leading-7 text-gray-600">
-				<div class="flex gap-x-4">
-					<div class="flex-none">
-						<span class="sr-only">Adres</span>
-						<MapPin class="h-7 w-6 text-gray-400" aria-hidden="true" />
-					</div>
-					<p>Lagedijk 10e, 2064KT SPAARNDAM</p>
-				</div>
-				<div class="flex gap-x-4">
-					<div class="flex-none">
-						<span class="sr-only">Telefoon</span>
-						<PhoneIcon class="h-7 w-6 text-gray-400" aria-hidden="true" />
-					</div>
-					<a href="tel:0645776029" class="hover:text-gray-900">06 45 77 60 29</a>
-				</div>
-				<div class="flex gap-x-4">
-					<div class="flex-none">
-						<span class="sr-only">Email</span>
-						<MailIcon class="h-7 w-6 text-gray-400" aria-hidden="true" />
-					</div>
-					<a href="mailto:architect@mariahoogland.nl" class="hover:text-gray-900"
-						>architect@mariahoogland.nl</a
-					>
-				</div>
-			</div>
+	<div class="relative mx-auto max-w-4xl px-4 py-14 text-center sm:px-6 sm:py-18 lg:py-20">
+		<h1 class="mt-5 font-display text-2xl leading-tight sm:text-3xl lg:text-4xl">
+			{contactContent.hero.title}
+		</h1>
+		<p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base">
+			{contactContent.hero.body}
+		</p>
+	</div>
+</section>
 
-			<div class="mt-10 border-t border-gray-200 pt-10">
-				<h3 class="text-base font-semibold text-gray-800">Bedrijfsgegevens</h3>
-				<p class="mt-4 text-sm text-gray-500">
-					Ir. ING Maria Hoogland<br />
-					BNA lidnummer: 16076<br />
-					Bureau Architectenregister: 1.070515.028<br />
-					KvK-nummer: 34325681<br />
-					BTW-nummer: NL 0020.80.940.B82
-				</p>
-			</div>
-		</div>
+<section class="bg-[#f5f7fb] py-16 sm:py-20 lg:py-24">
+	<div class="mx-auto max-w-6xl px-4 sm:px-6">
+		<div class="grid gap-10 lg:grid-cols-12 lg:items-start xl:gap-16">
+			<form
+				method="POST"
+				use:enhance={handleEnhance}
+				class="order-1 space-y-6 rounded-3xl border border-neutral-200 bg-white/90 p-6 shadow-[0_20px_55px_rgba(15,23,42,0.08)] sm:p-8 lg:order-2 lg:col-span-7 lg:space-y-7"
+			>
+				<div class="hidden" aria-hidden="true">
+					<label for="sanity_check">Do not fill this out</label>
+					<input
+						type="text"
+						name="sanity_check"
+						id="sanity_check"
+						tabindex="-1"
+						autocomplete="off"
+					/>
+				</div>
+				<input type="hidden" name="form_timestamp" value={formTimestamp} />
+				{#if turnstileSiteKey}
+					<input type="hidden" name="turnstile_token" value={turnstileToken} />
+				{/if}
 
-		<!-- RIGHT COLUMN: Contact Form -->
-		<form
-			method="POST"
-			use:enhance={handleEnhance}
-			class="space-y-8 rounded-2xl bg-white p-8 shadow-lg lg:p-10"
-		>
-			<div class="hidden" aria-hidden="true">
-				<label for="sanity_check">Do not fill this out</label>
-				<input type="text" name="sanity_check" id="sanity_check" tabindex="-1" autocomplete="off" />
-			</div>
-			<input type="hidden" name="form_timestamp" value={formTimestamp} />
-			{#if turnstileSiteKey}
-				<input type="hidden" name="turnstile_token" value={turnstileToken} />
-			{/if}
-			<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-				<!-- Name -->
-				<div>
-					<label for="name" class="block text-sm font-semibold leading-6 text-gray-900">
-						Naam
-					</label>
-					<div class="mt-2.5">
+				<div class="grid gap-5 sm:grid-cols-2">
+					<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.22em] text-neutral-400">
+						<span>Naam</span>
 						<input
 							type="text"
 							name="name"
 							id="name"
 							bind:value={name}
 							required
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							class="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
 							placeholder="Uw volledige naam"
 						/>
-					</div>
-				</div>
-
-				<!-- Email -->
-				<div>
-					<label for="email" class="block text-sm font-semibold leading-6 text-gray-900">
-						E-mailadres
 					</label>
-					<div class="mt-2.5">
+
+					<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.22em] text-neutral-400">
+						<span>E-mailadres</span>
 						<input
 							type="email"
 							name="email"
 							id="email"
 							bind:value={email}
 							required
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							class="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
 							placeholder="uwnaam@voorbeeld.nl"
 						/>
-					</div>
-				</div>
-
-				<!-- Phone -->
-				<div>
-					<label for="phone" class="block text-sm font-semibold leading-6 text-gray-900">
-						Telefoonnummer
 					</label>
-					<div class="mt-2.5">
+
+					<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.22em] text-neutral-400">
+						<span>Telefoonnummer</span>
 						<input
 							type="tel"
 							name="phone"
 							id="phone"
 							bind:value={phone}
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							class="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
 							placeholder="+31 6 12345678"
 						/>
-					</div>
-				</div>
-
-				<!-- Subject -->
-				<div>
-					<label for="subject" class="block text-sm font-semibold leading-6 text-gray-900">
-						Onderwerp
 					</label>
-					<div class="mt-2.5">
+
+					<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.22em] text-neutral-400">
+						<span>Onderwerp</span>
 						<input
 							type="text"
 							name="subject"
 							id="subject"
 							bind:value={subject}
 							required
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							class="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
 							placeholder="Korte omschrijving"
 						/>
-					</div>
+					</label>
 				</div>
-			</div>
 
-			<!-- Message -->
-			<div class="sm:col-span-2">
-				<label for="message" class="block text-sm font-semibold leading-6 text-gray-900"
-					>Bericht</label
-				>
-				<div class="mt-2.5">
+				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.22em] text-neutral-400">
+					<span>Bericht</span>
 					<textarea
 						name="message"
 						id="message"
 						bind:value={message}
 						rows="6"
 						required
-						class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
-						placeholder="Laat hier uw bericht achter..."
+						class="min-h-[180px] rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+						placeholder="Beschrijf uw project, planning en vragen..."
 					></textarea>
-				</div>
-			</div>
+				</label>
 
-			{#if turnstileSiteKey}
-				<div class="sm:col-span-2">
-					<div
-						bind:this={captchaContainer}
-						class="cf-turnstile flex justify-center"
-						data-sitekey={turnstileSiteKey}
-					></div>
-				</div>
-			{/if}
+				{#if turnstileSiteKey}
+					<div class="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50/80 p-4 text-center">
+						<div
+							bind:this={captchaContainer}
+							class="cf-turnstile flex justify-center"
+							data-sitekey={turnstileSiteKey}
+						></div>
+					</div>
+				{/if}
 
-			<!-- Submit Button -->
-			<div class="mt-10">
 				<button
 					type="submit"
 					disabled={!captchaValid}
-					class="block w-full rounded-md bg-sky-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500"
+					class="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-neutral-950 transition hover:bg-primary-strong hover:text-white disabled:cursor-not-allowed disabled:bg-neutral-200 disabled:text-neutral-500"
 				>
 					Bericht versturen
 				</button>
-			</div>
 
-			<!-- Feedback Message -->
-			{#if formResult.success}
-				<div
-					class="rounded-md border border-green-300 bg-green-50 p-4 text-center"
-					role="alert"
-				>
-					<p class="text-sm font-medium text-green-800">{formResult.message}</p>
+			{#if $page.form?.success}
+				<div class="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4 text-center text-sm font-semibold text-emerald-700" role="status">
+					{$page.form.message}
 				</div>
-			{:else if formResult.error}
-				<div class="rounded-md border border-red-300 bg-red-50 p-4 text-center" role="alert">
-					<p class="text-sm font-medium text-red-800">{formResult.error}</p>
+			{:else if $page.form?.error}
+				<div class="rounded-2xl border border-red-200 bg-red-50/80 p-4 text-center text-sm font-semibold text-red-700" role="alert">
+					{$page.form.error}
 				</div>
 			{/if}
-		</form>
+			</form>
+
+			<aside class="order-2 space-y-8 rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-[0_20px_55px_rgba(15,23,42,0.08)] sm:p-8 lg:order-1 lg:col-span-5">
+				<h2 class="font-display text-2xl text-neutral-900">{contactContent.form.title}</h2>
+				<p class="text-sm leading-relaxed text-neutral-600">{contactContent.form.body}</p>
+
+				<ul class="grid gap-5 text-left text-neutral-700 sm:grid-cols-2 sm:gap-6 lg:grid-cols-1">
+					{#each contactContent.info as info}
+						{@const Icon = infoIcon[info.type] ?? MapPin}
+						<li class="flex h-full items-start gap-4 rounded-2xl bg-neutral-50/80 p-4">
+							<span class="mt-1 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+								<Icon class="h-5 w-5" />
+							</span>
+							<div>
+								<p class="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-400">
+									{info.label}
+								</p>
+								{#if info.href}
+									<a href={info.href} class="mt-1 block text-sm font-semibold text-neutral-900 transition hover:text-primary">
+										{info.value}
+									</a>
+								{:else}
+									<p class="mt-1 text-sm font-semibold text-neutral-900">{info.value}</p>
+								{/if}
+							</div>
+						</li>
+					{/each}
+				</ul>
+
+				<div class="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-6 text-xs uppercase tracking-[0.22em] text-neutral-500 sm:grid sm:grid-cols-2 sm:gap-x-4 sm:text-[0.7rem] lg:block lg:text-xs">
+					{#each contactContent.businessDetails as detail}
+						<p class="py-1">{detail}</p>
+					{/each}
+				</div>
+			</aside>
+		</div>
 	</div>
-</div>
+</section>

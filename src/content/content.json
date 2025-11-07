@@ -1,0 +1,349 @@
+{
+  "brand": {
+    "company": "Architectuur Maria Hoogland",
+    "owner": "Maria Hoogland",
+    "tagline": "Architectuur met karakter sinds 2004",
+    "logo": "/images/HeaderLogo.png",
+    "contact": {
+      "email": "architect@mariahoogland.nl",
+      "phone": "06 45 77 60 29",
+      "address": "Lagedijk 10e, 2064KT Spaarndam"
+    },
+    "registration": [
+      "Ir. ING Maria Hoogland",
+      "BNA lidnummer: 16076",
+      "Bureau Architectenregister: 1.070515.028",
+      "KvK-nummer: 34325681",
+      "BTW-nummer: NL 0020.80.940.B82"
+    ],
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://nl.linkedin.com/in/maria-hoogland-499ab1b2",
+        "icon": "linkedin"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/architect_amh/",
+        "icon": "instagram"
+      }
+    ]
+  },
+  "navigation": {
+    "links": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Over Mij",
+        "href": "/about"
+      },
+      {
+        "label": "Portfolio",
+        "href": "/portfolio"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ]
+  },
+  "home": {
+    "hero": {
+      "kicker": "20 jaar vakmanschap",
+      "title": "Architectuur voor mensen die vooruit durven te wonen",
+      "body": "Als zelfstandig architect werk ik nauw samen met opdrachtgevers die verfijning, licht en duurzaamheid willen combineren. Ik begeleid uw project van eerste schets tot oplevering – persoonlijk, deskundig en betrokken.",
+      "primaryCta": {
+        "label": "Plan een gesprek",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "Portfolio",
+        "href": "/portfolio"
+      },
+      "stats": [
+        {
+          "value": 20,
+          "suffix": "+",
+          "label": "Jaren zelfstandig architect"
+        },
+        {
+          "value": 750,
+          "suffix": "+",
+          "label": "Projecten begeleid"
+        },
+        {
+          "value": 98,
+          "suffix": "%",
+          "label": "Klanttevredenheid"
+        }
+      ]
+    },
+    "summaryPanel": {
+      "title": "Architectuur met karakter",
+      "copy": "Mijn ontwerpen combineren warmte met vakmanschap, en zijn geworteld in een sterke relatie met de opdrachtgever. Zo ontstaan ruimtes waarin dagelijks leven, werk en gastvrijheid moeiteloos samenkomen.",
+      "bullets": [
+        {
+          "icon": "compass",
+          "text": "Concept tot uitvoering onder één regie"
+        },
+        {
+          "icon": "layers",
+          "text": "Ontwerpen in dialoog met uw leefstijl"
+        },
+        {
+          "icon": "sparkles",
+          "text": "Architectuur die energie geeft en behoudt"
+        }
+      ]
+    },
+    "highlightsIntro": {
+      "kicker": "Werkwijze",
+      "title": "Een studio die meegroeid met uw ambities",
+      "copy": "Architectuur draait om vertrouwen. Daarom werk ik met een duidelijke structuur die ruimte laat voor creativiteit. Van de eerste gesprekken tot de laatste opleverpunten: u heeft één aanspreekpunt en volledige betrokkenheid."
+    },
+    "highlights": [
+      {
+        "title": "Architectuur op maat",
+        "description": "Elke woning, verbouwing of uitbreiding begint bij het verhaal van de bewoners. Ik vertaal dat naar een uniek ontwerp dat klopt tot in de details.",
+        "icon": "compass"
+      },
+      {
+        "title": "Heldere begeleiding",
+        "description": "Van vergunningstrajecten en aanbesteding tot bouwbegeleiding: u houdt overzicht, ik bewaak de kwaliteit en planning.",
+        "icon": "layers"
+      },
+      {
+        "title": "Slimme duurzaamheid",
+        "description": "Energiezuinige oplossingen en doordachte materiaalkeuzes zorgen voor een toekomstbestendige investering.",
+        "icon": "sparkles"
+      },
+      {
+        "title": "Persoonlijk partnerschap",
+        "description": "U staat rechtstreeks in contact met de architect. Met korte lijnen, eerlijke adviezen en aandacht voor uw wensen.",
+        "icon": "users"
+      }
+    ],
+    "projectSection": {
+      "kicker": "Projecten",
+      "title": "Uitgelichte realisaties",
+      "copy": "Samenwerkingen van de afgelopen jaren waarin bestaande ruimtes opnieuw betekenis kregen en nieuwbouw tot leven kwam. Elk project is een balans tussen functionaliteit en karakter.",
+      "cta": {
+        "label": "Alle projecten",
+        "href": "/portfolio"
+      }
+    },
+    "process": {
+      "kicker": "Partnerschap",
+      "title": "Een doordachte aanpak voor elk traject",
+      "copy": "Ieder project kent zijn eigen dynamiek. Met een vaste structuur houden we het overzicht, terwijl er ruimte blijft voor verwondering en maatwerk.",
+      "steps": [
+        {
+          "title": "Visie & richting",
+          "description": "We verkennen woonwensen, mogelijkheden en budget. U ontvangt een conceptpresentatie die de ruimte laat spreken.",
+          "icon": "lightbulb"
+        },
+        {
+          "title": "Technisch ontwerp",
+          "description": "We werken het ontwerp uit tot een bouwbaar plan met tekeningen, technische details en duidelijke afspraken met partners.",
+          "icon": "ruler"
+        },
+        {
+          "title": "Realisatie & nazorg",
+          "description": "Ik stuur bouwpartners aan, bewaak de kwaliteit op locatie en blijf betrokken tot de sleuteloverdracht – en daarna.",
+          "icon": "handshake"
+        }
+      ]
+    },
+    "commitments": {
+      "kicker": "Beloften",
+      "title": "Uw visie verdient deskundige begeleiding",
+      "copy": "Meer dan twintig jaar kennis van architectuur, regelgeving en uitvoering zorgen ervoor dat uw project soepel loopt. Ik zorg dat samenwerking met aannemers, adviseurs en gemeenten samenkomt in één helder verhaal.",
+      "points": [
+        {
+          "title": "Lokaal verankerd",
+          "copy": "Projecten in Noord-Holland en daarbuiten. Ik ken de gemeentelijke procedures en het regionale netwerk van specialisten.",
+          "icon": "landmark"
+        },
+        {
+          "title": "Transparante afspraken",
+          "copy": "Heldere offertes, inzicht in uren en een open begroting. U weet altijd hoe het project ervoor staat.",
+          "icon": "file-text"
+        },
+        {
+          "title": "Duurzame kwaliteit",
+          "copy": "Tijdloze architectuur met aandacht voor circulaire materialen en energiezuinige oplossingen die lang meegaan.",
+          "icon": "sparkles"
+        }
+      ]
+    },
+    "galleryIntro": {
+      "kicker": "Studio snapshots",
+      "title": "Materiaaldetail & sfeer",
+      "copy": "Een greep uit het archief van gerealiseerde projecten: licht, lijnen en materialen die de sfeer van de studio typeren."
+    },
+    "gallery": [
+      {
+        "src": "/images/projects/image10.jpeg",
+        "alt": "Open woonruimte met veel licht"
+      },
+      {
+        "src": "/images/projects/image13.png",
+        "alt": "Detail van maatwerk interieur"
+      },
+      {
+        "src": "/images/projects/image26.jpeg",
+        "alt": "Moderne aanbouw met houten accenten"
+      },
+      {
+        "src": "/images/projects/image4.jpeg",
+        "alt": "Keuken met marmeren blad"
+      },
+      {
+        "src": "/images/projects/image35.jpeg",
+        "alt": "Sfeervolle veranda"
+      }
+    ],
+    "testimonials": {
+      "kicker": "Ervaringen",
+      "title": "Wat opdrachtgevers delen",
+      "items": [
+        {
+          "quote": "Ik werk al meer dan 10 jaar met Maria op verschillende projecten, van verbouwingen tot commerciële projecten. Altijd een prettige en professionele samenwerking.",
+          "name": "Ramon Willems"
+        },
+        {
+          "quote": "Maria heeft ons snel en effectief geholpen een vergunning voor dakisolatie te verkrijgen. Ze was persoonlijk aanwezig bij de welstandsvergadering en wist ons doel te bereiken: vergunning verleend zonder bezwaren.",
+          "name": "Wouter Blok"
+        },
+        {
+          "quote": "Maria is een zeer betrokken, pragmatische en vriendelijke architect. Vlot, doortastend en met een goed netwerk. Dankzij haar hebben wij de juiste keuzes gemaakt. Een aanrader.",
+          "name": "Marcel"
+        },
+        {
+          "quote": "Goed meedenken, snel reageren en meteen de juiste tekeningen paraat. Wij zijn erg goed geholpen!",
+          "name": "Tom van Dijck"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Klaar voor de volgende stap in uw woonverhaal?",
+      "copy": "Laat ons kennismaken en ontdek wat een persoonlijk traject oplevert. In een eerste gesprek bespreken we kansen, planning en budget, zodat u met vertrouwen verder kunt bouwen.",
+      "primaryCta": {
+        "label": "Plaats een aanvraag",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "Bel direct",
+        "href": "tel:0645776029"
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "kicker": "Over Maria Hoogland",
+      "title": "Een praktijk gebouwd op vertrouwen en vakmanschap",
+      "body": "Sinds 2004 vertaal ik woonambities naar architectuur met warmte, licht en karakter. Van maatwerk woningen tot doordachte verbouwingen en uitbreidingen: ik begeleid opdrachtgevers stap voor stap naar een resultaat dat klopt."
+    },
+    "pillars": [
+      {
+        "title": "Onze filosofie",
+        "copy": "Architectuur is voor mij een dialoog tussen opdrachtgever, omgeving en functie. Ik ontwerp vanuit de context en geef ruimte aan de verhalen van gebruikers.",
+        "icon": "globe"
+      },
+      {
+        "title": "Duurzaam ontwerpen",
+        "copy": "Energiezuinige oplossingen, circulaire materialen en slimme installaties vormen de basis. Zo ontstaat toekomstbestendige architectuur met een kleine voetafdruk.",
+        "icon": "sparkles"
+      },
+      {
+        "title": "Klantgerichte aanpak",
+        "copy": "Direct contact, heldere communicatie en een betrokken aanpak zorgen dat u zich gehoord voelt. Ik bewandel het traject met u, niet naast u.",
+        "icon": "users"
+      },
+      {
+        "title": "Innovatie & expertise",
+        "copy": "Ik combineer twintig jaar ervaring met nieuwe technieken en inzichten. Daardoor blijft het werk vernieuwend zonder de essentie te verliezen.",
+        "icon": "lightbulb"
+      }
+    ],
+    "architect": {
+      "name": "Maria Hoogland",
+      "title": "Oprichter & Architect",
+      "image": "/images/maria2.jpg",
+      "bio": "Gedreven door het creëren van betekenisvolle ruimtes, begeleid ik elk project persoonlijk. Ik geloof in architectuur die leven toevoegt – met gevoel voor detail, techniek en mens."
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "copy": "Een selectie van mijn werk, van concept tot realisatie. Elk project vertelt een uniek verhaal van samenwerking, creativiteit en vakmanschap.",
+    "searchPlaceholder": "Zoek projecten..."
+  },
+  "contact": {
+    "hero": {
+      "kicker": "Kennismaken",
+      "title": "Neem contact op",
+      "body": "Heeft u een vraag of wilt u een project bespreken? Vul het formulier in of neem direct contact op via onderstaande gegevens."
+    },
+    "form": {
+      "title": "Vertel me over uw project",
+      "body": "Selecteer een onderwerp dat past bij uw aanvraag en deel zoveel mogelijk details. Ik reageer doorgaans binnen twee werkdagen."
+    },
+    "info": [
+      {
+        "type": "address",
+        "label": "Adres",
+        "value": "Lagedijk 10e, 2064KT Spaarndam"
+      },
+      {
+        "type": "phone",
+        "label": "Telefoon",
+        "value": "06 45 77 60 29",
+        "href": "tel:0645776029"
+      },
+      {
+        "type": "email",
+        "label": "E-mail",
+        "value": "architect@mariahoogland.nl",
+        "href": "mailto:architect@mariahoogland.nl"
+      }
+    ],
+    "businessDetails": [
+      "Ir. ING Maria Hoogland",
+      "BNA lidnummer: 16076",
+      "Bureau Architectenregister: 1.070515.028",
+      "KvK-nummer: 34325681",
+      "BTW-nummer: NL 0020.80.940.B82"
+    ],
+    "successMessage": "Je bericht is succesvol verzonden!",
+    "errorMessage": "Verzenden mislukt. Probeer het later opnieuw."
+  },
+  "footer": {
+    "tagline": "Architectuur met karakter. Ontworpen vanuit dialoog, gerealiseerd met toewijding.",
+    "quickLinks": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Over Mij",
+        "href": "/about"
+      },
+      {
+        "label": "Portfolio",
+        "href": "/portfolio"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "credits": {
+      "label": "Website door Nick Esselman",
+      "href": "https://nickesselman.nl",
+      "contactLabel": "info@nickesselman.nl",
+      "contactHref": "mailto:info@nickesselman.nl"
+    }
+  }
+}

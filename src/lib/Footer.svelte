@@ -1,94 +1,97 @@
 <script lang="ts">
-  import { Instagram, Linkedin } from '@lucide/svelte';
+	import { Instagram, Linkedin } from '@lucide/svelte';
+	import type { SiteContent } from '$lib/types/content';
 
-  const quickLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Contact', href: '/contact' },
-  ];
+	let { content } = $props<{ content: SiteContent }>();
+
+	const socials = content.brand.socials;
+	const quickLinks = content.footer.quickLinks;
 </script>
 
-<footer class="bg-secondary text-white mt-4">
-  <div class="container mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-    <!-- About -->
-    <div class="text-center md:text-left">
-      <h5 class="text-primary text-xl font-semibold mb-3">Architectuur AMH</h5>
-      <p class="text-sm leading-relaxed">
-        Karaktervolle woningen en verrassende verbouwingen, met passie en plezier ontworpen door Maria Hoogland.
-      </p>
-    </div>
+<footer class="mt-20 bg-neutral-950 text-white">
+	<div
+		class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:grid lg:grid-cols-[1.1fr,0.9fr,0.9fr] lg:items-start lg:gap-16"
+	>
+		<div class="space-y-5">
+			<a href="/" class="inline-flex items-center gap-3">
+				<img src={content.brand.logo} alt={content.brand.company} class="h-12 w-auto" />
+				<div class="flex flex-col leading-tight">
+					<span class="font-display text-sm font-semibold uppercase tracking-[0.35em] text-primary"
+						>{content.brand.owner}</span
+					>
+					<span class="text-xs uppercase tracking-[0.25em] text-white/50">{content.brand.tagline}</span>
+				</div>
+			</a>
+			<p class="max-w-md text-sm leading-relaxed text-white/70">{content.footer.tagline}</p>
+			<div class="flex flex-wrap gap-3">
+				{#each socials as social}
+					{#if social.icon === 'linkedin'}
+						<a
+							href={social.href}
+							target="_blank"
+							rel="noreferrer"
+							class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:border-white hover:bg-white/20"
+							aria-label={social.label}
+						>
+							<Linkedin class="h-5 w-5" />
+						</a>
+					{:else if social.icon === 'instagram'}
+						<a
+							href={social.href}
+							target="_blank"
+							rel="noreferrer"
+							class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:border-white hover:bg-white/20"
+							aria-label={social.label}
+						>
+							<Instagram class="h-5 w-5" />
+						</a>
+					{/if}
+				{/each}
+			</div>
+		</div>
 
-    <!-- Quick Links -->
-    <div class="text-center md:text-left">
-      <h5 class="text-primary text-xl font-semibold mb-3">Snelle Links</h5>
-      <ul class="space-y-2">
-        {#each quickLinks as { label, href }}
-          <li>
-            <a
-              href={href}
-              class="inline-block text-base hover:text-primary transition"
-            >
-              {label}
-            </a>
-          </li>
-        {/each}
-      </ul>
-    </div>
+		<div class="mt-12 space-y-4 lg:mt-0">
+			<h3 class="font-display text-sm uppercase tracking-[0.35em] text-white/60">Navigatie</h3>
+			<ul class="space-y-3 text-sm font-semibold uppercase tracking-[0.25em] text-white/70">
+				{#each quickLinks as { label, href }}
+					<li>
+						<a href={href} class="transition hover:text-white">{label}</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
 
-    <!-- Contact -->
-    <div class="text-center md:text-left">
-      <h5 class="text-primary text-xl font-semibold mb-3">Contact</h5>
-      <p class="text-base">
-        <a href="mailto:info@mariahoogland.nl" class="hover:text-primary transition">
-          info@mariahoogland.nl
-        </a>
-      </p>
-      <p class="text-base">
-        <a href="tel:+31645776092" class="hover:text-primary transition">
-          +31 6 457 760 92
-        </a>
-      </p>
-    </div>
-
-    <!-- Socials -->
-    <div class="text-center md:text-left">
-      <h5 class="text-primary text-xl font-semibold mb-3">Volg Mij</h5>
-      <div class="flex justify-center md:justify-start items-center space-x-6">
-        <a
-          href="https://nl.linkedin.com/in/maria-hoogland-499ab1b2"
-          target="_blank"
-          class="p-2 rounded-full hover:bg-primary/20 transition"
-          aria-label="LinkedIn"
-        >
-          <Linkedin size="24" />
-        </a>
-        <a
-          href="https://www.instagram.com/architect_amh/"
-          target="_blank"
-          class="p-2 rounded-full hover:bg-primary/20 transition"
-          aria-label="Instagram"
-        >
-          <Instagram size="24" />
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="border-t border-gray-600 py-4">
-    <div class="container mx-auto px-4 text-center text-sm text-gray-300">
-      <p>
-        Website gemaakt door
-        <a
-          href="https://nickesselman.nl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-medium hover:text-white transition"
-        >
-          Nick Esselman</a
-        >. Contact:
-        <a href="mailto:info@nickesselman.nl" class="font-medium hover:text-white transition"
-          >info@nickesselman.nl</a
-        >
-      </p>
-    </div>
-  </div>
+		<div class="mt-12 space-y-4 lg:mt-0">
+			<h3 class="font-display text-sm uppercase tracking-[0.35em] text-white/60">Contact</h3>
+			<ul class="space-y-3 text-sm text-white/70">
+				<li>
+					<a href={`mailto:${content.brand.contact.email}`} class="transition hover:text-white"
+						>{content.brand.contact.email}</a
+					>
+				</li>
+				<li>
+					<a href={`tel:${content.brand.contact.phone.replace(/\\s+/g, '')}`} class="transition hover:text-white"
+						>{content.brand.contact.phone}</a
+					>
+				</li>
+				<li class="text-white/60">{content.brand.contact.address}</li>
+			</ul>
+			<ul class="mt-6 space-y-2 text-xs uppercase tracking-[0.25em] text-white/40">
+				{#each content.brand.registration as line}
+					<li>{line}</li>
+				{/each}
+			</ul>
+		</div>
+	</div>
+	<div class="border-t border-white/10">
+		<div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-xs uppercase tracking-[0.25em] text-white/40 sm:flex-row">
+			<span>{content.brand.company} © {new Date().getFullYear()}</span>
+			<a href={content.footer.credits.href} target="_blank" rel="noreferrer" class="transition hover:text-white">
+				{content.footer.credits.label}
+			</a>
+			<a href={content.footer.credits.contactHref} class="transition hover:text-white">
+				{content.footer.credits.contactLabel}
+			</a>
+		</div>
+	</div>
 </footer>

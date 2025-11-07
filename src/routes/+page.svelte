@@ -1,146 +1,209 @@
 <script lang="ts">
-	import { ArrowRight } from '@lucide/svelte';
-	import CountUp from '$lib/CountUp.svelte';
-	import { fade, slide } from 'svelte/transition';
-  
-	export let data: {
-		mainProjects: typeof import('$lib/data/projects.ts').mainProjects;
-		projects: typeof import('$lib/data/projects.ts').projects;
-    testimonials: typeof import('$lib/server/testimonials.ts').testimonials;
+	import {
+		ArrowUpRight,
+		Compass,
+		FileText,
+		Handshake,
+		Landmark,
+		Layers,
+		Lightbulb,
+		Ruler,
+		Sparkles,
+		Users
+	} from '@lucide/svelte';
+import CountUp from '$lib/CountUp.svelte';
+import type { Project, SmallProject } from '$lib/data/projects';
+import type { IconName, SiteContent } from '$lib/types/content';
+
+export let data: {
+	mainProjects: SmallProject[];
+	projects: Project[];
+	content: SiteContent;
+};
+
+	const home = data.content.home;
+
+	const yearsInPractice = new Date().getFullYear() - 2004;
+	const heroStats = home.hero.stats.map((stat) =>
+		stat.label.toLowerCase().includes('jaar')
+			? { ...stat, value: yearsInPractice }
+			: stat
+	);
+
+	const iconMap: Partial<Record<IconName, typeof Compass>> = {
+		'arrow-up-right': ArrowUpRight,
+		compass: Compass,
+		globe: Landmark,
+		'file-text': FileText,
+		handshake: Handshake,
+		layers: Layers,
+		landmark: Landmark,
+		lightbulb: Lightbulb,
+		ruler: Ruler,
+		sparkles: Sparkles,
+		users: Users
 	};
 
-	interface UnderImage {
-		src: string;
-		alt: string;
-	}
+	const resolveIcon = (icon: IconName) => iconMap[icon] ?? Compass;
 
-	const modules = import.meta.glob('/src/lib/mainpageimages/*.{jpg,png,webp,jpeg}', {
-		query: '?url',
-		import: 'default',
-		eager: true
-	}) as Record<string, string>;
-
-	const underImages: UnderImage[] = Object.values(modules).map((src) => ({
-		src,
-		alt: friendlyAlt(src)
-	}));
-
-	function friendlyAlt(src: string) {
-		const file = src.split('/').pop() || '';
-		const name = file.replace(/\.[^.]+$/, '');
-		return name.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-	}
+	const summaryPanel = home.summaryPanel;
+const highlightsIntro = home.highlightsIntro;
+const highlights = home.highlights;
+	const processSteps = home.process.steps;
+	const commitments = home.commitments.points;
+const galleryIntro = home.galleryIntro;
+const gallery = home.gallery;
+	const testimonials = home.testimonials.items;
+	const projectSection = home.projectSection;
+	const cta = home.cta;
 </script>
 
+<section class="relative overflow-hidden bg-neutral-950 text-white">
+	<div class="absolute inset-0">
+		<img
+			src="/images/heroimageproject.jpg"
+			alt="Sfeervolle architectuur in avondlicht"
+			class="h-full w-full object-cover opacity-60"
+		/>
+		<div class="absolute inset-0 bg-neutral-950/70"></div>
+		<div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(115,199,242,0.45),rgba(15,23,42,0.95))]"></div>
+	</div>
 
-<div
-	style="
-	    background-image: url(/images/mainbg.png);  background-position: center left;  background-repeat: no-repeat; background-size: cover;"
->
-	<!-- About Section -->
-	<section class="py-16 sm:py-20">
-		<div
-			class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 lg:grid-cols-2"
-		>
-			<div class="lg:pr-8">
-				<div class="max-w-lg">
-					<h2 class="text-3xl font-bold tracking-tight text-secondary sm:text-4xl">
-						Laten we samen uw droomhuis realiseren
-					</h2>
-					<p class="mt-6 text-lg leading-8 text-secondary">
-						Heeft u een visie voor uw perfecte ruimte? Ik help u die te realiseren. Van het eerste
-						concept tot de laatste afwerking, ik ben uw toegewijde partner. Neem contact op voor
-						een vrijblijvend gesprek en laten we beginnen met het bouwen van uw toekomst.
-					</p>
-					<div class="mt-10 flex items-center gap-x-6">
-						<a
-							href="/contact"
-							class="rounded-md bg-sky-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-500"
-							>Neem contact op</a
-						>
-						<a href="/portfolio" class="text-sm font-semibold leading-6 text-secondary"
-							>Bekijk mijn werk <span aria-hidden="true">→</span></a
-						>
-					</div>
+	<div class="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:py-24">
+		<div class="grid items-center gap-10 sm:gap-14 lg:grid-cols-[1.2fr,0.8fr]">
+			<div class="space-y-6 sm:space-y-8">
+				<h1 class="font-display text-3xl leading-tight sm:text-4xl lg:text-[3.1rem] lg:leading-[1.1]">
+					{home.hero.title}
+				</h1>
+				<p class="max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
+					{home.hero.body}
+				</p>
+				<div class="flex flex-wrap gap-4">
+					<a
+						href={home.hero.primaryCta.href}
+						class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-neutral-950 transition hover:bg-primary-strong hover:text-white"
+					>
+						{home.hero.primaryCta.label}
+					</a>
+					<a
+						href={home.hero.secondaryCta.href}
+						class="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-white transition hover:border-white hover:bg-white/10"
+					>
+						{home.hero.secondaryCta.label}
+						<ArrowUpRight class="h-4 w-4" />
+					</a>
+				</div>
+
+				<div class="grid gap-5 sm:grid-cols-3">
+					{#each heroStats as stat}
+						<div class="rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur-md">
+							<p class="font-display text-3xl font-semibold text-white sm:text-4xl">
+								<CountUp value={stat.value} suffix={`${stat.suffix} `} />
+							</p>
+							<p class="mt-2 text-sm uppercase tracking-[0.2em] text-white/70">{stat.label}</p>
+						</div>
+					{/each}
 				</div>
 			</div>
-			<div class="grid grid-cols-2 gap-4">
-				<img
-					src="/images/maria.jpg"
-					alt="Portret van architect Maria Hoogland"
-					class="aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-lg"
-					in:slide={{ duration: 1000, delay: 200 }} />
-				<img
-					src="/images/heroimageproject.jpg"
-					alt="Detail van een modern huisontwerp"
-					class="mt-8 aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-lg"
-					in:slide={{ duration: 1000, delay: 400 }} />
+
+			<div class="rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-lg sm:p-8">
+				<h2 class="font-display text-2xl text-white">{summaryPanel.title}</h2>
+				<p class="mt-4 text-sm leading-relaxed text-white/70">
+					{summaryPanel.copy}
+				</p>
+				<ul class="mt-8 space-y-4 text-white/80">
+					{#each summaryPanel.bullets as bullet}
+						<li class="flex items-center gap-3">
+							<span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/20 text-primary">
+								<svelte:component this={resolveIcon(bullet.icon)} class="h-5 w-5" />
+							</span>
+							{bullet.text}
+						</li>
+					{/each}
+				</ul>
 			</div>
 		</div>
-	</section>
-</div>
+	</div>
+</section>
 
-<!-- Gallery Section -->
-{#if underImages.length}
-	<section class="bg-slate-100 py-24 sm:py-32">
-		<div class="mx-auto max-w-7xl px-6 lg:px-8">
-			<div class="mx-auto max-w-2xl text-center">
-				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Impressies</h2>
-				<p class="mt-6 text-lg leading-8 text-gray-600">
-					Een visuele verzameling van details, materialen en momenten die mijn werk definiëren.
+<section class="bg-[#f5f7fb] py-20 sm:py-24 lg:py-28">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6">
+		<div class="grid gap-10 sm:gap-12 lg:grid-cols-[0.8fr,1.2fr] lg:items-center">
+			<div class="space-y-6">
+				<span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-primary sm:text-xs sm:tracking-[0.3em]">
+					{highlightsIntro.kicker}
+				</span>
+				<h2 class="font-display text-3xl leading-tight text-neutral-900 sm:text-4xl">
+					{highlightsIntro.title}
+				</h2>
+				<p class="text-base leading-relaxed text-neutral-600">
+					{highlightsIntro.copy}
 				</p>
 			</div>
-			<div class="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-				{#each underImages as { src, alt }}
-					<div class="overflow-hidden rounded-lg">
-						<img
-							{src}
-							{alt}
-							loading="lazy"
-							class="h-48 w-full object-cover transition-transform duration-300 hover:scale-110"
-						/>
+			<div class="grid gap-6 sm:grid-cols-2 sm:gap-8">
+				{#each highlights as highlight}
+					<div class="group flex h-full flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-[0_24px_55px_rgba(15,23,42,0.07)] transition hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(15,23,42,0.1)]">
+						<span class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
+							<svelte:component this={resolveIcon(highlight.icon)} class="h-6 w-6" />
+						</span>
+						<h3 class="font-display text-lg text-neutral-900">{highlight.title}</h3>
+						<p class="mt-3 text-sm leading-relaxed text-neutral-600">{highlight.description}</p>
 					</div>
 				{/each}
 			</div>
 		</div>
-	</section>
-{/if}
+	</div>
+</section>
 
-
-<!-- Featured Projects Section -->
 {#if data.mainProjects.length}
-	<section class="bg-white py-16 sm:py-20" in:fade={{ duration: 1000, delay: 1000 }}>
-		<div class="mx-auto max-w-7xl px-6 lg:px-8">
-			<div class="mx-auto max-w-2xl text-center">
-				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-					Uitgelichte Projecten
-				</h2>
-				<p class="mt-6 text-lg leading-8 text-gray-600">
-					Een selectie van projecten die de diversiteit en kwaliteit van mijn werk tonen.
-				</p>
+	<section class="bg-white py-20 sm:py-24 lg:py-28">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6">
+			<div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+				<div>
+					<span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-primary sm:text-xs sm:tracking-[0.3em]">
+						{projectSection.kicker}
+					</span>
+					<h2 class="mt-4 font-display text-3xl text-neutral-900 sm:text-4xl">
+						{projectSection.title}
+					</h2>
+					<p class="mt-3 max-w-xl text-base leading-relaxed text-neutral-600">
+						{projectSection.copy}
+					</p>
+				</div>
+				<a
+					href={projectSection.cta.href}
+					class="inline-flex items-center justify-center gap-2 rounded-full border border-neutral-300 px-5 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-900 sm:tracking-[0.3em]"
+				>
+					{projectSection.cta.label}
+					<ArrowUpRight class="h-4 w-4" />
+				</a>
 			</div>
-			<div
-				class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-			>
+
+			<div class="mt-10 grid gap-6 sm:mt-12 sm:gap-8 lg:grid-cols-3">
 				{#each data.mainProjects as project}
-					<a href={project.sublink} class="group block">
-						<div
-							class="overflow-hidden rounded-2xl shadow-lg transition-shadow duration-300 group-hover:shadow-2xl"
-						>
+					<a
+						href={project.sublink}
+						class="group flex h-full flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-50/60 shadow-[0_24px_60px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(15,23,42,0.12)]"
+					>
+						<div class="relative overflow-hidden">
 							<img
 								src={project.src}
 								alt={project.title}
-								class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+								class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
+								loading="lazy"
 							/>
+							<div class="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-neutral-950/10 to-transparent"></div>
 						</div>
-						<div class="p-4">
-							<h3 class="mt-2 text-lg font-semibold text-gray-900">{project.title}</h3>
-							<p class="mt-2 line-clamp-2 text-sm text-gray-600">{project.subtitle}</p>
-							<span
-								class="mt-4 inline-flex items-center font-medium text-sky-600 group-hover:text-sky-500"
-							>
+						<div class="flex flex-1 flex-col gap-4 p-6">
+							<div>
+								<h3 class="font-display text-xl text-neutral-900">{project.title}</h3>
+								<p class="mt-2 line-clamp-3 text-sm leading-relaxed text-neutral-600">
+									{project.subtitle}
+								</p>
+							</div>
+							<span class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-primary">
 								Bekijk project
-								<ArrowRight class="ml-2 h-4 w-4" />
+								<ArrowUpRight class="h-4 w-4 transition group-hover:translate-x-1" />
 							</span>
 						</div>
 					</a>
@@ -150,53 +213,144 @@
 	</section>
 {/if}
 
-
-
-<!-- Stats Section -->
-<section class="bg-slate-100 py-16 sm:py-20" in:fade={{ duration: 1000, delay: 500 }}>
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		<div class="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
-			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={2025-2004} suffix="+ " /></h3>
-				<p class="mt-2 text-lg leading-8 text-gray-600">Jaren ervaring</p>
+<section class="bg-[#111826] py-20 sm:py-24 lg:py-28 text-white">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6">
+		<div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+			<div class="max-w-xl space-y-6">
+				<span class="inline-flex rounded-full bg-primary/20 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-primary sm:text-xs sm:tracking-[0.3em]">
+					{home.process.kicker}
+				</span>
+				<h2 class="font-display text-3xl leading-tight sm:text-4xl">
+					{home.process.title}
+				</h2>
+				<p class="text-base leading-relaxed text-white/70">
+					{home.process.copy}
+				</p>
 			</div>
-			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={750} suffix="+ " /></h3>
-				<p class="mt-2 text-lg leading-8 text-gray-600">Afgeronde projecten</p>
-			</div>
-			<div>
-				<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><CountUp value={98} suffix="% " /></h3>
-				<p class="mt-2 text-lg leading-8 text-gray-600">Klanttevredenheid</p>
+			<div class="grid flex-1 gap-6 sm:gap-8 lg:grid-cols-3">
+				{#each processSteps as step, index}
+					<div class="rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm">
+						<div class="flex items-center justify-between">
+							<span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/20 text-primary">
+								{index + 1}
+							</span>
+							<svelte:component this={resolveIcon(step.icon)} class="h-6 w-6 text-primary" />
+						</div>
+						<h3 class="mt-6 font-display text-lg text-white">{step.title}</h3>
+						<p class="mt-3 text-sm leading-relaxed text-white/70">{step.description}</p>
+					</div>
+				{/each}
 			</div>
 		</div>
 	</div>
 </section>
 
-
-<!-- Testimonials Section -->
-<section class="bg-slate-50 py-16 sm:py-20">
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		<div class="mx-auto max-w-2xl text-center">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-				Wat klanten zeggen
-			</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600">
-				Lees hoe anderen de samenwerking met Maria Hoogland hebben ervaren.
-			</p>
-		</div>
-		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
-			{#each data.testimonials as testimonial}
-				<div class="flex flex-col rounded-2xl bg-white p-8 shadow-lg">
-					<blockquote class="flex-grow text-lg leading-8 text-gray-700">
-						<p>“{testimonial.quote}”</p>
-					</blockquote>
-					<footer class="mt-6">
-						<div class="font-semibold text-gray-900">— {testimonial.name}</div>
-					</footer>
-				</div>
-			{/each}
+<section class="bg-[#f5f7fb] py-20 sm:py-24 lg:py-28">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6">
+		<div class="grid gap-8 lg:grid-cols-[0.75fr,1.25fr] lg:items-center">
+			<div class="space-y-6">
+				<span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-primary sm:text-xs sm:tracking-[0.3em]">
+					{home.commitments.kicker}
+				</span>
+				<h2 class="font-display text-3xl text-neutral-900 sm:text-4xl">
+					{home.commitments.title}
+				</h2>
+				<p class="text-base leading-relaxed text-neutral-600">
+					{home.commitments.copy}
+				</p>
+			</div>
+			<div class="grid gap-5 sm:grid-cols-2 sm:gap-6">
+				{#each commitments as point}
+					<div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)]">
+						<div class="flex items-center gap-3">
+							<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary">
+								<svelte:component this={resolveIcon(point.icon)} class="h-5 w-5" />
+							</span>
+							<h3 class="font-display text-base text-neutral-900">{point.title}</h3>
+						</div>
+						<p class="mt-3 text-sm leading-relaxed text-neutral-600">{point.copy}</p>
+					</div>
+				{/each}
+			</div>
 		</div>
 	</div>
 </section>
 
+{#if gallery.length}
+	<section class="bg-white py-20 sm:py-24 lg:py-28">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6">
+			<div class="mx-auto max-w-2xl text-center">
+				<span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-primary sm:text-xs sm:tracking-[0.3em]">
+					{galleryIntro.kicker}
+				</span>
+				<h2 class="mt-4 font-display text-3xl text-neutral-900 sm:text-4xl">{galleryIntro.title}</h2>
+				<p class="mt-4 text-base leading-relaxed text-neutral-600">
+					{galleryIntro.copy}
+				</p>
+			</div>
+			<div class="mt-12 grid gap-3 sm:mt-16 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5">
+				{#each gallery as item}
+					<div class="overflow-hidden rounded-2xl bg-neutral-100">
+						<img
+							src={item.src}
+							alt={item.alt}
+							loading="lazy"
+							class="aspect-[3/4] w-full object-cover transition duration-500 hover:scale-105"
+						/>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
+{/if}
 
+{#if testimonials.length}
+	<section class="bg-[#f5f7fb] py-20 sm:py-24 lg:py-28">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6">
+			<div class="mx-auto max-w-2xl text-center">
+				<span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-primary sm:text-xs sm:tracking-[0.3em]">
+					{home.testimonials.kicker}
+				</span>
+				<h2 class="mt-4 font-display text-3xl text-neutral-900 sm:text-4xl">
+					{home.testimonials.title}
+				</h2>
+			</div>
+			<div class="mt-10 grid gap-6 sm:mt-12 sm:gap-8 lg:grid-cols-2">
+				{#each testimonials as testimonial}
+					<article class="flex h-full flex-col justify-between rounded-3xl border border-neutral-200 bg-white/90 p-6 shadow-[0_22px_55px_rgba(15,23,42,0.08)] sm:p-8">
+						<p class="text-base leading-relaxed text-neutral-700 sm:text-lg">“{testimonial.quote}”</p>
+						<div class="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-primary sm:text-sm sm:tracking-[0.25em]">
+							{testimonial.name}
+						</div>
+					</article>
+				{/each}
+			</div>
+		</div>
+	</section>
+{/if}
+
+<section class="relative overflow-hidden rounded-[3rem] bg-gradient-to-r from-primary to-primary-strong px-4 py-14 sm:px-6 sm:py-18 lg:mx-auto lg:mb-24 lg:max-w-6xl">
+	<div class="absolute -inset-x-24 -top-24 h-48 bg-white/20 blur-3xl"></div>
+	<div class="relative mx-auto max-w-4xl text-center text-white">
+		<h2 class="font-display text-3xl leading-tight sm:text-4xl">
+			{cta.title}
+		</h2>
+		<p class="mt-4 text-base leading-relaxed text-white/80">
+			{cta.copy}
+		</p>
+		<div class="mt-8 flex flex-wrap justify-center gap-4">
+			<a
+				href={cta.primaryCta.href}
+				class="inline-flex items-center justify-center rounded-full bg-neutral-950 px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-neutral-900 sm:tracking-[0.25em]"
+			>
+				{cta.primaryCta.label}
+			</a>
+			<a
+				href={cta.secondaryCta.href}
+				class="inline-flex items-center justify-center rounded-full border border-white/70 px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-white transition hover:border-white hover:bg-white/10 sm:tracking-[0.25em]"
+			>
+				{cta.secondaryCta.label}
+			</a>
+		</div>
+	</div>
+</section>

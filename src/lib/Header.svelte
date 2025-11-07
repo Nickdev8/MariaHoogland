@@ -1,56 +1,76 @@
 <script lang="ts">
-  import { Menu } from '@lucide/svelte';
-  let isOpen = false;
-  const links = [
-    { label: 'Home', href: '/' },
-    { label: 'Over Mij', href: '/about' },
-    { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Contact', href: '/contact' },
-  ];
-  const toggle = () => (isOpen = !isOpen);
+import { Menu } from '@lucide/svelte';
+import type { SiteContent } from '$lib/types/content';
+
+let { content } = $props<{ content: SiteContent }>();
+let isOpen = $state(false);
+
+	const links = content.navigation.links;
+
+const toggle = () => {
+	isOpen = !isOpen;
+};
+
+const close = () => {
+	isOpen = false;
+};
 </script>
 
-<header class="fixed inset-x-0 top-0 z-50 bg-secondary shadow-md animate-fade-in-down">
-  <div class="flex items-center justify-between pr-4 md:pr-8">
-    <!-- logo flush to corner -->
-    <a href="/" class="flex-shrink-0">
-      <img src="/images/HeaderLogo.png" alt="AMH logo" class="h-14" />
-    </a>
+<header class="fixed inset-x-0 top-0 z-50 bg-neutral-950/95 text-white shadow-md">
+	<div class="flex items-center justify-between px-3 py-3 sm:px-6 sm:py-4">
+		<a href="/" class="flex flex-shrink-0 items-center">
+			<img src={content.brand.logo} alt={content.brand.company} class="h-14 w-auto" />
+		</a>
 
-    <!-- desktop nav -->
-    <nav class="hidden md:flex space-x-8">
-      {#each links as { label, href }}
-        <a
-          href={href}
-          class="relative font-medium text-white hover:text-primary transition"
-        >
-          {label}
-          <span class="absolute bottom-0 left-0 block h-0.5 w-0 bg-white transition-all group-hover:w-full"></span>
-        </a>
-      {/each}
-    </nav>
+		<nav class="hidden items-center space-x-8 md:flex">
+			{#each links as { label, href }}
+				<a
+					href={href}
+					class="relative text-sm font-medium uppercase tracking-[0.28em] text-white/70 transition hover:text-white"
+				>
+					{label}
+				</a>
+			{/each}
+		</nav>
 
-    <!-- mobile toggle -->
-    <button
-      class="md:hidden focus:outline-none text-white"
-      aria-label="Toggle menu"
-      on:click={toggle}
-    >
-      <Menu size="24" />
-    </button>
-  </div>
+		<div class="flex items-center gap-3">
+			<a
+				href="/contact"
+				class="hidden rounded-full bg-primary px-5 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-neutral-950 transition hover:bg-primary-strong hover:text-white md:inline-flex"
+			>
+				Plaats aanvraag
+			</a>
+		<button
+			class="inline-flex items-center justify-center rounded-full border border-white/30 p-2 text-white transition hover:border-white hover:bg-white/10 md:hidden"
+			onclick={toggle}
+			aria-expanded={isOpen}
+			aria-controls="mobile-nav"
+		>
+				{#if isOpen}
+					<span class="text-lg leading-none">×</span>
+				{:else}
+					<Menu class="h-5 w-5" />
+				{/if}
+			</button>
+		</div>
+	</div>
 
-  <!-- mobile menu -->
-  {#if isOpen}
-    <nav class="md:hidden bg-secondary px-4 pb-4">
-      {#each links as { label, href }}
-        <a
-          href={href}
-          class="block py-2 text-base font-medium text-white hover:text-gray-200 transition"
-        >
-          {label}
-        </a>
-      {/each}
-    </nav>
-  {/if}
+	{#if isOpen}
+		<nav id="mobile-nav" class="md:hidden">
+			<div class="space-y-1 border-t border-white/10 bg-neutral-950/95 px-4 pb-4 text-sm text-white">
+				{#each links as { label, href }}
+					<a href={href} class="block py-2 font-semibold uppercase tracking-[0.3em]" onclick={close}>
+						{label}
+					</a>
+				{/each}
+				<a
+					href="tel:0645776029"
+					class="mt-3 inline-flex w-full items-center justify-center rounded-full bg-primary px-4 py-3 text-xs font-semibold uppercase tracking-[0.28em] text-neutral-950 transition hover:bg-primary-strong hover:text-white"
+					onclick={close}
+				>
+					Bel direct
+				</a>
+			</div>
+		</nav>
+	{/if}
 </header>
