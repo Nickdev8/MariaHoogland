@@ -5,9 +5,9 @@ node_modules
 .vercel
 .netlify
 .wrangler
-/.svelte-kit
-/build
-/dist
+app/.svelte-kit
+app/build
+app/dist
 
 # OS
 .DS_Store
@@ -22,8 +22,8 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-/static/images/*.*
-/static/images/*/*.*
+app/static/images/*.*
+app/static/images/*/*.*
 **/*.jpg
 **/*.png
 **/*.jpeg
