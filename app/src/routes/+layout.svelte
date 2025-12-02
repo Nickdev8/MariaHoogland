@@ -13,12 +13,12 @@
 	const isAdminRoute = $derived($page.route.id?.startsWith('/admin') ?? false);
 </script>
 
-<div class="flex min-h-screen flex-col overflow-x-hidden bg-[#f5f7fb]">
+<div class="flex min-h-screen flex-col overflow-x-hidden bg-[#f3efe8]">
 	{#if !isAdminRoute}
 		<Header content={data.content} />
 	{/if}
 
-	<main class={`flex-1 ${isAdminRoute ? '' : 'pt-20 sm:pt-22'}`}>
+	<main class="flex-1">
 		{@render children()}
 	</main>
 

@@ -41,56 +41,43 @@
 	};
 </script>
 
-<section class="relative overflow-hidden bg-neutral-950 text-white">
-	<div class="absolute inset-0">
-		<img
-			src="/images/heroimageproject.jpg"
-			alt="Architectonisch detail in schemerval"
-			class="h-full w-full object-cover opacity-50"
-		/>
-		<div class="absolute inset-0 bg-neutral-950/70"></div>
-		<div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(115,199,242,0.35),rgba(15,23,42,0.95))]"></div>
-	</div>
-
-	<div class="relative mx-auto max-w-4xl px-4 py-14 text-center sm:px-6 sm:py-18 lg:py-20">
-		<h1 class="mt-5 font-display text-2xl leading-tight sm:text-3xl lg:text-4xl">
-			{portfolio.title}
-		</h1>
-		<p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base">
-			{portfolio.copy}
-		</p>
+<section class="bg-[#f3efe8]">
+	<div class="mx-auto max-w-5xl px-4 pb-12 pt-16 sm:px-6 sm:pb-14 sm:pt-20 lg:pb-18 lg:pt-22">
+		<div class="space-y-6 text-center">
+			<h1 class="font-display text-3xl leading-tight text-neutral-900 sm:text-4xl">{portfolio.title}</h1>
+			<p class="mx-auto max-w-3xl text-base leading-relaxed text-neutral-700">
+				{portfolio.copy}
+			</p>
+		</div>
 	</div>
 </section>
 
-<section class="bg-[#f5f7fb] py-16 sm:py-20 lg:py-24">
+<section class="bg-white py-14 sm:py-16 lg:py-18">
 	<div class="mx-auto max-w-6xl px-4 sm:px-6">
-		<div class="grid gap-8 lg:grid-cols-[0.7fr,1.3fr] lg:items-start">
-			<div class="space-y-6 rounded-3xl border border-neutral-200 bg-white/90 p-6 shadow-[0_20px_55px_rgba(15,23,42,0.08)]">
-				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-neutral-400">
-					<span>Zoek in projecten</span>
-					<input
-						bind:value={$searchQuery}
-						type="text"
-						name="search"
-						id="search"
-						class="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-						placeholder={portfolio.searchPlaceholder}
-					/>
-				</label>
+		<div class="space-y-8">
+			<div class="rounded-3xl border border-neutral-200 bg-neutral-50 p-6 sm:p-7">
+				<div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+					<label class="flex w-full flex-col gap-2 text-sm font-semibold text-neutral-700 lg:max-w-md">
+						<span>Zoek in projecten</span>
+						<input
+							bind:value={$searchQuery}
+							type="text"
+							name="search"
+							id="search"
+							class="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+							placeholder={portfolio.searchPlaceholder}
+						/>
+					</label>
 
-				<div class="space-y-2">
-					<p class="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-400">
-						Filter op categorie
-					</p>
 					<div class="flex flex-wrap gap-2">
 						{#each categories as category}
 							<button
 								on:click={() => filterProjects(category)}
-								class="rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] transition focus:outline-none focus:ring-2 focus:ring-primary/30"
+								class="rounded-full px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-primary/30"
 								class:bg-primary={$selectedCategory === category}
-								class:text-neutral-950={$selectedCategory === category}
-								class:bg-white={$selectedCategory !== category}
-								class:text-neutral-600={$selectedCategory !== category}
+								class:text-white={$selectedCategory === category}
+								class:bg-primary-muted={$selectedCategory !== category}
+								class:text-neutral-800={$selectedCategory !== category}
 								class:hover:bg-neutral-200={$selectedCategory !== category}
 							>
 								{category}
@@ -100,13 +87,11 @@
 				</div>
 			</div>
 
-			<div
-				class="grid gap-8 rounded-3xl border border-neutral-200 bg-white/90 p-6 shadow-[0_20px_55px_rgba(15,23,42,0.08)] sm:grid-cols-2"
-			>
+			<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 				{#each $filteredProjects as project (project.slug)}
 					<a
 						href={`/${project.slug}`}
-						class="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_12px_35px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(15,23,42,0.12)]"
+						class="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white transition hover:border-primary/40 hover:shadow-sm"
 						in:slide|global={{ duration: 250 }}
 					>
 						<div class="relative overflow-hidden">
@@ -115,15 +100,14 @@
 								alt={project.title}
 								class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
 							/>
-							<div class="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-transparent to-transparent"></div>
-							<span class="absolute left-4 top-4 inline-flex rounded-full bg-white/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-neutral-700">
+							<span class="absolute left-4 top-4 inline-flex rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-neutral-800 shadow-sm">
 								{project.category}
 							</span>
 						</div>
 						<div class="flex flex-1 flex-col gap-3 p-5">
 							<h3 class="font-display text-lg text-neutral-900">{project.title}</h3>
 							<p class="text-sm leading-relaxed text-neutral-600">{project.subtitle}</p>
-							<span class="mt-auto inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+							<span class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-primary">
 								Bekijk project
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.25 6.75L21 10.5m0 0l-3.75 3.75M21 10.5H3" />

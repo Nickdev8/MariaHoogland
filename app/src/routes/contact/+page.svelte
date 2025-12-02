@@ -127,15 +127,14 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 
 </script>
 
-<section class="relative overflow-hidden bg-neutral-950 text-white">
+<section class="relative overflow-hidden bg-neutral-900 text-white">
 	<div class="absolute inset-0">
 		<img
 			src="/images/heroimageproject.jpg"
 			alt="Architectonische details met avondlicht"
-			class="h-full w-full object-cover opacity-50"
+			class="h-full w-full object-cover"
 		/>
-		<div class="absolute inset-0 bg-neutral-950/70"></div>
-		<div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(115,199,242,0.3),rgba(17,24,39,0.9))]"></div>
+		<div class="absolute inset-0 bg-gradient-to-b from-neutral-900/55 to-neutral-950/80"></div>
 	</div>
 
 	<div class="relative mx-auto max-w-4xl px-4 py-14 text-center sm:px-6 sm:py-18 lg:py-20">
@@ -148,13 +147,13 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 	</div>
 </section>
 
-<section class="bg-[#f5f7fb] py-16 sm:py-20 lg:py-24">
+<section class="bg-[#f3efe8] py-16 sm:py-20 lg:py-24">
 	<div class="mx-auto max-w-6xl px-4 sm:px-6">
 		<div class="grid gap-10 lg:grid-cols-12 lg:items-start xl:gap-16">
 			<form
 				method="POST"
 				use:enhance={handleEnhance}
-				class="order-1 space-y-6 rounded-3xl border border-neutral-200 bg-white/90 p-6 shadow-[0_20px_55px_rgba(15,23,42,0.08)] sm:p-8 lg:order-2 lg:col-span-7 lg:space-y-7"
+				class="order-1 space-y-6 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8 lg:order-2 lg:col-span-7 lg:space-y-7"
 			>
 				<div class="hidden" aria-hidden="true">
 					<label for="sanity_check">Do not fill this out</label>
@@ -172,7 +171,7 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 				{/if}
 
 				<div class="grid gap-5 sm:grid-cols-2">
-					<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.22em] text-neutral-400">
+					<label class="flex flex-col gap-2 text-xs font-semibold text-neutral-700">
 						<span>Naam</span>
 						<input
 							type="text"
@@ -185,7 +184,7 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 						/>
 					</label>
 
-					<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.22em] text-neutral-400">
+					<label class="flex flex-col gap-2 text-xs font-semibold text-neutral-700">
 						<span>E-mailadres</span>
 						<input
 							type="email"
@@ -198,7 +197,7 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 						/>
 					</label>
 
-					<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.22em] text-neutral-400">
+					<label class="flex flex-col gap-2 text-xs font-semibold text-neutral-700">
 						<span>Telefoonnummer</span>
 						<input
 							type="tel"
@@ -210,7 +209,7 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 						/>
 					</label>
 
-					<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.22em] text-neutral-400">
+					<label class="flex flex-col gap-2 text-xs font-semibold text-neutral-700">
 						<span>Onderwerp</span>
 						<input
 							type="text"
@@ -224,7 +223,7 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 					</label>
 				</div>
 
-				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.22em] text-neutral-400">
+				<label class="flex flex-col gap-2 text-xs font-semibold text-neutral-700">
 					<span>Bericht</span>
 					<textarea
 						name="message"
@@ -250,7 +249,7 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 				<button
 					type="submit"
 					disabled={!captchaValid}
-					class="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-neutral-950 transition hover:bg-primary-strong hover:text-white disabled:cursor-not-allowed disabled:bg-neutral-200 disabled:text-neutral-500"
+					class="inline-flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-strong disabled:cursor-not-allowed disabled:bg-neutral-200 disabled:text-neutral-500"
 				>
 					Bericht versturen
 				</button>
@@ -266,19 +265,19 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 			{/if}
 			</form>
 
-			<aside class="order-2 space-y-8 rounded-3xl border border-neutral-200 bg-white/70 p-6 shadow-[0_20px_55px_rgba(15,23,42,0.08)] sm:p-8 lg:order-1 lg:col-span-5">
+			<aside class="order-2 space-y-8 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8 lg:order-1 lg:col-span-5">
 				<h2 class="font-display text-2xl text-neutral-900">{contactContent.form.title}</h2>
 				<p class="text-sm leading-relaxed text-neutral-600">{contactContent.form.body}</p>
 
 				<ul class="grid gap-5 text-left text-neutral-700 sm:grid-cols-2 sm:gap-6 lg:grid-cols-1">
 					{#each contactContent.info as info}
 						{@const Icon = infoIcon[info.type] ?? MapPin}
-						<li class="flex h-full items-start gap-4 rounded-2xl bg-neutral-50/80 p-4">
-							<span class="mt-1 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+						<li class="flex h-full items-start gap-4 rounded-2xl bg-neutral-50 p-4">
+							<span class="mt-1 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary-muted text-primary">
 								<Icon class="h-5 w-5" />
 							</span>
 							<div>
-								<p class="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-400">
+								<p class="text-xs font-semibold text-neutral-500">
 									{info.label}
 								</p>
 								{#if info.href}
@@ -293,7 +292,7 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 					{/each}
 				</ul>
 
-				<div class="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-6 text-xs uppercase tracking-[0.22em] text-neutral-500 sm:grid sm:grid-cols-2 sm:gap-x-4 sm:text-[0.7rem] lg:block lg:text-xs">
+				<div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-xs text-neutral-600 sm:grid sm:grid-cols-2 sm:gap-x-4 sm:text-[0.7rem] lg:block lg:text-xs">
 					{#each contactContent.businessDetails as detail}
 						<p class="py-1">{detail}</p>
 					{/each}

@@ -3,7 +3,9 @@
     "company": "Architectuur Maria Hoogland",
     "owner": "Maria Hoogland",
     "tagline": "Architectuur met karakter sinds 2004",
-    "logo": "/images/HeaderLogo.png",
+    "logo": "/logo.png",
+    "logoWordmark": "/logo.png",
+    "logoMark": "/favicon.svg",
     "contact": {
       "email": "architect@mariahoogland.nl",
       "phone": "06 45 77 60 29",

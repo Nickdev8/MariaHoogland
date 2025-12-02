@@ -24,6 +24,8 @@ export interface SiteContent {
 		owner: string;
 		tagline: string;
 		logo: string;
+		logoWordmark?: string;
+		logoMark?: string;
 		contact: {
 			email: string;
 			phone: string;

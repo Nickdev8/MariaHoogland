@@ -16,15 +16,14 @@
 	const resolveIcon = (icon: IconName) => iconMap[icon] ?? Landmark;
 </script>
 
-<section class="relative overflow-hidden bg-neutral-950 text-white">
+<section class="relative overflow-hidden bg-neutral-900 text-white">
 	<div class="absolute inset-0">
 		<img
 			src="/images/heroimageproject.jpg"
 			alt="Architectonische details in avondlicht"
-			class="h-full w-full object-cover opacity-50"
+			class="h-full w-full object-cover"
 		/>
-		<div class="absolute inset-0 bg-neutral-950/70"></div>
-		<div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(115,199,242,0.35),rgba(15,23,42,0.95))]"></div>
+		<div class="absolute inset-0 bg-gradient-to-b from-neutral-900/55 to-neutral-950/80"></div>
 	</div>
 
 	<div class="relative mx-auto max-w-4xl px-4 py-14 text-center sm:px-6 sm:py-18 lg:py-20">
@@ -37,12 +36,12 @@
 	</div>
 </section>
 
-<section class="bg-[#f5f7fb] py-20 sm:py-24 lg:py-28">
+<section class="bg-[#f3efe8] py-20 sm:py-24 lg:py-28">
 	<div class="mx-auto max-w-6xl px-4 sm:px-6">
 		<div class="grid gap-8 sm:grid-cols-2">
 			{#each about.pillars as pillar}
-				<div class="rounded-3xl border border-neutral-200 bg-white/90 p-6 shadow-[0_20px_55px_rgba(15,23,42,0.08)] sm:p-8">
-					<span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
+				<div class="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8">
+					<span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-muted text-primary">
 						<svelte:component this={resolveIcon(pillar.icon)} class="h-6 w-6" />
 					</span>
 					<h2 class="mt-6 font-display text-xl text-neutral-900">{pillar.title}</h2>
@@ -60,14 +59,14 @@
 				<h2 class="font-display text-3xl text-neutral-900 sm:text-4xl">
 					{about.architect.name}
 				</h2>
-				<p class="text-xs uppercase tracking-[0.22em] text-primary sm:text-sm sm:tracking-[0.3em]">
+				<p class="text-sm font-semibold text-primary sm:text-base">
 					{about.architect.title}
 				</p>
 				<p class="text-base leading-relaxed text-neutral-600">
 					{about.architect.bio}
 				</p>
 			</div>
-			<div class="overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-neutral-50/80 p-4 shadow-[0_22px_60px_rgba(15,23,42,0.08)]">
+			<div class="overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-neutral-50 p-4 shadow-sm">
 				<img
 					src={about.architect.image}
 					alt={`Portret van ${about.architect.name}`}
