@@ -1,28 +1,28 @@
 <script lang="ts">
   import { Instagram, Linkedin } from '@lucide/svelte';
+  import type { FooterContent } from '$lib/types/content';
 
-  const quickLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Contact', href: '/contact' },
-  ];
+  export let content: FooterContent;
+
+  const resolveIcon = (value: string) => {
+    if (value.toLowerCase() === 'linkedin') return Linkedin;
+    return Instagram;
+  };
 </script>
 
 <footer class="bg-secondary text-white mt-4">
   <div class="container mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-    <!-- About -->
     <div class="text-center md:text-left">
-      <h5 class="text-primary text-xl font-semibold mb-3">Architectuur AMH</h5>
+      <h5 class="text-primary text-xl font-semibold mb-3">{content.aboutTitle}</h5>
       <p class="text-sm leading-relaxed">
-        Karaktervolle woningen en verrassende verbouwingen, met passie en plezier ontworpen door Maria Hoogland.
+        {content.aboutDescription}
       </p>
     </div>
 
-    <!-- Quick Links -->
     <div class="text-center md:text-left">
       <h5 class="text-primary text-xl font-semibold mb-3">Snelle Links</h5>
       <ul class="space-y-2">
-        {#each quickLinks as { label, href }}
+        {#each content.quickLinks as { label, href }}
           <li>
             <a
               href={href}
@@ -35,41 +35,34 @@
       </ul>
     </div>
 
-    <!-- Contact -->
     <div class="text-center md:text-left">
       <h5 class="text-primary text-xl font-semibold mb-3">Contact</h5>
       <p class="text-base">
-        <a href="mailto:info@mariahoogland.nl" class="hover:text-primary transition">
-          info@mariahoogland.nl
+        <a href={`mailto:${content.contactEmail}`} class="hover:text-primary transition">
+          {content.contactEmail}
         </a>
       </p>
       <p class="text-base">
-        <a href="tel:+31645776092" class="hover:text-primary transition">
-          +31 6 457 760 92
+        <a href={`tel:${content.contactPhone}`} class="hover:text-primary transition">
+          {content.contactPhone}
         </a>
       </p>
     </div>
 
-    <!-- Socials -->
     <div class="text-center md:text-left">
       <h5 class="text-primary text-xl font-semibold mb-3">Volg Mij</h5>
       <div class="flex justify-center md:justify-start items-center space-x-6">
-        <a
-          href="https://nl.linkedin.com/in/maria-hoogland-499ab1b2"
-          target="_blank"
-          class="p-2 rounded-full hover:bg-primary/20 transition"
-          aria-label="LinkedIn"
-        >
-          <Linkedin size="24" />
-        </a>
-        <a
-          href="https://www.instagram.com/architect_amh/"
-          target="_blank"
-          class="p-2 rounded-full hover:bg-primary/20 transition"
-          aria-label="Instagram"
-        >
-          <Instagram size="24" />
-        </a>
+        {#each content.socials as social}
+          <a
+            href={social.href}
+            target="_blank"
+            class="p-2 rounded-full hover:bg-primary/20 transition"
+            aria-label={social.label}
+            rel="noopener noreferrer"
+          >
+            <svelte:component this={resolveIcon(social.icon)} size="24" />
+          </a>
+        {/each}
       </div>
     </div>
   </div>
@@ -78,15 +71,15 @@
       <p>
         Website gemaakt door
         <a
-          href="https://nickesselman.nl"
+          href={content.credit.website}
           target="_blank"
           rel="noopener noreferrer"
           class="font-medium hover:text-white transition"
         >
-          Nick Esselman</a
+          {content.credit.name}</a
         >. Contact:
-        <a href="mailto:info@nickesselman.nl" class="font-medium hover:text-white transition"
-          >info@nickesselman.nl</a
+        <a href={`mailto:${content.credit.email}`} class="font-medium hover:text-white transition"
+          >{content.credit.email}</a
         >
       </p>
     </div>

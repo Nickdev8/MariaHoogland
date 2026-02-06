@@ -12,12 +12,10 @@
 
 <header class="fixed inset-x-0 top-0 z-50 bg-secondary shadow-md animate-fade-in-down">
   <div class="flex items-center justify-between pr-4 md:pr-8">
-    <!-- logo flush to corner -->
     <a href="/" class="flex-shrink-0">
       <img src="/images/HeaderLogo.png" alt="AMH logo" class="h-14" />
     </a>
 
-    <!-- desktop nav -->
     <nav class="hidden md:flex space-x-8">
       {#each links as { label, href }}
         <a
@@ -30,7 +28,6 @@
       {/each}
     </nav>
 
-    <!-- mobile toggle -->
     <button
       class="md:hidden focus:outline-none text-white"
       aria-label="Toggle menu"
@@ -40,7 +37,6 @@
     </button>
   </div>
 
-  <!-- mobile menu -->
   {#if isOpen}
     <nav class="md:hidden bg-secondary px-4 pb-4">
       {#each links as { label, href }}

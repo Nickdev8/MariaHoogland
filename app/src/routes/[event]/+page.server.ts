@@ -1,8 +1,11 @@
-import type { PageLoad } from './$types.ts';
+import type { PageServerLoad } from './$types.ts';
 import { error } from '@sveltejs/kit';
-import { projects } from '$lib/server/projects.ts';
+import { readContent } from '$lib/server/content';
+import { buildProjects } from '$lib/server/projects';
 
-export const load: PageLoad = ({ params }) => {
+export const load: PageServerLoad = async ({ params }) => {
+  const content = await readContent();
+  const projects = buildProjects(content);
   const project = projects.find((p) => p.slug === params.event);
 
   if (!project) {
@@ -11,5 +14,4 @@ export const load: PageLoad = ({ params }) => {
 
   return { project };
 };
-
 

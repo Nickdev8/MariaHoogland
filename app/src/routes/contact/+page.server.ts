@@ -1,22 +1,37 @@
-import type { Actions } from './$types.ts';
+import type { Actions, PageServerLoad } from './$types.ts';
 import { fail } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
+import { readContent } from '$lib/server/content';
 import {
-  EMAIL_APP_USER,
-  EMAIL_APP_PASSWORD,
-  EMAIL_APP_TO_ADDRESS
+  SMTP_HOST,
+  SMTP_PORT,
+  SMTP_SECURE,
+  SMTP_USER,
+  SMTP_PASSWORD,
+  EMAIL_FROM,
+  EMAIL_TO
 } from '$env/static/private';
 
 export const prerender = false;
 
+export const load: PageServerLoad = async () => {
+  const content = await readContent();
+  return { contact: content.contact };
+};
+
+const smtpPort = Number.parseInt(SMTP_PORT, 10);
+const smtpSecure = SMTP_SECURE === 'true';
+
 const transporter = nodemailer.createTransport({
-  host: 'smtp.hostinger.com',
-  port: 465,
-  secure: true,
-  auth: {
-    user: EMAIL_APP_USER,
-    pass: EMAIL_APP_PASSWORD
-  }
+  host: SMTP_HOST,
+  port: Number.isNaN(smtpPort) ? 587 : smtpPort,
+  secure: smtpSecure,
+  auth: SMTP_USER
+    ? {
+        user: SMTP_USER,
+        pass: SMTP_PASSWORD
+      }
+    : undefined
 });
 
 export const actions: Actions = {
@@ -30,7 +45,6 @@ export const actions: Actions = {
     const subject = data.get('subject')?.toString().trim();
     const message = data.get('message')?.toString().trim();
 
-    // Basic validation
     if (!email) {
       return fail(400, { error: 'Vul je e-mailadres in.' });
     }
@@ -70,8 +84,8 @@ ${fullText}
 
     try {
       await transporter.sendMail({
-        from: `"AMH Website" <${EMAIL_APP_USER}>`,
-        to: EMAIL_APP_TO_ADDRESS,
+        from: EMAIL_FROM,
+        to: EMAIL_TO,
         replyTo: `"${name}" <${email}>`,
         subject: emailSubject,
         text: fullText

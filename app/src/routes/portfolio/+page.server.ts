@@ -1,7 +1,12 @@
-import { projects } from '$lib/server/projects.ts';
+import { readContent } from '$lib/server/content';
+import { buildProjects } from '$lib/server/projects';
 
-export function load() {
+export const load = async () => {
+	const content = await readContent();
+	const projects = buildProjects(content);
+
 	return {
-		projects
+		projects,
+		portfolio: content.portfolio
 	};
-}
+};

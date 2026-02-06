@@ -2,9 +2,13 @@
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
 	import { MapPin, Phone as PhoneIcon, Mail as MailIcon } from '@lucide/svelte';
+	import type { ContactContent } from '$lib/types/content';
 
 	let formResult: { success?: boolean; message?: string; error?: string } = {};
 	$: formResult = $page.form ?? {};
+
+	export let data: { contact: ContactContent };
+	const { contact } = data;
 
 	let name = '';
 	let email = '';
@@ -14,65 +18,57 @@
 </script>
 
 <div class="bg-gray-50/50">
-	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-x-16 px-6 py-24 lg:grid-cols-2">
-		<!-- LEFT COLUMN: Contact Information -->
+	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-x-16 gap-y-12 px-6 py-20 lg:grid-cols-2">
 		<div class="max-w-xl lg:max-w-lg">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900">Neem contact op</h2>
-			<p class="mt-4 text-lg leading-8 text-gray-600">
-				Heeft u een vraag of wilt u een project bespreken? Vul het formulier in of neem direct
-				contact op via onderstaande gegevens.
+			<h2 class="text-3xl font-bold tracking-tight text-gray-900">{contact.title}</h2>
+			<p class="mt-4 text-base leading-7 text-gray-600">
+				{contact.description}
 			</p>
 
 			<div class="mt-10 space-y-6 text-base leading-7 text-gray-600">
 				<div class="flex gap-x-4">
 					<div class="flex-none">
 						<span class="sr-only">Adres</span>
-						<MapPin class="h-7 w-6 text-gray-400" aria-hidden="true" />
+						<MapPin class="h-6 w-6 text-gray-400" aria-hidden="true" />
 					</div>
-					<p>Lagedijk 10e, 2064KT SPAARNDAM</p>
+					<p>{contact.address.lines.join(', ')}</p>
 				</div>
 				<div class="flex gap-x-4">
 					<div class="flex-none">
 						<span class="sr-only">Telefoon</span>
-						<PhoneIcon class="h-7 w-6 text-gray-400" aria-hidden="true" />
+						<PhoneIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
 					</div>
-					<a href="tel:0645776029" class="hover:text-gray-900">06 45 77 60 29</a>
+					<a href={`tel:${contact.phone}`} class="hover:text-gray-900">{contact.phone}</a>
 				</div>
 				<div class="flex gap-x-4">
 					<div class="flex-none">
 						<span class="sr-only">Email</span>
-						<MailIcon class="h-7 w-6 text-gray-400" aria-hidden="true" />
+						<MailIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
 					</div>
-					<a href="mailto:architect@mariahoogland.nl" class="hover:text-gray-900"
-						>architect@mariahoogland.nl</a
-					>
+					<a href={`mailto:${contact.email}`} class="hover:text-gray-900">{contact.email}</a>
 				</div>
 			</div>
 
-			<div class="mt-10 border-t border-gray-200 pt-10">
+			<div class="mt-10 border-t border-gray-200 pt-8">
 				<h3 class="text-base font-semibold text-gray-800">Bedrijfsgegevens</h3>
-				<p class="mt-4 text-sm text-gray-500">
-					Ir. ING Maria Hoogland<br />
-					BNA lidnummer: 16076<br />
-					Bureau Architectenregister: 1.070515.028<br />
-					KvK-nummer: 34325681<br />
-					BTW-nummer: NL 0020.80.940.B82
-				</p>
+				<ul class="mt-4 space-y-1 text-sm text-gray-500">
+					{#each contact.businessDetails as detail}
+						<li>{detail}</li>
+					{/each}
+				</ul>
 			</div>
 		</div>
 
-		<!-- RIGHT COLUMN: Contact Form -->
 		<form
 			method="POST"
 			use:enhance
-			class="space-y-8 rounded-2xl bg-white p-8 shadow-lg lg:p-10"
+			class="space-y-8 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm lg:p-10"
 		>
 			<div class="hidden" aria-hidden="true">
 				<label for="sanity_check">Do not fill this out</label>
 				<input type="text" name="sanity_check" id="sanity_check" tabindex="-1" autocomplete="off" />
 			</div>
 			<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-				<!-- Name -->
 				<div>
 					<label for="name" class="block text-sm font-semibold leading-6 text-gray-900">
 						Naam
@@ -84,13 +80,12 @@
 							id="name"
 							bind:value={name}
 							required
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
 							placeholder="Uw volledige naam"
 						/>
 					</div>
 				</div>
 
-				<!-- Email -->
 				<div>
 					<label for="email" class="block text-sm font-semibold leading-6 text-gray-900">
 						E-mailadres
@@ -102,13 +97,12 @@
 							id="email"
 							bind:value={email}
 							required
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
 							placeholder="uwnaam@voorbeeld.nl"
 						/>
 					</div>
 				</div>
 
-				<!-- Phone -->
 				<div>
 					<label for="phone" class="block text-sm font-semibold leading-6 text-gray-900">
 						Telefoonnummer
@@ -119,13 +113,12 @@
 							name="phone"
 							id="phone"
 							bind:value={phone}
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
 							placeholder="+31 6 12345678"
 						/>
 					</div>
 				</div>
 
-				<!-- Subject -->
 				<div>
 					<label for="subject" class="block text-sm font-semibold leading-6 text-gray-900">
 						Onderwerp
@@ -137,14 +130,13 @@
 							id="subject"
 							bind:value={subject}
 							required
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
 							placeholder="Korte omschrijving"
 						/>
 					</div>
 				</div>
 			</div>
 
-			<!-- Message -->
 			<div class="sm:col-span-2">
 				<label for="message" class="block text-sm font-semibold leading-6 text-gray-900"
 					>Bericht</label
@@ -156,23 +148,21 @@
 						bind:value={message}
 						rows="6"
 						required
-						class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+						class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
 						placeholder="Laat hier uw bericht achter..."
 					></textarea>
 				</div>
 			</div>
 
-			<!-- Submit Button -->
 			<div class="mt-10">
 				<button
 					type="submit"
-					class="block w-full rounded-md bg-sky-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500"
+					class="block w-full rounded-full bg-sky-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500"
 				>
 					Bericht versturen
 				</button>
 			</div>
 
-			<!-- Feedback Message -->
 			{#if formResult.success}
 				<div
 					class="rounded-md border border-green-300 bg-green-50 p-4 text-center"
