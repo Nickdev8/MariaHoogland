@@ -92,7 +92,11 @@
 		showToast('Opslaan...', 'info', false);
 	};
 
-	const saveEnhancer: SubmitFunction = () => {
+	const saveEnhancer: SubmitFunction = ({ formData }) => {
+		if (content) {
+			const payload = { portfolio: content.portfolio };
+			formData.set('payload', JSON.stringify(payload));
+		}
 		const startingScroll = typeof window !== 'undefined' ? window.scrollY : 0;
 		return async ({ result, update }) => {
 			if (result.type === 'success') {

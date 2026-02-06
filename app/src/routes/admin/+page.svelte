@@ -94,7 +94,22 @@
 		showToast('Opslaan...', 'info', false);
 	};
 
-	const saveEnhancer: SubmitFunction = () => {
+	const saveEnhancer: SubmitFunction = ({ formData }) => {
+		if (content) {
+			let payload: SiteContent = content;
+			if (typeof window !== 'undefined') {
+				const portfolioDraft = window.localStorage.getItem(portfolioDraftKey);
+				if (portfolioDraft) {
+					try {
+						const parsed = JSON.parse(portfolioDraft) as Partial<SiteContent>;
+						payload = { ...payload, ...parsed } as SiteContent;
+					} catch {
+						window.localStorage.removeItem(portfolioDraftKey);
+					}
+				}
+			}
+			formData.set('payload', JSON.stringify(payload));
+		}
 		const startingScroll = typeof window !== 'undefined' ? window.scrollY : 0;
 		return async ({ result, update }) => {
 			if (result.type === 'success') {
