@@ -1,0 +1,207 @@
+{
+  "home": {
+    "hero": {
+      "title": "Laten we samen uw droomhuis realisere"
+    }
+  },
+  "tagline": "Een selectie van recent werk",
+  "description": "Portretten, mode en momenten die blijven hangen. Kies een categorie om de volledige serie te bekijken.",
+  "gallery": [
+    {
+      "src": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Zacht portret in natuurlijk licht",
+      "size": "square"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Analoge contactsheet, close-up",
+      "size": "wide"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1475180098004-ca77a66827be?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Editorial in beweging",
+      "size": "tall"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Minimal stilleven in de studio",
+      "size": "square"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1487412720507-4bc021defc06?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Detail van styling en wardrobe",
+      "size": "square"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Intiem moment, documentaire sfeer",
+      "size": "wide"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Filmisch dubbelportret",
+      "size": "tall"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1445052510913-2093f5cde6fd?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Architectuurdetail op locatie",
+      "size": "square"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Backstage, voorbereiding voor de shoot",
+      "size": "wide"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1200&q=80",
+      "alt": "Silhouet in het gouden uur",
+      "size": "square"
+    }
+  ],
+  "categories": [
+    {
+      "slug": "casting",
+      "title": "Casting",
+      "description": "Portretten met karakter, klaar voor casting sheets en portfolio’s.",
+      "cover": {
+        "src": "/uploads/1770035159082-49b1109a-f4eb-4b36-b78c-8b74f6efe2a2.jpg",
+        "alt": "Casting portret met zacht licht"
+      },
+      "gallery": [
+        {
+          "src": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Zacht portret in natuurlijk licht",
+          "size": "square"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1475180098004-ca77a66827be?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Editorial in beweging",
+          "size": "tall"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Intiem moment, documentaire sfeer",
+          "size": "wide"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Filmisch dubbelportret",
+          "size": "tall"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Backstage, voorbereiding voor de shoot",
+          "size": "wide"
+        }
+      ]
+    },
+    {
+      "slug": "creatief",
+      "title": "Creatief",
+      "description": "Vrij werk, concepten en editorial moodboards die experiment toelaten.",
+      "cover": {
+        "src": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1200&q=80",
+        "alt": "Creatieve editorial met filmische sfeer"
+      },
+      "gallery": [
+        {
+          "src": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Analoge contactsheet, close-up",
+          "size": "wide"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Minimal stilleven in de studio",
+          "size": "square"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1487412720507-4bc021defc06?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Detail van styling en wardrobe",
+          "size": "square"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1445052510913-2093f5cde6fd?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Architectuurdetail op locatie",
+          "size": "square"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Silhouet in het gouden uur",
+          "size": "square"
+        }
+      ]
+    },
+    {
+      "slug": "familie",
+      "title": "Familie",
+      "description": "Gezinsmomenten, zachte interacties en kleine details die blijven.",
+      "cover": {
+        "src": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
+        "alt": "Familieportret in warm licht"
+      },
+      "gallery": [
+        {
+          "src": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Intiem moment, documentaire sfeer",
+          "size": "wide"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Zacht portret in natuurlijk licht",
+          "size": "square"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Filmisch dubbelportret",
+          "size": "tall"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1487412720507-4bc021defc06?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Detail van styling en wardrobe",
+          "size": "square"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Silhouet in het gouden uur",
+          "size": "square"
+        }
+      ]
+    },
+    {
+      "slug": "feest-en-evenementen",
+      "title": "Feest en evenementen",
+      "description": "Energie, sfeer en verhalen van feesten en events.",
+      "cover": {
+        "src": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1200&q=80",
+        "alt": "Feestelijke sfeer in warm avondlicht"
+      },
+      "gallery": [
+        {
+          "src": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Backstage, voorbereiding voor de shoot",
+          "size": "wide"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Analoge contactsheet, close-up",
+          "size": "wide"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1445052510913-2093f5cde6fd?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Architectuurdetail op locatie",
+          "size": "square"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1475180098004-ca77a66827be?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Editorial in beweging",
+          "size": "tall"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1200&q=80",
+          "alt": "Minimal stilleven in de studio",
+          "size": "square"
+        }
+      ]
+    }
+  ]
+}
