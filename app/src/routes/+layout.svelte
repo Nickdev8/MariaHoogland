@@ -21,11 +21,11 @@
     <Header />
   {/if}
 
-  <main class="pt-14 flex-1">
+  <main class={`flex-1 ${$page.url.pathname.startsWith('/admin') ? '' : 'pt-14'}`}>
     {@render children()}
   </main>
 
-  {#if data?.footer}
+  {#if data?.footer && !$page.url.pathname.startsWith('/admin')}
     <Footer content={data.footer} />
   {/if}
 </div>

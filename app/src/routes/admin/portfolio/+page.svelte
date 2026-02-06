@@ -172,26 +172,26 @@
 </script>
 
 {#if !data.authenticated}
-	<div class="min-h-screen bg-neutral-950 text-white flex items-center justify-center px-6">
-		<div class="w-full max-w-md rounded-3xl bg-neutral-900/80 border border-neutral-800 p-8 shadow-2xl">
+	<div class="min-h-screen bg-neutral-50 text-neutral-900 flex items-start justify-center px-6 pt-16">
+		<div class="w-full max-w-md rounded-3xl bg-white border border-neutral-200 p-8 shadow-sm">
 			<h1 class="text-2xl font-semibold">Admin login</h1>
-			<p class="mt-2 text-sm text-neutral-400">Log in om het portfolio te beheren.</p>
+			<p class="mt-2 text-sm text-neutral-500">Log in om het portfolio te beheren.</p>
 			<form method="post" action="?/login" class="mt-6 space-y-4">
-				<label class="block text-sm text-neutral-300">
+				<label class="block text-sm text-neutral-700">
 					<span class="mb-2 block">Wachtwoord</span>
 					<input
 						type="password"
 						name="password"
 						required
-						class="w-full rounded-xl bg-neutral-800/80 border border-neutral-700 px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-rose-500"
+						class="w-full rounded-xl bg-white border border-neutral-200 px-4 py-3 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-300"
 					/>
 				</label>
 				{#if form?.error}
-					<p class="text-sm text-red-300">{form.error}</p>
+					<p class="text-sm text-red-600">{form.error}</p>
 				{/if}
 				<button
 					type="submit"
-					class="w-full rounded-xl bg-rose-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white hover:bg-rose-500"
+					class="w-full rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white hover:bg-neutral-800"
 				>
 					Inloggen
 				</button>
