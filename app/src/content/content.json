@@ -1,56 +1,4 @@
 {
-  "brand": {
-    "company": "Architectuur Maria Hoogland",
-    "owner": "Maria Hoogland",
-    "tagline": "Architectuur met karakter sinds 2004",
-    "logo": "/logo.png",
-    "logoWordmark": "/logo.png",
-    "logoMark": "/favicon.svg",
-    "contact": {
-      "email": "architect@mariahoogland.nl",
-      "phone": "06 45 77 60 29",
-      "address": "Lagedijk 10e, 2064KT Spaarndam"
-    },
-    "registration": [
-      "Ir. ING Maria Hoogland",
-      "BNA lidnummer: 16076",
-      "Bureau Architectenregister: 1.070515.028",
-      "KvK-nummer: 34325681",
-      "BTW-nummer: NL 0020.80.940.B82"
-    ],
-    "socials": [
-      {
-        "label": "LinkedIn",
-        "href": "https://nl.linkedin.com/in/maria-hoogland-499ab1b2",
-        "icon": "linkedin"
-      },
-      {
-        "label": "Instagram",
-        "href": "https://www.instagram.com/architect_amh/",
-        "icon": "instagram"
-      }
-    ]
-  },
-  "navigation": {
-    "links": [
-      {
-        "label": "Home",
-        "href": "/"
-      },
-      {
-        "label": "Over Mij",
-        "href": "/about"
-      },
-      {
-        "label": "Portfolio",
-        "href": "/portfolio"
-      },
-      {
-        "label": "Contact",
-        "href": "/contact"
-      }
-    ]
-  },
   "home": {
     "hero": {
       "kicker": "20 jaar vakmanschap",
@@ -286,11 +234,11 @@
     "hero": {
       "kicker": "Kennismaken",
       "title": "Neem contact op",
-      "body": "Heeft u een vraag of wilt u een project bespreken? Vul het formulier in of neem direct contact op via onderstaande gegevens."
+      "body": "Heeft u een vraag of wilt u een project bespreken? Neem direct contact op via onderstaande gegevens; ik reageer meestal binnen twee werkdagen."
     },
     "form": {
-      "title": "Vertel me over uw project",
-      "body": "Selecteer een onderwerp dat past bij uw aanvraag en deel zoveel mogelijk details. Ik reageer doorgaans binnen twee werkdagen."
+      "title": "Contactgegevens",
+      "body": "U bereikt mij het snelst via e-mail. Gebruik onderstaande gegevens voor vragen, afspraken of administratieve informatie."
     },
     "info": [
       {
@@ -321,8 +269,60 @@
     "successMessage": "Je bericht is succesvol verzonden!",
     "errorMessage": "Verzenden mislukt. Probeer het later opnieuw."
   },
+  "brand": {
+    "company": "Architectuur Maria Hooglanders",
+    "owner": "Maria Hoogland",
+    "tagline": "Architectuur met karakter sinds 2004",
+    "logo": "/logo.png",
+    "logoWordmark": "/logo.png",
+    "logoMark": "/favicon.svg",
+    "contact": {
+      "email": "architect@mariahoogland.nl",
+      "phone": "06 45 77 60 29",
+      "address": "Lagedijk 10e, 2064KT Spaarndam"
+    },
+    "registration": [
+      "Ir. ING Maria Hoogland",
+      "BNA lidnummer: 16076",
+      "Bureau Architectenregister: 1.070515.028",
+      "KvK-nummer: 34325681",
+      "BTW-nummer: NL 0020.80.940.B82"
+    ],
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://nl.linkedin.com/in/maria-hoogland-499ab1b2",
+        "icon": "linkedin"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/architect_amh/",
+        "icon": "instagram"
+      }
+    ]
+  },
+  "navigation": {
+    "links": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Over Mij",
+        "href": "/about"
+      },
+      {
+        "label": "Portfolio",
+        "href": "/portfolio"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ]
+  },
   "footer": {
-    "tagline": "Architectuur met karakter. Ontworpen vanuit dialoog, gerealiseerd met toewijding.",
+    "tagline": "Ik begeleid uw project met aandacht, vakmanschap en heldere communicatie. Samen maken we een ontwerp dat past bij uw leven.",
     "quickLinks": [
       {
         "label": "Home",
@@ -342,10 +342,10 @@
       }
     ],
     "credits": {
-      "label": "Website door Nick Esselman",
-      "href": "https://nickesselman.nl",
-      "contactLabel": "info@nickesselman.nl",
-      "contactHref": "mailto:info@nickesselman.nl"
+      "label": "Ontwerp & realisatie",
+      "href": "https://architect.mariahoogland.nl",
+      "contactLabel": "Contact",
+      "contactHref": "/contact"
     }
   }
 }

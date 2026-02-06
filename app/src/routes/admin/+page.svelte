@@ -38,23 +38,35 @@ let feedback = $state<{ success?: string; error?: string }>({});
 			items: [
 				{ id: 'contact', label: 'Contactpagina' },
 				{ id: 'portfolio', label: 'Portfoliopagina' },
-				{ id: 'about', label: 'Over-pagina' }
+				{ id: 'about', label: 'Over pagina' }
 			]
 		},
 		{
 			label: 'Home',
 			items: [
-				{ id: 'home-hero', label: 'Hero & Intro' },
-				{ id: 'home-highlights', label: 'Highlights' },
+				{ id: 'home-hero', label: 'Hero & intro' },
+				{ id: 'home-highlights', label: 'Hoogtepunten' },
 				{ id: 'home-project', label: 'Projectsectie' },
 				{ id: 'home-process', label: 'Proces' },
 				{ id: 'home-commitments', label: 'Beloften' },
 				{ id: 'home-gallery', label: 'Galerij' },
-				{ id: 'home-testimonials', label: 'Testimonials' },
-				{ id: 'home-cta', label: 'Call-to-action' }
+				{ id: 'home-testimonials', label: 'Referenties' },
+				{ id: 'home-cta', label: 'Oproep tot actie' }
 			]
 		}
 	] as const;
+
+	let navSearch = $state('');
+	const filteredNav = $derived(
+		navGroups
+			.map((group) => {
+				const term = navSearch.trim().toLowerCase();
+				if (!term) return group;
+				const items = group.items.filter((item) => item.label.toLowerCase().includes(term));
+				return { ...group, items };
+			})
+			.filter((group) => group.items.length > 0)
+	);
 
 	const enhanceSubmit: SubmitFunction = () => {
 		return async ({ update, result }) => {
@@ -150,8 +162,17 @@ let feedback = $state<{ success?: string; error?: string }>({});
 		>
 			<h2 class="font-display text-lg uppercase tracking-[0.35em] text-primary">Snel naar</h2>
 			<p class="mt-2 text-xs text-white/60">Spring direct naar het onderdeel dat je wilt bewerken.</p>
+			<label class="mt-4 flex flex-col gap-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/60">
+				<span>Zoek</span>
+				<input
+					type="search"
+					placeholder="Secties zoeken"
+					bind:value={navSearch}
+					class="rounded-2xl border border-white/15 bg-white/10 px-3 py-2 text-xs font-semibold text-white outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/30"
+				/>
+			</label>
 			<div class="mt-6 space-y-6">
-				{#each navGroups as group}
+				{#each filteredNav as group}
 					<div class="space-y-2">
 						<p class="text-[10px] font-semibold uppercase tracking-[0.35em] text-white/50">{group.label}</p>
 						<ul class="space-y-1">
@@ -616,7 +637,7 @@ let feedback = $state<{ success?: string; error?: string }>({});
 
 		<section id="about" class="scroll-mt-24 grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.25)] backdrop-blur-xl">
 			<div>
-				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Over-pagina</h2>
+				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Over pagina</h2>
 				<p class="mt-2 text-xs text-white/60">Hero, pijlers en architectprofiel.</p>
 			</div>
 			<div class="grid gap-4 lg:grid-cols-2">
@@ -744,13 +765,13 @@ let feedback = $state<{ success?: string; error?: string }>({});
 
 			<div>
 				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Homepagina</h2>
-				<p class="mt-2 text-xs text-white/60">Hero, highlights, proces en afsluitende call-to-action.</p>
+				<p class="mt-2 text-xs text-white/60">Hero, hoogtepunten, proces en afsluitende oproep tot actie.</p>
 			</div>
 
 		<section id="home-hero" class="scroll-mt-24 grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.25)] backdrop-blur-xl">
 			<div>
-				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Hero &amp; Intro</h2>
-				<p class="mt-2 text-xs text-white/60">Beheer de hero-tekst, CTA's en de samenvattende bullets.</p>
+				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Hero &amp; intro</h2>
+				<p class="mt-2 text-xs text-white/60">Beheer de hero-tekst, knoppen en de samenvattende bullets.</p>
 			</div>
 			<div class="grid gap-6 lg:grid-cols-2">
 				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
@@ -780,7 +801,7 @@ let feedback = $state<{ success?: string; error?: string }>({});
 			</label>
 			<div class="grid gap-4 sm:grid-cols-2">
 				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
-					<span>Primaire CTA label</span>
+					<span>Primaire knop label</span>
 					<input
 						type="text"
 						bind:value={draft.home.hero.primaryCta.label}
@@ -788,7 +809,7 @@ let feedback = $state<{ success?: string; error?: string }>({});
 					/>
 				</label>
 				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
-					<span>Primaire CTA link</span>
+					<span>Primaire knop link</span>
 					<input
 						type="text"
 						bind:value={draft.home.hero.primaryCta.href}
@@ -796,7 +817,7 @@ let feedback = $state<{ success?: string; error?: string }>({});
 					/>
 				</label>
 				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
-					<span>Secundaire CTA label</span>
+					<span>Secundaire knop label</span>
 					<input
 						type="text"
 						bind:value={draft.home.hero.secondaryCta.label}
@@ -804,7 +825,7 @@ let feedback = $state<{ success?: string; error?: string }>({});
 					/>
 				</label>
 				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
-					<span>Secundaire CTA link</span>
+					<span>Secundaire knop link</span>
 					<input
 						type="text"
 						bind:value={draft.home.hero.secondaryCta.href}
@@ -927,8 +948,8 @@ let feedback = $state<{ success?: string; error?: string }>({});
 		</section>
 		<section id="home-highlights" class="scroll-mt-24 grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.25)] backdrop-blur-xl">
 			<div>
-				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Highlights</h2>
-				<p class="mt-2 text-xs text-white/60">Aanpassen van intro en highlight-kaarten.</p>
+				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Hoogtepunten</h2>
+				<p class="mt-2 text-xs text-white/60">Pas de intro en de highlight-kaarten aan.</p>
 			</div>
 			<div class="grid gap-4 lg:grid-cols-2">
 				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
@@ -1021,7 +1042,7 @@ let feedback = $state<{ success?: string; error?: string }>({});
 		<section id="home-project" class="scroll-mt-24 grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.25)] backdrop-blur-xl">
 			<div>
 				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Projectsectie</h2>
-				<p class="mt-2 text-xs text-white/60">Titel, tekst en CTA voor uitgelichte projecten.</p>
+				<p class="mt-2 text-xs text-white/60">Titel, tekst en knop voor uitgelichte projecten.</p>
 			</div>
 			<div class="grid gap-4 lg:grid-cols-2">
 				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
@@ -1051,7 +1072,7 @@ let feedback = $state<{ success?: string; error?: string }>({});
 			</label>
 			<div class="grid gap-4 sm:grid-cols-2">
 				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
-					<span>CTA label</span>
+					<span>Knop label</span>
 					<input
 						type="text"
 						bind:value={draft.home.projectSection.cta.label}
@@ -1059,7 +1080,7 @@ let feedback = $state<{ success?: string; error?: string }>({});
 					/>
 				</label>
 				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
-					<span>CTA link</span>
+					<span>Knop link</span>
 					<input
 						type="text"
 						bind:value={draft.home.projectSection.cta.href}
@@ -1335,8 +1356,8 @@ let feedback = $state<{ success?: string; error?: string }>({});
 		</section>
 		<section id="home-testimonials" class="scroll-mt-24 grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.25)] backdrop-blur-xl">
 			<div>
-				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Testimonials</h2>
-				<p class="mt-2 text-xs text-white/60">Aanpassen van intro en quotes. Sleep om te herschikken.</p>
+				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Referenties</h2>
+				<p class="mt-2 text-xs text-white/60">Pas de intro en de quotes aan. Sleep om te herschikken.</p>
 			</div>
 			<div class="grid gap-4 lg:grid-cols-2">
 				<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
@@ -1403,8 +1424,8 @@ let feedback = $state<{ success?: string; error?: string }>({});
 		</section>
 		<section id="home-cta" class="scroll-mt-24 grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.25)] backdrop-blur-xl">
 			<div>
-				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Home CTA</h2>
-				<p class="mt-2 text-xs text-white/60">Aanpassen van afsluitende call-to-action.</p>
+				<h2 class="font-display text-xl uppercase tracking-[0.35em] text-primary">Oproep tot actie</h2>
+				<p class="mt-2 text-xs text-white/60">Aanpassen van afsluitende oproep tot actie.</p>
 			</div>
 			<label class="flex flex-col gap-2 text-xs uppercase tracking-[0.3em] text-white/60">
 				<span>Titel</span>

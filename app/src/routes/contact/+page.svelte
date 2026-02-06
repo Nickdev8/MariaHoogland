@@ -1,52 +1,9 @@
-<script module lang="ts">
-	declare global {
-		interface Window {
-			turnstile?: {
-				render: (
-					container: HTMLElement,
-					options: {
-						sitekey: string;
-						callback: (token: string) => void;
-						'expired-callback'?: () => void;
-						'error-callback'?: () => void;
-					}
-				) => string;
-				reset: (widgetId: string) => void;
-			};
-			initTurnstile?: () => void;
-		}
-	}
-
-	export {};
-</script>
-
 <script lang="ts">
-import { enhance } from '$app/forms';
-import type { SubmitFunction } from '@sveltejs/kit';
-import { onMount } from 'svelte';
-import { env as publicEnv } from '$env/dynamic/public';
-import { MapPin, Phone as PhoneIcon, Mail as MailIcon } from '@lucide/svelte';
-import type { SiteContent } from '$lib/types/content';
-import { page } from '$app/stores';
+	import { MapPin, Phone as PhoneIcon, Mail as MailIcon } from '@lucide/svelte';
+	import type { SiteContent } from '$lib/types/content';
 
 	let { data } = $props<{ data: { content: SiteContent } }>();
 	const contactContent = data.content.contact;
-
-let name = $state('');
-let email = $state('');
-let phone = $state('');
-let subject = $state('');
-let message = $state('');
-
-const initialTimestamp = Date.now().toString();
-let formTimestamp = $state(initialTimestamp);
-
-const turnstileSiteKey = publicEnv.PUBLIC_TURNSTILE_SITE_KEY;
-let turnstileToken = $state('');
-const captchaRequired = Boolean(turnstileSiteKey);
-let captchaValid = $state(!captchaRequired);
-let turnstileWidgetId: string | undefined;
-let captchaContainer = $state<HTMLDivElement | null>(null);
 
 	const infoIcon: Record<string, typeof MapPin> = {
 		address: MapPin,
@@ -54,77 +11,7 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 		email: MailIcon
 	};
 
-	const handleEnhance: SubmitFunction = () => {
-		return async ({ update, result }) => {
-			await update();
-
-			if (
-				turnstileSiteKey &&
-				typeof window !== 'undefined' &&
-				window.turnstile &&
-				turnstileWidgetId
-			) {
-				window.turnstile.reset(turnstileWidgetId);
-				captchaValid = false;
-				turnstileToken = '';
-			}
-
-			if (result.type !== 'error') {
-				formTimestamp = Date.now().toString();
-			}
-		};
-	};
-
-	onMount(() => {
-		formTimestamp = Date.now().toString();
-
-		if (!turnstileSiteKey || typeof window === 'undefined') {
-			return;
-		}
-
-		const renderTurnstile = () => {
-			if (!captchaContainer || !window.turnstile) {
-				return;
-			}
-
-			turnstileWidgetId = window.turnstile.render(captchaContainer, {
-				sitekey: turnstileSiteKey,
-				callback(token: string) {
-					turnstileToken = token;
-					captchaValid = true;
-				},
-				'error-callback'() {
-					captchaValid = false;
-					turnstileToken = '';
-				},
-				'expired-callback'() {
-					captchaValid = false;
-					turnstileToken = '';
-				}
-			});
-		};
-
-		const existingScript = document.querySelector<HTMLScriptElement>('script[data-turnstile]');
-
-		if (existingScript) {
-			if (window.turnstile) {
-				renderTurnstile();
-			}
-			return;
-		}
-
-		window.initTurnstile = () => {
-			renderTurnstile();
-		};
-
-		const script = document.createElement('script');
-		script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=initTurnstile';
-		script.async = true;
-		script.defer = true;
-		script.dataset.turnstile = 'true';
-		document.head.appendChild(script);
-	});
-
+	const emailInfo = contactContent.info.find((info) => info.type === 'email');
 </script>
 
 <section class="relative overflow-hidden bg-neutral-900 text-white">
@@ -149,155 +36,64 @@ let captchaContainer = $state<HTMLDivElement | null>(null);
 
 <section class="bg-[#f3efe8] py-16 sm:py-20 lg:py-24">
 	<div class="mx-auto max-w-6xl px-4 sm:px-6">
-		<div class="grid gap-10 lg:grid-cols-12 lg:items-start xl:gap-16">
-			<form
-				method="POST"
-				use:enhance={handleEnhance}
-				class="order-1 space-y-6 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8 lg:order-2 lg:col-span-7 lg:space-y-7"
-			>
-				<div class="hidden" aria-hidden="true">
-					<label for="sanity_check">Do not fill this out</label>
-					<input
-						type="text"
-						name="sanity_check"
-						id="sanity_check"
-						tabindex="-1"
-						autocomplete="off"
-					/>
-				</div>
-				<input type="hidden" name="form_timestamp" value={formTimestamp} />
-				{#if turnstileSiteKey}
-					<input type="hidden" name="turnstile_token" value={turnstileToken} />
-				{/if}
-
-				<div class="grid gap-5 sm:grid-cols-2">
-					<label class="flex flex-col gap-2 text-xs font-semibold text-neutral-700">
-						<span>Naam</span>
-						<input
-							type="text"
-							name="name"
-							id="name"
-							bind:value={name}
-							required
-							class="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-							placeholder="Uw volledige naam"
-						/>
-					</label>
-
-					<label class="flex flex-col gap-2 text-xs font-semibold text-neutral-700">
-						<span>E-mailadres</span>
-						<input
-							type="email"
-							name="email"
-							id="email"
-							bind:value={email}
-							required
-							class="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-							placeholder="uwnaam@voorbeeld.nl"
-						/>
-					</label>
-
-					<label class="flex flex-col gap-2 text-xs font-semibold text-neutral-700">
-						<span>Telefoonnummer</span>
-						<input
-							type="tel"
-							name="phone"
-							id="phone"
-							bind:value={phone}
-							class="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-							placeholder="+31 6 12345678"
-						/>
-					</label>
-
-					<label class="flex flex-col gap-2 text-xs font-semibold text-neutral-700">
-						<span>Onderwerp</span>
-						<input
-							type="text"
-							name="subject"
-							id="subject"
-							bind:value={subject}
-							required
-							class="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-							placeholder="Korte omschrijving"
-						/>
-					</label>
-				</div>
-
-				<label class="flex flex-col gap-2 text-xs font-semibold text-neutral-700">
-					<span>Bericht</span>
-					<textarea
-						name="message"
-						id="message"
-						bind:value={message}
-						rows="6"
-						required
-						class="min-h-[180px] rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-						placeholder="Beschrijf uw project, planning en vragen..."
-					></textarea>
-				</label>
-
-				{#if turnstileSiteKey}
-					<div class="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50/80 p-4 text-center">
-						<div
-							bind:this={captchaContainer}
-							class="cf-turnstile flex justify-center"
-							data-sitekey={turnstileSiteKey}
-						></div>
-					</div>
-				{/if}
-
-				<button
-					type="submit"
-					disabled={!captchaValid}
-					class="inline-flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-strong disabled:cursor-not-allowed disabled:bg-neutral-200 disabled:text-neutral-500"
-				>
-					Bericht versturen
-				</button>
-
-			{#if $page.form?.success}
-				<div class="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4 text-center text-sm font-semibold text-emerald-700" role="status">
-					{$page.form.message}
-				</div>
-			{:else if $page.form?.error}
-				<div class="rounded-2xl border border-red-200 bg-red-50/80 p-4 text-center text-sm font-semibold text-red-700" role="alert">
-					{$page.form.error}
-				</div>
-			{/if}
-			</form>
-
-			<aside class="order-2 space-y-8 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8 lg:order-1 lg:col-span-5">
+		<div class="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+			<div class="flex flex-col items-center gap-4 text-center">
 				<h2 class="font-display text-2xl text-neutral-900">{contactContent.form.title}</h2>
-				<p class="text-sm leading-relaxed text-neutral-600">{contactContent.form.body}</p>
+				<p class="max-w-3xl text-sm leading-relaxed text-neutral-600">
+					{contactContent.form.body}
+				</p>
+				{#if emailInfo}
+					<a
+						href={emailInfo.href ?? `mailto:${emailInfo.value}`}
+						class="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-neutral-800"
+					>
+						<MailIcon class="h-5 w-5" />
+						<span>{emailInfo.value}</span>
+					</a>
+				{/if}
+			</div>
 
-				<ul class="grid gap-5 text-left text-neutral-700 sm:grid-cols-2 sm:gap-6 lg:grid-cols-1">
-					{#each contactContent.info as info}
-						{@const Icon = infoIcon[info.type] ?? MapPin}
-						<li class="flex h-full items-start gap-4 rounded-2xl bg-neutral-50 p-4">
-							<span class="mt-1 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary-muted text-primary">
-								<Icon class="h-5 w-5" />
-							</span>
-							<div>
-								<p class="text-xs font-semibold text-neutral-500">
-									{info.label}
-								</p>
-								{#if info.href}
-									<a href={info.href} class="mt-1 block text-sm font-semibold text-neutral-900 transition hover:text-primary">
-										{info.value}
-									</a>
-								{:else}
-									<p class="mt-1 text-sm font-semibold text-neutral-900">{info.value}</p>
-								{/if}
-							</div>
-						</li>
-					{/each}
-				</ul>
-
-				<div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-xs text-neutral-600 sm:grid sm:grid-cols-2 sm:gap-x-4 sm:text-[0.7rem] lg:block lg:text-xs">
-					{#each contactContent.businessDetails as detail}
-						<p class="py-1">{detail}</p>
-					{/each}
+			<div class="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-8">
+				<div class="space-y-4">
+					<h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+						Contact
+					</h3>
+					<ul class="grid gap-4 text-left text-neutral-700">
+						{#each contactContent.info as info}
+							{@const Icon = infoIcon[info.type] ?? MapPin}
+							<li class="flex items-start gap-4 rounded-2xl bg-neutral-50 px-4 py-3">
+								<span class="mt-1 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary-muted text-primary">
+									<Icon class="h-5 w-5" />
+								</span>
+								<div>
+									<p class="text-xs font-semibold text-neutral-500">{info.label}</p>
+									{#if info.href}
+										<a
+											href={info.href}
+											class="mt-1 block text-sm font-semibold text-neutral-900 transition hover:text-primary"
+										>
+											{info.value}
+										</a>
+									{:else}
+										<p class="mt-1 text-sm font-semibold text-neutral-900">{info.value}</p>
+									{/if}
+								</div>
+							</li>
+						{/each}
+					</ul>
 				</div>
-			</aside>
+
+				<div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-sm text-neutral-700">
+					<h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+						Bedrijfsgegevens
+					</h3>
+					<div class="mt-4 space-y-2">
+						{#each contactContent.businessDetails as detail}
+							<p class="leading-relaxed">{detail}</p>
+						{/each}
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

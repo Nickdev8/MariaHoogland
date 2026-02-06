@@ -18,7 +18,7 @@ const close = () => {
 };
 </script>
 
-<header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#1f2730]/95 text-white backdrop-blur">
+<header class="w-full border-b border-white/10 bg-[#1f2730]/95 text-white">
 	<div class="flex items-center justify-between px-3 py-3 sm:px-6 sm:py-4">
 		<a href="/" class="flex flex-shrink-0 items-center gap-3">
 			<span class="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-white/90 p-2 ring-1 ring-white/10 sm:hidden">

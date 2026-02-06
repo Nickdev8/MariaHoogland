@@ -55,7 +55,7 @@ let { content } = $props<{ content: SiteContent }>();
 
 			<div class="grid gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-2">
 				<div class="space-y-4">
-					<h3 class="font-display text-sm font-semibold text-white/70">Navigatie</h3>
+					<h3 class="font-display text-sm font-semibold text-white/70">Snel naar</h3>
 					<ul class="space-y-3 text-sm font-semibold text-white/80">
 						{#each quickLinks as { label, href }}
 							<li>

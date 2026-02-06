@@ -1,7 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap");
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
-
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap");
 
 @theme {
   --color-primary: oklch(58.8% 0.158 241.966);
