@@ -1,6 +1,5 @@
 node_modules
 
-# Output
 .output
 .vercel
 .netlify
@@ -9,17 +8,14 @@ app/.svelte-kit
 app/build
 app/dist
 
-# OS
 .DS_Store
 Thumbs.db
 
-# Env
 .env
 .env.*
 !.env.example
 !.env.test
 
-# Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 app/static/images/*.*
@@ -27,5 +23,14 @@ app/static/images/*/*.*
 **/*.jpg
 **/*.png
 **/*.jpeg
+
+!storage/
+!storage/overrides.json
+!storage/uploads/.gitkeep
+!app/static/images/impressies/
+!app/static/images/impressies/**
+!app/static/images/impressies/*.jpg
+!app/static/images/impressies/*.jpeg
+!app/static/images/impressies/*.png
 
 ecosystem.*

@@ -1,167 +1,42 @@
-[![Live Website](https://img.shields.io/badge/Live%20Website-mariahoogland.nl-blue?style=for-the-badge&logo=vercel)](https://mariahoogland.nl)
-
 # Maria Hoogland Architect Portfolio
 
-A professional, responsive website showcasing the distinguished work of **Maria Hoogland**, an award-winning architect. This repository contains all source code, assets, and configuration required to build and deploy her official online portfolio.
+A professional, responsive portfolio site for Maria Hoogland with a built-in admin dashboard and a JSON-based content system.
 
----
+## What’s in here
+- Home / About / Portfolio / Contact content comes from `app/defaults.json`, then gets patched by `storage/overrides.json` at runtime.
+- `/admin` lets you edit all copy, galleries, stats, contact details, footer links, and more.
+- `/admin/portfolio` manages projects and featured items.
+- Image uploads go to `CONTENT_DIR/uploads` and are served via `/uploads/...`.
+- Optional ntfy notifications on saves + uploads.
+- Canonical URLs + sitemap + robots.
 
-## Screenshots
-### Homepage
-*A general view of the website's main page.*
-
-
-<img width="788" height="294" alt="image" src="https://github.com/user-attachments/assets/db174a3a-bcf5-4d9c-ae63-315098699fc7" />
-
-### Portfolio Page
-*An example of a project listing within the portfolio.*
-
-
-<img width="702" height="372" alt="image" src="https://github.com/user-attachments/assets/9dbe7a02-b019-4e86-b2e6-752bf496bdaf" />
-
-### Admin Login
-*The login screen for the administrative backend.*
-
-
-<img width="623" height="471" alt="image" src="https://github.com/user-attachments/assets/6a82bf42-8def-418c-9f32-c351d683741d" />
-
-
----
-
-## Table of Contents
-
-1. [Overview](#overview)  
-2. [Key Features](#key-features)  
-3. [Technology Stack](#technology-stack)  
-4. [Architecture & Structure](#architecture--structure)  
-5. [Getting Started](#getting-started)  
-6. [Deployment](#deployment)  
-7. [Contributing](#contributing)  
-8. [License & Attribution](#license--attribution)  
-
----
-
-## Overview
-
-Maria Hoogland’s portfolio website provides an engaging platform for clients, collaborators, and media to explore her architectural practice. Visitors can browse completed and ongoing projects, view upcoming events, and easily submit inquiries.
-
----
-
-## Key Features
-
-- **Project Showcase**  
-  High-resolution galleries and in-depth case studies illustrating design process, materials, and finished structures.
-
-- **Event Calendar**  
-  Interactive listings of exhibitions, lectures, and industry engagements—with automatic updates via a secure CMS.
-
-- **Contact & Inquiries**  
-  A GDPR-compliant contact form that routes client messages directly to Maria’s studio email.
-
-- **Secure Admin Dashboard**  
-  Role-based access for content managers to create, edit, and publish project pages and event details.
-
----
-
-## Technology Stack
-
-| Layer            | Tools & Frameworks         |
-| ---------------- | -------------------------- |
-| Frontend         | SvelteKit, TypeScript      |
-| Build & Bundling | Vite                       |
-| Styling          | Tailwind CSS               |
-| CMS & Authentication | Custom SvelteKit API, JWT |
-| Hosting & CDN    | Vercel                     |
-
----
-
-## Architecture & Structure
-
+## Running locally
+```bash
+npm install
+npm run dev
 ```
 
-MariaHoogland/
-├── public/               # Static assets (images, favicon, robots.txt)
-├── src/
-│   ├── lib/              # Shared components & utilities
-│   ├── routes/           # SvelteKit page endpoints
-│   │   ├── +page.svelte  # Home, Portfolio, Events, Contact
-│   │   └── admin/        # Secure admin panel
-│   └── styles/           # Global styles & Tailwind config
-├── .env.example          # Environment variable template
-├── svelte.config.js      # SvelteKit configuration
-└── vite.config.ts        # Vite configuration
+## Env vars (app/.env)
+Copy `app/.env.example` to `app/.env` and adjust:
+- `ADMIN_PASSWORD` – admin password (default is `mariahoogland`).
+- `CONTENT_DIR` / `CONTENT_FILE` – where `overrides.json` lives.
+- `CONTENT_UPLOADS_DIR` or `UPLOADS_DIR` – where uploads are stored.
+- `SMTP_*`, `EMAIL_FROM`, `EMAIL_TO` – contact form email delivery.
+- `PUBLIC_SITE_URL` (or `SITE_URL` / `BASE_URL`) – used for canonical URLs and sitemap.
+- `NTFY_*` – optional notifications.
 
+## Content storage
+- Defaults: `app/defaults.json`
+- Overrides: `storage/overrides.json`
+- Uploads: `storage/uploads`
+
+## Docker
+Build + run with Docker:
+```bash
+docker compose up --build
 ```
 
----
+The container mounts `./storage` into `/app/storage`, so uploads and overrides survive restarts.
 
-## Getting Started
-
-**Prerequisites**  
-- Node.js ≥ 18  
-- npm ≥ 9  
-
-1. **Clone the repository**  
-   ```bash
-   git clone https://github.com/NickDev8/MariaHoogland.git
-   cd MariaHoogland
-
-
-2. **Install dependencies**
-
-   ```bash
-   npm ci
-   ```
-
-3. **Set up environment variables**
-   Copy `.env.example` to `.env` and populate your API keys, database URLs, and SMTP credentials.
-
-4. **Run in development mode**
-
-   ```bash
-   npm run dev
-   ```
-
-   Open your browser at [http://localhost:5173](http://localhost:5173).
-
----
-
-## Deployment
-
-This project is configured for zero-configuration deployments on Vercel:
-
-1. Connect the GitHub repository to your Vercel account.
-2. Define environment variables in your Vercel dashboard.
-3. Trigger a deployment via push to `main` or through the Vercel CLI:
-
-   ```bash
-   vercel --prod
-   ```
-
----
-
-## Contributing
-
-We welcome contributions! To propose feature enhancements or bug fixes:
-
-1. Fork this repository.
-2. Create a feature branch:
-
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. Commit your changes and push to your fork.
-4. Open a Pull Request against `main` with a clear description of your changes.
-
-Please adhere to the existing code style and include any relevant tests.
-
----
-
-## License & Attribution
-
-This project is licensed under the [MIT License](./LICENSE).
-All third-party assets and libraries are used in compliance with their respective licenses.
-
----
-
-[![This project is part of Shipwrecked, the world\&#39;s first hackathon on an island!](https://hc-cdn.hel1.your-objectstorage.com/s/v3/739361f1d440b17fc9e2f74e49fc185d86cbec14_badge.png)](https://shipwrecked.hackclub.com/?t=ghrm)
+## Admin
+Visit `/admin` to edit general content and `/admin/portfolio` for projects. Changes are written to `storage/overrides.json`.
