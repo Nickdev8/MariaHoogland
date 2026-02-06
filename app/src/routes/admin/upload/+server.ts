@@ -59,7 +59,12 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 		const formData = await request.formData();
 		const file = formData.get('file');
 
-		if (!(file instanceof File)) {
+		const hasArrayBuffer =
+			file &&
+			typeof file === 'object' &&
+			'arrayBuffer' in file &&
+			typeof (file as File).arrayBuffer === 'function';
+		if (!hasArrayBuffer) {
 			return respond(400, 'Geen bestand ontvangen.');
 		}
 

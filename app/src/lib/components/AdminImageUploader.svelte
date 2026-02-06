@@ -25,7 +25,13 @@
 	let statusMessage = '';
 	let fileInput: HTMLInputElement | null = null;
 
-	const normalizeUrl = (value: string | null | undefined) => value?.trim() ?? '';
+	const normalizeUrl = (value: string | null | undefined) => {
+		const trimmed = value?.trim() ?? '';
+		if (!trimmed) return '';
+		if (/^(https?:|data:|blob:)/i.test(trimmed)) return trimmed;
+		if (trimmed.startsWith('/')) return trimmed;
+		return `/${trimmed}`;
+	};
 
 	$: previewSrc = normalizeUrl(url);
 	$: description = alt?.trim() ?? '';
@@ -100,10 +106,10 @@
 			const formData = new FormData();
 			formData.set('file', file);
 			const response = await fetch('/admin/upload', { method: 'POST', body: formData });
+			const data = (await response.json().catch(() => ({}))) as { url?: string; message?: string };
 			if (!response.ok) {
-				throw new Error('Upload mislukt.');
+				throw new Error(data?.message ?? 'Upload mislukt.');
 			}
-			const data = (await response.json()) as { url?: string };
 			if (!data?.url) {
 				throw new Error('Upload mislukt.');
 			}
