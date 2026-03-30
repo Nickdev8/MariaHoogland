@@ -16,12 +16,14 @@
   {/if}
 </svelte:head>
 
-<div class="flex flex-col min-h-screen overflow-x-hidden">
+<div
+  class={`flex min-h-screen flex-col overflow-x-hidden ${$page.url.pathname.startsWith('/admin') ? '' : 'site-chrome'}`}
+>
   {#if !$page.url.pathname.startsWith('/admin')}
     <Header />
   {/if}
 
-  <main class={`flex-1 ${$page.url.pathname.startsWith('/admin') ? '' : 'pt-14'}`}>
+  <main class={`flex-1 ${$page.url.pathname.startsWith('/admin') ? '' : 'site-main pt-20'}`}>
     {@render children()}
   </main>
 
