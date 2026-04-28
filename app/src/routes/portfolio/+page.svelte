@@ -1,124 +1,144 @@
 <script lang="ts">
-	import { writable, derived } from 'svelte/store';
-	import { slide } from 'svelte/transition';
+	import { LayoutGrid, List } from '@lucide/svelte';
 	import type { ProjectWithHtml } from '$lib/server/projects';
 	import type { PortfolioContent } from '$lib/types/content';
 
 	export let data: { projects: ProjectWithHtml[]; portfolio: PortfolioContent };
 
-	const categories: string[] = ['Alles', ...new Set(data.projects.map((p) => p.category))];
-
-	let selectedCategory = writable('Alles');
-	let searchQuery = writable('');
-
-	const filteredProjects = derived(
-		[selectedCategory, searchQuery],
-		([$selectedCategory, $searchQuery]) => {
-			let projects = data.projects;
-
-			if ($selectedCategory !== 'Alles') {
-				projects = projects.filter((p) => p.category === $selectedCategory);
-			}
-
-			if ($searchQuery) {
-				const lowerCaseQuery = $searchQuery.toLowerCase();
-				projects = projects.filter(
-					(p) =>
-						p.title.toLowerCase().includes(lowerCaseQuery) ||
-						p.subtitle.toLowerCase().includes(lowerCaseQuery) ||
-						p.category.toLowerCase().includes(lowerCaseQuery)
-				);
-			}
-
-			return projects;
-		}
-	);
-
-	function filterProjects(category: string) {
-		selectedCategory.set(category);
-	}
+	const leadProject = data.projects[0];
+	const projectCount = data.projects.length;
+	let viewMode: 'grid' | 'list' = 'grid';
 </script>
 
-<div class="bg-gray-50/50">
-	<div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-		<div class="mx-auto max-w-3xl text-center">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{data.portfolio.title}</h2>
-			<p class="mt-6 text-base leading-7 text-gray-600">
-				{data.portfolio.description}
-			</p>
-		</div>
+<section class="bg-[#f6f8fb]">
+	<div class="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
+		<div class="grid gap-12 border-b border-black/10 pb-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+			<div class="max-w-xl">
+				<p class="section-eyebrow">Portfolio</p>
+				<h1 class="mt-4 text-4xl font-semibold tracking-tight text-textcolor sm:text-5xl">
+					{data.portfolio.title}
+				</h1>
+				<p class="mt-6 text-base leading-8 text-secondary sm:text-lg">
+					{data.portfolio.description}
+				</p>
+			</div>
 
-		<div class="mt-8 mx-auto max-w-md">
-			<div class="relative">
-				<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-					<svg
-						class="h-5 w-5 text-gray-400"
-						viewBox="0 0 20 20"
-						fill="currentColor"
-						aria-hidden="true"
-					>
-						<path
-							fill-rule="evenodd"
-							d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-							clip-rule="evenodd"
-						/>
-					</svg>
+			<div class="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-end">
+				<div class="relative overflow-hidden rounded-xl bg-[#e8edf4]">
+					<img
+						src={leadProject?.mainImage}
+						alt={leadProject?.title ?? 'Portfolio project'}
+						class="aspect-[16/10] w-full object-cover"
+					/>
 				</div>
-				<input
-					bind:value={$searchQuery}
-					type="text"
-					name="search"
-					id="search"
-					class="block w-full rounded-full border border-gray-200 bg-white py-2.5 pl-10 pr-3 text-gray-900 shadow-none ring-0 placeholder:text-gray-400 focus:border-sky-300 focus:ring-1 focus:ring-sky-300 sm:text-sm sm:leading-6"
-					placeholder="Zoek projecten..."
-				/>
+				<div class="min-w-[9rem] border-t border-black/10 pt-4 sm:border-t-0 sm:border-l sm:pl-5 sm:pt-0">
+					<p class="text-[0.68rem] font-light uppercase tracking-[0.28em] text-secondary">
+						Projecten
+					</p>
+					<p class="mt-2 text-4xl font-semibold tracking-tight text-textcolor">
+						{projectCount}
+					</p>
+					<p class="mt-2 max-w-[10rem] text-sm leading-6 text-secondary">
+						Kleine en grote ingrepen, elk met een eigen context.
+					</p>
+				</div>
 			</div>
 		</div>
 
-		<div class="mt-10 flex flex-wrap justify-center gap-2 sm:gap-3 overflow-x-auto pb-2">
-			{#each categories as category}
-				<button
-					on:click={() => filterProjects(category)}
-					class="rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-200 ease-in-out focus:outline-none focus:ring-1 focus:ring-sky-300"
-					class:bg-sky-600={$selectedCategory === category}
-					class:text-white={$selectedCategory === category}
-					class:border-sky-600={$selectedCategory === category}
-					class:bg-white={$selectedCategory !== category}
-					class:text-gray-600={$selectedCategory !== category}
-					class:border-gray-200={$selectedCategory !== category}
-					class:hover:border-gray-300={$selectedCategory !== category}
-				>
-					{category}
-				</button>
-			{/each}
-		</div>
-
-		<div
-			class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-		>
-			{#each $filteredProjects as project (project.slug)}
-				<div in:slide|global={{ duration: 300 }}>
-					<a
-						href={`/${project.slug}`}
-						class="group block rounded-2xl border border-gray-200/80 bg-white shadow-sm transition-all duration-300 ease-in-out hover:shadow-md"
+		<div class="mt-10">
+			<div class="flex items-center justify-between gap-6 border-b border-black/10 pb-5">
+				<p class="text-sm leading-6 text-secondary">
+					Alle projecten van Maria Hoogland in een compacte index.
+				</p>
+				<div class="flex items-center gap-2">
+					<button
+						type="button"
+						on:click={() => (viewMode = 'grid')}
+						class={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs uppercase tracking-[0.22em] transition ${
+							viewMode === 'grid'
+								? 'border-secondary bg-secondary text-white'
+								: 'border-black/10 bg-white/80 text-secondary'
+						}`}
+						aria-pressed={viewMode === 'grid'}
 					>
-						<div class="overflow-hidden rounded-t-2xl">
-							<img
-								src={project.mainImage}
-								alt={project.title}
-								class="h-56 w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-[1.03]"
-							/>
-						</div>
-						<div class="p-5">
-							<p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-sky-600">
-								{project.category}
-							</p>
-							<h3 class="mt-2 text-lg font-semibold text-gray-900">{project.title}</h3>
-							<p class="mt-1 text-sm leading-6 text-gray-600">{project.subtitle}</p>
-						</div>
-					</a>
+						<LayoutGrid size={14} />
+						Grid
+					</button>
+					<button
+						type="button"
+						on:click={() => (viewMode = 'list')}
+						class={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs uppercase tracking-[0.22em] transition ${
+							viewMode === 'list'
+								? 'border-secondary bg-secondary text-white'
+								: 'border-black/10 bg-white/80 text-secondary'
+						}`}
+						aria-pressed={viewMode === 'list'}
+					>
+						<List size={14} />
+						Lijst
+					</button>
 				</div>
-			{/each}
+			</div>
+
+			{#if viewMode === 'grid'}
+				<div class="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 xl:grid-cols-4">
+					{#each data.projects as project}
+						<a href={`/${project.slug}`} class="group block">
+							<div class="overflow-hidden rounded-lg bg-[#e8edf4]">
+								<img
+									src={project.mainImage}
+									alt={project.title}
+									class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+								/>
+							</div>
+							<div class="pt-3">
+								<p class="text-[0.62rem] font-light uppercase tracking-[0.24em] text-secondary">
+									{project.category}
+								</p>
+								<h2 class="mt-1.5 text-base font-semibold tracking-tight text-textcolor">
+									{project.title}
+								</h2>
+								<p class="mt-1 text-sm leading-6 text-secondary">
+									{project.subtitle}
+								</p>
+							</div>
+						</a>
+					{/each}
+				</div>
+			{:else}
+				<div class="mt-6 grid gap-0">
+					{#each data.projects as project}
+						<a
+							href={`/${project.slug}`}
+							class="group grid gap-4 border-b border-black/10 py-5 transition-colors duration-200 hover:bg-white/60 sm:px-2 md:grid-cols-[140px_minmax(0,1fr)_auto] md:items-center md:gap-6"
+						>
+							<div class="overflow-hidden rounded-lg bg-[#e8edf4]">
+								<img
+									src={project.mainImage}
+									alt={project.title}
+									class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+								/>
+							</div>
+
+							<div class="max-w-2xl">
+								<p class="text-[0.68rem] font-light uppercase tracking-[0.26em] text-secondary">
+									{project.category}
+								</p>
+								<h2 class="mt-2 text-xl font-semibold tracking-tight text-textcolor">
+									{project.title}
+								</h2>
+								<p class="mt-1.5 text-sm leading-7 text-secondary">
+									{project.subtitle}
+								</p>
+							</div>
+
+							<div class="text-sm font-light uppercase tracking-[0.22em] text-secondary transition group-hover:text-primary">
+								Bekijk
+							</div>
+						</a>
+					{/each}
+				</div>
+			{/if}
 		</div>
 	</div>
-</div>
+</section>

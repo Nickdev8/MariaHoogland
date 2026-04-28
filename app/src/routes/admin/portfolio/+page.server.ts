@@ -127,6 +127,33 @@ export const actions: Actions = {
 		await writeContent(nextContent);
 
 		throw redirect(303, `/admin/portfolio/${slug}`);
+	},
+	delete: async ({ request, cookies }) => {
+		if (!isAdminAuthenticated(cookies)) {
+			return fail(401, { error: 'Niet geautoriseerd.' });
+		}
+
+		const formData = await request.formData();
+		const slug = formData.get('slug');
+
+		if (typeof slug !== 'string' || slug.trim() === '') {
+			return fail(400, { error: 'Projectslug ontbreekt.' });
+		}
+
+		const current = await readContent();
+		const nextProjects = current.projects.filter((project) => project.slug !== slug);
+
+		if (nextProjects.length === current.projects.length) {
+			return fail(404, { error: 'Project niet gevonden.' });
+		}
+
+		const nextContent: SiteContent = {
+			...current,
+			projects: nextProjects
+		};
+
+		await writeContent(nextContent);
+		return { success: true };
 	}
 };
 

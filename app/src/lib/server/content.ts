@@ -10,12 +10,24 @@ const CUSTOM_OVERRIDES_FILE = env.CONTENT_FILE?.trim();
 const CUSTOM_OVERRIDES_DIR = env.CONTENT_DIR?.trim();
 const CUSTOM_UPLOADS_DIR = env.CONTENT_UPLOADS_DIR?.trim() ?? env.UPLOADS_DIR?.trim();
 
-const RESOLVED_OVERRIDES_PATH = CUSTOM_OVERRIDES_FILE
-	? CUSTOM_OVERRIDES_FILE
-	: join(CUSTOM_OVERRIDES_DIR ?? DEFAULTS_DIR, 'overrides.json');
+const LOCAL_REPO_STORAGE_DIR = join(process.cwd(), '..', 'storage');
+const remapDockerStoragePathForLocalDev = (value?: string): string | undefined => {
+	if (!value) return value;
+	if (process.cwd().startsWith('/app')) return value;
+	if (!value.startsWith('/app/storage')) return value;
+	return join(LOCAL_REPO_STORAGE_DIR, value.slice('/app/storage'.length).replace(/^\/+/, ''));
+};
+
+const RESOLVED_OVERRIDES_FILE = remapDockerStoragePathForLocalDev(CUSTOM_OVERRIDES_FILE);
+const RESOLVED_OVERRIDES_BASE_DIR = remapDockerStoragePathForLocalDev(CUSTOM_OVERRIDES_DIR);
+const RESOLVED_UPLOADS_BASE_DIR = remapDockerStoragePathForLocalDev(CUSTOM_UPLOADS_DIR);
+
+const RESOLVED_OVERRIDES_PATH = RESOLVED_OVERRIDES_FILE
+	? RESOLVED_OVERRIDES_FILE
+	: join(RESOLVED_OVERRIDES_BASE_DIR ?? DEFAULTS_DIR, 'overrides.json');
 const RESOLVED_OVERRIDES_DIR = dirname(RESOLVED_OVERRIDES_PATH);
 const RESOLVED_UPLOADS_DIR = (() => {
-	if (CUSTOM_UPLOADS_DIR) return CUSTOM_UPLOADS_DIR;
+	if (RESOLVED_UPLOADS_BASE_DIR) return RESOLVED_UPLOADS_BASE_DIR;
 	const localStorageDir = join(process.cwd(), 'storage');
 	if (existsSync(localStorageDir)) {
 		return localStorageDir;

@@ -1,70 +1,70 @@
 <script lang="ts">
-	import { Globe, PenTool, Users, Lightbulb } from '@lucide/svelte';
 	import type { AboutContent } from '$lib/types/content';
 
 	export let data: { about: AboutContent };
-	const { about } = data;
-
-	const iconMap: Record<string, typeof Globe> = {
-		Globe,
-		PenTool,
-		Users,
-		Lightbulb
+	const maria = data.about.team.members[0];
+	const story = {
+		introLabel: 'Over Maria Hoogland',
+		title: 'Een persoonlijk bureau met een heldere geschiedenis',
+		description:
+			'Deze pagina wordt de rustige introductie van Maria Hoogland en Architectuur AMH. Hier vertellen we straks wie Maria is, hoe het bureau is ontstaan en waarom persoonlijke begeleiding, duidelijke lijnen en zorgvuldig ontwerpen al jaren de basis vormen van de praktijk.'
 	};
-
-	const resolveIcon = (name: string) => iconMap[name] ?? Globe;
+	const historyText = [
+		'Hier komt straks een kort hoofdstuk over de geschiedenis van Architectuur AMH: hoe Maria Hoogland haar bureau heeft opgebouwd, welke ervaringen daarbij bepalend waren en hoe daaruit een persoonlijke ontwerppraktijk is ontstaan.',
+		'Daarnaast is dit de plek voor een tweede alinea over de ontwikkeling van het bureau door de jaren heen, met ruimte voor de visie van nu en de manier waarop Maria opdrachtgevers vandaag begeleidt.'
+	];
+	const bio =
+		'Persoonlijke begeleiding, heldere keuzes en rustige architectuur.';
 </script>
 
-<div class="bg-white py-16 sm:py-20">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-3xl lg:text-center">
-      <h2 class="text-base font-semibold leading-7 text-sky-600">{about.introLabel}</h2>
-      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-        {about.title}
-      </p>
-      <p class="mt-6 text-lg leading-8 text-gray-600">
-        {about.description}
-      </p>
-    </div>
+<section class="bg-[#f5f8fc]">
+	<div class="mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-7xl items-center px-6 py-10 lg:px-8">
+		<div class="grid w-full gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+			<div class="max-w-2xl">
+				<p class="section-eyebrow">{story.introLabel}</p>
+				<h1 class="mt-4 max-w-xl text-4xl font-semibold tracking-tight text-textcolor sm:text-5xl">
+					{story.title}
+				</h1>
+				<p class="mt-6 max-w-xl text-base leading-8 text-secondary sm:text-lg">
+					{story.description}
+				</p>
 
-    <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-      <dl class="grid max-w-xl grid-cols-1 gap-x-10 gap-y-12 lg:max-w-none lg:grid-cols-2">
-        {#each about.features as feature}
-          <div class="relative pl-16">
-            <dt class="text-base font-semibold leading-7 text-gray-900">
-              <div class="absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-lg bg-sky-50">
-                <svelte:component this={resolveIcon(feature.icon)} class="h-5 w-5 text-sky-700" />
-              </div>
-              {feature.title}
-            </dt>
-            <dd class="mt-2 text-base leading-7 text-gray-600">
-              {feature.description}
-            </dd>
-          </div>
-        {/each}
-      </dl>
-    </div>
-  </div>
-</div>
+				<div class="mt-10 border-t border-black/10 pt-8">
+					<div class="max-w-xl space-y-5">
+						{#each historyText as paragraph}
+							<p class="text-sm leading-7 text-secondary sm:text-base">
+								{paragraph}
+							</p>
+						{/each}
+					</div>
+				</div>
+			</div>
 
-<div class="bg-gray-50/50 py-20 sm:py-24">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-3xl text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{about.team.title}</h2>
-      <p class="mt-6 text-lg leading-8 text-gray-600">
-        {about.team.description}
-      </p>
-    </div>
-    <div class="mt-12 flex justify-center">
-      <ul role="list" class="max-w-md">
-        {#each about.team.members as member}
-          <li>
-            <img class="aspect-[1/1] w-full rounded-2xl object-cover" src={member.image.src} alt={member.image.alt}>
-            <h3 class="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">{member.name}</h3>
-            <p class="text-base leading-7 text-gray-600">{member.role}</p>
-          </li>
-        {/each}
-      </ul>
-    </div>
-  </div>
-</div>
+			<div class="lg:justify-self-end">
+				<div class="grid gap-5">
+					<div class="relative overflow-hidden rounded-xl bg-[#e8eef6]">
+						<img
+							class="aspect-[4/4.8] w-full object-cover object-center"
+							src={maria?.image.src}
+							alt={maria?.image.alt ?? 'Portret van Maria Hoogland'}
+						/>
+					</div>
+
+					<div class="border-t border-black/10 pt-5">
+						<div>
+							<p class="text-[0.68rem] font-light uppercase tracking-[0.28em] text-secondary">
+								Architect
+							</p>
+							<h2 class="mt-2 text-2xl font-semibold tracking-tight text-textcolor sm:text-[2rem]">
+								{maria?.name ?? 'Maria Hoogland'}
+							</h2>
+						</div>
+						<p class="mt-3 max-w-sm text-sm leading-7 text-secondary">
+							{bio}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

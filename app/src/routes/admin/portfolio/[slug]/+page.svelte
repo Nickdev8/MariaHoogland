@@ -4,6 +4,8 @@
 	import { enhance } from '$app/forms';
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import AdminImageUploader from '$lib/components/AdminImageUploader.svelte';
+	import AdminSaveDock from '$lib/components/admin/AdminSaveDock.svelte';
+	import AdminShell from '$lib/components/admin/AdminShell.svelte';
 	import type { PageData } from './$types';
 	import type { Project } from '$lib/types/content';
 	import { onDestroy, onMount } from 'svelte';
@@ -22,15 +24,27 @@
 		testimonials: Array.isArray(project.testimonials) ? project.testimonials : []
 	});
 
+	function serializeProject(value: Project) {
+		try {
+			return JSON.stringify(value);
+		} catch {
+			return '';
+		}
+	}
+
 	let project: Project = normalizeProject(structuredClone(data.project));
+	let baselineSnapshot = serializeProject(project);
 	let successMessage = formState?.success ? 'Wijzigingen opgeslagen.' : '';
 	let errorMessage = formState?.error ?? '';
+	let pending = false;
 	let toastVisible = false;
 	let toastMessage = '';
 	let toastTone: 'info' | 'success' | 'error' = 'info';
 	let toastTimeout: ReturnType<typeof setTimeout> | undefined;
 	const draftKey = `admin:draft:project:${data.project.slug}`;
+	const formId = 'admin-project-form';
 	let draftTimeout: ReturnType<typeof setTimeout> | undefined;
+	$: isDirty = serializeProject(project) !== baselineSnapshot;
 
 	$: toastStyles =
 		toastTone === 'success'
@@ -70,14 +84,6 @@
 		}
 	};
 
-	const serializeProject = (value: Project) => {
-		try {
-			return JSON.stringify(value);
-		} catch {
-			return '';
-		}
-	};
-
 	const preparePayload = (event: Event) => {
 		const form = event.currentTarget as HTMLFormElement;
 		const hidden = form.elements.namedItem('payload');
@@ -89,6 +95,7 @@
 	const handleSubmit = (event: Event) => {
 		successMessage = '';
 		errorMessage = '';
+		pending = true;
 		preparePayload(event);
 		showToast('Opslaan...', 'info', false);
 	};
@@ -97,11 +104,13 @@
 		formData.set('payload', serializeProject(project));
 		const startingScroll = typeof window !== 'undefined' ? window.scrollY : 0;
 		return async ({ result, update }) => {
+			pending = false;
 			if (result.type === 'success') {
 				await update({ reset: false, invalidateAll: false });
 				successMessage = 'Wijzigingen opgeslagen.';
 				errorMessage = '';
 				clearDraft();
+				baselineSnapshot = serializeProject(project);
 				showToast('Opgeslagen!', 'success');
 			} else if (result.type === 'failure') {
 				await update({ reset: false, invalidateAll: false });
@@ -161,11 +170,13 @@
 			try {
 				project = normalizeProject(JSON.parse(draft) as Project);
 				showToast('Concept hersteld.', 'info');
+				baselineSnapshot = serverSnapshot;
 				return;
 			} catch {
 				clearDraft();
 			}
 		}
+		baselineSnapshot = serverSnapshot;
 	});
 
 	onDestroy(() => {
@@ -176,36 +187,14 @@
 	});
 </script>
 
-<div class="min-h-screen bg-neutral-50 text-neutral-900">
-	<header class="sticky top-0 z-20 border-b border-neutral-200 bg-white/90 backdrop-blur">
-		<div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
-			<div>
-				<p class="text-xs uppercase tracking-[0.3em] text-neutral-400">Maria Hoogland</p>
-				<h1 class="text-xl font-semibold">Project bewerken</h1>
-			</div>
-			<div class="flex items-center gap-3">
-				<a
-					href="/admin/portfolio"
-					class="rounded-full border border-neutral-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-600 hover:border-neutral-400"
-				>
-					Overzicht
-				</a>
-				<a
-					href={`/${project.slug}`}
-					class="rounded-full border border-neutral-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-600 hover:border-neutral-400"
-				>
-					Bekijk
-				</a>
-			</div>
-		</div>
-	</header>
-
+<AdminShell title="Project bewerken" subtitle={project.title || project.slug} active="portfolio">
 	<form
+		id={formId}
 		method="post"
 		action="?/save"
 		use:enhance={saveEnhancer}
 		on:submit={handleSubmit}
-		class="mx-auto max-w-6xl space-y-10 px-6 py-10"
+		class="space-y-10"
 	>
 		<input type="hidden" name="payload" />
 
@@ -325,12 +314,27 @@
 		</section>
 
 		<div class="flex justify-end">
-			<button
-				type="submit"
-				class="rounded-full bg-neutral-900 px-6 py-3 text-xs font-semibold uppercase tracking-[0.25em] text-white hover:bg-neutral-800"
-			>
-				Opslaan
-			</button>
+			<div class="flex flex-wrap gap-2">
+				<a
+					href={`/${project.slug}`}
+					class="rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-neutral-600 transition hover:border-neutral-400"
+				>
+					Bekijk project
+				</a>
+				<button
+					type="submit"
+					formaction="?/delete"
+					formmethod="post"
+					class="rounded-full border border-red-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-red-600 transition hover:border-red-300"
+					on:click={(event) => {
+						if (!confirm(`Verwijder project "${project.title || project.slug}"?`)) {
+							event.preventDefault();
+						}
+					}}
+				>
+					Verwijder project
+				</button>
+			</div>
 		</div>
 
 		{#if successMessage}
@@ -341,10 +345,12 @@
 		{/if}
 	</form>
 
+	<AdminSaveDock dirty={isDirty} {pending} {formId} {successMessage} {errorMessage} />
+
 	{#if toastVisible}
-		<div class={`fixed bottom-6 right-6 z-50 max-w-xs rounded-2xl px-5 py-4 text-sm ${toastStyles}`}>
+		<div class={`fixed bottom-24 right-6 z-50 max-w-xs rounded-2xl px-5 py-4 text-sm ${toastStyles}`}>
 			<div class={`mb-2 h-1 w-8 rounded-full ${toastAccent}`}></div>
 			{toastMessage}
 		</div>
 	{/if}
-</div>
+</AdminShell>

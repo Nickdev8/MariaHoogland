@@ -23,6 +23,8 @@ Copy `app/.env.example` to `app/.env` and adjust:
 - `CONTENT_DIR` / `CONTENT_FILE` – where `overrides.json` lives.
 - `CONTENT_UPLOADS_DIR` or `UPLOADS_DIR` – where uploads are stored.
 - `SMTP_*`, `EMAIL_FROM`, `EMAIL_TO` – contact form email delivery.
+- `PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` – Cloudflare Turnstile for bot protection on the contact form.
+  During `npm run dev`, the app always uses Cloudflare's official Turnstile test keys automatically, even if real keys exist in `.env`.
 - `PUBLIC_SITE_URL` (or `SITE_URL` / `BASE_URL`) – used for canonical URLs and sitemap.
 - `NTFY_*` – optional notifications.
 

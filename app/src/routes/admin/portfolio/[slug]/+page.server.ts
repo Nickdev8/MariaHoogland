@@ -79,6 +79,26 @@ export const actions: Actions = {
 		}
 
 		return { success: true };
+	},
+	delete: async ({ cookies, params }) => {
+		if (!isAdminAuthenticated(cookies)) {
+			return fail(401, { error: 'Niet geautoriseerd.' });
+		}
+
+		const current = await readContent();
+		const nextProjects = current.projects.filter((item) => item.slug !== params.slug);
+
+		if (nextProjects.length === current.projects.length) {
+			return fail(404, { error: 'Project niet gevonden.' });
+		}
+
+		const nextContent: SiteContent = {
+			...current,
+			projects: nextProjects
+		};
+
+		await writeContent(nextContent);
+		throw redirect(303, '/admin/portfolio');
 	}
 };
 

@@ -235,12 +235,7 @@
         "href": "https://www.instagram.com/architect_amh/",
         "icon": "Instagram"
       }
-    ],
-    "credit": {
-      "name": "Nick Esselman",
-      "website": "https://nickesselman.nl",
-      "email": "info@nickesselman.nl"
-    }
+    ]
   },
   "projects": [
     {
@@ -313,12 +308,12 @@
       "title": "Haarlemse Uitbouw",
       "subtitle": "Een naadloze toevoeging aan een klassieke woning.",
       "descriptionMarkdown": "Dit project omvatte het ontwerpen en realiseren van een moderne uitbouw die de leefruimte aanzienlijk vergrootte en meer daglicht in de woning bracht.\n\nDe uitdaging was om de moderne esthetiek te laten harmoniëren met het klassieke karakter van het bestaande huis.",
-      "mainImage": "/images/projects/uitbouw.jpg",
+      "mainImage": "/images/projects/image24.jpeg",
       "gallery": [
-        "/images/projects/uitbouw.jpg",
-        "/images/projects/woning-ijburg.jpg",
-        "/images/projects/uitbouw.jpg",
-        "/images/projects/garagewoning.jpg"
+        "/images/projects/image24.jpeg",
+        "/images/projects/image20.jpeg",
+        "/images/projects/image24.jpeg",
+        "/images/projects/image23.jpeg"
       ],
       "caption": "De stalen deuren zorgen voor een sterke visuele verbinding met de tuin.",
       "featured": true
@@ -329,7 +324,7 @@
       "title": "Moderne Woning op IJburg",
       "subtitle": "Licht en ruimte in een nieuwbouwomgeving.",
       "descriptionMarkdown": "Ontwerp van een volledige nieuwbouwwoning op IJburg, Amsterdam.\n\nDe focus lag op het creëren van een open en lichte leefomgeving met een sterke relatie tussen interieur en exterieur.\n\nDuurzame materialen en energiezuinige oplossingen stonden centraal.",
-      "mainImage": "/images/projects/woning-ijburg.jpg",
+      "mainImage": "/images/projects/image20.jpeg",
       "gallery": [],
       "caption": "De vide creëert een gevoel van ruimtelijkheid en verbindt de verdiepingen.",
       "featured": true

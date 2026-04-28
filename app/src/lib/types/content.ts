@@ -98,11 +98,6 @@ export type FooterContent = {
 	contactEmail: string;
 	contactPhone: string;
 	socials: FooterSocial[];
-	credit: {
-		name: string;
-		website: string;
-		email: string;
-	};
 };
 
 export type ProjectTestimonial = {

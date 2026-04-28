@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import { Menu } from '@lucide/svelte';
   let isOpen = false;
+  let hoveredHref: string | null = null;
   const links = [
     { label: 'Home', href: '/' },
     { label: 'Over Mij', href: '/about' },
@@ -8,6 +10,9 @@
     { label: 'Contact', href: '/contact' },
   ];
   const toggle = () => (isOpen = !isOpen);
+  const isActive = (href: string, pathname: string) => href === '/' ? pathname === href : pathname.startsWith(href);
+  const showActiveUnderline = (href: string, pathname: string) =>
+    isActive(href, pathname) && (!hoveredHref || hoveredHref === href);
 </script>
 
 <header class="fixed inset-x-0 top-0 z-50 bg-secondary shadow-md animate-fade-in-down">
@@ -20,10 +25,13 @@
       {#each links as { label, href }}
         <a
           href={href}
-          class="relative font-medium text-white hover:text-primary transition"
+          class="group relative font-light tracking-wider text-white transition hover:text-primary"
+          aria-current={isActive(href, $page.url.pathname) ? 'page' : undefined}
+          on:mouseenter={() => (hoveredHref = href)}
+          on:mouseleave={() => (hoveredHref = null)}
         >
           {label}
-          <span class="absolute bottom-0 left-0 block h-0.5 w-0 bg-white transition-all group-hover:w-full"></span>
+          <span class="absolute -bottom-0.5 left-0 block h-px transition-all duration-300 {showActiveUnderline(href, $page.url.pathname) ? 'w-full bg-white' : 'w-0 bg-primary group-hover:w-full'}"></span>
         </a>
       {/each}
     </nav>
@@ -42,7 +50,8 @@
       {#each links as { label, href }}
         <a
           href={href}
-          class="block py-2 text-base font-medium text-white hover:text-gray-200 transition"
+          class="block py-2 text-sm font-light tracking-wider text-white transition hover:text-primary {isActive(href, $page.url.pathname) ? 'underline underline-offset-4' : ''}"
+          aria-current={isActive(href, $page.url.pathname) ? 'page' : undefined}
         >
           {label}
         </a>

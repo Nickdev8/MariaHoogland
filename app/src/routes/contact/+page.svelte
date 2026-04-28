@@ -7,8 +7,9 @@
 	let formResult: { success?: boolean; message?: string; error?: string } = {};
 	$: formResult = $page.form ?? {};
 
-	export let data: { contact: ContactContent };
+	export let data: { contact: ContactContent; turnstileSiteKey: string };
 	const { contact } = data;
+	const turnstileSiteKey = data.turnstileSiteKey;
 
 	let name = '';
 	let email = '';
@@ -17,8 +18,18 @@
 	let message = '';
 </script>
 
-<div class="bg-gray-50/50">
-	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-x-16 gap-y-12 px-6 py-20 lg:grid-cols-2">
+<svelte:head>
+	{#if turnstileSiteKey}
+		<script
+			src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+			async
+			defer
+		></script>
+	{/if}
+</svelte:head>
+
+<div class="bg-[#f7f9fc]">
+	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-x-12 gap-y-12 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr]">
 		<div class="max-w-xl lg:max-w-lg">
 			<h2 class="text-3xl font-bold tracking-tight text-gray-900">{contact.title}</h2>
 			<p class="mt-4 text-base leading-7 text-gray-600">
@@ -62,7 +73,7 @@
 		<form
 			method="POST"
 			use:enhance
-			class="space-y-8 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm lg:p-10"
+			class="space-y-8 rounded-2xl border border-black/10 bg-white/90 px-8 pt-5 pb-8 lg:max-w-none lg:px-10 lg:pt-5 lg:pb-10"
 		>
 			<div class="hidden" aria-hidden="true">
 				<label for="sanity_check">Do not fill this out</label>
@@ -80,7 +91,7 @@
 							id="name"
 							bind:value={name}
 							required
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
+							class="block w-full rounded-xl border border-black/10 bg-[#fbfcfe] px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none sm:text-sm sm:leading-6"
 							placeholder="Uw volledige naam"
 						/>
 					</div>
@@ -97,7 +108,7 @@
 							id="email"
 							bind:value={email}
 							required
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
+							class="block w-full rounded-xl border border-black/10 bg-[#fbfcfe] px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none sm:text-sm sm:leading-6"
 							placeholder="uwnaam@voorbeeld.nl"
 						/>
 					</div>
@@ -113,7 +124,7 @@
 							name="phone"
 							id="phone"
 							bind:value={phone}
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
+							class="block w-full rounded-xl border border-black/10 bg-[#fbfcfe] px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none sm:text-sm sm:leading-6"
 							placeholder="+31 6 12345678"
 						/>
 					</div>
@@ -130,7 +141,7 @@
 							id="subject"
 							bind:value={subject}
 							required
-							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
+							class="block w-full rounded-xl border border-black/10 bg-[#fbfcfe] px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none sm:text-sm sm:leading-6"
 							placeholder="Korte omschrijving"
 						/>
 					</div>
@@ -148,16 +159,33 @@
 						bind:value={message}
 						rows="6"
 						required
-						class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
+						class="block w-full rounded-xl border border-black/10 bg-[#fbfcfe] px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none sm:text-sm sm:leading-6"
 						placeholder="Laat hier uw bericht achter..."
 					></textarea>
 				</div>
 			</div>
 
+			{#if turnstileSiteKey}
+				<div
+					class="cf-turnstile"
+					data-sitekey={turnstileSiteKey}
+					data-theme="light"
+					data-size="flexible"
+					data-action="contact"
+				></div>
+			{:else}
+				<div class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-4">
+					<p class="text-sm text-amber-800">
+						Captcha is nog niet ingesteld. Voeg eerst de Turnstile-sleutels toe aan de omgeving.
+					</p>
+				</div>
+			{/if}
+
 			<div class="mt-10">
 				<button
 					type="submit"
-					class="block w-full rounded-full bg-sky-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500"
+					disabled={!turnstileSiteKey}
+					class="block w-full rounded-full border border-secondary bg-secondary px-3.5 py-3 text-center text-sm font-semibold text-white transition hover:bg-secondary/85"
 				>
 					Bericht versturen
 				</button>
@@ -165,13 +193,13 @@
 
 			{#if formResult.success}
 				<div
-					class="rounded-md border border-green-300 bg-green-50 p-4 text-center"
+					class="rounded-xl border border-primary/50 bg-primary/12 p-4 text-center"
 					role="alert"
 				>
-					<p class="text-sm font-medium text-green-800">{formResult.message}</p>
+					<p class="text-sm font-medium text-textcolor">{formResult.message}</p>
 				</div>
 			{:else if formResult.error}
-				<div class="rounded-md border border-red-300 bg-red-50 p-4 text-center" role="alert">
+				<div class="rounded-xl border border-red-200 bg-red-50 p-4 text-center" role="alert">
 					<p class="text-sm font-medium text-red-800">{formResult.error}</p>
 				</div>
 			{/if}

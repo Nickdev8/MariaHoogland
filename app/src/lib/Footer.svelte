@@ -8,80 +8,83 @@
     if (value.toLowerCase() === 'linkedin') return Linkedin;
     return Instagram;
   };
+
+  const credit = {
+    name: 'Nick Esselman',
+    website: 'https://nickesselman.nl',
+    email: 'info@nickesselman.nl'
+  };
 </script>
 
-<footer class="bg-secondary text-white mt-4">
-  <div class="container mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-    <div class="text-center md:text-left">
-      <h5 class="text-primary text-xl font-semibold mb-3">{content.aboutTitle}</h5>
-      <p class="text-sm leading-relaxed">
-        {content.aboutDescription}
-      </p>
-    </div>
+<footer class="border-t border-secondary/20 bg-[#e8edf4] text-textcolor">
+  <div class="mx-auto max-w-7xl px-6 py-14 lg:px-8">
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-4">
 
-    <div class="text-center md:text-left">
-      <h5 class="text-primary text-xl font-semibold mb-3">Snelle Links</h5>
-      <ul class="space-y-2">
-        {#each content.quickLinks as { label, href }}
-          <li>
-            <a
-              href={href}
-              class="inline-block text-base hover:text-primary transition"
-            >
-              {label}
-            </a>
-          </li>
-        {/each}
-      </ul>
-    </div>
-
-    <div class="text-center md:text-left">
-      <h5 class="text-primary text-xl font-semibold mb-3">Contact</h5>
-      <p class="text-base">
-        <a href={`mailto:${content.contactEmail}`} class="hover:text-primary transition">
-          {content.contactEmail}
-        </a>
-      </p>
-      <p class="text-base">
-        <a href={`tel:${content.contactPhone}`} class="hover:text-primary transition">
-          {content.contactPhone}
-        </a>
-      </p>
-    </div>
-
-    <div class="text-center md:text-left">
-      <h5 class="text-primary text-xl font-semibold mb-3">Volg Mij</h5>
-      <div class="flex justify-center md:justify-start items-center space-x-6">
-        {#each content.socials as social}
-          <a
-            href={social.href}
-            target="_blank"
-            class="p-2 rounded-full hover:bg-primary/20 transition"
-            aria-label={social.label}
-            rel="noopener noreferrer"
-          >
-            <svelte:component this={resolveIcon(social.icon)} size="24" />
-          </a>
-        {/each}
+      <div>
+        <h5 class="section-eyebrow">{content.aboutTitle}</h5>
+        <p class="mt-4 max-w-sm text-sm leading-7 text-secondary">
+          {content.aboutDescription}
+        </p>
       </div>
+
+      <div>
+        <h5 class="section-eyebrow">Snelle Links</h5>
+        <ul class="mt-4 space-y-2">
+          {#each content.quickLinks as { label, href }}
+            <li>
+              <a href={href} class="site-link">{label}</a>
+            </li>
+          {/each}
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="section-eyebrow">Contact</h5>
+        <div class="mt-4 space-y-2 text-sm text-secondary">
+          <p>
+            <a href={`mailto:${content.contactEmail}`} class="transition-colors hover:text-textcolor">
+              {content.contactEmail}
+            </a>
+          </p>
+          <p>
+            <a href={`tel:${content.contactPhone}`} class="transition-colors hover:text-textcolor">
+              {content.contactPhone}
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h5 class="section-eyebrow">Volg Mij</h5>
+        <div class="mt-4 flex items-center gap-3">
+          {#each content.socials as social}
+            <a
+              href={social.href}
+              target="_blank"
+              class="inline-flex h-10 w-10 items-center justify-center border border-secondary/30 text-secondary transition-colors hover:border-secondary hover:text-textcolor"
+              aria-label={social.label}
+              rel="noopener noreferrer"
+            >
+              <svelte:component this={resolveIcon(social.icon)} size="18" />
+            </a>
+          {/each}
+        </div>
+      </div>
+
     </div>
-  </div>
-  <div class="border-t border-gray-600 py-4">
-    <div class="container mx-auto px-4 text-center text-sm text-gray-300">
-      <p>
-        Website gemaakt door
-        <a
-          href={content.credit.website}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-medium hover:text-white transition"
-        >
-          {content.credit.name}</a
-        >. Contact:
-        <a href={`mailto:${content.credit.email}`} class="font-medium hover:text-white transition"
-          >{content.credit.email}</a
-        >
-      </p>
+
+    <div class="mt-12 border-t border-secondary/20 pt-5 text-xs text-secondary">
+      Website gemaakt door
+      <a
+        href={credit.website}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-semibold text-textcolor transition-colors hover:text-secondary"
+      >{credit.name}</a>. Contact:
+      <a
+        href={`mailto:${credit.email}`}
+        class="font-semibold text-textcolor transition-colors hover:text-secondary"
+      >{credit.email}</a>
     </div>
   </div>
 </footer>

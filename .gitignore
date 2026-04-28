@@ -34,3 +34,6 @@ app/static/images/*/*.*
 !app/static/images/impressies/*.png
 
 ecosystem.*
+.omx/
+.codex
+.claude

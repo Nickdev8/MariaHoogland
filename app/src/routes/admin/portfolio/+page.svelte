@@ -3,6 +3,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import type { SubmitFunction } from '@sveltejs/kit';
+	import AdminSaveDock from '$lib/components/admin/AdminSaveDock.svelte';
+	import AdminShell from '$lib/components/admin/AdminShell.svelte';
 	import type { PageData } from './$types';
 	import type { SiteContent, Project } from '$lib/types/content';
 	import { onDestroy, onMount } from 'svelte';
@@ -27,16 +29,28 @@
 		projects: (input.projects ?? []).map((project) => normalizeProject(structuredClone(project)))
 	});
 
+	const serializeDraft = (value: PortfolioDraft) => {
+		try {
+			return JSON.stringify(value);
+		} catch {
+			return '';
+		}
+	};
+
 	let content: PortfolioDraft | null =
 		data.authenticated && data.content ? normalizeContent(data.content) : null;
+	let baselineSnapshot = data.authenticated && data.content ? serializeDraft(normalizeContent(data.content)) : '';
 	let successMessage = formState?.success ? 'Wijzigingen opgeslagen.' : '';
 	let errorMessage = formState?.error ?? '';
+	let pending = false;
 	let toastVisible = false;
 	let toastMessage = '';
 	let toastTone: 'info' | 'success' | 'error' = 'info';
 	let toastTimeout: ReturnType<typeof setTimeout> | undefined;
 	const draftKey = 'admin:draft:portfolio';
+	const formId = 'admin-portfolio-form';
 	let draftTimeout: ReturnType<typeof setTimeout> | undefined;
+	$: isDirty = content ? serializeDraft(content) !== baselineSnapshot : false;
 	$: toastStyles =
 		toastTone === 'success'
 			? 'bg-emerald-600 text-white shadow-[0_20px_45px_rgba(16,185,129,0.35)]'
@@ -77,33 +91,37 @@
 
 	const preparePayload = (event: Event) => {
 		if (!content) return;
-		const payload = { portfolio: content.portfolio };
 		const form = event.currentTarget as HTMLFormElement;
 		const hidden = form.elements.namedItem('payload');
 		if (hidden instanceof HTMLInputElement) {
-			hidden.value = JSON.stringify(payload);
+			hidden.value = JSON.stringify({ portfolio: content.portfolio, projects: content.projects });
 		}
 	};
 
 	const handleSubmit = (event: Event) => {
 		successMessage = '';
 		errorMessage = '';
+		pending = true;
 		preparePayload(event);
 		showToast('Opslaan...', 'info', false);
 	};
 
 	const saveEnhancer: SubmitFunction = ({ formData }) => {
 		if (content) {
-			const payload = { portfolio: content.portfolio };
-			formData.set('payload', JSON.stringify(payload));
+			formData.set(
+				'payload',
+				JSON.stringify({ portfolio: content.portfolio, projects: content.projects })
+			);
 		}
 		const startingScroll = typeof window !== 'undefined' ? window.scrollY : 0;
 		return async ({ result, update }) => {
+			pending = false;
 			if (result.type === 'success') {
 				await update({ reset: false, invalidateAll: false });
 				successMessage = 'Wijzigingen opgeslagen.';
 				errorMessage = '';
 				clearDraft();
+				baselineSnapshot = content ? serializeDraft(content) : '';
 				showToast('Opgeslagen!', 'success');
 			} else if (result.type === 'failure') {
 				await update({ reset: false, invalidateAll: false });
@@ -122,14 +140,6 @@
 		};
 	};
 
-	const serializePortfolio = (value: SiteContent['portfolio']) => {
-		try {
-			return JSON.stringify(value);
-		} catch {
-			return '';
-		}
-	};
-
 	const clearDraft = () => {
 		if (typeof window === 'undefined') return;
 		window.localStorage.removeItem(draftKey);
@@ -141,7 +151,7 @@
 			clearTimeout(draftTimeout);
 		}
 		draftTimeout = setTimeout(() => {
-			window.localStorage.setItem(draftKey, serializePortfolio(content.portfolio));
+			window.localStorage.setItem(draftKey, serializeDraft(content));
 		}, 600);
 	};
 
@@ -153,17 +163,19 @@
 	onMount(() => {
 		if (!content || typeof window === 'undefined') return;
 		const draft = window.localStorage.getItem(draftKey);
-		const serverSnapshot = serializePortfolio(content.portfolio);
+		const serverSnapshot = serializeDraft(content);
 		if (draft && draft !== serverSnapshot) {
 			try {
-				const parsed = JSON.parse(draft) as SiteContent['portfolio'];
-				content = { ...content, portfolio: parsed };
+				const parsed = JSON.parse(draft) as PortfolioDraft;
+				content = normalizeContent({ ...data.content, ...parsed } as SiteContent);
 				showToast('Concept hersteld.', 'info');
+				baselineSnapshot = serverSnapshot;
 				return;
 			} catch {
 				clearDraft();
 			}
 		}
+		baselineSnapshot = serverSnapshot;
 	});
 
 	onDestroy(() => {
@@ -203,38 +215,14 @@
 		</div>
 	</div>
 {:else if content}
-	<div class="min-h-screen bg-neutral-50 text-neutral-900">
-		<header class="sticky top-0 z-20 border-b border-neutral-200 bg-white/90 backdrop-blur">
-			<div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
-				<div>
-					<p class="text-xs uppercase tracking-[0.3em] text-neutral-400">Maria Hoogland</p>
-					<h1 class="text-xl font-semibold">Portfolio</h1>
-				</div>
-				<div class="flex items-center gap-3">
-					<a
-						href="/admin"
-						class="rounded-full border border-neutral-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-600 hover:border-neutral-400"
-					>
-						Algemeen
-					</a>
-					<form method="post" action="?/logout">
-						<button
-							type="submit"
-							class="rounded-full border border-neutral-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-600 hover:border-neutral-400"
-						>
-							Log uit
-						</button>
-					</form>
-				</div>
-			</div>
-		</header>
-
+	<AdminShell title="Portfolio bewerken" subtitle="Portfolio-intro en projectoverzicht." active="portfolio">
 		<form
+			id={formId}
 			method="post"
 			action="?/save"
 			use:enhance={saveEnhancer}
 			on:submit={handleSubmit}
-			class="mx-auto max-w-6xl space-y-10 px-6 py-10"
+			class="space-y-10"
 		>
 			<input type="hidden" name="payload" />
 
@@ -261,15 +249,6 @@
 				</div>
 			</section>
 
-			<div class="flex justify-end">
-				<button
-					type="submit"
-					class="rounded-full bg-neutral-900 px-6 py-3 text-xs font-semibold uppercase tracking-[0.25em] text-white hover:bg-neutral-800"
-				>
-					Opslaan
-				</button>
-			</div>
-
 			{#if successMessage}
 				<p class="text-sm text-emerald-600">{successMessage}</p>
 			{/if}
@@ -278,7 +257,7 @@
 			{/if}
 		</form>
 
-		<section class="mx-auto max-w-6xl space-y-6 px-6 pb-12">
+		<section class="space-y-6 pb-12">
 			<div class="flex flex-wrap items-center justify-between gap-3">
 				<h2 class="text-lg font-semibold">Projecten</h2>
 				<form method="post" action="?/create">
@@ -308,13 +287,15 @@
 								<p class="text-xs text-neutral-400">Slug: {project.slug}</p>
 							</div>
 							<div class="flex flex-wrap items-center gap-2">
-								{#if project.featured}
-									<span
-										class="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-emerald-700"
-									>
-										Uitgelicht
-									</span>
-								{/if}
+								<label class="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-600">
+									<input
+										type="checkbox"
+										class="h-4 w-4 rounded border-neutral-300 text-secondary focus:ring-secondary"
+										bind:checked={project.featured}
+										on:change={markDirty}
+									/>
+									Uitgelicht
+								</label>
 								<a
 									href={`/${project.slug}`}
 									class="rounded-full border border-neutral-200 px-4 py-2 text-xs uppercase tracking-[0.25em] text-neutral-600 hover:border-neutral-400"
@@ -327,6 +308,20 @@
 								>
 									Bewerk
 								</a>
+								<form method="post" action="?/delete">
+									<input type="hidden" name="slug" value={project.slug} />
+									<button
+										type="submit"
+										class="rounded-full border border-red-200 px-4 py-2 text-xs uppercase tracking-[0.25em] text-red-600 hover:border-red-300"
+										on:click={(event) => {
+											if (!confirm(`Verwijder project "${project.title || project.slug}"?`)) {
+												event.preventDefault();
+											}
+										}}
+									>
+										Verwijder
+									</button>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -334,11 +329,13 @@
 			</div>
 		</section>
 
+		<AdminSaveDock dirty={isDirty} {pending} {formId} {successMessage} {errorMessage} />
+
 		{#if toastVisible}
-			<div class={`fixed bottom-6 right-6 z-50 max-w-xs rounded-2xl px-5 py-4 text-sm ${toastStyles}`}>
+			<div class={`fixed bottom-24 right-6 z-50 max-w-xs rounded-2xl px-5 py-4 text-sm ${toastStyles}`}>
 				<div class={`mb-2 h-1 w-8 rounded-full ${toastAccent}`}></div>
 				{toastMessage}
 			</div>
 		{/if}
-	</div>
+	</AdminShell>
 {/if}

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { ArrowRight } from '@lucide/svelte';
 	import CountUp from '$lib/CountUp.svelte';
+	import Carousel from '$lib/components/Carousel.svelte';
 	import { fade, slide } from 'svelte/transition';
 	import type { SiteContent } from '$lib/types/content';
 	import type { ProjectWithHtml } from '$lib/server/projects';
@@ -37,13 +37,13 @@
 					<div class="mt-10 flex items-center gap-x-4">
 						<a
 							href={home.hero.primaryCta.href}
-							class="rounded-full bg-sky-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-500"
+							class="rounded-full bg-secondary px-5 py-2.5 text-sm font-light tracking-wide text-white shadow-sm transition hover:bg-secondary/80"
 							>{home.hero.primaryCta.label}</a
 						>
 						<a
 							href={home.hero.secondaryCta.href}
-							class="text-sm font-semibold leading-6 text-sky-700"
-							>{home.hero.secondaryCta.label} <span aria-hidden="true">→</span></a
+							class="rounded-full border border-secondary/40 bg-transparent px-5 py-2.5 text-sm font-light tracking-wide text-secondary transition hover:border-secondary"
+							>{home.hero.secondaryCta.label}</a
 						>
 					</div>
 				</div>
@@ -66,24 +66,15 @@
 	<section class="bg-slate-100 py-20 sm:py-24">
 		<div class="mx-auto max-w-7xl px-6 lg:px-8">
 			<div class="mx-auto max-w-3xl text-center">
-				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+				<h2 class="section-title">
 					{home.gallery.title}
 				</h2>
 				<p class="mt-6 text-lg leading-8 text-gray-600">
 					{home.gallery.description}
 				</p>
 			</div>
-			<div class="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-				{#each home.gallery.images as image}
-					<div class="overflow-hidden rounded-lg">
-						<img
-							src={image.src}
-							alt={image.alt}
-							loading="lazy"
-							class="h-48 w-full object-cover transition-transform duration-300 hover:scale-[1.03]"
-						/>
-					</div>
-				{/each}
+			<div class="mt-12">
+				<Carousel images={home.gallery.images} autoplay={4000} />
 			</div>
 		</div>
 	</section>
@@ -91,10 +82,10 @@
 
 
 {#if data.mainProjects.length}
-	<section class="bg-white py-16 sm:py-20" in:fade={{ duration: 1000, delay: 1000 }}>
+	<section class="bg-[#f7f9fc] py-16 sm:py-20" in:fade={{ duration: 1000, delay: 1000 }}>
 		<div class="mx-auto max-w-7xl px-6 lg:px-8">
 			<div class="mx-auto max-w-3xl text-center">
-				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+				<h2 class="section-title">
 					{home.featured.title}
 				</h2>
 				<p class="mt-6 text-lg leading-8 text-gray-600">
@@ -104,25 +95,20 @@
 			<div
 				class="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
 			>
-				{#each data.mainProjects as project}
-					<a href={`/${project.slug}`} class="group block">
-						<div
-							class="overflow-hidden rounded-2xl shadow-md transition-shadow duration-300 group-hover:shadow-lg"
-						>
+				{#each data.mainProjects.slice(0, 3) as project}
+					<a href={`/${project.slug}`} class="group block rounded-2xl border border-transparent transition-all duration-300 hover:border-secondary/20">
+						<div class="relative overflow-hidden rounded-2xl">
 							<img
 								src={project.mainImage}
 								alt={project.title}
-								class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+								class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
 							/>
 						</div>
-						<div class="p-5">
-							<h3 class="mt-2 text-lg font-semibold text-gray-900">{project.title}</h3>
-							<p class="mt-2 line-clamp-2 text-sm leading-6 text-gray-600">{project.subtitle}</p>
-							<span
-								class="mt-4 inline-flex items-center font-medium text-sky-600 group-hover:text-sky-500"
-							>
-								Bekijk project
-								<ArrowRight class="ml-2 h-4 w-4" />
+						<div class="px-1 pt-4 pb-5">
+							<h3 class="text-base font-semibold tracking-tight text-textcolor">{project.title}</h3>
+							<p class="mt-1.5 line-clamp-2 text-sm leading-6 text-secondary">{project.subtitle}</p>
+							<span class="mt-4 inline-block text-xs font-light tracking-widest text-secondary uppercase transition group-hover:text-textcolor">
+								Bekijk project →
 							</span>
 						</div>
 					</a>
@@ -150,26 +136,27 @@
 </section>
 
 
-<section class="bg-slate-50 py-16 sm:py-20">
+<section class="bg-[#f7f9fc] py-16 sm:py-20">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-3xl text-center">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-				{home.testimonials.title}
-			</h2>
-			<p class="mt-6 text-lg leading-8 text-gray-600">
+			<h2 class="section-title">{home.testimonials.title}</h2>
+			<p class="mt-4 text-base leading-7 text-secondary sm:text-lg">
 				{home.testimonials.description}
 			</p>
 		</div>
-		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
+		<div class="mx-auto mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
 			{#each home.testimonials.items as testimonial}
-				<div class="flex flex-col rounded-2xl border border-gray-200/80 bg-white p-8 shadow-sm">
-					<blockquote class="flex-grow text-lg leading-8 text-gray-700">
-						<p>“{testimonial.quote}”</p>
+				<article class="flex h-full flex-col border border-black/8 bg-white px-5 py-6 sm:px-6">
+					<span class="font-serif text-5xl leading-none text-secondary/20">"</span>
+					<blockquote class="mt-3 flex-grow text-base leading-7 text-textcolor">
+						<p>{testimonial.quote}</p>
 					</blockquote>
-					<footer class="mt-6">
-						<div class="font-semibold text-gray-900">{testimonial.name}</div>
-					</footer>
-				</div>
+					<div class="mt-6 border-t border-black/10 pt-4">
+						<p class="text-xs font-light uppercase tracking-[0.24em] text-secondary">
+							{testimonial.name}
+						</p>
+					</div>
+				</article>
 			{/each}
 		</div>
 	</div>
