@@ -21,83 +21,79 @@
 
 <svelte:body class:overflow-hidden={lightboxOpen} />
 
-<section class="border-b border-secondary/15 bg-[#f4f7f6] py-20 sm:py-24">
-	<div class="section-wrap">
-		<p class="section-eyebrow">{data.project.category}</p>
-		<h1 class="section-title">{data.project.title}</h1>
-		<p class="section-copy">{data.project.subtitle}</p>
-	</div>
-</section>
-
-<article class="bg-white py-14 sm:py-16">
-	<div class="section-wrap">
-		<div class="grid grid-cols-1 gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-			<figure class="overflow-hidden border border-secondary/20 bg-[#f7f9f8]">
-				<img src={data.project.mainImage} alt={data.project.title} class="aspect-video w-full object-cover" />
+<article class="container mx-auto rounded-2xl bg-white p-6 transition-colors md:p-10">
+	<div class="flex flex-col gap-8 lg:flex-row">
+		<div class="lg:w-1/2">
+			<figure>
+				<img
+					src={data.project.mainImage}
+					alt={data.project.title}
+					class="aspect-video w-full rounded-2xl object-cover shadow-lg"
+				/>
 				{#if data.project.caption}
-					<figcaption class="border-t border-secondary/15 px-4 py-3 text-sm text-secondary">
-						{data.project.caption}
-					</figcaption>
+					<figcaption class="mt-2 text-sm text-gray-600">{data.project.caption}</figcaption>
 				{/if}
 			</figure>
+		</div>
 
-			<div class="flat-panel p-7 sm:p-8">
-				<div class="prose prose-lg max-w-none leading-relaxed text-secondary prose-headings:text-textcolor prose-a:text-textcolor">
-					{@html data.project.description}
-				</div>
+		<div class="flex flex-col justify-center space-y-6 lg:w-1/2">
+			<header>
+				<h1 class="text-4xl leading-tight font-extrabold text-black md:text-5xl">
+					{data.project.title}
+				</h1>
+				<p class="mt-2 text-lg text-gray-600">{data.project.subtitle}</p>
+			</header>
+
+			<div class="prose prose-lg prose-indigo max-w-none leading-relaxed text-gray-700">
+				{@html data.project.description}
 			</div>
 		</div>
-
-		{#if images.length}
-			<section class="mt-12">
-				<h2 class="text-3xl text-textcolor">Galerij</h2>
-				<div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-					{#each images as thumb, idx}
-						<button
-							type="button"
-							class="overflow-hidden border border-secondary/20 bg-[#f7f9f8]"
-							on:click={() => openLightbox(idx)}
-						>
-							<img
-								src={thumb}
-								alt="Thumbnail of {data.project.title}"
-								class="aspect-square w-full cursor-pointer object-cover transition-transform duration-300 hover:scale-[1.05]"
-							/>
-						</button>
-					{/each}
-				</div>
-			</section>
-		{/if}
 	</div>
-</article>
 
-{#if lightboxOpen}
-	<div
-		class="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
-		on:click|self={closeLightbox}
-		on:keydown={(e) => {
-			if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') closeLightbox();
-		}}
-		role="button"
-		tabindex="0"
-		transition:fade
-	>
-		<div class="relative mx-4 w-full max-w-5xl border border-white/40 bg-black/30 p-4">
-			<button
-				type="button"
-				class="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center border border-white/50 bg-black/40 text-white"
-				aria-label="Close modal"
-				on:click={closeLightbox}
+	{#if images.length}
+		<section class="mt-12">
+			<h2 class="mb-4 text-2xl font-semibold text-gray-800">Gallery</h2>
+			<div
+				class="grid grid-cols-2 justify-items-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
 			>
-				<X size={20} />
-			</button>
+				{#each images as thumb, idx}
+					<button class="overflow-hidden rounded-lg shadow-2xl" on:click={() => openLightbox(idx)}>
+						<img
+							src={thumb}
+							alt="Thumbnail of {data.project.title}"
+							class="aspect-square w-full transform cursor-pointer object-cover transition-transform duration-300 hover:scale-110"
+						/>
+					</button>
+				{/each}
+			</div>
+		</section>
+	{/if}
 
-			<img
-				src={images[selectedIndex]}
-				alt="{data.project.title} image {selectedIndex + 1}"
-				class="h-auto w-full object-contain"
-				transition:scale={{ duration: 180 }}
-			/>
+	{#if lightboxOpen}
+		<div
+			class="bg-opacity-80 fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+			on:click|self={closeLightbox}
+			on:keydown={(e) => { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') closeLightbox(); }}
+			role="button"
+			tabindex="0"
+			transition:fade
+		>
+			<div class="relative mx-4 max-h-full max-w-4xl p-4">
+				<button
+					class="bg-opacity-90 absolute top-4 right-4 rounded-full bg-white p-2 shadow-lg focus:outline-none z-10"
+					aria-label="Close modal"
+					on:click={closeLightbox}
+				>
+					<X size={24} />
+				</button>
+
+				<img
+					src={images[selectedIndex]}
+					alt="{data.project.title} image {selectedIndex + 1}"
+					class="h-auto w-full rounded-lg shadow-2xl"
+					transition:scale
+				/>
+			</div>
 		</div>
-	</div>
-{/if}
+	{/if}
+</article>

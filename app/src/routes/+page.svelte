@@ -14,103 +14,115 @@
 	const home = data.content.home;
 </script>
 
-<section class="relative overflow-hidden border-b border-secondary/20 bg-[#ecf1ef]">
-	<div class="absolute inset-0">
-		<img
-			src={home.hero.backgroundImage || '/images/mainbg.png'}
-			alt=""
-			class="h-full w-full object-cover object-left opacity-35"
-		/>
-		<div class="absolute inset-0 bg-gradient-to-r from-[#ecf1ef] via-[#ecf1ef]/92 to-[#ecf1ef]/50"></div>
-	</div>
-
-	<div
-		class="section-wrap relative grid min-h-[calc(100svh-5rem)] grid-cols-1 items-center gap-10 py-14 md:py-20 lg:grid-cols-[1.2fr_1fr]"
-	>
-		<div class="max-w-2xl" in:fade={{ duration: 500 }}>
-			<p class="section-eyebrow">Architectuur AMH</p>
-			<h1 class="mt-5 text-4xl leading-tight text-textcolor sm:text-5xl lg:text-6xl">
-				{home.hero.title}
-			</h1>
-			<p class="mt-6 max-w-xl text-base leading-7 text-secondary sm:text-lg">
-				{home.hero.description}
-			</p>
-			<div class="mt-10 flex flex-wrap gap-3">
-				<a href={home.hero.primaryCta.href} class="site-btn-primary">
-					{home.hero.primaryCta.label}
-				</a>
-				<a href={home.hero.secondaryCta.href} class="site-btn-secondary">
-					{home.hero.secondaryCta.label}
-					<ArrowRight class="h-4 w-4" />
-				</a>
+<div
+	style={`
+		background-image: url(${home.hero.backgroundImage || '/images/mainbg.png'});
+		background-position: center left;
+		background-repeat: no-repeat;
+		background-size: cover;
+	`}
+>
+	<section class="py-16 sm:py-24">
+		<div
+			class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 lg:grid-cols-2"
+		>
+			<div class="lg:pr-8">
+				<div class="max-w-xl">
+					<h2 class="text-3xl font-bold tracking-tight text-secondary sm:text-4xl">
+						{home.hero.title}
+					</h2>
+					<p class="mt-6 text-lg leading-8 text-secondary">
+						{home.hero.description}
+					</p>
+					<div class="mt-10 flex items-center gap-x-4">
+						<a
+							href={home.hero.primaryCta.href}
+							class="rounded-full bg-sky-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-500"
+							>{home.hero.primaryCta.label}</a
+						>
+						<a
+							href={home.hero.secondaryCta.href}
+							class="text-sm font-semibold leading-6 text-sky-700"
+							>{home.hero.secondaryCta.label} <span aria-hidden="true">→</span></a
+						>
+					</div>
+				</div>
 			</div>
-		</div>
-
-		<div class="grid grid-cols-2 gap-4 md:ml-auto md:max-w-xl">
-			{#each home.hero.images as image, index}
-				<figure
-					class={`overflow-hidden border border-secondary/20 bg-white ${index === 1 ? 'mt-8' : ''}`}
-					in:slide={{ duration: 450, delay: 120 + index * 140 }}
-				>
+			<div class="grid grid-cols-2 gap-4">
+				{#each home.hero.images as image, index}
 					<img
 						src={image.src}
 						alt={image.alt}
-						class="aspect-[4/5] w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+						class={`aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-md ${index === 1 ? 'mt-8' : ''}`}
+						in:slide={{ duration: 1000, delay: 200 + index * 200 }}
 					/>
-				</figure>
-			{/each}
+				{/each}
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
 {#if home.gallery.images.length}
-	<section class="border-b border-secondary/15 bg-white py-20 sm:py-24">
-		<div class="section-wrap">
-			<div class="max-w-3xl">
-				<p class="section-eyebrow">{home.gallery.title}</p>
-				<h2 class="section-title">Sfeer en materialiteit in beeld</h2>
-				<p class="section-copy">{home.gallery.description}</p>
+	<section class="bg-slate-100 py-20 sm:py-24">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="mx-auto max-w-3xl text-center">
+				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+					{home.gallery.title}
+				</h2>
+				<p class="mt-6 text-lg leading-8 text-gray-600">
+					{home.gallery.description}
+				</p>
 			</div>
-			<div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+			<div class="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
 				{#each home.gallery.images as image}
-					<figure class="overflow-hidden border border-secondary/20 bg-[#f8faf8]">
+					<div class="overflow-hidden rounded-lg">
 						<img
 							src={image.src}
 							alt={image.alt}
 							loading="lazy"
 							class="h-48 w-full object-cover transition-transform duration-300 hover:scale-[1.03]"
 						/>
-					</figure>
+					</div>
 				{/each}
 			</div>
 		</div>
 	</section>
 {/if}
 
+
 {#if data.mainProjects.length}
-	<section class="border-b border-secondary/15 bg-[#f5f7f6] py-20 sm:py-24" in:fade={{ duration: 500 }}>
-		<div class="section-wrap">
-			<div class="max-w-3xl">
-				<p class="section-eyebrow">{home.featured.title}</p>
-				<h2 class="section-title">Projecten met context, rust en precisie</h2>
-				<p class="section-copy">{home.featured.description}</p>
+	<section class="bg-white py-16 sm:py-20" in:fade={{ duration: 1000, delay: 1000 }}>
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="mx-auto max-w-3xl text-center">
+				<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+					{home.featured.title}
+				</h2>
+				<p class="mt-6 text-lg leading-8 text-gray-600">
+					{home.featured.description}
+				</p>
 			</div>
-			<div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+			<div
+				class="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+			>
 				{#each data.mainProjects as project}
-					<a href={`/${project.slug}`} class="group block border border-secondary/20 bg-white transition-colors hover:border-secondary/40">
-						<div class="overflow-hidden border-b border-secondary/15">
+					<a href={`/${project.slug}`} class="group block">
+						<div
+							class="overflow-hidden rounded-2xl shadow-md transition-shadow duration-300 group-hover:shadow-lg"
+						>
 							<img
 								src={project.mainImage}
 								alt={project.title}
-								class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+								class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
 							/>
 						</div>
 						<div class="p-5">
-							<h3 class="text-2xl text-textcolor">{project.title}</h3>
-							<p class="mt-2 text-sm leading-6 text-secondary">{project.subtitle}</p>
-							<span class="site-link mt-4">
+							<h3 class="mt-2 text-lg font-semibold text-gray-900">{project.title}</h3>
+							<p class="mt-2 line-clamp-2 text-sm leading-6 text-gray-600">{project.subtitle}</p>
+							<span
+								class="mt-4 inline-flex items-center font-medium text-sky-600 group-hover:text-sky-500"
+							>
 								Bekijk project
-								<ArrowRight class="h-4 w-4" />
+								<ArrowRight class="ml-2 h-4 w-4" />
 							</span>
 						</div>
 					</a>
@@ -120,38 +132,44 @@
 	</section>
 {/if}
 
-<section class="border-b border-secondary/15 bg-[#dee6e3] py-14 sm:py-16" in:fade={{ duration: 450, delay: 120 }}>
-	<div class="section-wrap">
-		<div class="grid grid-cols-1 gap-8 text-center md:grid-cols-3">
-			{#each home.stats as stat, index}
-				<div class={`px-4 ${index > 0 ? 'md:border-l md:border-secondary/20' : ''}`}>
-					<h3 class="text-4xl leading-none text-textcolor sm:text-5xl">
+
+
+<section class="bg-slate-100 py-16 sm:py-20" in:fade={{ duration: 1000, delay: 500 }}>
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+		<div class="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
+			{#each home.stats as stat}
+				<div>
+					<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
 						<CountUp value={stat.value} suffix={stat.suffix ? `${stat.suffix} ` : ''} />
 					</h3>
-					<p class="mt-3 text-xs font-semibold uppercase tracking-[0.22em] text-secondary">{stat.label}</p>
+					<p class="mt-2 text-sm uppercase tracking-[0.2em] text-gray-500">{stat.label}</p>
 				</div>
 			{/each}
 		</div>
 	</div>
 </section>
 
-<section class="bg-[#f8f9f8] py-20 sm:py-24">
-	<div class="section-wrap">
-		<div class="max-w-3xl">
-			<p class="section-eyebrow">{home.testimonials.title}</p>
-			<h2 class="section-title">Ervaringen uit de praktijk</h2>
-			<p class="section-copy">{home.testimonials.description}</p>
+
+<section class="bg-slate-50 py-16 sm:py-20">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
+		<div class="mx-auto max-w-3xl text-center">
+			<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+				{home.testimonials.title}
+			</h2>
+			<p class="mt-6 text-lg leading-8 text-gray-600">
+				{home.testimonials.description}
+			</p>
 		</div>
-		<div class="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
+		<div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
 			{#each home.testimonials.items as testimonial}
-				<figure class="flat-panel p-7">
-					<blockquote class="text-lg leading-8 text-secondary">
+				<div class="flex flex-col rounded-2xl border border-gray-200/80 bg-white p-8 shadow-sm">
+					<blockquote class="flex-grow text-lg leading-8 text-gray-700">
 						<p>“{testimonial.quote}”</p>
 					</blockquote>
-					<figcaption class="mt-6 text-sm font-semibold uppercase tracking-[0.16em] text-textcolor">
-						{testimonial.name}
-					</figcaption>
-				</figure>
+					<footer class="mt-6">
+						<div class="font-semibold text-gray-900">{testimonial.name}</div>
+					</footer>
+				</div>
 			{/each}
 		</div>
 	</div>

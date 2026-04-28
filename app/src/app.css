@@ -1,63 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-primary: #00ffff;
-  --color-textcolor: #111715;
-  --color-secondary: #555555;
-}
-
-@layer components {
-  .site-chrome {
-    font-family: 'Manrope', sans-serif;
-    background-color: #f2f4f2;
-    color: #111715;
-  }
-
-  .site-chrome :is(h1, h2, h3, h4) {
-    font-family: 'Newsreader', serif;
-    letter-spacing: 0.01em;
-  }
-
-  .site-main {
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.48), rgba(242, 244, 242, 0.95));
-  }
-
-  .section-wrap {
-    @apply mx-auto w-full max-w-7xl px-6 lg:px-10;
-  }
-
-  .section-eyebrow {
-    @apply text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-secondary;
-  }
-
-  .section-title {
-    @apply mt-3 text-3xl leading-tight text-textcolor sm:text-4xl;
-  }
-
-  .section-copy {
-    @apply mt-5 max-w-2xl text-base leading-7 text-secondary;
-  }
-
-  .site-link {
-    @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-secondary transition-colors duration-200 hover:text-textcolor;
-  }
-
-  .site-btn-primary {
-    @apply inline-flex items-center justify-center rounded-none border border-textcolor bg-primary px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-textcolor transition-colors duration-200 hover:bg-[#7cfefe];
-  }
-
-  .site-btn-secondary {
-    @apply inline-flex items-center justify-center rounded-none border border-secondary/40 bg-transparent px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-secondary transition-colors duration-200 hover:border-textcolor hover:text-textcolor;
-  }
-
-  .flat-panel {
-    @apply border border-secondary/20 bg-white;
-  }
-
-  .flat-input {
-    @apply w-full rounded-none border border-secondary/25 bg-white px-3.5 py-2.5 text-sm text-textcolor placeholder:text-secondary/60 focus:border-secondary focus:ring-0;
-  }
+  --color-primary:           #00ffff;
+  --color-textcolor:           #000;
+  --color-secondary:         #555555;
 }

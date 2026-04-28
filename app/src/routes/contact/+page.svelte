@@ -17,143 +17,164 @@
 	let message = '';
 </script>
 
-<section class="border-b border-secondary/15 bg-[#f4f7f6] py-20 sm:py-24">
-	<div class="section-wrap">
-		<div class="max-w-3xl">
-			<p class="section-eyebrow">Contact</p>
-			<h1 class="section-title">{contact.title}</h1>
-			<p class="section-copy">{contact.description}</p>
-		</div>
-	</div>
-</section>
+<div class="bg-gray-50/50">
+	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-x-16 gap-y-12 px-6 py-20 lg:grid-cols-2">
+		<div class="max-w-xl lg:max-w-lg">
+			<h2 class="text-3xl font-bold tracking-tight text-gray-900">{contact.title}</h2>
+			<p class="mt-4 text-base leading-7 text-gray-600">
+				{contact.description}
+			</p>
 
-<section class="bg-white py-16 sm:py-20">
-	<div class="section-wrap grid grid-cols-1 gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-		<aside class="flat-panel p-7 sm:p-8">
-			<h2 class="text-2xl text-textcolor">Direct bereikbaar</h2>
-
-			<div class="mt-8 space-y-6 text-sm leading-7 text-secondary">
-				<div class="flex gap-3">
-					<MapPin class="mt-1 h-5 w-5 flex-none text-secondary" aria-hidden="true" />
+			<div class="mt-10 space-y-6 text-base leading-7 text-gray-600">
+				<div class="flex gap-x-4">
+					<div class="flex-none">
+						<span class="sr-only">Adres</span>
+						<MapPin class="h-6 w-6 text-gray-400" aria-hidden="true" />
+					</div>
 					<p>{contact.address.lines.join(', ')}</p>
 				</div>
-				<div class="flex gap-3">
-					<PhoneIcon class="mt-1 h-5 w-5 flex-none text-secondary" aria-hidden="true" />
-					<a href={`tel:${contact.phone}`} class="transition-colors hover:text-textcolor">
-						{contact.phone}
-					</a>
+				<div class="flex gap-x-4">
+					<div class="flex-none">
+						<span class="sr-only">Telefoon</span>
+						<PhoneIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
+					</div>
+					<a href={`tel:${contact.phone}`} class="hover:text-gray-900">{contact.phone}</a>
 				</div>
-				<div class="flex gap-3">
-					<MailIcon class="mt-1 h-5 w-5 flex-none text-secondary" aria-hidden="true" />
-					<a href={`mailto:${contact.email}`} class="transition-colors hover:text-textcolor">
-						{contact.email}
-					</a>
+				<div class="flex gap-x-4">
+					<div class="flex-none">
+						<span class="sr-only">Email</span>
+						<MailIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
+					</div>
+					<a href={`mailto:${contact.email}`} class="hover:text-gray-900">{contact.email}</a>
 				</div>
 			</div>
 
-			<div class="mt-8 border-t border-secondary/20 pt-6">
-				<h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-secondary">Bedrijfsgegevens</h3>
-				<ul class="mt-4 space-y-1 text-sm text-secondary">
+			<div class="mt-10 border-t border-gray-200 pt-8">
+				<h3 class="text-base font-semibold text-gray-800">Bedrijfsgegevens</h3>
+				<ul class="mt-4 space-y-1 text-sm text-gray-500">
 					{#each contact.businessDetails as detail}
 						<li>{detail}</li>
 					{/each}
 				</ul>
 			</div>
-		</aside>
+		</div>
 
-		<form method="POST" use:enhance class="flat-panel p-7 sm:p-8">
+		<form
+			method="POST"
+			use:enhance
+			class="space-y-8 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm lg:p-10"
+		>
 			<div class="hidden" aria-hidden="true">
 				<label for="sanity_check">Do not fill this out</label>
 				<input type="text" name="sanity_check" id="sanity_check" tabindex="-1" autocomplete="off" />
 			</div>
-
-			<div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+			<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
 				<div>
-					<label for="name" class="text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Naam</label>
-					<input
-						type="text"
-						name="name"
-						id="name"
-						bind:value={name}
-						required
-						class="flat-input mt-2"
-						placeholder="Uw volledige naam"
-					/>
+					<label for="name" class="block text-sm font-semibold leading-6 text-gray-900">
+						Naam
+					</label>
+					<div class="mt-2.5">
+						<input
+							type="text"
+							name="name"
+							id="name"
+							bind:value={name}
+							required
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
+							placeholder="Uw volledige naam"
+						/>
+					</div>
 				</div>
 
 				<div>
-					<label for="email" class="text-xs font-semibold uppercase tracking-[0.16em] text-secondary"
-						>E-mailadres</label
-					>
-					<input
-						type="email"
-						name="email"
-						id="email"
-						bind:value={email}
-						required
-						class="flat-input mt-2"
-						placeholder="uwnaam@voorbeeld.nl"
-					/>
+					<label for="email" class="block text-sm font-semibold leading-6 text-gray-900">
+						E-mailadres
+					</label>
+					<div class="mt-2.5">
+						<input
+							type="email"
+							name="email"
+							id="email"
+							bind:value={email}
+							required
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
+							placeholder="uwnaam@voorbeeld.nl"
+						/>
+					</div>
 				</div>
 
 				<div>
-					<label for="phone" class="text-xs font-semibold uppercase tracking-[0.16em] text-secondary"
-						>Telefoonnummer</label
-					>
-					<input
-						type="tel"
-						name="phone"
-						id="phone"
-						bind:value={phone}
-						class="flat-input mt-2"
-						placeholder="+31 6 12345678"
-					/>
+					<label for="phone" class="block text-sm font-semibold leading-6 text-gray-900">
+						Telefoonnummer
+					</label>
+					<div class="mt-2.5">
+						<input
+							type="tel"
+							name="phone"
+							id="phone"
+							bind:value={phone}
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
+							placeholder="+31 6 12345678"
+						/>
+					</div>
 				</div>
 
 				<div>
-					<label for="subject" class="text-xs font-semibold uppercase tracking-[0.16em] text-secondary"
-						>Onderwerp</label
-					>
-					<input
-						type="text"
-						name="subject"
-						id="subject"
-						bind:value={subject}
-						required
-						class="flat-input mt-2"
-						placeholder="Korte omschrijving"
-					/>
+					<label for="subject" class="block text-sm font-semibold leading-6 text-gray-900">
+						Onderwerp
+					</label>
+					<div class="mt-2.5">
+						<input
+							type="text"
+							name="subject"
+							id="subject"
+							bind:value={subject}
+							required
+							class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
+							placeholder="Korte omschrijving"
+						/>
+					</div>
 				</div>
 			</div>
 
-			<div class="mt-5">
-				<label for="message" class="text-xs font-semibold uppercase tracking-[0.16em] text-secondary"
+			<div class="sm:col-span-2">
+				<label for="message" class="block text-sm font-semibold leading-6 text-gray-900"
 					>Bericht</label
 				>
-				<textarea
-					name="message"
-					id="message"
-					bind:value={message}
-					rows="6"
-					required
-					class="flat-input mt-2"
-					placeholder="Laat hier uw bericht achter..."
-				></textarea>
+				<div class="mt-2.5">
+					<textarea
+						name="message"
+						id="message"
+						bind:value={message}
+						rows="6"
+						required
+						class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-300 sm:text-sm sm:leading-6"
+						placeholder="Laat hier uw bericht achter..."
+					></textarea>
+				</div>
 			</div>
 
-			<div class="mt-7">
-				<button type="submit" class="site-btn-primary w-full">Bericht versturen</button>
+			<div class="mt-10">
+				<button
+					type="submit"
+					class="block w-full rounded-full bg-sky-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500"
+				>
+					Bericht versturen
+				</button>
 			</div>
 
 			{#if formResult.success}
-				<div class="mt-5 border border-emerald-300 bg-emerald-50 p-4 text-center" role="alert">
-					<p class="text-sm font-medium text-emerald-800">{formResult.message}</p>
+				<div
+					class="rounded-md border border-green-300 bg-green-50 p-4 text-center"
+					role="alert"
+				>
+					<p class="text-sm font-medium text-green-800">{formResult.message}</p>
 				</div>
 			{:else if formResult.error}
-				<div class="mt-5 border border-rose-300 bg-rose-50 p-4 text-center" role="alert">
-					<p class="text-sm font-medium text-rose-800">{formResult.error}</p>
+				<div class="rounded-md border border-red-300 bg-red-50 p-4 text-center" role="alert">
+					<p class="text-sm font-medium text-red-800">{formResult.error}</p>
 				</div>
 			{/if}
 		</form>
 	</div>
-</section>
+</div>
