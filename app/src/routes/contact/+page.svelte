@@ -185,7 +185,7 @@
 				<button
 					type="submit"
 					disabled={!turnstileSiteKey}
-					class="block w-full rounded-full border border-secondary bg-secondary px-3.5 py-3 text-center text-sm font-semibold text-white transition hover:bg-secondary/85"
+					class="contact-submit block w-full rounded-full border border-secondary bg-secondary px-3.5 py-3 text-center text-sm font-semibold text-white transition hover:bg-secondary/85 disabled:cursor-not-allowed"
 				>
 					Bericht versturen
 				</button>
@@ -206,3 +206,9 @@
 		</form>
 	</div>
 </div>
+
+<style>
+	.contact-submit:hover:not(:disabled) {
+		cursor: pointer;
+	}
+</style>

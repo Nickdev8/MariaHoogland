@@ -6,15 +6,14 @@ services:
       dockerfile: Dockerfile
     image: mariahoogland.nl:prod
     restart: unless-stopped
+    network_mode: host
     environment:
       NODE_ENV: production
-      PORT: "3000"
+      PORT: "3040"
       HOST: "0.0.0.0"
     env_file:
       - app/.env
     user: 1000:1000
-    ports:
-      - "127.0.0.1:3040:3000"
     working_dir: /app
     volumes:
       - ./storage:/app/storage
