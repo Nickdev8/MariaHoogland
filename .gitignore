@@ -24,6 +24,9 @@ app/static/images/*/*.*
 **/*.png
 **/*.jpeg
 
+!app/static/images/
+!app/static/images/**
+
 !storage/
 !storage/overrides.json
 !storage/uploads/.gitkeep

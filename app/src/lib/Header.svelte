@@ -19,7 +19,7 @@
 <header class="animate-fade-in-down fixed inset-x-0 top-0 z-50 bg-secondary shadow-md">
 	<div class="flex items-center justify-between pr-4 md:pr-8">
 		<a href="/" class="flex-shrink-0">
-			<img src="/images/HeaderLogo.png" alt="AMH logo" class="h-14" />
+			<img src="/images/brand/header-logo.png" alt="AMH logo" class="h-14" />
 		</a>
 
 		<nav class="hidden space-x-8 md:flex">

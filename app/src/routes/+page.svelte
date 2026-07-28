@@ -1,20 +1,32 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import CountUp from '$lib/CountUp.svelte';
+	import Carousel from '$lib/components/Carousel.svelte';
 	import type { SiteContent } from '$lib/types/content';
 	import type { ProjectWithHtml } from '$lib/server/projects';
 	export let data: { content: SiteContent; projects: ProjectWithHtml[] };
 	const home = data.content.home;
+	const galleryProjects = data.projects.filter(
+		(project) => project.title !== 'Moderne Woning op IJburg'
+	);
 	let hero: HTMLElement;
+	let statistics: HTMLElement;
 	let parallaxEnabled = false;
 	let backgroundOffset = 0;
+	let statisticsBackgroundOffset = 0;
 	let frame: number | undefined;
 
 	function updateParallax() {
-		if (!parallaxEnabled || frame || !hero) return;
+		if (!parallaxEnabled || frame) return;
 		frame = requestAnimationFrame(() => {
-			const top = hero.getBoundingClientRect().top;
-			backgroundOffset = Math.max(-180, Math.min(180, top * -0.35));
+			if (hero) {
+				const top = hero.getBoundingClientRect().top;
+				backgroundOffset = Math.max(-180, Math.min(180, top * -0.35));
+			}
+			if (statistics) {
+				const top = statistics.getBoundingClientRect().top;
+				statisticsBackgroundOffset = Math.max(-150, Math.min(150, top * -0.38));
+			}
 			frame = undefined;
 		});
 	}
@@ -23,8 +35,10 @@
 		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const setMotionPreference = () => {
 			parallaxEnabled = !reducedMotion.matches;
-			if (!parallaxEnabled) backgroundOffset = 0;
-			else updateParallax();
+			if (!parallaxEnabled) {
+				backgroundOffset = 0;
+				statisticsBackgroundOffset = 0;
+			} else updateParallax();
 		};
 		setMotionPreference();
 		reducedMotion.addEventListener('change', setMotionPreference);
@@ -40,47 +54,65 @@
 <section
 	bind:this={hero}
 	class="overflow-hidden bg-[#f7f9fc]"
-	style={`background-image:url(${home.hero.backgroundImage || '/images/mainbg.png'});background-position:left calc(50% + ${backgroundOffset}px);background-repeat:no-repeat;background-size:cover`}
+	style={`background-image:url(${home.hero.backgroundImage || '/images/hero/architectural-linework.png'});background-position:left calc(50% + ${backgroundOffset}px);background-repeat:no-repeat;background-size:cover`}
 >
 	<div
-		class="mx-auto grid min-h-[min(680px,calc(100svh-3.5rem))] max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[1fr_.75fr] lg:items-center lg:px-8"
+		class="mx-auto grid min-h-[min(680px,calc(100svh-3.5rem))] max-w-7xl gap-x-16 gap-y-12 px-6 py-16 lg:grid-cols-[1.15fr_.85fr] lg:items-center lg:px-8 lg:py-24"
 	>
-		<div class="max-w-xl">
+		<div class="max-w-xl lg:max-w-none">
 			<p class="text-xs font-medium tracking-[.12em] text-secondary uppercase">
 				Maria Hoogland Architectuur
 			</p>
 			<h1
-				class="mt-5 max-w-md text-[clamp(2.5rem,4.6vw,4.5rem)] leading-[.98] font-medium tracking-[-.055em]"
+				class="mt-5 max-w-none text-[clamp(2.5rem,3.8vw,4.25rem)] leading-[.98] font-medium tracking-[-.055em]"
 			>
-				Zoekt u een architect die bij u past?
+				<span class="lg:whitespace-nowrap">Zoekt u een architect</span>
+				<span class="block">die bij u past?</span>
 			</h1>
 			<p class="mt-6 text-base leading-7 text-secondary">
 				Voor verbouwingen, nieuwbouw en vergunningen.
 			</p>
-			<div class="mt-8 flex flex-wrap items-center gap-5">
+			<div class="mt-10 flex flex-wrap items-center gap-4">
 				<a
-					class="border border-secondary bg-secondary px-5 py-3 text-sm text-white no-underline hover:bg-transparent hover:text-textcolor"
+					class="rounded-full bg-secondary px-5 py-2.5 text-sm font-light tracking-wide text-white no-underline shadow-sm transition hover:bg-secondary/80"
 					href={home.hero.primaryCta.href}>{home.hero.primaryCta.label}</a
 				><a
-					class="border-b border-textcolor pb-1 text-sm text-textcolor no-underline"
+					class="rounded-full border border-secondary/40 bg-transparent px-5 py-2.5 text-sm font-light tracking-wide text-secondary no-underline transition hover:border-secondary"
 					href={home.hero.secondaryCta.href}>{home.hero.secondaryCta.label}</a
 				>
 			</div>
 		</div>
-		<figure class="w-full max-w-md justify-self-end">
-			<img
-				class="aspect-[4/5] w-full object-cover object-top"
-				src={home.hero.images[0]?.src ?? 'https://picsum.photos/seed/maria-v5-hero/900/1125'}
-				alt={home.hero.images[0]?.alt ?? 'Maria Hoogland'}
-			/>
-			<figcaption class="mt-3 border-t border-black/10 pt-3 text-sm text-secondary">
-				Ruimte maken voor hoe u wilt leven.
-			</figcaption>
-		</figure>
+		<div class="grid grid-cols-2 gap-4 lg:justify-self-end">
+			{#each home.hero.images as image, index}
+				<img
+					class={`aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-md ${index === 1 ? 'mt-8' : ''}`}
+					src={image.src}
+					alt={image.alt}
+				/>
+			{/each}
+		</div>
 	</div>
 </section>
 
-<section class="bg-[#e8edf4] px-6 py-20 sm:px-8 sm:py-28">
+{#if home.gallery.images.length}
+	<section class="bg-[#e8edf4] px-6 py-20 sm:px-8 sm:py-24">
+		<div class="mx-auto max-w-7xl">
+			<div class="mx-auto max-w-3xl text-center">
+				<h2 class="text-[clamp(2.2rem,4vw,4rem)] leading-[.98] font-medium tracking-[-.055em]">
+					{home.gallery.title}
+				</h2>
+				<p class="mt-5 text-base leading-7 text-secondary sm:text-lg">
+					{home.gallery.description}
+				</p>
+			</div>
+			<div class="mt-12">
+				<Carousel images={home.gallery.images} autoplay={4000} />
+			</div>
+		</div>
+	</section>
+{/if}
+
+<section class="bg-[#f7f9fc] px-6 py-20 sm:px-8 sm:py-28">
 	<div class="mx-auto max-w-7xl">
 		<div class="flex items-end justify-between gap-6">
 			<div>
@@ -96,17 +128,17 @@
 				href="/portfolio">Alle projecten</a
 			>
 		</div>
-		<div class="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
-			{#each data.projects as project, index}<a
-					class={`text-textcolor no-underline ${index === 0 ? 'col-span-2 row-span-2' : ''}`}
+		<div class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+			{#each galleryProjects as project, index}<a
+					class={`group overflow-hidden rounded-2xl border border-transparent bg-white text-textcolor no-underline shadow-sm transition hover:border-secondary/20 ${index === 0 ? 'col-span-2 row-span-2' : ''}`}
 					href={`/${project.slug}`}
 					><img
-						class={`w-full object-cover ${index === 0 ? 'aspect-square' : 'aspect-[4/3]'}`}
+						class={`w-full object-cover transition-transform duration-500 group-hover:scale-[1.04] ${index === 0 ? 'aspect-square' : 'aspect-[4/3]'}`}
 						src={project.mainImage}
 						alt={project.title}
 						loading="lazy"
 					/>
-					<div class="mt-3 border-t border-black/15 pt-2">
+					<div class="px-4 pt-3 pb-4 sm:px-5">
 						<p class="text-xs text-secondary">{project.category}</p>
 						<h3 class="mt-1 text-sm font-semibold sm:text-base">{project.title}</h3>
 					</div></a
@@ -119,38 +151,22 @@
 	</div>
 </section>
 
-<section class="relative isolate overflow-hidden bg-neutral-900 text-white">
+<section bind:this={statistics} class="relative isolate overflow-hidden bg-neutral-900 text-white">
 	<img
-		class="absolute inset-[-12px] z-0 h-[calc(100%+24px)] w-[calc(100%+24px)] scale-105 object-cover blur-md"
-		src="https://picsum.photos/seed/maria-experience/1800/900"
+		class="absolute inset-x-0 top-[-160px] z-0 h-[calc(100%+320px)] w-full scale-110 object-cover brightness-[.55]"
+		style={`transform:translateY(${statisticsBackgroundOffset}px) scale(1.1)`}
+		src="/images/projects/ijburg-riet-eiland/kitchen-dining.jpeg"
 		alt=""
 	/>
-	<div class="absolute inset-0 z-10 bg-black/55"></div>
+	<div class="absolute inset-0 z-10 bg-neutral-950/50"></div>
 	<div
 		class="relative z-20 mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/25 px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8"
 	>
-		{#each home.stats as stat}<div class="py-11 text-left sm:px-8 sm:first:pl-0 sm:last:pr-0">
+		{#each home.stats as stat}<div class="py-20 text-left sm:px-8 sm:first:pl-0 sm:last:pr-0">
 				<h2 class="text-4xl font-semibold tracking-[-.04em] sm:text-5xl">
 					<CountUp value={stat.value} suffix={stat.suffix ? `${stat.suffix} ` : ''} />
 				</h2>
 				<p class="mt-3 text-sm leading-6 text-white/75">{stat.label}</p>
 			</div>{/each}
-	</div>
-</section>
-
-<section class="bg-[#f7f9fc] px-6 py-16 sm:px-8">
-	<div class="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
-		<div>
-			<p class="text-xs font-medium tracking-[.12em] text-secondary uppercase">Eerste gesprek</p>
-			<h2
-				class="mt-4 max-w-2xl text-[clamp(2.2rem,4vw,4rem)] leading-[.98] font-medium tracking-[-.055em]"
-			>
-				Heeft u plannen voor uw huis of gebouw?
-			</h2>
-		</div>
-		<a
-			class="border border-secondary px-5 py-3 text-sm text-textcolor no-underline hover:bg-secondary hover:text-white"
-			href="/contact">Vertel over uw plannen</a
-		>
 	</div>
 </section>

@@ -43,7 +43,7 @@
 				<div class="grid gap-5">
 					<div class="relative overflow-hidden rounded-xl bg-[#e8eef6]">
 						<img
-							class="aspect-[4/4.8] w-full object-cover object-center"
+							class="aspect-[4/4.8] w-full object-cover object-[center_42%]"
 							src={maria?.image.src}
 							alt={maria?.image.alt ?? 'Portret van Maria Hoogland'}
 						/>
