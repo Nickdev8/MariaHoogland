@@ -1,6 +1,10 @@
 app/node_modules
 app/.svelte-kit
 app/build
+app/static/images
+app/static/videos
+app/static/favicon.png
+app/static/logo.png
 .git
 .gitignore
 Dockerfile
