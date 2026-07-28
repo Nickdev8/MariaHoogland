@@ -20,195 +20,63 @@
 
 <svelte:head>
 	{#if turnstileSiteKey}
-		<script
-			src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-			async
-			defer
-		></script>
+		<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 	{/if}
 </svelte:head>
 
-<div class="bg-[#f7f9fc]">
-	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-x-12 gap-y-12 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr]">
-		<div class="max-w-xl lg:max-w-lg">
-			<h2 class="text-3xl font-bold tracking-tight text-gray-900">{contact.title}</h2>
-			<p class="mt-4 text-base leading-7 text-gray-600">
-				{contact.description}
-			</p>
+<section class="contact-page">
+	<div class="contact-page__intro">
+		<p class="contact-page__label">Contact</p>
+		<h1>{contact.title}</h1>
+		<p class="contact-page__lead">{contact.description}</p>
+	</div>
 
-			<div class="mt-10 space-y-6 text-base leading-7 text-gray-600">
-				<div class="flex gap-x-4">
-					<div class="flex-none">
-						<span class="sr-only">Adres</span>
-						<MapPin class="h-6 w-6 text-gray-400" aria-hidden="true" />
-					</div>
-					<p>{contact.address.lines.join(', ')}</p>
+	<div class="contact-page__content">
+		<aside class="contact-page__details" aria-label="Contactgegevens">
+			<div class="contact-page__detail-list">
+				<div class="contact-page__detail">
+					<MapPin size={19} strokeWidth={1.5} aria-hidden="true" />
+					<div><h2>Adres</h2><p>{contact.address.lines.join(', ')}</p></div>
 				</div>
-				<div class="flex gap-x-4">
-					<div class="flex-none">
-						<span class="sr-only">Telefoon</span>
-						<PhoneIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
-					</div>
-					<a href={`tel:${contact.phone}`} class="hover:text-gray-900">{contact.phone}</a>
+				<div class="contact-page__detail">
+					<PhoneIcon size={19} strokeWidth={1.5} aria-hidden="true" />
+					<div><h2>Telefoon</h2><a href={`tel:${contact.phone}`}>{contact.phone}</a></div>
 				</div>
-				<div class="flex gap-x-4">
-					<div class="flex-none">
-						<span class="sr-only">Email</span>
-						<MailIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
-					</div>
-					<a href={`mailto:${contact.email}`} class="hover:text-gray-900">{contact.email}</a>
+				<div class="contact-page__detail">
+					<MailIcon size={19} strokeWidth={1.5} aria-hidden="true" />
+					<div><h2>E-mail</h2><a href={`mailto:${contact.email}`}>{contact.email}</a></div>
 				</div>
 			</div>
+			{#if contact.businessDetails.length}
+				<div class="contact-page__business"><h2>Bedrijfsgegevens</h2>{#each contact.businessDetails as detail}<p>{detail}</p>{/each}</div>
+			{/if}
+		</aside>
 
-			<div class="mt-10 border-t border-gray-200 pt-8">
-				<h3 class="text-base font-semibold text-gray-800">Bedrijfsgegevens</h3>
-				<ul class="mt-4 space-y-1 text-sm text-gray-500">
-					{#each contact.businessDetails as detail}
-						<li>{detail}</li>
-					{/each}
-				</ul>
-			</div>
-		</div>
-
-		<form
-			method="POST"
-			use:enhance
-			class="space-y-8 rounded-2xl border border-black/10 bg-white/90 px-8 pt-5 pb-8 lg:max-w-none lg:px-10 lg:pt-5 lg:pb-10"
-		>
-			<div class="hidden" aria-hidden="true">
-				<label for="sanity_check">Do not fill this out</label>
-				<input type="text" name="sanity_check" id="sanity_check" tabindex="-1" autocomplete="off" />
-			</div>
-			<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-				<div>
-					<label for="name" class="block text-sm font-semibold leading-6 text-gray-900">
-						Naam
-					</label>
-					<div class="mt-2.5">
-						<input
-							type="text"
-							name="name"
-							id="name"
-							bind:value={name}
-							required
-							class="block w-full rounded-xl border border-black/10 bg-[#fbfcfe] px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none sm:text-sm sm:leading-6"
-							placeholder="Uw volledige naam"
-						/>
-					</div>
-				</div>
-
-				<div>
-					<label for="email" class="block text-sm font-semibold leading-6 text-gray-900">
-						E-mailadres
-					</label>
-					<div class="mt-2.5">
-						<input
-							type="email"
-							name="email"
-							id="email"
-							bind:value={email}
-							required
-							class="block w-full rounded-xl border border-black/10 bg-[#fbfcfe] px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none sm:text-sm sm:leading-6"
-							placeholder="uwnaam@voorbeeld.nl"
-						/>
-					</div>
-				</div>
-
-				<div>
-					<label for="phone" class="block text-sm font-semibold leading-6 text-gray-900">
-						Telefoonnummer
-					</label>
-					<div class="mt-2.5">
-						<input
-							type="tel"
-							name="phone"
-							id="phone"
-							bind:value={phone}
-							class="block w-full rounded-xl border border-black/10 bg-[#fbfcfe] px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none sm:text-sm sm:leading-6"
-							placeholder="+31 6 12345678"
-						/>
-					</div>
-				</div>
-
-				<div>
-					<label for="subject" class="block text-sm font-semibold leading-6 text-gray-900">
-						Onderwerp
-					</label>
-					<div class="mt-2.5">
-						<input
-							type="text"
-							name="subject"
-							id="subject"
-							bind:value={subject}
-							required
-							class="block w-full rounded-xl border border-black/10 bg-[#fbfcfe] px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none sm:text-sm sm:leading-6"
-							placeholder="Korte omschrijving"
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div class="sm:col-span-2">
-				<label for="message" class="block text-sm font-semibold leading-6 text-gray-900"
-					>Bericht</label
-				>
-				<div class="mt-2.5">
-					<textarea
-						name="message"
-						id="message"
-						bind:value={message}
-						rows="6"
-						required
-						class="block w-full rounded-xl border border-black/10 bg-[#fbfcfe] px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-primary focus:outline-none sm:text-sm sm:leading-6"
-						placeholder="Laat hier uw bericht achter..."
-					></textarea>
-				</div>
+		<form method="POST" use:enhance class="contact-form">
+			<div class="hidden" aria-hidden="true"><label for="sanity_check">Do not fill this out</label><input type="text" name="sanity_check" id="sanity_check" tabindex="-1" autocomplete="off" /></div>
+			<div class="contact-form__heading"><h2>Vertel over uw plan</h2><p>Een korte omschrijving is genoeg om het gesprek te beginnen.</p></div>
+			<div class="contact-form__fields">
+				<label><span>Naam</span><input type="text" name="name" bind:value={name} required autocomplete="name" placeholder="Uw naam" /></label>
+				<label><span>E-mailadres</span><input type="email" name="email" bind:value={email} required autocomplete="email" placeholder="naam@voorbeeld.nl" /></label>
+				<label><span>Telefoonnummer <em>optioneel</em></span><input type="tel" name="phone" bind:value={phone} autocomplete="tel" placeholder="06 12345678" /></label>
+				<label><span>Onderwerp</span><input type="text" name="subject" bind:value={subject} required placeholder="Bijvoorbeeld: verbouwing woning" /></label>
+				<label class="contact-form__message"><span>Bericht</span><textarea name="message" bind:value={message} rows="7" required placeholder="Vertel kort wat u voor ogen heeft..."></textarea></label>
 			</div>
 
 			{#if turnstileSiteKey}
-				<div
-					class="cf-turnstile"
-					data-sitekey={turnstileSiteKey}
-					data-theme="light"
-					data-size="flexible"
-					data-action="contact"
-				></div>
+				<div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" data-size="flexible" data-action="contact"></div>
 			{:else}
-				<div class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-4">
-					<p class="text-sm text-amber-800">
-						Captcha is nog niet ingesteld. Voeg eerst de Turnstile-sleutels toe aan de omgeving.
-					</p>
-				</div>
+				<p class="contact-form__notice">Captcha is nog niet ingesteld. Voeg eerst de Turnstile-sleutels toe aan de omgeving.</p>
 			{/if}
 
-			<div class="mt-10">
-				<button
-					type="submit"
-					disabled={!turnstileSiteKey}
-					class="contact-submit block w-full rounded-full border border-secondary bg-secondary px-3.5 py-3 text-center text-sm font-semibold text-white transition hover:bg-secondary/85 disabled:cursor-not-allowed"
-				>
-					Bericht versturen
-				</button>
-			</div>
-
-			{#if formResult.success}
-				<div
-					class="rounded-xl border border-primary/50 bg-primary/12 p-4 text-center"
-					role="alert"
-				>
-					<p class="text-sm font-medium text-textcolor">{formResult.message}</p>
-				</div>
-			{:else if formResult.error}
-				<div class="rounded-xl border border-red-200 bg-red-50 p-4 text-center" role="alert">
-					<p class="text-sm font-medium text-red-800">{formResult.error}</p>
-				</div>
-			{/if}
+			<button type="submit" disabled={!turnstileSiteKey}>Bericht versturen</button>
+			{#if formResult.success}<p class="contact-form__result contact-form__result--success" role="alert">{formResult.message}</p>{:else if formResult.error}<p class="contact-form__result contact-form__result--error" role="alert">{formResult.error}</p>{/if}
 		</form>
 	</div>
-</div>
+</section>
 
 <style>
-	.contact-submit:hover:not(:disabled) {
-		cursor: pointer;
-	}
+	.contact-page { min-height:calc(100svh - 3.5rem); background:#f7f9fc; padding:clamp(56px,9vw,128px) 24px; color:#000; }.contact-page__intro,.contact-page__content { max-width:1180px; margin:auto; }.contact-page__label { margin:0; color:#555; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; }.contact-page h1 { max-width:780px; margin:15px 0 0; font-size:clamp(2.8rem,6.2vw,6rem); line-height:.95; letter-spacing:-.06em; font-weight:500; }.contact-page__lead { max-width:570px; margin:24px 0 0; color:#555; font-size:1.1rem; line-height:1.65; }.contact-page__content { display:grid; grid-template-columns:minmax(260px,.75fr) minmax(0,1.25fr); gap:clamp(56px,11vw,170px); margin-top:clamp(64px,10vw,126px); }.contact-page__details { color:#555; }.contact-page__detail-list { border-top:1px solid rgba(0,0,0,.14); }.contact-page__detail { display:grid; grid-template-columns:20px 1fr; gap:14px; border-bottom:1px solid rgba(0,0,0,.14); padding:20px 0; }.contact-page__detail h2,.contact-page__business h2,.contact-form h2 { margin:0; color:#000; font-size:1rem; font-weight:600; }.contact-page__detail p,.contact-page__detail a { display:block; margin:5px 0 0; color:#555; font-size:.94rem; line-height:1.5; text-decoration:none; }.contact-page__detail a:hover { color:#000; text-decoration:underline; text-underline-offset:3px; }.contact-page__business { margin-top:32px; }.contact-page__business p { margin:5px 0 0; color:#555; font-size:.87rem; line-height:1.45; }
+	.contact-form { border-top:1px solid #000; padding-top:18px; }.contact-form__heading { margin-bottom:34px; }.contact-form__heading p { margin:7px 0 0; color:#555; line-height:1.55; }.contact-form__fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 18px; }.contact-form label { display:block; }.contact-form label span { display:block; color:#000; font-size:.88rem; font-weight:500; }.contact-form label em { color:#777; font-size:.78rem; font-style:normal; font-weight:400; }.contact-form input,.contact-form textarea { box-sizing:border-box; width:100%; border:1px solid rgba(0,0,0,.2); outline:0; background:#fff; color:#000; font:inherit; font-size:1rem; margin-top:8px; padding:12px; }.contact-form input::placeholder,.contact-form textarea::placeholder { color:#8a8a8a; }.contact-form input:focus,.contact-form textarea:focus { border-color:#00ffff; box-shadow:0 0 0 2px rgba(0,255,255,.18); }.contact-form__message { grid-column:1 / -1; }.contact-form textarea { display:block; line-height:1.6; resize:vertical; }.contact-form :global(.cf-turnstile) { margin-top:26px; }.contact-form__notice { margin:26px 0 0; border-left:2px solid #555; padding-left:12px; color:#555; font-size:.88rem; line-height:1.5; }.contact-form button { margin-top:26px; border:1px solid #555; background:#555; color:#fff; padding:12px 18px; font:inherit; font-size:.9rem; cursor:pointer; transition:background 160ms ease,color 160ms ease; }.contact-form button:hover:not(:disabled) { background:transparent; color:#000; }.contact-form button:disabled { cursor:not-allowed; opacity:.5; }.contact-form__result { margin:20px 0 0; font-size:.92rem; }.contact-form__result--success { color:#1d6a4b; }.contact-form__result--error { color:#b42318; }
+	@media(max-width:720px){.contact-page{padding-left:16px;padding-right:16px}.contact-page__content{grid-template-columns:1fr;gap:58px;margin-top:64px}.contact-form__fields{grid-template-columns:1fr}.contact-form__message{grid-column:auto}}
 </style>
