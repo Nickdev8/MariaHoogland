@@ -72,12 +72,12 @@
 	</section>
 {/if}
 
-<section class="bg-secondary text-white" in:fade={{ duration: 1000, delay: 500 }}>
-	<div class="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/20 px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8">
+<section class="border-y border-black/10 bg-white" in:fade={{ duration: 1000, delay: 500 }}>
+	<div class="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-black/10 px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8">
 		{#each home.stats as stat}
 			<div class="py-10 text-left sm:px-8 sm:first:pl-0 sm:last:pr-0">
 				<h3 class="text-4xl font-semibold tracking-[-0.04em] sm:text-5xl"><CountUp value={stat.value} suffix={stat.suffix ? `${stat.suffix} ` : ''} /></h3>
-				<p class="mt-3 text-sm leading-6 text-white/70">{stat.label}</p>
+				<p class="mt-3 text-sm leading-6 text-secondary">{stat.label}</p>
 			</div>
 		{/each}
 	</div>
