@@ -1,35 +1,39 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-primary:           #00ffff;
-  --color-textcolor:           #000;
-  --color-secondary:         #555555;
+	--color-primary: #00ffff;
+	--color-textcolor: #555555;
+	--color-secondary: #555555;
+}
+
+body {
+	color: var(--color-textcolor);
 }
 
 .section-eyebrow {
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--color-textcolor);
+	font-size: 0.65rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: var(--color-textcolor);
 }
 
 .section-title {
-  font-size: clamp(1.9rem, 3vw, 2.35rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  font-weight: 500;
-  color: var(--color-textcolor);
+	font-size: clamp(1.9rem, 3vw, 2.35rem);
+	line-height: 1.05;
+	letter-spacing: -0.03em;
+	font-weight: 500;
+	color: var(--color-textcolor);
 }
 
 .site-link {
-  font-size: 0.75rem;
-  color: var(--color-secondary);
-  transition: color 150ms;
+	font-size: 0.75rem;
+	color: var(--color-secondary);
+	transition: color 150ms;
 }
 
 .site-link:hover {
-  color: var(--color-textcolor);
+	color: var(--color-textcolor);
 }

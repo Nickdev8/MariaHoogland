@@ -11,9 +11,14 @@ services:
       NODE_ENV: production
       PORT: "3040"
       HOST: "0.0.0.0"
+      PUBLIC_SITE_URL: https://mariahoogland.nl
     env_file:
       - app/.env
     user: 1000:1000
     working_dir: /app
     volumes:
-      - ./storage:/app/storage
+      # Content is read from this host file on every request; no rebuild is needed for copy changes.
+      - ./app/defaults.json:/app/defaults.json:ro
+      # Public media is served directly from these host directories.
+      - ./app/static/images:/app/build/client/images:ro
+      - ./app/static/videos:/app/build/client/videos:ro

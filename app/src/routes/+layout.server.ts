@@ -25,6 +25,7 @@ export const load: LayoutServerLoad = async ({ url }) => {
 			url: siteUrl
 		},
 		canonical: `${siteUrl}${path}`,
+		contact: content.contact,
 		footer: content.footer
 	};
 };
