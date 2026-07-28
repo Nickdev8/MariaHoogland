@@ -3,12 +3,9 @@
 	import Carousel from '$lib/components/Carousel.svelte';
 	import { fade, slide } from 'svelte/transition';
 	import type { SiteContent } from '$lib/types/content';
-	import type { ProjectWithHtml } from '$lib/server/projects';
 
 	export let data: {
 		content: SiteContent;
-		mainProjects: ProjectWithHtml[];
-		projects: ProjectWithHtml[];
 	};
 
 	const home = data.content.home;
@@ -63,75 +60,26 @@
 </div>
 
 {#if home.gallery.images.length}
-	<section class="bg-slate-100 py-20 sm:py-24">
-		<div class="mx-auto max-w-7xl px-6 lg:px-8">
-			<div class="mx-auto max-w-3xl text-center">
-				<h2 class="section-title">
-					{home.gallery.title}
-				</h2>
-				<p class="mt-6 text-lg leading-8 text-gray-600">
-					{home.gallery.description}
-				</p>
+	<section class="bg-[#e8edf4] py-20 sm:py-24">
+		<div class="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[minmax(220px,.7fr)_minmax(0,1.3fr)] lg:items-end lg:px-8">
+			<div class="max-w-sm">
+				<p class="text-xs font-medium uppercase tracking-[0.12em] text-secondary">In beeld</p>
+				<h2 class="mt-4 text-[clamp(2rem,3.5vw,3.5rem)] font-medium leading-[.98] tracking-[-.05em] text-textcolor">{home.gallery.title}</h2>
+				<p class="mt-5 text-base leading-7 text-secondary">{home.gallery.description}</p>
 			</div>
-			<div class="mt-12">
-				<Carousel images={home.gallery.images} autoplay={4000} />
-			</div>
+			<div><Carousel images={home.gallery.images} autoplay={4000} /></div>
 		</div>
 	</section>
 {/if}
 
-
-{#if data.mainProjects.length}
-	<section class="bg-[#f7f9fc] py-16 sm:py-20" in:fade={{ duration: 1000, delay: 1000 }}>
-		<div class="mx-auto max-w-7xl px-6 lg:px-8">
-			<div class="mx-auto max-w-3xl text-center">
-				<h2 class="section-title">
-					{home.featured.title}
-				</h2>
-				<p class="mt-6 text-lg leading-8 text-gray-600">
-					{home.featured.description}
-				</p>
+<section class="bg-secondary text-white" in:fade={{ duration: 1000, delay: 500 }}>
+	<div class="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/20 px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8">
+		{#each home.stats as stat}
+			<div class="py-10 text-left sm:px-8 sm:first:pl-0 sm:last:pr-0">
+				<h3 class="text-4xl font-semibold tracking-[-0.04em] sm:text-5xl"><CountUp value={stat.value} suffix={stat.suffix ? `${stat.suffix} ` : ''} /></h3>
+				<p class="mt-3 text-sm leading-6 text-white/70">{stat.label}</p>
 			</div>
-			<div
-				class="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-			>
-				{#each data.mainProjects.slice(0, 3) as project}
-					<a href={`/${project.slug}`} class="group block rounded-2xl border border-transparent transition-all duration-300 hover:border-secondary/20">
-						<div class="relative overflow-hidden rounded-2xl">
-							<img
-								src={project.mainImage}
-								alt={project.title}
-								class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-							/>
-						</div>
-						<div class="px-1 pt-4 pb-5">
-							<h3 class="text-base font-semibold tracking-tight text-textcolor">{project.title}</h3>
-							<p class="mt-1.5 line-clamp-2 text-sm leading-6 text-secondary">{project.subtitle}</p>
-							<span class="mt-4 inline-block text-xs font-light tracking-widest text-secondary uppercase transition group-hover:text-textcolor">
-								Bekijk project →
-							</span>
-						</div>
-					</a>
-				{/each}
-			</div>
-		</div>
-	</section>
-{/if}
-
-
-
-<section class="bg-slate-100 py-16 sm:py-20" in:fade={{ duration: 1000, delay: 500 }}>
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		<div class="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
-			{#each home.stats as stat}
-				<div>
-					<h3 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-						<CountUp value={stat.value} suffix={stat.suffix ? `${stat.suffix} ` : ''} />
-					</h3>
-					<p class="mt-2 text-sm uppercase tracking-[0.2em] text-gray-500">{stat.label}</p>
-				</div>
-			{/each}
-		</div>
+		{/each}
 	</div>
 </section>
 
