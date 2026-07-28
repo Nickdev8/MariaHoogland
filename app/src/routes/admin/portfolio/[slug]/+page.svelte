@@ -198,14 +198,14 @@
 	>
 		<input type="hidden" name="payload" />
 
-		<section class="rounded-3xl border border-neutral-200 bg-white/95 p-6 sm:p-8 space-y-6">
+		<section class="space-y-6 rounded-3xl border border-neutral-200 bg-white/95 p-6 sm:p-8">
 			<div class="flex flex-wrap items-center justify-between gap-3">
 				<h2 class="text-lg font-semibold">Basisinformatie</h2>
 			</div>
 
 			<div class="grid gap-4 md:grid-cols-2">
 				<label class="space-y-2 text-sm">
-					<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Slug</span>
+					<span class="text-xs tracking-[0.25em] text-neutral-400 uppercase">Slug</span>
 					<input
 						class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 						bind:value={project.slug}
@@ -213,7 +213,7 @@
 					/>
 				</label>
 				<label class="space-y-2 text-sm">
-					<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Categorie</span>
+					<span class="text-xs tracking-[0.25em] text-neutral-400 uppercase">Categorie</span>
 					<input
 						class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 						bind:value={project.category}
@@ -221,7 +221,7 @@
 					/>
 				</label>
 				<label class="space-y-2 text-sm">
-					<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Titel</span>
+					<span class="text-xs tracking-[0.25em] text-neutral-400 uppercase">Titel</span>
 					<input
 						class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 						bind:value={project.title}
@@ -229,7 +229,7 @@
 					/>
 				</label>
 				<label class="space-y-2 text-sm">
-					<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Subtitel</span>
+					<span class="text-xs tracking-[0.25em] text-neutral-400 uppercase">Subtitel</span>
 					<input
 						class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 						bind:value={project.subtitle}
@@ -239,7 +239,9 @@
 			</div>
 
 			<label class="space-y-2 text-sm">
-				<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Beschrijving (markdown)</span>
+				<span class="text-xs tracking-[0.25em] text-neutral-400 uppercase"
+					>Beschrijving (markdown)</span
+				>
 				<textarea
 					rows="6"
 					class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
@@ -249,7 +251,7 @@
 			</label>
 		</section>
 
-		<section class="rounded-3xl border border-neutral-200 bg-white/95 p-6 sm:p-8 space-y-6">
+		<section class="space-y-6 rounded-3xl border border-neutral-200 bg-white/95 p-6 sm:p-8">
 			<h2 class="text-lg font-semibold">Afbeeldingen</h2>
 			<div class="grid gap-6 md:grid-cols-2">
 				<AdminImageUploader
@@ -258,7 +260,7 @@
 					on:change={markDirty}
 				/>
 				<label class="space-y-2 text-sm">
-					<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Caption</span>
+					<span class="text-xs tracking-[0.25em] text-neutral-400 uppercase">Caption</span>
 					<input
 						class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 						bind:value={project.caption}
@@ -275,7 +277,7 @@
 			<div class="space-y-4">
 				<h3 class="text-sm font-semibold">Galerij</h3>
 				{#each project.gallery as image, imageIndex}
-					<div class="grid gap-4 md:grid-cols-[180px_1fr_auto] items-start">
+					<div class="grid items-start gap-4 md:grid-cols-[180px_1fr_auto]">
 						<AdminImageUploader
 							label={`Galerij ${imageIndex + 1}`}
 							bind:url={project.gallery[imageIndex]}
@@ -290,7 +292,7 @@
 						/>
 						<button
 							type="button"
-							class="text-xs uppercase tracking-[0.2em] text-red-500"
+							class="text-xs tracking-[0.2em] text-red-500 uppercase"
 							on:click={() => {
 								removeGalleryImage(imageIndex);
 								markDirty();
@@ -302,7 +304,7 @@
 				{/each}
 				<button
 					type="button"
-					class="rounded-full border border-neutral-200 px-4 py-2 text-xs uppercase tracking-[0.25em]"
+					class="rounded-full border border-neutral-200 px-4 py-2 text-xs tracking-[0.25em] uppercase"
 					on:click={() => {
 						addGalleryImage();
 						markDirty();
@@ -317,7 +319,7 @@
 			<div class="flex flex-wrap gap-2">
 				<a
 					href={`/${project.slug}`}
-					class="rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-neutral-600 transition hover:border-neutral-400"
+					class="rounded-full border border-black/10 px-4 py-2 text-xs font-semibold tracking-[0.24em] text-neutral-600 uppercase transition hover:border-neutral-400"
 				>
 					Bekijk project
 				</a>
@@ -325,7 +327,7 @@
 					type="submit"
 					formaction="?/delete"
 					formmethod="post"
-					class="rounded-full border border-red-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-red-600 transition hover:border-red-300"
+					class="rounded-full border border-red-200 px-4 py-2 text-xs font-semibold tracking-[0.24em] text-red-600 uppercase transition hover:border-red-300"
 					on:click={(event) => {
 						if (!confirm(`Verwijder project "${project.title || project.slug}"?`)) {
 							event.preventDefault();
@@ -348,7 +350,9 @@
 	<AdminSaveDock dirty={isDirty} {pending} {formId} {successMessage} {errorMessage} />
 
 	{#if toastVisible}
-		<div class={`fixed bottom-24 right-6 z-50 max-w-xs rounded-2xl px-5 py-4 text-sm ${toastStyles}`}>
+		<div
+			class={`fixed right-6 bottom-24 z-50 max-w-xs rounded-2xl px-5 py-4 text-sm ${toastStyles}`}
+		>
 			<div class={`mb-2 h-1 w-8 rounded-full ${toastAccent}`}></div>
 			{toastMessage}
 		</div>

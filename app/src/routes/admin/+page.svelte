@@ -38,8 +38,10 @@
 
 {#if !data.authenticated}
 	<div class="min-h-screen bg-[#f5f7fb] px-6 pt-16 text-neutral-900">
-		<div class="mx-auto max-w-md rounded-3xl border border-black/10 bg-white p-8 shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
-			<p class="text-[0.65rem] uppercase tracking-[0.3em] text-neutral-400">Maria Hoogland</p>
+		<div
+			class="mx-auto max-w-md rounded-3xl border border-black/10 bg-white p-8 shadow-[0_18px_40px_rgba(15,23,42,0.08)]"
+		>
+			<p class="text-[0.65rem] tracking-[0.3em] text-neutral-400 uppercase">Maria Hoogland</p>
 			<h1 class="mt-3 text-2xl font-semibold tracking-tight">Admin login</h1>
 			<p class="mt-2 text-sm leading-7 text-neutral-500">
 				Log in om de website per pagina te beheren.
@@ -61,7 +63,7 @@
 				{/if}
 				<button
 					type="submit"
-					class="w-full rounded-full bg-secondary px-4 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-white transition hover:bg-secondary/90"
+					class="w-full rounded-full bg-secondary px-4 py-3 text-sm font-semibold tracking-[0.24em] text-white uppercase transition hover:bg-secondary/90"
 				>
 					Inloggen
 				</button>

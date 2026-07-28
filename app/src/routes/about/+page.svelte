@@ -13,8 +13,7 @@
 		'Hier komt straks een kort hoofdstuk over de geschiedenis van Architectuur AMH: hoe Maria Hoogland haar bureau heeft opgebouwd, welke ervaringen daarbij bepalend waren en hoe daaruit een persoonlijke ontwerppraktijk is ontstaan.',
 		'Daarnaast is dit de plek voor een tweede alinea over de ontwikkeling van het bureau door de jaren heen, met ruimte voor de visie van nu en de manier waarop Maria opdrachtgevers vandaag begeleidt.'
 	];
-	const bio =
-		'Persoonlijke begeleiding, heldere keuzes en rustige architectuur.';
+	const bio = 'Persoonlijke begeleiding, heldere keuzes en rustige architectuur.';
 </script>
 
 <section class="bg-[#f5f8fc]">
@@ -52,7 +51,7 @@
 
 					<div class="border-t border-black/10 pt-5">
 						<div>
-							<p class="text-[0.68rem] font-light uppercase tracking-[0.28em] text-secondary">
+							<p class="text-[0.68rem] font-light tracking-[0.28em] text-secondary uppercase">
 								Architect
 							</p>
 							<h2 class="mt-2 text-2xl font-semibold tracking-tight text-textcolor sm:text-[2rem]">

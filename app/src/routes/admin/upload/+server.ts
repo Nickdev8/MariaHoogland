@@ -29,7 +29,7 @@ const ALLOWED_EXTENSIONS: Record<string, string> = {
 };
 
 const normalizeMimeType = (value: string | undefined | null) =>
-	value ? value.split(';', 1)[0]?.trim().toLowerCase() ?? '' : '';
+	value ? (value.split(';', 1)[0]?.trim().toLowerCase() ?? '') : '';
 
 const resolveExtension = (file: File): string | null => {
 	const mimeType = normalizeMimeType(file.type);
@@ -80,7 +80,10 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 
 		const extension = resolveExtension(file);
 		if (!extension) {
-			return respond(415, 'Alleen afbeeldingsbestanden zijn toegestaan (jpg, png, webp, gif, svg, avif).');
+			return respond(
+				415,
+				'Alleen afbeeldingsbestanden zijn toegestaan (jpg, png, webp, gif, svg, avif).'
+			);
 		}
 
 		const uploadsDir = join(getUploadsDirectory(), 'uploads');
@@ -121,7 +124,10 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 					}
 
 					if (code === 'ENOSPC') {
-						return respond(500, 'De server heeft onvoldoende schijfruimte om het bestand op te slaan.');
+						return respond(
+							500,
+							'De server heeft onvoldoende schijfruimte om het bestand op te slaan.'
+						);
 					}
 				}
 				return respond(500, 'Opslaan van het bestand is mislukt. Probeer het opnieuw.');

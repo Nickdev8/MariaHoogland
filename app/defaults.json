@@ -1,333 +1,327 @@
 {
-  "home": {
-    "hero": {
-      "title": "Laten we samen uw droomhuis realiseren",
-      "description": "Ik vertaal uw wensen naar heldere ontwerpen, van eerste schets tot vergunning en uitvoering. Met rust, structuur en persoonlijke begeleiding werken we toe naar een plek die klopt.",
-      "primaryCta": {
-        "label": "Neem contact op",
-        "href": "/contact"
-      },
-      "secondaryCta": {
-        "label": "Bekijk mijn werk",
-        "href": "/portfolio"
-      },
-      "backgroundImage": "/images/mainbg.png",
-      "images": [
-        {
-          "src": "/images/maria.jpg",
-          "alt": "Portret van architect Maria Hoogland"
-        },
-        {
-          "src": "/images/heroimageproject.jpg",
-          "alt": "Detail van een modern huisontwerp"
-        }
-      ]
-    },
-    "gallery": {
-      "title": "Impressies",
-      "description": "Details, materialen en lichtmomenten die de sfeer van mijn werk laten zien.",
-      "images": [
-        {
-          "src": "/images/impressies/image15.jpeg",
-          "alt": "Impressie 15"
-        },
-        {
-          "src": "/images/impressies/image16.jpeg",
-          "alt": "Impressie 16"
-        },
-        {
-          "src": "/images/impressies/image17.jpeg",
-          "alt": "Impressie 17"
-        },
-        {
-          "src": "/images/impressies/image18.jpeg",
-          "alt": "Impressie 18"
-        },
-        {
-          "src": "/images/impressies/image19.jpeg",
-          "alt": "Impressie 19"
-        },
-        {
-          "src": "/images/impressies/image2.jpeg",
-          "alt": "Impressie 2"
-        },
-        {
-          "src": "/images/impressies/image20.jpeg",
-          "alt": "Impressie 20"
-        },
-        {
-          "src": "/images/impressies/image21.jpeg",
-          "alt": "Impressie 21"
-        },
-        {
-          "src": "/images/impressies/image22.jpeg",
-          "alt": "Impressie 22"
-        },
-        {
-          "src": "/images/impressies/image23.jpeg",
-          "alt": "Impressie 23"
-        },
-        {
-          "src": "/images/impressies/image24.jpeg",
-          "alt": "Impressie 24"
-        },
-        {
-          "src": "/images/impressies/image27.jpeg",
-          "alt": "Impressie 27"
-        },
-        {
-          "src": "/images/impressies/image31.jpeg",
-          "alt": "Impressie 31"
-        },
-        {
-          "src": "/images/impressies/image32.jpeg",
-          "alt": "Impressie 32"
-        },
-        {
-          "src": "/images/impressies/image33.jpeg",
-          "alt": "Impressie 33"
-        },
-        {
-          "src": "/images/impressies/image4.jpeg",
-          "alt": "Impressie 4"
-        },
-        {
-          "src": "/images/impressies/image6.jpeg",
-          "alt": "Impressie 6"
-        }
-      ]
-    },
-    "featured": {
-      "title": "Uitgelichte Projecten",
-      "description": "Een selectie die laat zien hoe visie, context en vakmanschap samenkomen."
-    },
-    "stats": [
-      {
-        "label": "Jaren ervaring",
-        "value": 21,
-        "suffix": "+"
-      },
-      {
-        "label": "Afgeronde projecten",
-        "value": 750,
-        "suffix": "+"
-      },
-      {
-        "label": "Klanttevredenheid",
-        "value": 98,
-        "suffix": "%"
-      }
-    ],
-    "testimonials": {
-      "title": "Wat klanten zeggen",
-      "description": "Lees hoe anderen de samenwerking met Maria Hoogland hebben ervaren.",
-      "items": [
-        {
-          "quote": "Ik werk al meer dan 10 jaar met Maria op verschillende projecten, van verbouwingen tot commerciële projecten. Altijd een prettige en professionele samenwerking.",
-          "name": "Ramon Willems"
-        },
-        {
-          "quote": "Maria heeft ons snel en effectief geholpen een vergunning voor dakisolatie te verkrijgen. Ze was persoonlijk aanwezig bij de welstandsvergadering en wist ons doel te bereiken: vergunning verleend zonder bezwaren.",
-          "name": "Wouter Blok"
-        },
-        {
-          "quote": "Maria is een zeer betrokken, pragmatische en vriendelijke architect. Vlot, doortastend en met een goed netwerk. Dankzij haar hebben wij de juiste keuzes gemaakt. Een aanrader.",
-          "name": "Marcel"
-        },
-        {
-          "quote": "Goed meedenken, snel reageren en meteen de juiste tekeningen paraat. Wij zijn erg goed geholpen!",
-          "name": "Tom van Dijck"
-        }
-      ]
-    }
-  },
-  "about": {
-    "introLabel": "Over Maria",
-    "title": "Persoonlijke, doordachte architectuur",
-    "description": "Ik ontwerp woningen en verbouwingen met aandacht voor de plek, de mensen en het dagelijks gebruik. Rust, helderheid en praktische keuzes vormen de basis van elk ontwerp.",
-    "features": [
-      {
-        "icon": "Globe",
-        "title": "Architectuur met aandacht",
-        "description": "Ik zoek naar rust, proportie en logica in elke ingreep. Het ontwerp sluit aan op de context en versterkt het bestaande karakter van de woning."
-      },
-      {
-        "icon": "PenTool",
-        "title": "Verstandig bouwen",
-        "description": "Duurzaamheid betekent voor mij slimme keuzes in materiaal, energie en indeling. Zo ontstaat een huis dat lang mee kan en prettig blijft functioneren."
-      },
-      {
-        "icon": "Users",
-        "title": "Samenwerken zonder ruis",
-        "description": "U krijgt heldere stappen, duidelijke keuzes en korte lijnen. Ik vertaal uw wensen naar een ontwerp dat klopt binnen planning en budget."
-      },
-      {
-        "icon": "Lightbulb",
-        "title": "Van schets tot vergunning",
-        "description": "Ik begeleid het traject van eerste idee tot vergunning en uitvoering, met ervaring in renovaties, verbouwingen en nieuwbouw."
-      }
-    ],
-    "team": {
-      "title": "Maak kennis met de architecte",
-      "description": "Maria begeleidt ieder project persoonlijk, van kennismaking tot oplevering. U werkt direct met haar en profiteert van één helder aanspreekpunt.",
-      "members": [
-        {
-          "name": "Maria Hoogland",
-          "role": "Oprichter & Architect",
-          "image": {
-            "src": "/images/maria2.jpg",
-            "alt": "Portretfoto van Maria Hoogland"
-          }
-        }
-      ]
-    }
-  },
-  "portfolio": {
-    "title": "Portfolio",
-    "description": "Een selectie van mijn werk, van concept tot realisatie. Elk project vertelt een verhaal van samenwerking, precisie en vakmanschap."
-  },
-  "contact": {
-    "title": "Neem contact op",
-    "description": "Ik bespreek graag uw plannen. Bel of mail gerust, of gebruik het formulier. Ik reageer meestal binnen twee werkdagen.",
-    "address": {
-      "lines": [
-        "Lagedijk 10e",
-        "2064KT SPAARNDAM"
-      ]
-    },
-    "phone": "06 45 77 60 29",
-    "email": "architect@mariahoogland.nl",
-    "businessDetails": [
-      "Ir. ING Maria Hoogland",
-      "BNA lidnummer: 16076",
-      "Bureau Architectenregister: 1.070515.028",
-      "KvK-nummer: 34325681",
-      "BTW-nummer: NL 0020.80.940.B82"
-    ]
-  },
-  "footer": {
-    "aboutTitle": "Architectuur AMH",
-    "aboutDescription": "Karaktervolle woningen en rustige verbouwingen, met persoonlijke begeleiding van Maria Hoogland.",
-    "quickLinks": [
-      {
-        "label": "Home",
-        "href": "/"
-      },
-      {
-        "label": "Portfolio",
-        "href": "/portfolio"
-      },
-      {
-        "label": "Contact",
-        "href": "/contact"
-      }
-    ],
-    "contactEmail": "info@mariahoogland.nl",
-    "contactPhone": "+31 6 457 760 92",
-    "socials": [
-      {
-        "label": "LinkedIn",
-        "href": "https://nl.linkedin.com/in/maria-hoogland-499ab1b2",
-        "icon": "Linkedin"
-      },
-      {
-        "label": "Instagram",
-        "href": "https://www.instagram.com/architect_amh/",
-        "icon": "Instagram"
-      }
-    ]
-  },
-  "projects": [
-    {
-      "slug": "nieuwbouw-turnhal-hlc",
-      "category": "Nieuwbouw",
-      "title": "Nieuwbouw Turnhal HLC",
-      "subtitle": "Een nieuwe thuisbasis voor turnvereniging HLC.",
-      "descriptionMarkdown": "Voor turnvereniging HLC heb ik een nieuwe thuisbasis ontworpen. HLC gebruikt nu 35 locaties verspreid over de regio. Door de ontwikkeling van deze turnhal is er straks 1 locatie.\n\nDeze turnhal kan ook wedstrijden faciliteren op landelijk en regionaal niveau volgens de Eisen van de KNGU en NOC-NSF.\n\nBelangrijk in het ontwerp was de sociale interactie tussen de gebruikers en de veiligheid van de kinderen voor, tijdens en na de lessen. De openheid van de turnhal wachtruimtes en de routing in en om het gebouw zijn met zorg doordacht.\n\nDe ondersteunende functies zitten in het gemetselde voorgebouw met daarachter de turnhal die langzaam groen zal worden door de klimplanten. Dit zorgt voor vergroening van de omgeving. Het gemetselde gedeelte zocht dat het gebouw past in zijn omgeven.",
-      "mainImage": "/images/projects/image10.jpeg",
-      "gallery": [
-        "/images/projects/image11.jpeg",
-        "/images/projects/image12.jpeg"
-      ]
-    },
-    {
-      "slug": "nieuwbouw-woning-ijburg",
-      "category": "Nieuwbouw",
-      "title": "Nieuwbouw woning - IJburg, Riet-Eiland Oost",
-      "subtitle": "Een ontwerp van een splitlevel woning.",
-      "descriptionMarkdown": "Dit is een ontwerp van een splitlevel woning. Met een hele bijzondere indeling. Hij is ontworpen naar de wensen van de opdrachtgevers.\n\nDe grote kelder heeft 2 slaapkamers en ge gym, daarboven zijn 2 grote werkkamers.\n\nOp de begane grond is de grote woonkeuken van waaruit je zo de tuin in loopt.\n\nOp de 1ste verdieping bevind zich de woonkamer en daarboven de master bed-room met uitzicht over Amsterdam.",
-      "mainImage": "/images/projects/image4.jpeg",
-      "gallery": [
-        "/images/projects/image13.png",
-        "/images/projects/image14.png",
-        "/images/projects/image15.jpeg",
-        "/images/projects/image16.jpeg",
-        "/images/projects/image17.jpeg",
-        "/images/projects/image18.jpeg"
-      ],
-      "featured": true
-    },
-    {
-      "slug": "verbouwing-garage-tot-woning",
-      "category": "Verbouwing",
-      "title": "Verbouwing garage tot woning – Haarlem Noord",
-      "subtitle": "Een oude garage omgetoverd tot een prachtige beneden- en bovenwoning.",
-      "descriptionMarkdown": "Een oude garage in Haarlem Noord is omgetoverd tot een prachtige beneden woning en een boven woning.\n\nEr is een hap uit gehaald, zodat er een tuin ontstond. Veel oude details zijn in het zicht gebleven en in ere hersteld.\n\nDe vloer is gevlinderd en er is een grote stalen pui geplaatst. Dit maakt het tot een moderne bijzondere woning.",
-      "mainImage": "/images/projects/image21.jpeg",
-      "gallery": [
-        "/images/projects/image19.jpeg",
-        "/images/projects/image20.jpeg",
-        "/images/projects/image22.jpeg",
-        "/images/projects/image23.jpeg",
-        "/images/projects/image24.jpeg",
-        "/images/projects/image25.png"
-      ],
-      "featured": true
-    },
-    {
-      "slug": "woning-renovatie-haarlem-noord",
-      "category": "Renovatie",
-      "title": "Woning renovatie, uitbouw en dakopbouw – Haarlem Noord",
-      "subtitle": "Een ruime jaren '30 woning in de gewilde Kleverparkbuurt.",
-      "descriptionMarkdown": "Deze woning in Haarlem is volledig verbouwd. Er is een uitbouw en opbouw geplaatst, zodat het een ruime jaren 30 woning is geworden in de gewilde Kleverparkbuurt.\n\nDe grote woonkeuken met zicht op de tuin is het hart van het huis geworden. Waar plaats is voor een zeer grote tafel en een koopeiland.\n\nDoor een lichtstraat in het dak wordt het hele traphuis prachtig verlicht daar het daglicht.",
-      "mainImage": "/images/projects/image33.jpeg",
-      "gallery": [
-        "/images/projects/image26.jpeg",
-        "/images/projects/image27.jpeg",
-        "/images/projects/image28.png",
-        "/images/projects/image29.png",
-        "/images/projects/image30.png",
-        "/images/projects/image31.jpeg",
-        "/images/projects/image32.jpeg"
-      ],
-      "featured": true
-    },
-    {
-      "slug": "uitbouw-haarlem",
-      "category": "Uitbouw",
-      "title": "Haarlemse Uitbouw",
-      "subtitle": "Een naadloze toevoeging aan een klassieke woning.",
-      "descriptionMarkdown": "Dit project omvatte het ontwerpen en realiseren van een moderne uitbouw die de leefruimte aanzienlijk vergrootte en meer daglicht in de woning bracht.\n\nDe uitdaging was om de moderne esthetiek te laten harmoniëren met het klassieke karakter van het bestaande huis.",
-      "mainImage": "/images/projects/image24.jpeg",
-      "gallery": [
-        "/images/projects/image24.jpeg",
-        "/images/projects/image20.jpeg",
-        "/images/projects/image24.jpeg",
-        "/images/projects/image23.jpeg"
-      ],
-      "caption": "De stalen deuren zorgen voor een sterke visuele verbinding met de tuin.",
-      "featured": true
-    },
-    {
-      "slug": "woning-ijburg",
-      "category": "Nieuwbouw",
-      "title": "Moderne Woning op IJburg",
-      "subtitle": "Licht en ruimte in een nieuwbouwomgeving.",
-      "descriptionMarkdown": "Ontwerp van een volledige nieuwbouwwoning op IJburg, Amsterdam.\n\nDe focus lag op het creëren van een open en lichte leefomgeving met een sterke relatie tussen interieur en exterieur.\n\nDuurzame materialen en energiezuinige oplossingen stonden centraal.",
-      "mainImage": "/images/projects/image20.jpeg",
-      "gallery": [],
-      "caption": "De vide creëert een gevoel van ruimtelijkheid en verbindt de verdiepingen.",
-      "featured": true
-    }
-  ]
+	"home": {
+		"hero": {
+			"title": "Laten we samen uw droomhuis realiseren",
+			"description": "Ik vertaal uw wensen naar heldere ontwerpen, van eerste schets tot vergunning en uitvoering. Met rust, structuur en persoonlijke begeleiding werken we toe naar een plek die klopt.",
+			"primaryCta": {
+				"label": "Neem contact op",
+				"href": "/contact"
+			},
+			"secondaryCta": {
+				"label": "Bekijk mijn werk",
+				"href": "/portfolio"
+			},
+			"backgroundImage": "/images/mainbg.png",
+			"images": [
+				{
+					"src": "/images/maria.jpg",
+					"alt": "Portret van architect Maria Hoogland"
+				},
+				{
+					"src": "/images/heroimageproject.jpg",
+					"alt": "Detail van een modern huisontwerp"
+				}
+			]
+		},
+		"gallery": {
+			"title": "Impressies",
+			"description": "Details, materialen en lichtmomenten die de sfeer van mijn werk laten zien.",
+			"images": [
+				{
+					"src": "/images/impressies/image15.jpeg",
+					"alt": "Impressie 15"
+				},
+				{
+					"src": "/images/impressies/image16.jpeg",
+					"alt": "Impressie 16"
+				},
+				{
+					"src": "/images/impressies/image17.jpeg",
+					"alt": "Impressie 17"
+				},
+				{
+					"src": "/images/impressies/image18.jpeg",
+					"alt": "Impressie 18"
+				},
+				{
+					"src": "/images/impressies/image19.jpeg",
+					"alt": "Impressie 19"
+				},
+				{
+					"src": "/images/impressies/image2.jpeg",
+					"alt": "Impressie 2"
+				},
+				{
+					"src": "/images/impressies/image20.jpeg",
+					"alt": "Impressie 20"
+				},
+				{
+					"src": "/images/impressies/image21.jpeg",
+					"alt": "Impressie 21"
+				},
+				{
+					"src": "/images/impressies/image22.jpeg",
+					"alt": "Impressie 22"
+				},
+				{
+					"src": "/images/impressies/image23.jpeg",
+					"alt": "Impressie 23"
+				},
+				{
+					"src": "/images/impressies/image24.jpeg",
+					"alt": "Impressie 24"
+				},
+				{
+					"src": "/images/impressies/image27.jpeg",
+					"alt": "Impressie 27"
+				},
+				{
+					"src": "/images/impressies/image31.jpeg",
+					"alt": "Impressie 31"
+				},
+				{
+					"src": "/images/impressies/image32.jpeg",
+					"alt": "Impressie 32"
+				},
+				{
+					"src": "/images/impressies/image33.jpeg",
+					"alt": "Impressie 33"
+				},
+				{
+					"src": "/images/impressies/image4.jpeg",
+					"alt": "Impressie 4"
+				},
+				{
+					"src": "/images/impressies/image6.jpeg",
+					"alt": "Impressie 6"
+				}
+			]
+		},
+		"featured": {
+			"title": "Uitgelichte Projecten",
+			"description": "Een selectie die laat zien hoe visie, context en vakmanschap samenkomen."
+		},
+		"stats": [
+			{
+				"label": "Jaren ervaring",
+				"value": 21,
+				"suffix": "+"
+			},
+			{
+				"label": "Afgeronde projecten",
+				"value": 750,
+				"suffix": "+"
+			},
+			{
+				"label": "Klanttevredenheid",
+				"value": 98,
+				"suffix": "%"
+			}
+		],
+		"testimonials": {
+			"title": "Wat klanten zeggen",
+			"description": "Lees hoe anderen de samenwerking met Maria Hoogland hebben ervaren.",
+			"items": [
+				{
+					"quote": "Ik werk al meer dan 10 jaar met Maria op verschillende projecten, van verbouwingen tot commerciële projecten. Altijd een prettige en professionele samenwerking.",
+					"name": "Ramon Willems"
+				},
+				{
+					"quote": "Maria heeft ons snel en effectief geholpen een vergunning voor dakisolatie te verkrijgen. Ze was persoonlijk aanwezig bij de welstandsvergadering en wist ons doel te bereiken: vergunning verleend zonder bezwaren.",
+					"name": "Wouter Blok"
+				},
+				{
+					"quote": "Maria is een zeer betrokken, pragmatische en vriendelijke architect. Vlot, doortastend en met een goed netwerk. Dankzij haar hebben wij de juiste keuzes gemaakt. Een aanrader.",
+					"name": "Marcel"
+				},
+				{
+					"quote": "Goed meedenken, snel reageren en meteen de juiste tekeningen paraat. Wij zijn erg goed geholpen!",
+					"name": "Tom van Dijck"
+				}
+			]
+		}
+	},
+	"about": {
+		"introLabel": "Over Maria",
+		"title": "Persoonlijke, doordachte architectuur",
+		"description": "Ik ontwerp woningen en verbouwingen met aandacht voor de plek, de mensen en het dagelijks gebruik. Rust, helderheid en praktische keuzes vormen de basis van elk ontwerp.",
+		"features": [
+			{
+				"icon": "Globe",
+				"title": "Architectuur met aandacht",
+				"description": "Ik zoek naar rust, proportie en logica in elke ingreep. Het ontwerp sluit aan op de context en versterkt het bestaande karakter van de woning."
+			},
+			{
+				"icon": "PenTool",
+				"title": "Verstandig bouwen",
+				"description": "Duurzaamheid betekent voor mij slimme keuzes in materiaal, energie en indeling. Zo ontstaat een huis dat lang mee kan en prettig blijft functioneren."
+			},
+			{
+				"icon": "Users",
+				"title": "Samenwerken zonder ruis",
+				"description": "U krijgt heldere stappen, duidelijke keuzes en korte lijnen. Ik vertaal uw wensen naar een ontwerp dat klopt binnen planning en budget."
+			},
+			{
+				"icon": "Lightbulb",
+				"title": "Van schets tot vergunning",
+				"description": "Ik begeleid het traject van eerste idee tot vergunning en uitvoering, met ervaring in renovaties, verbouwingen en nieuwbouw."
+			}
+		],
+		"team": {
+			"title": "Maak kennis met de architecte",
+			"description": "Maria begeleidt ieder project persoonlijk, van kennismaking tot oplevering. U werkt direct met haar en profiteert van één helder aanspreekpunt.",
+			"members": [
+				{
+					"name": "Maria Hoogland",
+					"role": "Oprichter & Architect",
+					"image": {
+						"src": "/images/maria2.jpg",
+						"alt": "Portretfoto van Maria Hoogland"
+					}
+				}
+			]
+		}
+	},
+	"portfolio": {
+		"title": "Portfolio",
+		"description": "Een selectie van mijn werk, van concept tot realisatie. Elk project vertelt een verhaal van samenwerking, precisie en vakmanschap."
+	},
+	"contact": {
+		"title": "Neem contact op",
+		"description": "Ik bespreek graag uw plannen. Bel of mail gerust, of gebruik het formulier. Ik reageer meestal binnen twee werkdagen.",
+		"address": {
+			"lines": ["Lagedijk 10e", "2064KT SPAARNDAM"]
+		},
+		"phone": "06 45 77 60 29",
+		"email": "architect@mariahoogland.nl",
+		"businessDetails": [
+			"Ir. ING Maria Hoogland",
+			"BNA lidnummer: 16076",
+			"Bureau Architectenregister: 1.070515.028",
+			"KvK-nummer: 34325681",
+			"BTW-nummer: NL 0020.80.940.B82"
+		]
+	},
+	"footer": {
+		"aboutTitle": "Architectuur AMH",
+		"aboutDescription": "Karaktervolle woningen en rustige verbouwingen, met persoonlijke begeleiding van Maria Hoogland.",
+		"quickLinks": [
+			{
+				"label": "Home",
+				"href": "/"
+			},
+			{
+				"label": "Portfolio",
+				"href": "/portfolio"
+			},
+			{
+				"label": "Contact",
+				"href": "/contact"
+			}
+		],
+		"contactEmail": "info@mariahoogland.nl",
+		"contactPhone": "+31 6 457 760 92",
+		"socials": [
+			{
+				"label": "LinkedIn",
+				"href": "https://nl.linkedin.com/in/maria-hoogland-499ab1b2",
+				"icon": "Linkedin"
+			},
+			{
+				"label": "Instagram",
+				"href": "https://www.instagram.com/architect_amh/",
+				"icon": "Instagram"
+			}
+		]
+	},
+	"projects": [
+		{
+			"slug": "nieuwbouw-turnhal-hlc",
+			"category": "Nieuwbouw",
+			"title": "Nieuwbouw Turnhal HLC",
+			"subtitle": "Een nieuwe thuisbasis voor turnvereniging HLC.",
+			"descriptionMarkdown": "Voor turnvereniging HLC heb ik een nieuwe thuisbasis ontworpen. HLC gebruikt nu 35 locaties verspreid over de regio. Door de ontwikkeling van deze turnhal is er straks 1 locatie.\n\nDeze turnhal kan ook wedstrijden faciliteren op landelijk en regionaal niveau volgens de Eisen van de KNGU en NOC-NSF.\n\nBelangrijk in het ontwerp was de sociale interactie tussen de gebruikers en de veiligheid van de kinderen voor, tijdens en na de lessen. De openheid van de turnhal wachtruimtes en de routing in en om het gebouw zijn met zorg doordacht.\n\nDe ondersteunende functies zitten in het gemetselde voorgebouw met daarachter de turnhal die langzaam groen zal worden door de klimplanten. Dit zorgt voor vergroening van de omgeving. Het gemetselde gedeelte zocht dat het gebouw past in zijn omgeven.",
+			"mainImage": "/images/projects/image10.jpeg",
+			"gallery": ["/images/projects/image11.jpeg", "/images/projects/image12.jpeg"]
+		},
+		{
+			"slug": "nieuwbouw-woning-ijburg",
+			"category": "Nieuwbouw",
+			"title": "Nieuwbouw woning - IJburg, Riet-Eiland Oost",
+			"subtitle": "Een ontwerp van een splitlevel woning.",
+			"descriptionMarkdown": "Dit is een ontwerp van een splitlevel woning. Met een hele bijzondere indeling. Hij is ontworpen naar de wensen van de opdrachtgevers.\n\nDe grote kelder heeft 2 slaapkamers en ge gym, daarboven zijn 2 grote werkkamers.\n\nOp de begane grond is de grote woonkeuken van waaruit je zo de tuin in loopt.\n\nOp de 1ste verdieping bevind zich de woonkamer en daarboven de master bed-room met uitzicht over Amsterdam.",
+			"mainImage": "/images/projects/image4.jpeg",
+			"gallery": [
+				"/images/projects/image13.png",
+				"/images/projects/image14.png",
+				"/images/projects/image15.jpeg",
+				"/images/projects/image16.jpeg",
+				"/images/projects/image17.jpeg",
+				"/images/projects/image18.jpeg"
+			],
+			"featured": true
+		},
+		{
+			"slug": "verbouwing-garage-tot-woning",
+			"category": "Verbouwing",
+			"title": "Verbouwing garage tot woning – Haarlem Noord",
+			"subtitle": "Een oude garage omgetoverd tot een prachtige beneden- en bovenwoning.",
+			"descriptionMarkdown": "Een oude garage in Haarlem Noord is omgetoverd tot een prachtige beneden woning en een boven woning.\n\nEr is een hap uit gehaald, zodat er een tuin ontstond. Veel oude details zijn in het zicht gebleven en in ere hersteld.\n\nDe vloer is gevlinderd en er is een grote stalen pui geplaatst. Dit maakt het tot een moderne bijzondere woning.",
+			"mainImage": "/images/projects/image21.jpeg",
+			"gallery": [
+				"/images/projects/image19.jpeg",
+				"/images/projects/image20.jpeg",
+				"/images/projects/image22.jpeg",
+				"/images/projects/image23.jpeg",
+				"/images/projects/image24.jpeg",
+				"/images/projects/image25.png"
+			],
+			"featured": true
+		},
+		{
+			"slug": "woning-renovatie-haarlem-noord",
+			"category": "Renovatie",
+			"title": "Woning renovatie, uitbouw en dakopbouw – Haarlem Noord",
+			"subtitle": "Een ruime jaren '30 woning in de gewilde Kleverparkbuurt.",
+			"descriptionMarkdown": "Deze woning in Haarlem is volledig verbouwd. Er is een uitbouw en opbouw geplaatst, zodat het een ruime jaren 30 woning is geworden in de gewilde Kleverparkbuurt.\n\nDe grote woonkeuken met zicht op de tuin is het hart van het huis geworden. Waar plaats is voor een zeer grote tafel en een koopeiland.\n\nDoor een lichtstraat in het dak wordt het hele traphuis prachtig verlicht daar het daglicht.",
+			"mainImage": "/images/projects/image33.jpeg",
+			"gallery": [
+				"/images/projects/image26.jpeg",
+				"/images/projects/image27.jpeg",
+				"/images/projects/image28.png",
+				"/images/projects/image29.png",
+				"/images/projects/image30.png",
+				"/images/projects/image31.jpeg",
+				"/images/projects/image32.jpeg"
+			],
+			"featured": true
+		},
+		{
+			"slug": "uitbouw-haarlem",
+			"category": "Uitbouw",
+			"title": "Haarlemse Uitbouw",
+			"subtitle": "Een naadloze toevoeging aan een klassieke woning.",
+			"descriptionMarkdown": "Dit project omvatte het ontwerpen en realiseren van een moderne uitbouw die de leefruimte aanzienlijk vergrootte en meer daglicht in de woning bracht.\n\nDe uitdaging was om de moderne esthetiek te laten harmoniëren met het klassieke karakter van het bestaande huis.",
+			"mainImage": "/images/projects/image24.jpeg",
+			"gallery": [
+				"/images/projects/image24.jpeg",
+				"/images/projects/image20.jpeg",
+				"/images/projects/image24.jpeg",
+				"/images/projects/image23.jpeg"
+			],
+			"caption": "De stalen deuren zorgen voor een sterke visuele verbinding met de tuin.",
+			"featured": true
+		},
+		{
+			"slug": "woning-ijburg",
+			"category": "Nieuwbouw",
+			"title": "Moderne Woning op IJburg",
+			"subtitle": "Licht en ruimte in een nieuwbouwomgeving.",
+			"descriptionMarkdown": "Ontwerp van een volledige nieuwbouwwoning op IJburg, Amsterdam.\n\nDe focus lag op het creëren van een open en lichte leefomgeving met een sterke relatie tussen interieur en exterieur.\n\nDuurzame materialen en energiezuinige oplossingen stonden centraal.",
+			"mainImage": "/images/projects/image20.jpeg",
+			"gallery": [],
+			"caption": "De vide creëert een gevoel van ruimtelijkheid en verbindt de verdiepingen.",
+			"featured": true
+		}
+	]
 }

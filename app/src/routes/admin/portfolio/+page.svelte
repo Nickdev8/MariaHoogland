@@ -39,7 +39,8 @@
 
 	let content: PortfolioDraft | null =
 		data.authenticated && data.content ? normalizeContent(data.content) : null;
-	let baselineSnapshot = data.authenticated && data.content ? serializeDraft(normalizeContent(data.content)) : '';
+	let baselineSnapshot =
+		data.authenticated && data.content ? serializeDraft(normalizeContent(data.content)) : '';
 	let successMessage = formState?.success ? 'Wijzigingen opgeslagen.' : '';
 	let errorMessage = formState?.error ?? '';
 	let pending = false;
@@ -184,12 +185,13 @@
 			draftTimeout = undefined;
 		}
 	});
-
 </script>
 
 {#if !data.authenticated}
-	<div class="min-h-screen bg-neutral-50 text-neutral-900 flex items-start justify-center px-6 pt-16">
-		<div class="w-full max-w-md rounded-3xl bg-white border border-neutral-200 p-8 shadow-sm">
+	<div
+		class="flex min-h-screen items-start justify-center bg-neutral-50 px-6 pt-16 text-neutral-900"
+	>
+		<div class="w-full max-w-md rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm">
 			<h1 class="text-2xl font-semibold">Admin login</h1>
 			<p class="mt-2 text-sm text-neutral-500">Log in om het portfolio te beheren.</p>
 			<form method="post" action="?/login" class="mt-6 space-y-4">
@@ -199,7 +201,7 @@
 						type="password"
 						name="password"
 						required
-						class="w-full rounded-xl bg-white border border-neutral-200 px-4 py-3 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-300"
+						class="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-900 focus:ring-2 focus:ring-neutral-300 focus:outline-none"
 					/>
 				</label>
 				{#if form?.error}
@@ -207,7 +209,7 @@
 				{/if}
 				<button
 					type="submit"
-					class="w-full rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white hover:bg-neutral-800"
+					class="w-full rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold tracking-[0.2em] text-white uppercase hover:bg-neutral-800"
 				>
 					Inloggen
 				</button>
@@ -215,7 +217,11 @@
 		</div>
 	</div>
 {:else if content}
-	<AdminShell title="Portfolio bewerken" subtitle="Portfolio-intro en projectoverzicht." active="portfolio">
+	<AdminShell
+		title="Portfolio bewerken"
+		subtitle="Portfolio-intro en projectoverzicht."
+		active="portfolio"
+	>
 		<form
 			id={formId}
 			method="post"
@@ -230,7 +236,7 @@
 				<h2 class="text-lg font-semibold">Portfolio intro</h2>
 				<div class="mt-4 space-y-4">
 					<label class="space-y-2 text-sm">
-						<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Titel</span>
+						<span class="text-xs tracking-[0.25em] text-neutral-400 uppercase">Titel</span>
 						<input
 							class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 							bind:value={content.portfolio.title}
@@ -238,7 +244,7 @@
 						/>
 					</label>
 					<label class="space-y-2 text-sm">
-						<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Beschrijving</span>
+						<span class="text-xs tracking-[0.25em] text-neutral-400 uppercase">Beschrijving</span>
 						<textarea
 							rows="3"
 							class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
@@ -263,7 +269,7 @@
 				<form method="post" action="?/create">
 					<button
 						type="submit"
-						class="rounded-full border border-neutral-200 px-4 py-2 text-xs uppercase tracking-[0.25em]"
+						class="rounded-full border border-neutral-200 px-4 py-2 text-xs tracking-[0.25em] uppercase"
 					>
 						+ Nieuw project
 					</button>
@@ -275,7 +281,7 @@
 					<div class="rounded-3xl border border-neutral-200 bg-white/95 p-6 sm:p-8">
 						<div class="flex flex-wrap items-start justify-between gap-4">
 							<div class="space-y-2">
-								<p class="text-xs uppercase tracking-[0.25em] text-neutral-400">
+								<p class="text-xs tracking-[0.25em] text-neutral-400 uppercase">
 									{project.category || 'Categorie'}
 								</p>
 								<h3 class="text-base font-semibold">
@@ -287,7 +293,9 @@
 								<p class="text-xs text-neutral-400">Slug: {project.slug}</p>
 							</div>
 							<div class="flex flex-wrap items-center gap-2">
-								<label class="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-600">
+								<label
+									class="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-3 py-2 text-[10px] font-semibold tracking-[0.22em] text-neutral-600 uppercase"
+								>
 									<input
 										type="checkbox"
 										class="h-4 w-4 rounded border-neutral-300 text-secondary focus:ring-secondary"
@@ -298,13 +306,13 @@
 								</label>
 								<a
 									href={`/${project.slug}`}
-									class="rounded-full border border-neutral-200 px-4 py-2 text-xs uppercase tracking-[0.25em] text-neutral-600 hover:border-neutral-400"
+									class="rounded-full border border-neutral-200 px-4 py-2 text-xs tracking-[0.25em] text-neutral-600 uppercase hover:border-neutral-400"
 								>
 									Bekijk
 								</a>
 								<a
 									href={`/admin/portfolio/${project.slug}`}
-									class="rounded-full border border-neutral-200 px-4 py-2 text-xs uppercase tracking-[0.25em] text-neutral-600 hover:border-neutral-400"
+									class="rounded-full border border-neutral-200 px-4 py-2 text-xs tracking-[0.25em] text-neutral-600 uppercase hover:border-neutral-400"
 								>
 									Bewerk
 								</a>
@@ -312,7 +320,7 @@
 									<input type="hidden" name="slug" value={project.slug} />
 									<button
 										type="submit"
-										class="rounded-full border border-red-200 px-4 py-2 text-xs uppercase tracking-[0.25em] text-red-600 hover:border-red-300"
+										class="rounded-full border border-red-200 px-4 py-2 text-xs tracking-[0.25em] text-red-600 uppercase hover:border-red-300"
 										on:click={(event) => {
 											if (!confirm(`Verwijder project "${project.title || project.slug}"?`)) {
 												event.preventDefault();
@@ -332,7 +340,9 @@
 		<AdminSaveDock dirty={isDirty} {pending} {formId} {successMessage} {errorMessage} />
 
 		{#if toastVisible}
-			<div class={`fixed bottom-24 right-6 z-50 max-w-xs rounded-2xl px-5 py-4 text-sm ${toastStyles}`}>
+			<div
+				class={`fixed right-6 bottom-24 z-50 max-w-xs rounded-2xl px-5 py-4 text-sm ${toastStyles}`}
+			>
 				<div class={`mb-2 h-1 w-8 rounded-full ${toastAccent}`}></div>
 				{toastMessage}
 			</div>

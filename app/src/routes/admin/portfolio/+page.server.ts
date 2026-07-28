@@ -61,7 +61,9 @@ export const actions: Actions = {
 		try {
 			parsed = JSON.parse(payload) as unknown;
 		} catch (error) {
-			return fail(400, { error: 'Kan invoer niet lezen. Controleer de velden en probeer opnieuw.' });
+			return fail(400, {
+				error: 'Kan invoer niet lezen. Controleer de velden en probeer opnieuw.'
+			});
 		}
 
 		const isFullContent =
@@ -78,9 +80,9 @@ export const actions: Actions = {
 		const nextContent: SiteContent = isFullContent
 			? (parsed as SiteContent)
 			: {
-				...current,
-				...(parsed as Partial<SiteContent>)
-			};
+					...current,
+					...(parsed as Partial<SiteContent>)
+				};
 
 		await writeContent(nextContent);
 
@@ -190,7 +192,12 @@ function collectChangedSections(previous: SiteContent, next: SiteContent): strin
 	return result;
 }
 
-function appendArrayChange(target: string[], label: string, previous: unknown, next: unknown): void {
+function appendArrayChange(
+	target: string[],
+	label: string,
+	previous: unknown,
+	next: unknown
+): void {
 	const beforeCount = Array.isArray(previous) ? previous.length : 0;
 	const afterCount = Array.isArray(next) ? next.length : 0;
 	if (beforeCount !== afterCount) {

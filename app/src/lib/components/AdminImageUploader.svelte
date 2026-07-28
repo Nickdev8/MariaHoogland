@@ -124,7 +124,7 @@
 
 <div class="space-y-2">
 	{#if label}
-		<p class="text-[0.65rem] uppercase tracking-[0.28em] text-neutral-400">{label}</p>
+		<p class="text-[0.65rem] tracking-[0.28em] text-neutral-400 uppercase">{label}</p>
 	{/if}
 	<div
 		class={`group relative w-full overflow-hidden rounded-2xl border bg-neutral-100 transition ${
@@ -148,9 +148,13 @@
 				decoding="async"
 			/>
 		{:else}
-			<div class="flex h-full items-center justify-center text-xs text-neutral-400">Geen afbeelding</div>
+			<div class="flex h-full items-center justify-center text-xs text-neutral-400">
+				Geen afbeelding
+			</div>
 		{/if}
-		<div class="pointer-events-none absolute inset-0 flex items-end justify-between bg-gradient-to-t from-black/45 via-black/10 to-transparent px-4 pb-3 text-[0.6rem] uppercase tracking-[0.24em] text-white opacity-0 transition group-hover:opacity-100">
+		<div
+			class="pointer-events-none absolute inset-0 flex items-end justify-between bg-gradient-to-t from-black/45 via-black/10 to-transparent px-4 pb-3 text-[0.6rem] tracking-[0.24em] text-white uppercase opacity-0 transition group-hover:opacity-100"
+		>
 			<span>Sleep om te vervangen</span>
 			<span>Klik om te kiezen</span>
 		</div>

@@ -127,7 +127,12 @@ async function readOverrides(): Promise<Partial<SiteContent>> {
 		const file = await readFile(RESOLVED_OVERRIDES_PATH, { encoding: 'utf-8' });
 		return JSON.parse(file) as Partial<SiteContent>;
 	} catch (error: unknown) {
-		if (error && typeof error === 'object' && 'code' in error && (error as { code: string }).code === 'ENOENT') {
+		if (
+			error &&
+			typeof error === 'object' &&
+			'code' in error &&
+			(error as { code: string }).code === 'ENOENT'
+		) {
 			return {};
 		}
 		throw error;

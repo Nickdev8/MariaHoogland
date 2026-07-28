@@ -35,7 +35,9 @@ export const actions: Actions = {
 		try {
 			parsed = normalizeProjectPayload(JSON.parse(payload));
 		} catch {
-			return fail(400, { error: 'Kan invoer niet lezen. Controleer de velden en probeer opnieuw.' });
+			return fail(400, {
+				error: 'Kan invoer niet lezen. Controleer de velden en probeer opnieuw.'
+			});
 		}
 
 		if (!parsed) {

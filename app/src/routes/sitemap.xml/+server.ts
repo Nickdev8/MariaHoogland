@@ -17,7 +17,11 @@ const STATIC_ROUTES: RouteEntry[] = [
 const trim = (value: string | undefined | null) => (value ? value.trim() : '');
 
 const resolveBaseUrl = (requestOrigin: string) => {
-	const envCandidates = [trim(publicEnv.PUBLIC_SITE_URL), trim(privateEnv.SITE_URL), trim(privateEnv.BASE_URL)];
+	const envCandidates = [
+		trim(publicEnv.PUBLIC_SITE_URL),
+		trim(privateEnv.SITE_URL),
+		trim(privateEnv.BASE_URL)
+	];
 	const candidate = envCandidates.find((value) => value.length > 0);
 	const base = candidate ?? requestOrigin ?? FALLBACK_SITE;
 	return base.replace(/\/+$/, '');
