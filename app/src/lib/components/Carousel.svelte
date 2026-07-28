@@ -11,6 +11,10 @@
   let paused = false;
   let touchStartX = 0;
   let touchDeltaX = 0;
+  let wheelDelta = 0;
+  let lastWheelSlideAt = 0;
+  const wheelThreshold = 80;
+  const wheelCooldown = 450;
 
   $: totalSlides = Math.max(0, images.length - perPage + 1);
 
@@ -37,11 +41,25 @@
   }
 
   function handleWheel(event: WheelEvent) {
-    const movement = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-    if (Math.abs(movement) < 8) return;
+    const horizontal = Math.abs(event.deltaX);
+    const vertical = Math.abs(event.deltaY);
+    if (horizontal < 6 || horizontal < vertical * 1.25) {
+      wheelDelta = 0;
+      return;
+    }
+
     event.preventDefault();
-    if (movement > 0) next();
+    wheelDelta += event.deltaX;
+    if (Math.abs(wheelDelta) < wheelThreshold) return;
+
+    const now = Date.now();
+    if (now - lastWheelSlideAt < wheelCooldown) return;
+
+    if (wheelDelta > 0) next();
     else prev();
+
+    wheelDelta = 0;
+    lastWheelSlideAt = now;
   }
 
   function handleTouchStart(event: TouchEvent) {
@@ -118,7 +136,7 @@
   <!-- prev button -->
   <button
     on:click={prev}
-    class="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center bg-white/70 text-secondary shadow-sm transition hover:bg-white hover:text-textcolor"
+    class="absolute left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center border border-line bg-white/85 text-secondary transition-colors hover:bg-white hover:text-textcolor"
     aria-label="Vorige"
   >
     <ChevronLeft size={18} />
@@ -127,7 +145,7 @@
   <!-- next button -->
   <button
     on:click={next}
-    class="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center bg-white/70 text-secondary shadow-sm transition hover:bg-white hover:text-textcolor"
+    class="absolute right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center border border-line bg-white/85 text-secondary transition-colors hover:bg-white hover:text-textcolor"
     aria-label="Volgende"
   >
     <ChevronRight size={18} />
@@ -140,7 +158,7 @@
     {#each { length: totalSlides } as _, i}
       <button
         on:click={() => goTo(i)}
-        class="h-1.5 transition-all duration-300 {currentIndex === i ? 'w-6 bg-secondary' : 'w-1.5 bg-secondary/30'}"
+        class="h-1.5 transition-colors {currentIndex === i ? 'w-6 bg-primary' : 'w-1.5 bg-secondary/30'}"
         aria-label="Ga naar slide {i + 1}"
       ></button>
     {/each}

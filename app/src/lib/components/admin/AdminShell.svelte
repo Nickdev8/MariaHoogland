@@ -19,28 +19,28 @@
 	] as const;
 </script>
 
-<div class="min-h-screen bg-[#f5f7fb] text-neutral-900">
-	<header class="sticky top-0 z-30 border-b border-black/10 bg-white/90 backdrop-blur">
-		<div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
+<div class="min-h-screen bg-paper text-textcolor">
+	<header class="border-b border-line bg-white">
+		<div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 lg:px-8">
 			<div>
-				<p class="text-[0.65rem] uppercase tracking-[0.3em] text-neutral-400">Maria Hoogland</p>
-				<h1 class="mt-1 text-xl font-semibold tracking-tight text-neutral-950">{title}</h1>
+				<p class="text-sm text-secondary">Maria Hoogland</p>
+				<h1 class="mt-1 text-xl font-semibold text-textcolor">{title}</h1>
 				{#if subtitle}
-					<p class="mt-1 text-sm text-neutral-500">{subtitle}</p>
+					<p class="mt-1 text-sm text-secondary">{subtitle}</p>
 				{/if}
 			</div>
 
 			<div class="flex items-center gap-3">
 				<a
 					href="/"
-					class="rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-neutral-600 transition hover:border-neutral-400"
+					class="plain-action"
 				>
 					Bekijk site
 				</a>
 				<form method="post" action="/admin?/logout">
 					<button
 						type="submit"
-						class="rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-neutral-600 transition hover:border-neutral-400"
+						class="plain-action"
 					>
 						Log uit
 					</button>
@@ -48,15 +48,15 @@
 			</div>
 		</div>
 
-		<div class="mx-auto max-w-7xl px-6 pb-4">
-			<nav class="flex flex-wrap gap-2">
+		<div class="mx-auto max-w-7xl px-5 pb-3 lg:px-8">
+			<nav class="flex flex-wrap gap-1">
 				{#each links as link}
 					<a
 						href={link.href}
-						class={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] transition ${
+						class={`border px-3 py-2 text-sm transition-colors ${
 							active === link.key
-								? 'bg-secondary text-white'
-								: 'border border-black/10 bg-white text-neutral-600 hover:border-neutral-400'
+								? 'border-primary bg-primary text-white'
+								: 'border-line bg-white text-secondary hover:text-textcolor'
 						}`}
 					>
 						{link.label}
@@ -66,7 +66,7 @@
 		</div>
 	</header>
 
-	<main class="mx-auto max-w-7xl px-6 py-8">
+	<main class="mx-auto max-w-7xl px-5 py-8 lg:px-8">
 		<slot />
 	</main>
 </div>

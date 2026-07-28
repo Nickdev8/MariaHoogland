@@ -61,60 +61,60 @@
 	<AdminShell title="Footer bewerken" subtitle="Footertekst, links, socials en credits." active="footer">
 		<form id={formId} method="post" action="?/save" use:enhance={saveEnhancer} class="space-y-6">
 			<input type="hidden" name="payload" />
-			<section class="rounded-3xl border border-black/10 bg-white p-6">
-				<p class="section-eyebrow">Basis</p>
+			<section class="editor-panel">
+				<h2 class="editor-panel-title">Basis</h2>
 				<div class="mt-5 space-y-4">
 					<div>
-						<label for="footer-title" class="block text-sm font-medium text-neutral-700">Titel</label>
-						<input id="footer-title" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={footer.aboutTitle} />
+						<label for="footer-title" class="field-label">Titel</label>
+						<input id="footer-title" class="field mt-2" bind:value={footer.aboutTitle} />
 					</div>
 					<div>
-						<label for="footer-description" class="block text-sm font-medium text-neutral-700">Beschrijving</label>
-						<textarea id="footer-description" rows="3" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={footer.aboutDescription}></textarea>
+						<label for="footer-description" class="field-label">Beschrijving</label>
+						<textarea id="footer-description" rows="3" class="field mt-2" bind:value={footer.aboutDescription}></textarea>
 					</div>
 				</div>
 			</section>
 
-			<section class="rounded-3xl border border-black/10 bg-white p-6">
-				<p class="section-eyebrow">Snelle links</p>
+			<section class="editor-panel">
+				<h2 class="editor-panel-title">Snelle links</h2>
 				<div class="mt-5 space-y-4">
 					{#each footer.quickLinks as link, index}
 						<div class="grid gap-3 md:grid-cols-[1fr_1fr_auto]">
-							<input class="rounded-2xl border border-black/10 px-4 py-3" placeholder="Label" bind:value={link.label} />
-							<input class="rounded-2xl border border-black/10 px-4 py-3" placeholder="/link" bind:value={link.href} />
-							<button type="button" class="text-xs uppercase tracking-[0.2em] text-red-500" on:click={() => removeQuickLink(index)}>Verwijder</button>
+							<input class="field" placeholder="Label" bind:value={link.label} />
+							<input class="field" placeholder="/link" bind:value={link.href} />
+							<button type="button" class="text-sm font-medium text-red-600" on:click={() => removeQuickLink(index)}>Verwijder</button>
 						</div>
 					{/each}
-					<button type="button" class="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em]" on:click={addQuickLink}>+ Link</button>
+					<button type="button" class="plain-action" on:click={addQuickLink}>+ Link</button>
 				</div>
 			</section>
 
-			<section class="rounded-3xl border border-black/10 bg-white p-6">
-				<p class="section-eyebrow">Contact en socials</p>
+			<section class="editor-panel">
+				<h2 class="editor-panel-title">Contact en socials</h2>
 				<div class="mt-5 grid gap-4 md:grid-cols-2">
 					<div>
-						<label for="footer-email" class="block text-sm font-medium text-neutral-700">Contact e-mail</label>
-						<input id="footer-email" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={footer.contactEmail} />
+						<label for="footer-email" class="field-label">Contact e-mail</label>
+						<input id="footer-email" class="field mt-2" bind:value={footer.contactEmail} />
 					</div>
 					<div>
-						<label for="footer-phone" class="block text-sm font-medium text-neutral-700">Contact telefoon</label>
-						<input id="footer-phone" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={footer.contactPhone} />
+						<label for="footer-phone" class="field-label">Contact telefoon</label>
+						<input id="footer-phone" class="field mt-2" bind:value={footer.contactPhone} />
 					</div>
 				</div>
 				<div class="mt-5 space-y-4">
 					{#each footer.socials as social, index}
 						<div class="grid gap-3 md:grid-cols-[140px_1fr_1fr_auto]">
-							<select class="rounded-2xl border border-black/10 px-4 py-3" bind:value={social.icon}>
+							<select class="field" bind:value={social.icon}>
 								{#each socialIconOptions as option}
 									<option value={option}>{option}</option>
 								{/each}
 							</select>
-							<input class="rounded-2xl border border-black/10 px-4 py-3" placeholder="Label" bind:value={social.label} />
-							<input class="rounded-2xl border border-black/10 px-4 py-3" placeholder="https://" bind:value={social.href} />
-							<button type="button" class="text-xs uppercase tracking-[0.2em] text-red-500" on:click={() => removeSocial(index)}>Verwijder</button>
+							<input class="field" placeholder="Label" bind:value={social.label} />
+							<input class="field" placeholder="https://" bind:value={social.href} />
+							<button type="button" class="text-sm font-medium text-red-600" on:click={() => removeSocial(index)}>Verwijder</button>
 						</div>
 					{/each}
-					<button type="button" class="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em]" on:click={addSocial}>+ Social</button>
+					<button type="button" class="plain-action" on:click={addSocial}>+ Social</button>
 				</div>
 			</section>
 		</form>

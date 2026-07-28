@@ -1,8 +1,8 @@
 {
   "home": {
     "hero": {
-      "title": "Laten we samen uw droomhuis realiseren",
-      "description": "Ik vertaal uw wensen naar heldere ontwerpen, van eerste schets tot vergunning en uitvoering. Met rust, structuur en persoonlijke begeleiding werken we toe naar een plek die klopt.",
+      "title": "Ontwerp en tekenwerk voor woningen en verbouwingen",
+      "description": "Ik help particuliere opdrachtgevers met plannen die gebouwd moeten kunnen worden: indeling, daglicht, materiaal, vergunning en overleg met gemeente of aannemer.",
       "primaryCta": {
         "label": "Neem contact op",
         "href": "/contact"
@@ -24,8 +24,8 @@
       ]
     },
     "gallery": {
-      "title": "Impressies",
-      "description": "Details, materialen en lichtmomenten die de sfeer van mijn werk laten zien.",
+      "title": "Beelden uit projecten",
+      "description": "Een losse selectie van woningen, details en bouwkundige oplossingen uit mijn werk.",
       "images": [
         {
           "src": "/images/impressies/image15.jpeg",
@@ -98,8 +98,8 @@
       ]
     },
     "featured": {
-      "title": "Uitgelichte Projecten",
-      "description": "Een selectie die laat zien hoe visie, context en vakmanschap samenkomen."
+      "title": "Projecten",
+      "description": "Woningen, verbouwingen en uitbreidingen waarbij de bestaande situatie steeds het vertrekpunt is."
     },
     "stats": [
       {
@@ -113,14 +113,14 @@
         "suffix": "+"
       },
       {
-        "label": "Klanttevredenheid",
+        "label": "Werk via aanbeveling",
         "value": 98,
         "suffix": "%"
       }
     ],
     "testimonials": {
-      "title": "Wat klanten zeggen",
-      "description": "Lees hoe anderen de samenwerking met Maria Hoogland hebben ervaren.",
+      "title": "Reacties van opdrachtgevers",
+      "description": "Korte reacties van mensen met wie ik eerder heb gewerkt.",
       "items": [
         {
           "quote": "Ik werk al meer dan 10 jaar met Maria op verschillende projecten, van verbouwingen tot commerciële projecten. Altijd een prettige en professionele samenwerking.",
@@ -143,33 +143,33 @@
   },
   "about": {
     "introLabel": "Over Maria",
-    "title": "Persoonlijke, doordachte architectuur",
-    "description": "Ik ontwerp woningen en verbouwingen met aandacht voor de plek, de mensen en het dagelijks gebruik. Rust, helderheid en praktische keuzes vormen de basis van elk ontwerp.",
+    "title": "Een klein bureau voor wonen, verbouwen en vergunningen",
+    "description": "Ik werk aan woningen en kleine gebouwen in bestaande buurten. De vraag is vaak praktisch: meer ruimte, beter licht, een logische indeling of een plan dat door de vergunning komt.",
     "features": [
       {
         "icon": "Globe",
-        "title": "Architectuur met aandacht",
-        "description": "Ik zoek naar rust, proportie en logica in elke ingreep. Het ontwerp sluit aan op de context en versterkt het bestaande karakter van de woning."
+        "title": "Beginnen bij wat er staat",
+        "description": "Veel projecten starten met een bestaande woning. Ik kijk eerst naar constructie, maatvoering, daglicht en wat al goed werkt."
       },
       {
         "icon": "PenTool",
-        "title": "Verstandig bouwen",
-        "description": "Duurzaamheid betekent voor mij slimme keuzes in materiaal, energie en indeling. Zo ontstaat een huis dat lang mee kan en prettig blijft functioneren."
+        "title": "Keuzes die uitvoerbaar zijn",
+        "description": "Een goed plan moet niet alleen mooi ogen op papier. Het moet kloppen met budget, regelgeving, bouwmethode en dagelijks gebruik."
       },
       {
         "icon": "Users",
-        "title": "Samenwerken zonder ruis",
-        "description": "U krijgt heldere stappen, duidelijke keuzes en korte lijnen. Ik vertaal uw wensen naar een ontwerp dat klopt binnen planning en budget."
+        "title": "Korte lijnen",
+        "description": "U werkt direct met mij. Schetsen, tekeningen, overleg en aanpassingen lopen via één aanspreekpunt."
       },
       {
         "icon": "Lightbulb",
-        "title": "Van schets tot vergunning",
-        "description": "Ik begeleid het traject van eerste idee tot vergunning en uitvoering, met ervaring in renovaties, verbouwingen en nieuwbouw."
+        "title": "Van eerste plan tot dossier",
+        "description": "Ik maak ontwerp- en vergunningstekeningen en denk mee in de stappen richting gemeente, constructeur en aannemer."
       }
     ],
     "team": {
-      "title": "Maak kennis met de architecte",
-      "description": "Maria begeleidt ieder project persoonlijk, van kennismaking tot oplevering. U werkt direct met haar en profiteert van één helder aanspreekpunt.",
+      "title": "Maria Hoogland",
+      "description": "Ik ben architect en werk zelfstandig aan particuliere woningen, verbouwingen, dakopbouwen en kleinschalige nieuwbouw.",
       "members": [
         {
           "name": "Maria Hoogland",
@@ -184,11 +184,11 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "description": "Een selectie van mijn werk, van concept tot realisatie. Elk project vertelt een verhaal van samenwerking, precisie en vakmanschap."
+    "description": "Een overzicht van nieuwbouw, verbouwingen, renovaties en uitbreidingen. De projecten verschillen in schaal, maar draaien steeds om bruikbare ruimte."
   },
   "contact": {
     "title": "Neem contact op",
-    "description": "Ik bespreek graag uw plannen. Bel of mail gerust, of gebruik het formulier. Ik reageer meestal binnen twee werkdagen.",
+    "description": "Heeft u een woning, verbouwing of vergunningstraject waar u mee verder wilt? Stuur kort wat er speelt, dan kijk ik met u mee.",
     "address": {
       "lines": [
         "Lagedijk 10e",
@@ -207,7 +207,7 @@
   },
   "footer": {
     "aboutTitle": "Architectuur AMH",
-    "aboutDescription": "Karaktervolle woningen en rustige verbouwingen, met persoonlijke begeleiding van Maria Hoogland.",
+    "aboutDescription": "Ontwerp, tekenwerk en vergunningstrajecten voor woningen en kleinschalige gebouwen.",
     "quickLinks": [
       {
         "label": "Home",
@@ -271,8 +271,8 @@
       "slug": "verbouwing-garage-tot-woning",
       "category": "Verbouwing",
       "title": "Verbouwing garage tot woning – Haarlem Noord",
-      "subtitle": "Een oude garage omgetoverd tot een prachtige beneden- en bovenwoning.",
-      "descriptionMarkdown": "Een oude garage in Haarlem Noord is omgetoverd tot een prachtige beneden woning en een boven woning.\n\nEr is een hap uit gehaald, zodat er een tuin ontstond. Veel oude details zijn in het zicht gebleven en in ere hersteld.\n\nDe vloer is gevlinderd en er is een grote stalen pui geplaatst. Dit maakt het tot een moderne bijzondere woning.",
+      "subtitle": "Een voormalige garage kreeg ruimte voor twee woningen en een kleine tuin.",
+      "descriptionMarkdown": "Een oude garage in Haarlem Noord is verbouwd tot een benedenwoning en een bovenwoning.\n\nDoor een deel uit het volume te halen ontstond ruimte voor een tuin. Bestaande details zijn waar mogelijk zichtbaar gebleven en hersteld.\n\nDe gevlinderde vloer en grote stalen pui geven de begane grond veel licht en een directe relatie met buiten.",
       "mainImage": "/images/projects/image21.jpeg",
       "gallery": [
         "/images/projects/image19.jpeg",
@@ -288,8 +288,8 @@
       "slug": "woning-renovatie-haarlem-noord",
       "category": "Renovatie",
       "title": "Woning renovatie, uitbouw en dakopbouw – Haarlem Noord",
-      "subtitle": "Een ruime jaren '30 woning in de gewilde Kleverparkbuurt.",
-      "descriptionMarkdown": "Deze woning in Haarlem is volledig verbouwd. Er is een uitbouw en opbouw geplaatst, zodat het een ruime jaren 30 woning is geworden in de gewilde Kleverparkbuurt.\n\nDe grote woonkeuken met zicht op de tuin is het hart van het huis geworden. Waar plaats is voor een zeer grote tafel en een koopeiland.\n\nDoor een lichtstraat in het dak wordt het hele traphuis prachtig verlicht daar het daglicht.",
+      "subtitle": "Een jaren-30 woning kreeg meer ruimte aan de tuinzijde en bovenop.",
+      "descriptionMarkdown": "Deze woning in Haarlem is verbouwd met een uitbouw en dakopbouw.\n\nAan de tuinzijde is een grote woonkeuken gemaakt met ruimte voor een lange tafel en een kookeiland.\n\nEen lichtstraat brengt daglicht diep het trappenhuis in, waardoor ook het midden van de woning lichter wordt.",
       "mainImage": "/images/projects/image33.jpeg",
       "gallery": [
         "/images/projects/image26.jpeg",
@@ -306,8 +306,8 @@
       "slug": "uitbouw-haarlem",
       "category": "Uitbouw",
       "title": "Haarlemse Uitbouw",
-      "subtitle": "Een naadloze toevoeging aan een klassieke woning.",
-      "descriptionMarkdown": "Dit project omvatte het ontwerpen en realiseren van een moderne uitbouw die de leefruimte aanzienlijk vergrootte en meer daglicht in de woning bracht.\n\nDe uitdaging was om de moderne esthetiek te laten harmoniëren met het klassieke karakter van het bestaande huis.",
+      "subtitle": "Een uitbouw die extra woonruimte maakt zonder de bestaande woning te overschreeuwen.",
+      "descriptionMarkdown": "Voor deze woning is een uitbouw ontworpen die meer leefruimte en daglicht toevoegt.\n\nDe aansluiting op het bestaande huis was bepalend: nieuw werk waar het kan, terughoudend waar het moet.",
       "mainImage": "/images/projects/image24.jpeg",
       "gallery": [
         "/images/projects/image24.jpeg",
@@ -322,8 +322,8 @@
       "slug": "woning-ijburg",
       "category": "Nieuwbouw",
       "title": "Moderne Woning op IJburg",
-      "subtitle": "Licht en ruimte in een nieuwbouwomgeving.",
-      "descriptionMarkdown": "Ontwerp van een volledige nieuwbouwwoning op IJburg, Amsterdam.\n\nDe focus lag op het creëren van een open en lichte leefomgeving met een sterke relatie tussen interieur en exterieur.\n\nDuurzame materialen en energiezuinige oplossingen stonden centraal.",
+      "subtitle": "Een nieuwbouwwoning met open vloeren en zichtlijnen naar buiten.",
+      "descriptionMarkdown": "Ontwerp voor een nieuwbouwwoning op IJburg in Amsterdam.\n\nDe indeling is gericht op open woonruimtes, daglicht en contact met buiten.\n\nMateriaalkeuzes en energiezuinige oplossingen zijn vanaf het begin meegenomen in het ontwerp.",
       "mainImage": "/images/projects/image20.jpeg",
       "gallery": [],
       "caption": "De vide creëert een gevoel van ruimtelijkheid en verbindt de verdiepingen.",

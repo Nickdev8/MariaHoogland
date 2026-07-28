@@ -74,7 +74,7 @@
 			hideRetryButton: true,
 			hideCancelButton: true,
 			hidePauseResumeButton: true,
-			showProgressDetails: true,
+			hideProgressDetails: false,
 			note: `Max ${MAX_SIZE_LABEL}. ${SUPPORTED_FORMAT_LABEL}.`
 		});
 
@@ -102,7 +102,7 @@
 	});
 
 	onDestroy(() => {
-		uppy?.close({ reason: 'unmount' });
+		uppy?.destroy();
 		uppy = null;
 	});
 </script>
@@ -129,16 +129,16 @@
 
 <style>
 	.uppy-shell :global(.uppy-Dashboard) {
-		--uppy-theme-color: #e11d48;
-		--uppy-theme-background-color: #fff7f9;
+		--uppy-theme-color: #3e4637;
+		--uppy-theme-background-color: #ffffff;
 		--uppy-dashboard-padding: 12px;
-		--uppy-border-radius: 16px;
+		--uppy-border-radius: 6px;
 		--uppy-font-family: inherit;
 	}
 
 	.uppy-shell :global(.uppy-Dashboard-inner) {
-		border: 1px dashed #e2e8f0;
-		background: #fff7f9;
+		border: 1px dashed #d8d3c8;
+		background: #fff;
 	}
 
 	.uppy-shell :global(.uppy-Dashboard-AddFiles-title) {
@@ -149,13 +149,11 @@
 
 	.uppy-shell :global(.uppy-Dashboard-note) {
 		font-size: 0.7rem;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		color: #9ca3af;
+		color: #68645d;
 	}
 
 	.uppy-shell :global(.uppy-Dashboard-browse) {
-		color: #be123c;
+		color: #3e4637;
 		text-decoration: underline;
 		text-underline-offset: 2px;
 	}

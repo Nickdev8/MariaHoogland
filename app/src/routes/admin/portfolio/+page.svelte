@@ -43,51 +43,10 @@
 	let successMessage = formState?.success ? 'Wijzigingen opgeslagen.' : '';
 	let errorMessage = formState?.error ?? '';
 	let pending = false;
-	let toastVisible = false;
-	let toastMessage = '';
-	let toastTone: 'info' | 'success' | 'error' = 'info';
-	let toastTimeout: ReturnType<typeof setTimeout> | undefined;
 	const draftKey = 'admin:draft:portfolio';
 	const formId = 'admin-portfolio-form';
 	let draftTimeout: ReturnType<typeof setTimeout> | undefined;
 	$: isDirty = content ? serializeDraft(content) !== baselineSnapshot : false;
-	$: toastStyles =
-		toastTone === 'success'
-			? 'bg-emerald-600 text-white shadow-[0_20px_45px_rgba(16,185,129,0.35)]'
-			: toastTone === 'error'
-				? 'bg-red-500 text-white shadow-[0_20px_45px_rgba(239,68,68,0.35)]'
-				: 'bg-neutral-900 text-white shadow-[0_26px_65px_rgba(15,23,42,0.32)]';
-	$: toastAccent =
-		toastTone === 'success'
-			? 'bg-emerald-300'
-			: toastTone === 'error'
-				? 'bg-red-300'
-				: 'bg-white/80';
-
-	const clearToastTimeout = () => {
-		if (toastTimeout) {
-			clearTimeout(toastTimeout);
-			toastTimeout = undefined;
-		}
-	};
-
-	const showToast = (
-		message: string,
-		tone: 'info' | 'success' | 'error',
-		autoHide = true,
-		duration = 2600
-	) => {
-		toastMessage = message;
-		toastTone = tone;
-		toastVisible = true;
-		clearToastTimeout();
-		if (autoHide) {
-			toastTimeout = setTimeout(() => {
-				toastVisible = false;
-				toastTimeout = undefined;
-			}, duration);
-		}
-	};
 
 	const preparePayload = (event: Event) => {
 		if (!content) return;
@@ -103,7 +62,6 @@
 		errorMessage = '';
 		pending = true;
 		preparePayload(event);
-		showToast('Opslaan...', 'info', false);
 	};
 
 	const saveEnhancer: SubmitFunction = ({ formData }) => {
@@ -122,13 +80,11 @@
 				errorMessage = '';
 				clearDraft();
 				baselineSnapshot = content ? serializeDraft(content) : '';
-				showToast('Opgeslagen!', 'success');
 			} else if (result.type === 'failure') {
 				await update({ reset: false, invalidateAll: false });
 				successMessage = '';
 				errorMessage =
 					typeof result.data?.error === 'string' ? result.data.error : 'Opslaan mislukt.';
-				showToast(errorMessage, 'error', false);
 			} else {
 				await update();
 			}
@@ -147,11 +103,12 @@
 
 	const scheduleDraftSave = () => {
 		if (!content || typeof window === 'undefined') return;
+		const nextDraft = content;
 		if (draftTimeout) {
 			clearTimeout(draftTimeout);
 		}
 		draftTimeout = setTimeout(() => {
-			window.localStorage.setItem(draftKey, serializeDraft(content));
+			window.localStorage.setItem(draftKey, serializeDraft(nextDraft));
 		}, 600);
 	};
 
@@ -168,7 +125,7 @@
 			try {
 				const parsed = JSON.parse(draft) as PortfolioDraft;
 				content = normalizeContent({ ...data.content, ...parsed } as SiteContent);
-				showToast('Concept hersteld.', 'info');
+				successMessage = 'Concept hersteld.';
 				baselineSnapshot = serverSnapshot;
 				return;
 			} catch {
@@ -189,7 +146,7 @@
 
 {#if !data.authenticated}
 	<div class="min-h-screen bg-neutral-50 text-neutral-900 flex items-start justify-center px-6 pt-16">
-		<div class="w-full max-w-md rounded-3xl bg-white border border-neutral-200 p-8 shadow-sm">
+		<div class="w-full max-w-md border border-line bg-white p-8 shadow-sm">
 			<h1 class="text-2xl font-semibold">Admin login</h1>
 			<p class="mt-2 text-sm text-neutral-500">Log in om het portfolio te beheren.</p>
 			<form method="post" action="?/login" class="mt-6 space-y-4">
@@ -199,7 +156,7 @@
 						type="password"
 						name="password"
 						required
-						class="w-full rounded-xl bg-white border border-neutral-200 px-4 py-3 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-300"
+						class="field"
 					/>
 				</label>
 				{#if form?.error}
@@ -207,7 +164,7 @@
 				{/if}
 				<button
 					type="submit"
-					class="w-full rounded-xl bg-neutral-900 px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white hover:bg-neutral-800"
+					class="button-primary w-full"
 				>
 					Inloggen
 				</button>
@@ -226,22 +183,22 @@
 		>
 			<input type="hidden" name="payload" />
 
-			<section class="rounded-3xl border border-neutral-200 bg-white/95 p-6 sm:p-8">
+			<section class="editor-panel">
 				<h2 class="text-lg font-semibold">Portfolio intro</h2>
 				<div class="mt-4 space-y-4">
 					<label class="space-y-2 text-sm">
-						<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Titel</span>
+						<span class="field-label">Titel</span>
 						<input
-							class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
+							class="field"
 							bind:value={content.portfolio.title}
 							on:input={markDirty}
 						/>
 					</label>
 					<label class="space-y-2 text-sm">
-						<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Beschrijving</span>
+						<span class="field-label">Beschrijving</span>
 						<textarea
 							rows="3"
-							class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
+							class="field"
 							bind:value={content.portfolio.description}
 							on:input={markDirty}
 						></textarea>
@@ -263,7 +220,7 @@
 				<form method="post" action="?/create">
 					<button
 						type="submit"
-						class="rounded-full border border-neutral-200 px-4 py-2 text-xs uppercase tracking-[0.25em]"
+						class="plain-action"
 					>
 						+ Nieuw project
 					</button>
@@ -272,10 +229,10 @@
 
 			<div class="space-y-4">
 				{#each content.projects as project, index}
-					<div class="rounded-3xl border border-neutral-200 bg-white/95 p-6 sm:p-8">
+					<div class="editor-panel">
 						<div class="flex flex-wrap items-start justify-between gap-4">
 							<div class="space-y-2">
-								<p class="text-xs uppercase tracking-[0.25em] text-neutral-400">
+								<p class="field-label">
 									{project.category || 'Categorie'}
 								</p>
 								<h3 class="text-base font-semibold">
@@ -287,10 +244,10 @@
 								<p class="text-xs text-neutral-400">Slug: {project.slug}</p>
 							</div>
 							<div class="flex flex-wrap items-center gap-2">
-								<label class="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-600">
+								<label class="inline-flex items-center gap-2 border border-line px-3 py-2 text-sm font-medium text-secondary">
 									<input
 										type="checkbox"
-										class="h-4 w-4 rounded border-neutral-300 text-secondary focus:ring-secondary"
+										class="h-4 w-4 border-line text-secondary focus:ring-secondary"
 										bind:checked={project.featured}
 										on:change={markDirty}
 									/>
@@ -298,13 +255,13 @@
 								</label>
 								<a
 									href={`/${project.slug}`}
-									class="rounded-full border border-neutral-200 px-4 py-2 text-xs uppercase tracking-[0.25em] text-neutral-600 hover:border-neutral-400"
+									class="plain-action"
 								>
 									Bekijk
 								</a>
 								<a
 									href={`/admin/portfolio/${project.slug}`}
-									class="rounded-full border border-neutral-200 px-4 py-2 text-xs uppercase tracking-[0.25em] text-neutral-600 hover:border-neutral-400"
+									class="plain-action"
 								>
 									Bewerk
 								</a>
@@ -312,7 +269,7 @@
 									<input type="hidden" name="slug" value={project.slug} />
 									<button
 										type="submit"
-										class="rounded-full border border-red-200 px-4 py-2 text-xs uppercase tracking-[0.25em] text-red-600 hover:border-red-300"
+										class="border border-red-200 px-3 py-2 text-sm font-medium text-red-600 hover:border-red-300"
 										on:click={(event) => {
 											if (!confirm(`Verwijder project "${project.title || project.slug}"?`)) {
 												event.preventDefault();
@@ -331,11 +288,5 @@
 
 		<AdminSaveDock dirty={isDirty} {pending} {formId} {successMessage} {errorMessage} />
 
-		{#if toastVisible}
-			<div class={`fixed bottom-24 right-6 z-50 max-w-xs rounded-2xl px-5 py-4 text-sm ${toastStyles}`}>
-				<div class={`mb-2 h-1 w-8 rounded-full ${toastAccent}`}></div>
-				{toastMessage}
-			</div>
-		{/if}
 	</AdminShell>
 {/if}

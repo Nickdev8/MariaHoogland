@@ -1,21 +1,19 @@
 <svelte:head>
-  <title>404 - Page Not Found</title>
+  <title>Pagina niet gevonden</title>
 </svelte:head>
 
-<div class="mt-8">
-    <div class="text-center w-full">
-      <h1 class="text-9xl font-extrabold text-gray-800">404</h1>
-      <h2 class="mt-4 text-2xl font-semibold text-gray-700">
-        Oops! Page not found.
-      </h2>
-      <p class="mt-2 text-gray-600">
-        Looks like it still had to be designed
-      </p>
-      <a
-        href="/"
-        class="mt-6 inline-block px-6 py-3 bg-black text-white font-medium rounded-lg shadow hover:bg-indigo-700 transition-colors duration-200"
-      >
-        Go back home
-      </a>
+<div class="bg-paper">
+  <div class="mx-auto flex min-h-[calc(100svh-4rem)] max-w-3xl flex-col justify-center px-5 py-16">
+    <p class="text-sm text-secondary">404</p>
+    <h1 class="mt-3 text-4xl font-semibold text-textcolor">
+      Pagina niet gevonden
+    </h1>
+    <p class="mt-4 max-w-xl text-base leading-7 text-secondary">
+      De pagina die u zoekt bestaat niet meer of is verplaatst.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/" class="button-primary">Naar home</a>
+      <a href="/portfolio" class="button-secondary">Bekijk portfolio</a>
     </div>
+  </div>
 </div>
