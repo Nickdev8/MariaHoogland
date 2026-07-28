@@ -24,5 +24,6 @@ vite.config.ts.timestamp-*
 /static/videos/
 /static/favicon.png
 /static/logo.png
+/src/lib/mainpageimages/
 
 ecosystem.*

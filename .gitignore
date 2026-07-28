@@ -24,6 +24,7 @@ app/static/images/
 app/static/videos/
 app/static/favicon.png
 app/static/logo.png
+app/src/lib/mainpageimages/
 storage/uploads/
 
 ecosystem.*
