@@ -18,6 +18,31 @@
 </script>
 
 <svelte:head>
+	<title>Contact opnemen met architect Maria Hoogland | Spaarndam</title>
+	<meta
+		name="description"
+		content="Neem contact op met architect Maria Hoogland in Spaarndam voor een verbouwing, nieuwbouwproject of vergunningstraject."
+	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Contact opnemen met architect Maria Hoogland | Spaarndam" />
+	<meta
+		property="og:description"
+		content="Neem contact op voor een verbouwing, nieuwbouwproject of vergunningstraject."
+	/>
+	<meta
+		property="og:image"
+		content="https://mariahoogland.nl/images/people/maria-garden-portrait.webp"
+	/>
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Contact opnemen met architect Maria Hoogland | Spaarndam" />
+	<meta
+		name="twitter:description"
+		content="Neem contact op voor een verbouwing, nieuwbouwproject of vergunningstraject."
+	/>
+	<meta
+		name="twitter:image"
+		content="https://mariahoogland.nl/images/people/maria-garden-portrait.webp"
+	/>
 	{#if turnstileSiteKey}<script
 			src="https://challenges.cloudflare.com/turnstile/v0/api.js"
 			async
@@ -26,36 +51,26 @@
 </svelte:head>
 
 <section
-	class="min-h-[calc(100svh-3.5rem)] bg-[#f7f9fc] px-4 py-[clamp(3.5rem,9vw,8rem)] text-black sm:px-6"
+	class="min-h-[calc(100svh-3.5rem)] bg-[#f7f9fc] px-6 py-16 text-textcolor sm:px-8 sm:py-24"
 >
-	<div class="mx-auto max-w-[1180px]">
-		<div class="max-w-[780px]">
-			<p class="text-xs font-medium tracking-[0.08em] text-secondary uppercase">Contact</p>
-			<h1 class="mt-4 text-[clamp(2.8rem,6.2vw,6rem)] leading-[.95] font-medium tracking-[-.06em]">
-				{contact.title}
-			</h1>
-			<p class="mt-6 max-w-[570px] text-[1.1rem] leading-[1.65] text-secondary">
-				{contact.description}
-			</p>
-		</div>
-		<div
-			class="mt-[clamp(4rem,10vw,7.875rem)] grid gap-[clamp(3.5rem,11vw,10.625rem)] lg:grid-cols-[minmax(260px,.75fr)_minmax(0,1.25fr)]"
-		>
+	<div class="mx-auto max-w-7xl">
+		<h1 class="sr-only">Contact opnemen met architect Maria Hoogland</h1>
+		<div class="grid gap-16 lg:grid-cols-[minmax(14rem,.65fr)_minmax(0,1.35fr)] lg:gap-24">
 			<aside class="text-secondary" aria-label="Contactgegevens">
 				<div class="border-t border-black/15">
 					<div class="grid grid-cols-[20px_1fr] gap-3.5 border-b border-black/15 py-5">
 						<MapPin size={19} strokeWidth={1.5} aria-hidden="true" />
 						<div>
-							<h2 class="text-base font-semibold text-black">Adres</h2>
+							<h2 class="text-base font-semibold text-textcolor">Adres</h2>
 							<p class="mt-1 text-sm leading-6">{contact.address.lines.join(', ')}</p>
 						</div>
 					</div>
 					<div class="grid grid-cols-[20px_1fr] gap-3.5 border-b border-black/15 py-5">
 						<PhoneIcon size={19} strokeWidth={1.5} aria-hidden="true" />
 						<div>
-							<h2 class="text-base font-semibold text-black">Telefoon</h2>
+							<h2 class="text-base font-semibold text-textcolor">Telefoon</h2>
 							<a
-								class="mt-1 block text-sm leading-6 hover:text-black hover:underline hover:underline-offset-3"
+								class="mt-1 block text-sm leading-6 hover:text-textcolor hover:underline hover:underline-offset-3"
 								href={`tel:${contact.phone}`}>{contact.phone}</a
 							>
 						</div>
@@ -63,29 +78,23 @@
 					<div class="grid grid-cols-[20px_1fr] gap-3.5 border-b border-black/15 py-5">
 						<MailIcon size={19} strokeWidth={1.5} aria-hidden="true" />
 						<div>
-							<h2 class="text-base font-semibold text-black">E-mail</h2>
+							<h2 class="text-base font-semibold text-textcolor">E-mail</h2>
 							<a
-								class="mt-1 block text-sm leading-6 hover:text-black hover:underline hover:underline-offset-3"
+								class="mt-1 block text-sm leading-6 hover:text-textcolor hover:underline hover:underline-offset-3"
 								href={`mailto:${contact.email}`}>{contact.email}</a
 							>
 						</div>
 					</div>
 				</div>
 				{#if contact.businessDetails.length}<div class="mt-8">
-						<h2 class="text-base font-semibold text-black">Bedrijfsgegevens</h2>
+						<h2 class="text-base font-semibold text-textcolor">Bedrijfsgegevens</h2>
 						{#each contact.businessDetails as detail}<p class="mt-1 text-sm leading-5">
 								{detail}
 							</p>{/each}
 					</div>{/if}
 			</aside>
 
-			<form method="POST" use:enhance class="border-t border-black pt-[18px]">
-				<div class="mb-[34px]">
-					<h2 class="text-base font-semibold">Vertel over uw plan</h2>
-					<p class="mt-2 leading-6 text-secondary">
-						Een korte omschrijving is genoeg om het gesprek te beginnen.
-					</p>
-				</div>
+			<form method="POST" use:enhance class="border-t border-black/20 pt-5">
 				<div class="grid gap-x-[18px] gap-y-4 sm:grid-cols-2">
 					<label class="block"
 						><span class="text-sm font-medium">Naam</span><input
@@ -155,7 +164,7 @@
 						Captcha is nog niet ingesteld. Voeg eerst de Turnstile-sleutels toe aan de omgeving.
 					</p>{/if}
 				<button
-					class="mt-7 border border-secondary bg-secondary px-[18px] py-3 text-sm text-white transition-colors hover:bg-transparent hover:text-black disabled:cursor-not-allowed disabled:opacity-50"
+					class="mt-7 border border-secondary bg-secondary px-[18px] py-3 text-sm text-white transition-colors hover:bg-transparent hover:text-textcolor disabled:cursor-not-allowed disabled:opacity-50"
 					type="submit"
 					disabled={!turnstileSiteKey}>Bericht versturen</button
 				>

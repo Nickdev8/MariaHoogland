@@ -14,7 +14,7 @@
 			"backgroundImage": "/images/hero/architectural-linework.png",
 			"images": [
 				{
-					"src": "/images/people/maria-garden-portrait.jpg",
+					"src": "/images/people/maria-garden-portrait.webp",
 					"alt": "Portret van architect Maria Hoogland"
 				},
 				{
@@ -29,71 +29,71 @@
 			"images": [
 				{
 					"src": "/images/projects/ijburg-riet-eiland/bathroom-water-view.jpeg",
-					"alt": "Impressie 15"
+					"alt": "Badkamer met uitzicht over het water in een woning op IJburg"
 				},
 				{
 					"src": "/images/projects/ijburg-riet-eiland/kitchen-dining.jpeg",
-					"alt": "Impressie 16"
+					"alt": "Woonkeuken in een nieuwbouwwoning op IJburg"
 				},
 				{
 					"src": "/images/projects/ijburg-riet-eiland/brick-house-street-view.jpeg",
-					"alt": "Impressie 17"
+					"alt": "Bakstenen gevel van een nieuwbouwwoning op IJburg"
 				},
 				{
 					"src": "/images/projects/ijburg-riet-eiland/brick-house-entrance.jpeg",
-					"alt": "Impressie 18"
+					"alt": "Entree van een moderne woning op IJburg"
 				},
 				{
 					"src": "/images/projects/garagewoning-haarlem-noord/kitchen-island.jpeg",
-					"alt": "Impressie 19"
+					"alt": "Keuken met eiland in een verbouwde garagewoning in Haarlem Noord"
 				},
 				{
 					"src": "/images/projects/garagewoning-haarlem-noord/kitchen-garden-view.jpeg",
-					"alt": "Impressie 2"
+					"alt": "Woonkeuken met zicht op de tuin in Haarlem Noord"
 				},
 				{
 					"src": "/images/projects/garagewoning-haarlem-noord/rooflight.jpeg",
-					"alt": "Impressie 20"
+					"alt": "Daklicht boven de woonruimte in een garagewoning"
 				},
 				{
 					"src": "/images/projects/garagewoning-haarlem-noord/living-room-steel-doors.jpeg",
-					"alt": "Impressie 21"
+					"alt": "Woonruimte met stalen deuren in een garagewoning in Haarlem Noord"
 				},
 				{
 					"src": "/images/projects/garagewoning-haarlem-noord/terrace-steel-doors.jpeg",
-					"alt": "Impressie 22"
+					"alt": "Terras met stalen deuren bij een verbouwde garagewoning"
 				},
 				{
 					"src": "/images/projects/garagewoning-haarlem-noord/garden-courtyard.jpeg",
-					"alt": "Impressie 23"
+					"alt": "Groene binnentuin bij een woning in Haarlem Noord"
 				},
 				{
 					"src": "/images/projects/garagewoning-haarlem-noord/interior-steel-doors.jpeg",
-					"alt": "Impressie 24"
+					"alt": "Interieur met stalen deuren en daglicht in Haarlem Noord"
 				},
 				{
 					"src": "/images/projects/renovatie-haarlem-noord/street-facade.jpeg",
-					"alt": "Impressie 27"
+					"alt": "Straatgevel van een gerenoveerde jaren dertig woning in Haarlem Noord"
 				},
 				{
 					"src": "/images/projects/renovatie-haarlem-noord/kitchen-garden.jpeg",
-					"alt": "Impressie 31"
+					"alt": "Woonkeuken met tuinzicht na een renovatie in Haarlem Noord"
 				},
 				{
 					"src": "/images/projects/renovatie-haarlem-noord/garden-patio.jpeg",
-					"alt": "Impressie 32"
+					"alt": "Tuin en patio bij een woningrenovatie in Haarlem Noord"
 				},
 				{
 					"src": "/images/projects/renovatie-haarlem-noord/kitchen.jpeg",
-					"alt": "Impressie 33"
+					"alt": "Keuken in een gerenoveerde woning in Haarlem Noord"
 				},
 				{
 					"src": "/images/projects/ijburg-riet-eiland/brick-house-exterior.jpeg",
-					"alt": "Impressie 4"
+					"alt": "Exterieur van een moderne nieuwbouwwoning op IJburg"
 				},
 				{
 					"src": "/images/projects/garagewoning-haarlem-noord/living-room-steel-doors-alt.jpeg",
-					"alt": "Impressie 6"
+					"alt": "Stalen deuren en lichtinval in een woning in Haarlem Noord"
 				}
 			]
 		},
@@ -175,7 +175,7 @@
 					"name": "Maria Hoogland",
 					"role": "Oprichter & Architect",
 					"image": {
-						"src": "/images/people/maria-sunset-portrait.jpg",
+						"src": "/images/people/maria-sunset-portrait-cropped.webp",
 						"alt": "Maria Hoogland bij zonsondergang"
 					}
 				}
@@ -219,8 +219,8 @@
 				"href": "/contact"
 			}
 		],
-		"contactEmail": "info@mariahoogland.nl",
-		"contactPhone": "+31 6 457 760 92",
+		"contactEmail": "architect@mariahoogland.nl",
+		"contactPhone": "+31 6 457 760 29",
 		"socials": [
 			{
 				"label": "LinkedIn",
@@ -245,7 +245,10 @@
 			"gallery": [
 				"/images/projects/turnhal-hlc/facade-elevation.jpeg",
 				"/images/projects/turnhal-hlc/ground-floor-plan.jpeg"
-			]
+			],
+			"caption": "",
+			"featured": true,
+			"testimonials": []
 		},
 		{
 			"slug": "nieuwbouw-woning-ijburg",
@@ -262,12 +265,14 @@
 				"/images/projects/ijburg-riet-eiland/brick-house-street-view.jpeg",
 				"/images/projects/ijburg-riet-eiland/brick-house-entrance.jpeg"
 			],
-			"featured": true
+			"featured": true,
+			"caption": "",
+			"testimonials": []
 		},
 		{
 			"slug": "verbouwing-garage-tot-woning",
 			"category": "Verbouwing",
-			"title": "Verbouwing garage tot woning – Haarlem Noord",
+			"title": "Verbouwing garage tot woning Haarlem Noord",
 			"subtitle": "Een oude garage omgetoverd tot een prachtige beneden- en bovenwoning.",
 			"descriptionMarkdown": "Een oude garage in Haarlem Noord is omgetoverd tot een prachtige beneden woning en een boven woning.\n\nEr is een hap uit gehaald, zodat er een tuin ontstond. Veel oude details zijn in het zicht gebleven en in ere hersteld.\n\nDe vloer is gevlinderd en er is een grote stalen pui geplaatst. Dit maakt het tot een moderne bijzondere woning.",
 			"mainImage": "/images/projects/garagewoning-haarlem-noord/living-room-steel-doors.jpeg",
@@ -279,7 +284,9 @@
 				"/images/projects/garagewoning-haarlem-noord/interior-steel-doors.jpeg",
 				"/images/projects/garagewoning-haarlem-noord/elevation-drawing.png"
 			],
-			"featured": true
+			"featured": false,
+			"caption": "",
+			"testimonials": []
 		},
 		{
 			"slug": "woning-renovatie-haarlem-noord",
@@ -297,7 +304,9 @@
 				"/images/projects/renovatie-haarlem-noord/kitchen-garden.jpeg",
 				"/images/projects/renovatie-haarlem-noord/garden-patio.jpeg"
 			],
-			"featured": true
+			"featured": false,
+			"caption": "",
+			"testimonials": []
 		},
 		{
 			"slug": "uitbouw-haarlem",
@@ -313,7 +322,8 @@
 				"/images/projects/garagewoning-haarlem-noord/garden-courtyard.jpeg"
 			],
 			"caption": "De stalen deuren zorgen voor een sterke visuele verbinding met de tuin.",
-			"featured": true
+			"featured": false,
+			"testimonials": []
 		},
 		{
 			"slug": "woning-ijburg",
@@ -324,7 +334,8 @@
 			"mainImage": "/images/projects/garagewoning-haarlem-noord/rooflight.jpeg",
 			"gallery": [],
 			"caption": "De vide creëert een gevoel van ruimtelijkheid en verbindt de verdiepingen.",
-			"featured": true
+			"featured": false,
+			"testimonials": []
 		}
 	]
 }

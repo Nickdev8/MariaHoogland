@@ -4,66 +4,103 @@
 	export let data: { about: AboutContent };
 	const maria = data.about.team.members[0];
 	const story = {
-		introLabel: 'Over Maria Hoogland',
-		title: 'Een persoonlijk bureau met een heldere geschiedenis',
-		description:
-			'Deze pagina wordt de rustige introductie van Maria Hoogland en Architectuur AMH. Hier vertellen we straks wie Maria is, hoe het bureau is ontstaan en waarom persoonlijke begeleiding, duidelijke lijnen en zorgvuldig ontwerpen al jaren de basis vormen van de praktijk.'
+		introLabel: data.about.introLabel,
+		title: data.about.title,
+		description: data.about.description
 	};
 	const historyText = [
-		'Hier komt straks een kort hoofdstuk over de geschiedenis van Architectuur AMH: hoe Maria Hoogland haar bureau heeft opgebouwd, welke ervaringen daarbij bepalend waren en hoe daaruit een persoonlijke ontwerppraktijk is ontstaan.',
-		'Daarnaast is dit de plek voor een tweede alinea over de ontwikkeling van het bureau door de jaren heen, met ruimte voor de visie van nu en de manier waarop Maria opdrachtgevers vandaag begeleidt.'
+		'Maria Hoogland is ir. ing. architect en begeleidt opdrachtgevers persoonlijk bij verbouwingen, nieuwbouw, woningrenovaties en vergunningstrajecten. Vanuit Spaarndam werkt zij aan projecten in Noord-Holland, waaronder Haarlem en Amsterdam.',
+		'Een goed ontwerp begint met luisteren: naar de plek, de mensen en wat een huis of gebouw in het dagelijks leven moet kunnen. Maria vertaalt die uitgangspunten naar heldere keuzes, tekeningen en een traject dat van eerste idee tot uitvoering overzichtelijk blijft.'
 	];
-	const bio = 'Persoonlijke begeleiding, heldere keuzes en rustige architectuur.';
+	const bio = 'Persoonlijke begeleiding van eerste idee tot uitvoering.';
 </script>
 
-<section class="bg-[#f5f8fc]">
-	<div class="mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-7xl items-center px-6 py-10 lg:px-8">
-		<div class="grid w-full gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-			<div class="max-w-2xl">
-				<p class="section-eyebrow">{story.introLabel}</p>
-				<h1 class="mt-4 max-w-xl text-4xl font-semibold tracking-tight text-textcolor sm:text-5xl">
-					{story.title}
-				</h1>
-				<p class="mt-6 max-w-xl text-base leading-8 text-secondary sm:text-lg">
-					{story.description}
-				</p>
+<svelte:head>
+	<title>Over Maria Hoogland | Architect in Spaarndam</title>
+	<meta
+		name="description"
+		content="Maak kennis met Maria Hoogland, ir. ing. architect in Spaarndam. Persoonlijke begeleiding voor verbouwingen, nieuwbouw, woningrenovaties en vergunningen."
+	/>
+	<meta property="og:type" content="profile" />
+	<meta property="og:title" content="Over Maria Hoogland | Architect in Spaarndam" />
+	<meta
+		property="og:description"
+		content="Maak kennis met Maria Hoogland, ir. ing. architect voor verbouwingen, nieuwbouw en vergunningen."
+	/>
+	<meta
+		property="og:image"
+		content="https://mariahoogland.nl/images/people/maria-sunset-portrait-cropped.webp"
+	/>
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Over Maria Hoogland | Architect in Spaarndam" />
+	<meta
+		name="twitter:description"
+		content="Persoonlijke begeleiding voor verbouwingen, nieuwbouw en vergunningen."
+	/>
+	<meta
+		name="twitter:image"
+		content="https://mariahoogland.nl/images/people/maria-sunset-portrait-cropped.webp"
+	/>
+</svelte:head>
 
-				<div class="mt-10 border-t border-black/10 pt-8">
-					<div class="max-w-xl space-y-5">
-						{#each historyText as paragraph}
-							<p class="text-sm leading-7 text-secondary sm:text-base">
-								{paragraph}
-							</p>
-						{/each}
-					</div>
-				</div>
-			</div>
+<section class="bg-[#f5f8fc] px-6 py-16 sm:px-8 sm:py-24">
+	<div
+		class="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,.72fr)] lg:gap-20"
+	>
+		<div class="max-w-3xl">
+			<p class="section-eyebrow">{story.introLabel}</p>
+			<h1 class="mt-4 max-w-2xl text-4xl font-semibold tracking-tight text-textcolor sm:text-5xl">
+				{story.title}
+			</h1>
+			<p class="mt-6 max-w-2xl text-base leading-8 text-secondary sm:text-lg">
+				{story.description}
+			</p>
 
-			<div class="lg:justify-self-end">
-				<div class="grid gap-5">
-					<div class="relative overflow-hidden rounded-xl bg-[#e8eef6]">
-						<img
-							class="aspect-[4/4.8] w-full object-cover object-[center_42%]"
-							src={maria?.image.src}
-							alt={maria?.image.alt ?? 'Portret van Maria Hoogland'}
-						/>
-					</div>
-
-					<div class="border-t border-black/10 pt-5">
-						<div>
-							<p class="text-[0.68rem] font-light tracking-[0.28em] text-secondary uppercase">
-								Architect
-							</p>
-							<h2 class="mt-2 text-2xl font-semibold tracking-tight text-textcolor sm:text-[2rem]">
-								{maria?.name ?? 'Maria Hoogland'}
-							</h2>
-						</div>
-						<p class="mt-3 max-w-sm text-sm leading-7 text-secondary">
-							{bio}
-						</p>
-					</div>
+			<div class="mt-10 border-t border-black/10 pt-8">
+				<div class="max-w-2xl space-y-5">
+					{#each historyText as paragraph}
+						<p class="text-sm leading-7 text-secondary sm:text-base">{paragraph}</p>
+					{/each}
 				</div>
 			</div>
 		</div>
+
+		<aside class="flex h-full flex-col gap-5" aria-label="Portret en video van Maria Hoogland">
+			<div class="aspect-video overflow-hidden rounded-lg bg-black">
+				<video
+					class="h-full w-full bg-black object-cover"
+					controls
+					preload="metadata"
+					playsinline
+					aria-label="Video van Maria Hoogland"
+				>
+					<source src="/videos/linkedin-video.mp4" type="video/mp4" />
+					<track
+						kind="captions"
+						src="/videos/linkedin-video.nl.vtt"
+						srclang="nl"
+						label="Nederlands"
+					/>
+					Uw browser ondersteunt deze video niet.
+				</video>
+			</div>
+
+			<div class="mt-auto flex items-end gap-4 border-t border-black/10 pt-4">
+				<img
+					class="aspect-square w-20 rounded-tl-2xl rounded-br-2xl object-cover sm:w-24"
+					src={maria?.image.src}
+					alt={maria?.image.alt ?? 'Portret van Maria Hoogland'}
+				/>
+				<div class="pb-1">
+					<p class="text-[0.68rem] font-light tracking-[0.28em] text-secondary uppercase">
+						Architect
+					</p>
+					<h2 class="mt-1 text-lg font-semibold tracking-tight text-textcolor sm:text-xl">
+						{maria?.name ?? 'Maria Hoogland'}
+					</h2>
+					<p class="mt-1 max-w-52 text-xs leading-5 text-secondary">{bio}</p>
+				</div>
+			</div>
+		</aside>
 	</div>
 </section>

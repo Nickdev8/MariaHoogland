@@ -51,6 +51,40 @@
 
 <svelte:window on:scroll={updateParallax} />
 
+<svelte:head>
+	<title>Architect in Spaarndam, Haarlem & Amsterdam | Maria Hoogland</title>
+	<meta
+		name="description"
+		content="Maria Hoogland helpt met verbouwingen, nieuwbouw en vergunningen. Persoonlijke architectuur voor woningen en gebouwen in Spaarndam, Haarlem en Amsterdam."
+	/>
+	<meta property="og:type" content="website" />
+	<meta
+		property="og:title"
+		content="Architect in Spaarndam, Haarlem & Amsterdam | Maria Hoogland"
+	/>
+	<meta
+		property="og:description"
+		content="Persoonlijke architectuur voor verbouwingen, nieuwbouw en vergunningen."
+	/>
+	<meta
+		property="og:image"
+		content="https://mariahoogland.nl/images/people/maria-garden-portrait.webp"
+	/>
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta
+		name="twitter:title"
+		content="Architect in Spaarndam, Haarlem & Amsterdam | Maria Hoogland"
+	/>
+	<meta
+		name="twitter:description"
+		content="Persoonlijke architectuur voor verbouwingen, nieuwbouw en vergunningen."
+	/>
+	<meta
+		name="twitter:image"
+		content="https://mariahoogland.nl/images/people/maria-garden-portrait.webp"
+	/>
+</svelte:head>
+
 <section
 	bind:this={hero}
 	class="overflow-hidden bg-[#f7f9fc]"
@@ -88,6 +122,7 @@
 					class={`aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-md ${index === 1 ? 'mt-8' : ''}`}
 					src={image.src}
 					alt={image.alt}
+					fetchpriority={index === 0 ? 'high' : 'auto'}
 				/>
 			{/each}
 		</div>
@@ -116,10 +151,7 @@
 	<div class="mx-auto max-w-7xl">
 		<div class="flex items-end justify-between gap-6">
 			<div>
-				<p class="text-xs font-medium tracking-[.12em] text-secondary uppercase">Werk</p>
-				<h2
-					class="mt-4 text-[clamp(2.4rem,4.5vw,4.6rem)] leading-[.96] font-medium tracking-[-.06em]"
-				>
+				<h2 class="text-[clamp(2.4rem,4.5vw,4.6rem)] leading-[.96] font-medium tracking-[-.06em]">
 					Een praktijk in beelden.
 				</h2>
 			</div>
@@ -130,15 +162,15 @@
 		</div>
 		<div class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
 			{#each galleryProjects as project, index}<a
-					class={`group overflow-hidden rounded-2xl border border-transparent bg-white text-textcolor no-underline shadow-sm transition hover:border-secondary/20 ${index === 0 ? 'col-span-2 row-span-2' : ''}`}
+					class={`rounded-xl border border-transparent p-3 text-textcolor no-underline transition-colors duration-200 hover:border-black/10 hover:bg-white ${index === 0 ? 'col-span-2 row-span-2' : ''}`}
 					href={`/${project.slug}`}
 					><img
-						class={`w-full object-cover transition-transform duration-500 group-hover:scale-[1.04] ${index === 0 ? 'aspect-square' : 'aspect-[4/3]'}`}
+						class={`w-full rounded-lg object-cover ${index === 0 ? 'aspect-square' : 'aspect-[4/3]'}`}
 						src={project.mainImage}
 						alt={project.title}
 						loading="lazy"
 					/>
-					<div class="px-4 pt-3 pb-4 sm:px-5">
+					<div class="pt-3 pb-1">
 						<p class="text-xs text-secondary">{project.category}</p>
 						<h3 class="mt-1 text-sm font-semibold sm:text-base">{project.title}</h3>
 					</div></a
@@ -151,14 +183,14 @@
 	</div>
 </section>
 
-<section bind:this={statistics} class="relative isolate overflow-hidden bg-neutral-900 text-white">
+<section bind:this={statistics} class="relative isolate overflow-hidden bg-neutral-600 text-white">
 	<img
-		class="absolute inset-x-0 top-[-160px] z-0 h-[calc(100%+320px)] w-full scale-110 object-cover brightness-[.55]"
+		class="absolute inset-x-0 top-[-160px] z-0 h-[calc(100%+320px)] w-full scale-110 object-cover brightness-[.7]"
 		style={`transform:translateY(${statisticsBackgroundOffset}px) scale(1.1)`}
 		src="/images/projects/ijburg-riet-eiland/kitchen-dining.jpeg"
 		alt=""
 	/>
-	<div class="absolute inset-0 z-10 bg-neutral-950/50"></div>
+	<div class="absolute inset-0 z-10 bg-neutral-800/45"></div>
 	<div
 		class="relative z-20 mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/25 px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8"
 	>
@@ -170,3 +202,35 @@
 			</div>{/each}
 	</div>
 </section>
+
+{#if home.testimonials.items.length}
+	<section class="bg-[#f7f9fc] px-6 py-20 sm:px-8 sm:py-24">
+		<div class="mx-auto max-w-7xl">
+			<div class="mx-auto max-w-3xl text-center">
+				<h2 class="text-[clamp(2.2rem,4vw,4rem)] leading-[.98] font-medium tracking-[-.055em]">
+					{home.testimonials.title}
+				</h2>
+				<p class="mt-5 text-base leading-7 text-secondary sm:text-lg">
+					{home.testimonials.description}
+				</p>
+			</div>
+			<div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+				{#each home.testimonials.items as testimonial}
+					<article
+						class="flex flex-col rounded-2xl border border-black/8 bg-white px-5 py-6 sm:px-6"
+					>
+						<span class="font-serif text-5xl leading-none text-secondary/25">“</span>
+						<blockquote class="mt-3 flex-grow text-sm leading-7 text-textcolor">
+							<p>{testimonial.quote}</p>
+						</blockquote>
+						<div class="mt-6 border-t border-black/10 pt-4">
+							<p class="text-xs font-light tracking-[0.2em] text-secondary uppercase">
+								{testimonial.name}
+							</p>
+						</div>
+					</article>
+				{/each}
+			</div>
+		</div>
+	</section>
+{/if}

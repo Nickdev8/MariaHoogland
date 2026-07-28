@@ -4,8 +4,12 @@
 
 @theme {
 	--color-primary: #00ffff;
-	--color-textcolor: #000;
+	--color-textcolor: #555555;
 	--color-secondary: #555555;
+}
+
+body {
+	color: var(--color-textcolor);
 }
 
 .section-eyebrow {

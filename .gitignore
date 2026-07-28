@@ -18,25 +18,16 @@ Thumbs.db
 
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-app/static/images/*.*
-app/static/images/*/*.*
-**/*.jpg
-**/*.png
-**/*.jpeg
 
-!app/static/images/
-!app/static/images/**
-
-!storage/
-!storage/overrides.json
-!storage/uploads/.gitkeep
-!app/static/images/impressies/
-!app/static/images/impressies/**
-!app/static/images/impressies/*.jpg
-!app/static/images/impressies/*.jpeg
-!app/static/images/impressies/*.png
+# Deployment-managed media. Keep these files on the server, not in Git.
+app/static/images/
+app/static/videos/
+app/static/favicon.png
+app/static/logo.png
+storage/uploads/
 
 ecosystem.*
 .omx/
+.seo-cache/
 .codex
 .claude

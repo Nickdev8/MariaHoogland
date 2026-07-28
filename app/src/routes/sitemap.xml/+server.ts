@@ -5,13 +5,13 @@ import { readContent } from '$lib/server/content';
 
 const FALLBACK_SITE = 'https://mariahoogland.nl';
 
-type RouteEntry = { path: string; changefreq: string; priority: number };
+type RouteEntry = { path: string };
 
 const STATIC_ROUTES: RouteEntry[] = [
-	{ path: '/', changefreq: 'monthly', priority: 1.0 },
-	{ path: '/about', changefreq: 'yearly', priority: 0.8 },
-	{ path: '/portfolio', changefreq: 'weekly', priority: 0.9 },
-	{ path: '/contact', changefreq: 'monthly', priority: 0.8 }
+	{ path: '/' },
+	{ path: '/about' },
+	{ path: '/portfolio' },
+	{ path: '/contact' }
 ];
 
 const trim = (value: string | undefined | null) => (value ? value.trim() : '');
@@ -27,16 +27,13 @@ const resolveBaseUrl = (requestOrigin: string) => {
 	return base.replace(/\/+$/, '');
 };
 
-const createUrlSet = (baseUrl: string, lastmod: string, routes: RouteEntry[]) =>
+const createUrlSet = (baseUrl: string, routes: RouteEntry[]) =>
 	routes
 		.map((route) => {
 			const loc = `${baseUrl}${route.path === '/' ? '/' : route.path}`;
 			return `
 	<url>
 		<loc>${loc}</loc>
-		<lastmod>${lastmod}</lastmod>
-		<changefreq>${route.changefreq}</changefreq>
-		<priority>${route.priority.toFixed(1)}</priority>
 	</url>`;
 		})
 		.join('');
@@ -44,17 +41,14 @@ const createUrlSet = (baseUrl: string, lastmod: string, routes: RouteEntry[]) =>
 export const GET: RequestHandler = async ({ url }) => {
 	const content = await readContent();
 	const baseUrl = resolveBaseUrl(url.origin);
-	const lastmod = new Date().toISOString();
 	const projectRoutes: RouteEntry[] = (content.projects ?? []).map((project) => ({
-		path: `/${project.slug}`,
-		changefreq: 'monthly',
-		priority: 0.7
+		path: `/${project.slug}`
 	}));
 	const allRoutes = [...STATIC_ROUTES, ...projectRoutes];
 
 	const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${createUrlSet(baseUrl, lastmod, allRoutes)}
+${createUrlSet(baseUrl, allRoutes)}
 </urlset>`;
 
 	return new Response(body, {

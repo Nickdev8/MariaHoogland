@@ -17,6 +17,12 @@ import { env as publicEnv } from '$env/dynamic/public';
 
 const TURNSTILE_TEST_SITE_KEY = '1x00000000000000000000AA';
 const TURNSTILE_TEST_SECRET_KEY = '1x0000000000000000000000000000000AA';
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const readField = (data: FormData, field: string, maxLength: number) => {
+	const value = data.get(field)?.toString().trim() ?? '';
+	return value.length <= maxLength ? value : null;
+};
 
 export const prerender = false;
 
@@ -63,14 +69,21 @@ export const actions: Actions = {
 
 			const sanityCheck = data.get('sanity_check')?.toString();
 			const turnstileToken = data.get('cf-turnstile-response')?.toString();
-			const name = data.get('name')?.toString().trim() || 'Anonymous';
-			const email = data.get('email')?.toString().trim();
-			const phone = data.get('phone')?.toString().trim();
-			const subject = data.get('subject')?.toString().trim();
-			const message = data.get('message')?.toString().trim();
+			const name = readField(data, 'name', 100);
+			const email = readField(data, 'email', 254);
+			const phone = readField(data, 'phone', 50);
+			const subject = readField(data, 'subject', 160);
+			const message = readField(data, 'message', 5000);
+
+			if ([name, email, phone, subject, message].some((value) => value === null)) {
+				return fail(400, { error: 'Een of meer velden zijn te lang.' });
+			}
 
 			if (!email) {
 				return fail(400, { error: 'Vul je e-mailadres in.' });
+			}
+			if (!EMAIL_PATTERN.test(email)) {
+				return fail(400, { error: 'Vul een geldig e-mailadres in.' });
 			}
 			if (!phone) {
 				return fail(400, { error: 'Vul je telefoonnummer in.' });
@@ -144,7 +157,7 @@ export const actions: Actions = {
 			}
 
 			let fullText = `
-- Naam: ${name}
+- Naam: ${name || 'Anonymous'}
 - Email: ${email}
 - Telefoon: ${phone}
 - Onderwerp: ${subject}
@@ -170,7 +183,7 @@ ${fullText}
 			await createTransporter().sendMail({
 				from: EMAIL_FROM,
 				to: EMAIL_TO,
-				replyTo: `"${name}" <${email}>`,
+				replyTo: `"${name || 'Anonymous'}" <${email}>`,
 				subject: emailSubject,
 				text: fullText
 			});

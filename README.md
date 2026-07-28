@@ -1,46 +1,37 @@
-# Maria Hoogland Architect Portfolio
+# Maria Hoogland Architectuur
 
-A professional, responsive portfolio site for Maria Hoogland with a built-in admin dashboard and a JSON-based content system.
+A static-content portfolio site built with SvelteKit.
 
-## What’s in here
-- Home / About / Portfolio / Contact content comes from `app/defaults.json`, then gets patched by `storage/overrides.json` at runtime.
-- `/admin` lets you edit all copy, galleries, stats, contact details, footer links, and more.
-- `/admin/portfolio` shows the project list; each project has its own editor at `/admin/portfolio/[slug]`.
-- Image uploads go to `CONTENT_DIR/uploads` and are served via `/uploads/...`.
-- Optional ntfy notifications on saves + uploads.
-- Canonical URLs + sitemap + robots.
+## Edit content
 
-## Running locally
+Edit `app/defaults.json` in VS Code:
+
+- `home` controls the homepage.
+- `about`, `contact`, and `footer` control their corresponding pages.
+- `projects` controls the portfolio grid and individual project pages.
+
+Place images in `app/static/images/` and videos in `app/static/videos/`. Reference them in JSON with paths such as `/images/projects/example.jpeg` or `/videos/example.mp4`.
+
+See [CONTENT_EDITING.md](CONTENT_EDITING.md) for the short editing guide.
+
+## Local development
+
 ```bash
+cd app
 npm install
 npm run dev
 ```
 
-## Env vars (app/.env)
-Copy `app/.env.example` to `app/.env` and adjust:
-- `ADMIN_PASSWORD` – admin password (default is `mariahoogland`).
-- `BODY_SIZE_LIMIT` – max request size for uploads (e.g. `100M`).
-- `CONTENT_DIR` / `CONTENT_FILE` – where `overrides.json` lives.
-- `CONTENT_UPLOADS_DIR` or `UPLOADS_DIR` – where uploads are stored.
-- `SMTP_*`, `EMAIL_FROM`, `EMAIL_TO` – contact form email delivery.
-- `PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` – Cloudflare Turnstile for bot protection on the contact form.
-  During `npm run dev`, the app always uses Cloudflare's official Turnstile test keys automatically, even if real keys exist in `.env`.
-- `PUBLIC_SITE_URL` (or `SITE_URL` / `BASE_URL`) – used for canonical URLs and sitemap.
-- `NTFY_*` – optional notifications.
-
-## Content storage
-- Defaults: `app/defaults.json`
-- Overrides: `storage/overrides.json`
-- Uploads: `storage/uploads`
-
 ## Docker
-Build + run with Docker:
+
 ```bash
-docker compose up --build
+docker compose up -d --build
 ```
 
-The container mounts `./storage` into `/app/storage`, so uploads and overrides survive restarts.
-Set `CONTENT_DIR=/app/storage` (and optionally `BODY_SIZE_LIMIT=100M`) in `app/.env` for Docker.
+`docker-compose.yml` mounts `./app/defaults.json`, `./app/static/images/`, and `./app/static/videos/` into the running container as read-only. Changes made to the JSON or media folders on the server are used on the next page request; rebuilding or restarting the container is not necessary for content or media changes.
 
-## Admin
-Visit `/admin` to edit general content and `/admin/portfolio` for projects. Changes are written to `storage/overrides.json`.
+Rebuild only when the application code or dependencies change:
+
+```bash
+docker compose up -d --build
+```
