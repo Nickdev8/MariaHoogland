@@ -60,53 +60,53 @@
 	<AdminShell title="Contact bewerken" subtitle="Tekst, adres, telefoon, e-mail en bedrijfsgegevens." active="contact">
 		<form id={formId} method="post" action="?/save" use:enhance={saveEnhancer} class="space-y-6">
 			<input type="hidden" name="payload" />
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Contactpagina</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Contactpagina</p>
 				<div class="mt-5 space-y-4">
 					<div>
-						<label for="contact-title" class="field-label">Titel</label>
-						<input id="contact-title" class="field mt-2" bind:value={contact.title} />
+						<label for="contact-title" class="block text-sm font-medium text-neutral-700">Titel</label>
+						<input id="contact-title" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={contact.title} />
 					</div>
 					<div>
-						<label for="contact-description" class="field-label">Beschrijving</label>
-						<textarea id="contact-description" rows="4" class="field mt-2" bind:value={contact.description}></textarea>
+						<label for="contact-description" class="block text-sm font-medium text-neutral-700">Beschrijving</label>
+						<textarea id="contact-description" rows="4" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={contact.description}></textarea>
 					</div>
 				</div>
 			</section>
 
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Adres en contact</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Adres en contact</p>
 				<div class="mt-5 space-y-4">
 					{#each contact.address.lines as line, index}
 						<div class="flex items-center gap-3">
-							<input class="field" bind:value={contact.address.lines[index]} />
-							<button type="button" class="text-sm font-medium text-red-600" on:click={() => removeAddressLine(index)}>Verwijder</button>
+							<input class="w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={contact.address.lines[index]} />
+							<button type="button" class="text-xs uppercase tracking-[0.2em] text-red-500" on:click={() => removeAddressLine(index)}>Verwijder</button>
 						</div>
 					{/each}
-					<button type="button" class="plain-action" on:click={addAddressLine}>+ Adresregel</button>
+					<button type="button" class="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em]" on:click={addAddressLine}>+ Adresregel</button>
 					<div class="grid gap-4 md:grid-cols-2">
 						<div>
-							<label for="contact-phone" class="field-label">Telefoon</label>
-							<input id="contact-phone" class="field mt-2" bind:value={contact.phone} />
+							<label for="contact-phone" class="block text-sm font-medium text-neutral-700">Telefoon</label>
+							<input id="contact-phone" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={contact.phone} />
 						</div>
 						<div>
-							<label for="contact-email" class="field-label">E-mail</label>
-							<input id="contact-email" class="field mt-2" bind:value={contact.email} />
+							<label for="contact-email" class="block text-sm font-medium text-neutral-700">E-mail</label>
+							<input id="contact-email" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={contact.email} />
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Bedrijfsgegevens</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Bedrijfsgegevens</p>
 				<div class="mt-5 space-y-4">
 					{#each contact.businessDetails as detail, index}
 						<div class="flex items-center gap-3">
-							<input class="field" bind:value={contact.businessDetails[index]} />
-							<button type="button" class="text-sm font-medium text-red-600" on:click={() => removeBusinessDetail(index)}>Verwijder</button>
+							<input class="w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={contact.businessDetails[index]} />
+							<button type="button" class="text-xs uppercase tracking-[0.2em] text-red-500" on:click={() => removeBusinessDetail(index)}>Verwijder</button>
 						</div>
 					{/each}
-					<button type="button" class="plain-action" on:click={addBusinessDetail}>+ Regel</button>
+					<button type="button" class="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em]" on:click={addBusinessDetail}>+ Regel</button>
 				</div>
 			</section>
 		</form>

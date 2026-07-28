@@ -102,36 +102,36 @@
 		<form id={formId} method="post" action="?/save" use:enhance={saveEnhancer} class="space-y-6">
 			<input type="hidden" name="payload" />
 
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Hero</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Hero</p>
 				<div class="mt-5 grid gap-4 md:grid-cols-2">
 					<div class="md:col-span-2">
-						<label for="hero-title" class="field-label">Titel</label>
-						<input id="hero-title" class="field mt-2" bind:value={home.hero.title} />
+						<label for="hero-title" class="block text-sm font-medium text-neutral-700">Titel</label>
+						<input id="hero-title" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.hero.title} />
 					</div>
 					<div class="md:col-span-2">
-						<label for="hero-description" class="field-label">Beschrijving</label>
-						<textarea id="hero-description" rows="4" class="field mt-2" bind:value={home.hero.description}></textarea>
+						<label for="hero-description" class="block text-sm font-medium text-neutral-700">Beschrijving</label>
+						<textarea id="hero-description" rows="4" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.hero.description}></textarea>
 					</div>
 					<div>
-						<label for="hero-primary-label" class="field-label">Primair label</label>
-						<input id="hero-primary-label" class="field mt-2" bind:value={home.hero.primaryCta.label} />
+						<label for="hero-primary-label" class="block text-sm font-medium text-neutral-700">Primair label</label>
+						<input id="hero-primary-label" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.hero.primaryCta.label} />
 					</div>
 					<div>
-						<label for="hero-primary-link" class="field-label">Primair link</label>
-						<input id="hero-primary-link" class="field mt-2" bind:value={home.hero.primaryCta.href} />
+						<label for="hero-primary-link" class="block text-sm font-medium text-neutral-700">Primair link</label>
+						<input id="hero-primary-link" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.hero.primaryCta.href} />
 					</div>
 					<div>
-						<label for="hero-secondary-label" class="field-label">Secundair label</label>
-						<input id="hero-secondary-label" class="field mt-2" bind:value={home.hero.secondaryCta.label} />
+						<label for="hero-secondary-label" class="block text-sm font-medium text-neutral-700">Secundair label</label>
+						<input id="hero-secondary-label" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.hero.secondaryCta.label} />
 					</div>
 					<div>
-						<label for="hero-secondary-link" class="field-label">Secundair link</label>
-						<input id="hero-secondary-link" class="field mt-2" bind:value={home.hero.secondaryCta.href} />
+						<label for="hero-secondary-link" class="block text-sm font-medium text-neutral-700">Secundair link</label>
+						<input id="hero-secondary-link" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.hero.secondaryCta.href} />
 					</div>
 					<div class="md:col-span-2">
-						<label for="hero-background" class="field-label">Achtergrond afbeelding</label>
-						<input id="hero-background" class="field mt-2" bind:value={home.hero.backgroundImage} />
+						<label for="hero-background" class="block text-sm font-medium text-neutral-700">Achtergrond afbeelding</label>
+						<input id="hero-background" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.hero.backgroundImage} />
 					</div>
 				</div>
 
@@ -142,83 +142,83 @@
 				</div>
 			</section>
 
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Impressies</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Impressies</p>
 				<div class="mt-5 space-y-4">
 					<div>
-						<label for="gallery-title" class="field-label">Titel</label>
-						<input id="gallery-title" class="field mt-2" bind:value={home.gallery.title} />
+						<label for="gallery-title" class="block text-sm font-medium text-neutral-700">Titel</label>
+						<input id="gallery-title" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.gallery.title} />
 					</div>
 					<div>
-						<label for="gallery-description" class="field-label">Beschrijving</label>
-						<textarea id="gallery-description" rows="3" class="field mt-2" bind:value={home.gallery.description}></textarea>
+						<label for="gallery-description" class="block text-sm font-medium text-neutral-700">Beschrijving</label>
+						<textarea id="gallery-description" rows="3" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.gallery.description}></textarea>
 					</div>
 					{#each home.gallery.images as image, index}
-						<div class="grid items-start gap-4 border border-line p-4 md:grid-cols-[180px_1fr_auto]">
+						<div class="grid items-start gap-4 rounded-2xl border border-black/10 p-4 md:grid-cols-[180px_1fr_auto]">
 							<AdminImageUploader label={`Afbeelding ${index + 1}`} bind:url={image.src} bind:alt={image.alt} previewMode="portfolio" />
 							<div class="space-y-2">
-								<label for={`gallery-alt-${index}`} class="field-label">Alt-tekst</label>
-								<input id={`gallery-alt-${index}`} class="field" bind:value={image.alt} />
-								<label for={`gallery-url-${index}`} class="field-label">Afbeelding URL</label>
-								<input id={`gallery-url-${index}`} class="field" bind:value={image.src} />
+								<label for={`gallery-alt-${index}`} class="block text-sm font-medium text-neutral-700">Alt-tekst</label>
+								<input id={`gallery-alt-${index}`} class="w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={image.alt} />
+								<label for={`gallery-url-${index}`} class="block text-sm font-medium text-neutral-700">Afbeelding URL</label>
+								<input id={`gallery-url-${index}`} class="w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={image.src} />
 							</div>
-							<button type="button" class="text-sm font-medium text-red-600" on:click={() => removeGalleryImage(index)}>Verwijder</button>
+							<button type="button" class="text-xs uppercase tracking-[0.2em] text-red-500" on:click={() => removeGalleryImage(index)}>Verwijder</button>
 						</div>
 					{/each}
-					<button type="button" class="plain-action" on:click={addGalleryImage}>+ Afbeelding</button>
+					<button type="button" class="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em]" on:click={addGalleryImage}>+ Afbeelding</button>
 				</div>
 			</section>
 
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Uitgelichte projecten</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Uitgelichte projecten</p>
 				<div class="mt-5 grid gap-4">
 					<div>
-						<label for="featured-title" class="field-label">Titel</label>
-						<input id="featured-title" class="field mt-2" bind:value={home.featured.title} />
+						<label for="featured-title" class="block text-sm font-medium text-neutral-700">Titel</label>
+						<input id="featured-title" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.featured.title} />
 					</div>
 					<div>
-						<label for="featured-description" class="field-label">Beschrijving</label>
-						<textarea id="featured-description" rows="3" class="field mt-2" bind:value={home.featured.description}></textarea>
+						<label for="featured-description" class="block text-sm font-medium text-neutral-700">Beschrijving</label>
+						<textarea id="featured-description" rows="3" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.featured.description}></textarea>
 					</div>
 				</div>
 			</section>
 
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Statistieken</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Statistieken</p>
 				<div class="mt-5 space-y-4">
 					{#each home.stats as stat, index}
 						<div class="grid items-center gap-3 md:grid-cols-[1fr_120px_120px_auto]">
-							<input class="field" placeholder="Label" bind:value={stat.label} />
-							<input type="number" class="field" bind:value={stat.value} />
-							<input class="field" placeholder="Suffix" bind:value={stat.suffix} />
-							<button type="button" class="text-sm font-medium text-red-600" on:click={() => removeStat(index)}>Verwijder</button>
+							<input class="rounded-2xl border border-black/10 px-4 py-3" placeholder="Label" bind:value={stat.label} />
+							<input type="number" class="rounded-2xl border border-black/10 px-4 py-3" bind:value={stat.value} />
+							<input class="rounded-2xl border border-black/10 px-4 py-3" placeholder="Suffix" bind:value={stat.suffix} />
+							<button type="button" class="text-xs uppercase tracking-[0.2em] text-red-500" on:click={() => removeStat(index)}>Verwijder</button>
 						</div>
 					{/each}
-					<button type="button" class="plain-action" on:click={addStat}>+ Stat</button>
+					<button type="button" class="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em]" on:click={addStat}>+ Stat</button>
 				</div>
 			</section>
 
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Testimonials</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Testimonials</p>
 				<div class="mt-5 space-y-4">
 					<div>
-						<label for="testimonials-title" class="field-label">Titel</label>
-						<input id="testimonials-title" class="field mt-2" bind:value={home.testimonials.title} />
+						<label for="testimonials-title" class="block text-sm font-medium text-neutral-700">Titel</label>
+						<input id="testimonials-title" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.testimonials.title} />
 					</div>
 					<div>
-						<label for="testimonials-description" class="field-label">Beschrijving</label>
-						<textarea id="testimonials-description" rows="3" class="field mt-2" bind:value={home.testimonials.description}></textarea>
+						<label for="testimonials-description" class="block text-sm font-medium text-neutral-700">Beschrijving</label>
+						<textarea id="testimonials-description" rows="3" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={home.testimonials.description}></textarea>
 					</div>
 					{#each home.testimonials.items as item, index}
-						<div class="border border-line p-4">
-							<label for={`testimonial-quote-${index}`} class="field-label">Quote</label>
-							<textarea id={`testimonial-quote-${index}`} rows="3" class="field mt-2" bind:value={item.quote}></textarea>
-							<label for={`testimonial-name-${index}`} class="field-label mt-3">Naam</label>
-							<input id={`testimonial-name-${index}`} class="field mt-2" bind:value={item.name} />
-							<button type="button" class="mt-3 text-sm font-medium text-red-600" on:click={() => removeTestimonial(index)}>Verwijder testimonial</button>
+						<div class="rounded-2xl border border-black/10 p-4">
+							<label for={`testimonial-quote-${index}`} class="block text-sm font-medium text-neutral-700">Quote</label>
+							<textarea id={`testimonial-quote-${index}`} rows="3" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={item.quote}></textarea>
+							<label for={`testimonial-name-${index}`} class="mt-3 block text-sm font-medium text-neutral-700">Naam</label>
+							<input id={`testimonial-name-${index}`} class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={item.name} />
+							<button type="button" class="mt-3 text-xs uppercase tracking-[0.2em] text-red-500" on:click={() => removeTestimonial(index)}>Verwijder testimonial</button>
 						</div>
 					{/each}
-					<button type="button" class="plain-action" on:click={addTestimonial}>+ Testimonial</button>
+					<button type="button" class="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em]" on:click={addTestimonial}>+ Testimonial</button>
 				</div>
 			</section>
 		</form>

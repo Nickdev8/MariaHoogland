@@ -124,11 +124,11 @@
 
 <div class="space-y-2">
 	{#if label}
-		<p class="field-label">{label}</p>
+		<p class="text-[0.65rem] uppercase tracking-[0.28em] text-neutral-400">{label}</p>
 	{/if}
 	<div
-		class={`group relative w-full overflow-hidden border bg-stone transition-colors ${
-			dragging ? 'border-primary bg-paper' : 'border-line hover:border-primary'
+		class={`group relative w-full overflow-hidden rounded-2xl border bg-neutral-100 transition ${
+			dragging ? 'border-rose-400 bg-rose-50' : 'border-neutral-200 hover:border-neutral-400'
 		} ${aspectClass}`}
 		role="button"
 		tabindex="0"
@@ -148,10 +148,11 @@
 				decoding="async"
 			/>
 		{:else}
-			<div class="flex h-full items-center justify-center text-sm text-secondary">Geen afbeelding</div>
+			<div class="flex h-full items-center justify-center text-xs text-neutral-400">Geen afbeelding</div>
 		{/if}
-		<div class="absolute right-3 bottom-3 border border-line bg-white px-3 py-1.5 text-sm font-medium text-textcolor opacity-0 transition-opacity group-hover:opacity-100">
-			{previewSrc ? 'Vervangen' : 'Afbeelding kiezen'}
+		<div class="pointer-events-none absolute inset-0 flex items-end justify-between bg-gradient-to-t from-black/45 via-black/10 to-transparent px-4 pb-3 text-[0.6rem] uppercase tracking-[0.24em] text-white opacity-0 transition group-hover:opacity-100">
+			<span>Sleep om te vervangen</span>
+			<span>Klik om te kiezen</span>
 		</div>
 	</div>
 	<input
@@ -162,7 +163,7 @@
 		onchange={(event) => handleFiles((event.currentTarget as HTMLInputElement).files)}
 	/>
 	{#if statusTone !== 'idle'}
-		<p class={`text-sm ${statusTone === 'error' ? 'text-red-600' : 'text-primary'}`}>
+		<p class={`text-[0.65rem] ${statusTone === 'error' ? 'text-red-600' : 'text-emerald-600'}`}>
 			{statusMessage}
 		</p>
 	{/if}

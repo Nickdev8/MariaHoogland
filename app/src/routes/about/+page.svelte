@@ -3,45 +3,46 @@
 
 	export let data: { about: AboutContent };
 	const maria = data.about.team.members[0];
+	const story = {
+		introLabel: 'Over Maria Hoogland',
+		title: 'Een persoonlijk bureau met een heldere geschiedenis',
+		description:
+			'Deze pagina wordt de rustige introductie van Maria Hoogland en Architectuur AMH. Hier vertellen we straks wie Maria is, hoe het bureau is ontstaan en waarom persoonlijke begeleiding, duidelijke lijnen en zorgvuldig ontwerpen al jaren de basis vormen van de praktijk.'
+	};
+	const historyText = [
+		'Hier komt straks een kort hoofdstuk over de geschiedenis van Architectuur AMH: hoe Maria Hoogland haar bureau heeft opgebouwd, welke ervaringen daarbij bepalend waren en hoe daaruit een persoonlijke ontwerppraktijk is ontstaan.',
+		'Daarnaast is dit de plek voor een tweede alinea over de ontwikkeling van het bureau door de jaren heen, met ruimte voor de visie van nu en de manier waarop Maria opdrachtgevers vandaag begeleidt.'
+	];
+	const bio =
+		'Persoonlijke begeleiding, heldere keuzes en rustige architectuur.';
 </script>
 
-<section class="bg-paper">
-	<div class="mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
-		<div class="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+<section class="bg-[#f5f8fc]">
+	<div class="mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-7xl items-center px-6 py-10 lg:px-8">
+		<div class="grid w-full gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
 			<div class="max-w-2xl">
-				<p class="section-kicker">{data.about.introLabel}</p>
-				<h1 class="mt-3 max-w-xl text-4xl font-semibold leading-tight text-textcolor sm:text-5xl">
-					{data.about.title}
+				<p class="section-eyebrow">{story.introLabel}</p>
+				<h1 class="mt-4 max-w-xl text-4xl font-semibold tracking-tight text-textcolor sm:text-5xl">
+					{story.title}
 				</h1>
 				<p class="mt-6 max-w-xl text-base leading-8 text-secondary sm:text-lg">
-					{data.about.description}
+					{story.description}
 				</p>
 
-				<div class="mt-10 grid gap-px border border-line bg-line sm:grid-cols-2">
-					{#each data.about.features as feature}
-						<article class="bg-white p-5">
-							<h2 class="text-base font-semibold text-textcolor">{feature.title}</h2>
-							<p class="mt-3 text-sm leading-7 text-secondary">{feature.description}</p>
-						</article>
-					{/each}
+				<div class="mt-10 border-t border-black/10 pt-8">
+					<div class="max-w-xl space-y-5">
+						{#each historyText as paragraph}
+							<p class="text-sm leading-7 text-secondary sm:text-base">
+								{paragraph}
+							</p>
+						{/each}
+					</div>
 				</div>
-
-				<figure class="mt-10 border-t border-line pt-6">
-					<img
-						src="/images/IMG_1877.JPG"
-						alt="Maria Hoogland aan het werk aan tafel met tekeningen"
-						class="aspect-[4/3] w-full max-w-xl object-cover"
-						loading="lazy"
-					/>
-					<figcaption class="mt-3 text-sm leading-6 text-secondary">
-						Maria aan het werk: persoonlijk betrokken bij ontwerp, tekenwerk en overleg.
-					</figcaption>
-				</figure>
 			</div>
 
 			<div class="lg:justify-self-end">
 				<div class="grid gap-5">
-					<div class="relative overflow-hidden bg-stone">
+					<div class="relative overflow-hidden rounded-xl bg-[#e8eef6]">
 						<img
 							class="aspect-[4/4.8] w-full object-cover object-center"
 							src={maria?.image.src}
@@ -49,15 +50,17 @@
 						/>
 					</div>
 
-					<div class="border-t border-line pt-5">
+					<div class="border-t border-black/10 pt-5">
 						<div>
-							<h2 class="mt-2 text-2xl font-semibold text-textcolor sm:text-[2rem]">
+							<p class="text-[0.68rem] font-light uppercase tracking-[0.28em] text-secondary">
+								Architect
+							</p>
+							<h2 class="mt-2 text-2xl font-semibold tracking-tight text-textcolor sm:text-[2rem]">
 								{maria?.name ?? 'Maria Hoogland'}
 							</h2>
-							<p class="mt-1 text-sm text-secondary">{maria?.role ?? 'Architect'}</p>
 						</div>
 						<p class="mt-3 max-w-sm text-sm leading-7 text-secondary">
-							{data.about.team.description}
+							{bio}
 						</p>
 					</div>
 				</div>

@@ -37,10 +37,10 @@
 </script>
 
 {#if !data.authenticated}
-	<div class="min-h-screen bg-paper px-5 pt-16 text-textcolor">
-		<div class="mx-auto max-w-md border border-line bg-white p-8 shadow-sm">
-			<p class="text-sm text-secondary">Maria Hoogland</p>
-			<h1 class="mt-3 text-2xl font-semibold">Admin login</h1>
+	<div class="min-h-screen bg-[#f5f7fb] px-6 pt-16 text-neutral-900">
+		<div class="mx-auto max-w-md rounded-3xl border border-black/10 bg-white p-8 shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
+			<p class="text-[0.65rem] uppercase tracking-[0.3em] text-neutral-400">Maria Hoogland</p>
+			<h1 class="mt-3 text-2xl font-semibold tracking-tight">Admin login</h1>
 			<p class="mt-2 text-sm leading-7 text-neutral-500">
 				Log in om de website per pagina te beheren.
 			</p>
@@ -54,14 +54,14 @@
 					type="password"
 					name="password"
 					required
-					class="field"
+					class="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-neutral-900 focus:border-secondary focus:outline-none"
 				/>
 				{#if form?.error}
 					<p class="text-sm text-red-600">{form.error}</p>
 				{/if}
 				<button
 					type="submit"
-					class="button-primary w-full"
+					class="w-full rounded-full bg-secondary px-4 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-white transition hover:bg-secondary/90"
 				>
 					Inloggen
 				</button>
@@ -78,9 +78,9 @@
 			{#each sections as section}
 				<a
 					href={section.href}
-					class="border border-line bg-white p-5 transition-colors hover:border-primary hover:bg-stone/40"
+					class="rounded-3xl border border-black/10 bg-white p-6 transition hover:border-secondary/40 hover:bg-[#f9fbff]"
 				>
-					<h2 class="text-base font-semibold text-textcolor">{section.title}</h2>
+					<p class="section-eyebrow">{section.title}</p>
 					<p class="mt-4 text-sm leading-7 text-secondary">{section.description}</p>
 				</a>
 			{/each}

@@ -16,19 +16,19 @@
   };
 </script>
 
-<footer class="border-t border-line bg-stone text-textcolor">
-  <div class="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+<footer class="border-t border-secondary/20 bg-[#e8edf4] text-textcolor">
+  <div class="mx-auto max-w-7xl px-6 py-14 lg:px-8">
     <div class="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-4">
 
       <div>
-        <h2 class="text-base font-semibold">{content.aboutTitle}</h2>
+        <h5 class="section-eyebrow">{content.aboutTitle}</h5>
         <p class="mt-4 max-w-sm text-sm leading-7 text-secondary">
           {content.aboutDescription}
         </p>
       </div>
 
       <div>
-        <h2 class="text-base font-semibold">Snelle links</h2>
+        <h5 class="section-eyebrow">Snelle Links</h5>
         <ul class="mt-4 space-y-2">
           {#each content.quickLinks as { label, href }}
             <li>
@@ -39,7 +39,7 @@
       </div>
 
       <div>
-        <h2 class="text-base font-semibold">Contact</h2>
+        <h5 class="section-eyebrow">Contact</h5>
         <div class="mt-4 space-y-2 text-sm text-secondary">
           <p>
             <a href={`mailto:${content.contactEmail}`} class="transition-colors hover:text-textcolor">
@@ -55,13 +55,13 @@
       </div>
 
       <div>
-        <h2 class="text-base font-semibold">Volg mij</h2>
+        <h5 class="section-eyebrow">Volg Mij</h5>
         <div class="mt-4 flex items-center gap-3">
           {#each content.socials as social}
             <a
               href={social.href}
               target="_blank"
-              class="inline-flex h-9 w-9 items-center justify-center border border-line text-secondary transition-colors hover:border-primary hover:text-textcolor"
+              class="inline-flex h-10 w-10 items-center justify-center border border-secondary/30 text-secondary transition-colors hover:border-secondary hover:text-textcolor"
               aria-label={social.label}
               rel="noopener noreferrer"
             >
@@ -73,7 +73,7 @@
 
     </div>
 
-    <div class="mt-10 border-t border-line pt-5 text-xs text-secondary">
+    <div class="mt-12 border-t border-secondary/20 pt-5 text-xs text-secondary">
       Website gemaakt door
       <a
         href={credit.website}

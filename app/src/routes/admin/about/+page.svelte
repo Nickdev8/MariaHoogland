@@ -74,67 +74,67 @@
 	<AdminShell title="Over mij bewerken" subtitle="Introductie, bureauverhaal en Maria’s profiel." active="about">
 		<form id={formId} method="post" action="?/save" use:enhance={saveEnhancer} class="space-y-6">
 			<input type="hidden" name="payload" />
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Intro</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Intro</p>
 				<div class="mt-5 space-y-4">
 					<div>
-						<label for="about-intro-label" class="field-label">Intro label</label>
-						<input id="about-intro-label" class="field mt-2" bind:value={about.introLabel} />
+						<label for="about-intro-label" class="block text-sm font-medium text-neutral-700">Intro label</label>
+						<input id="about-intro-label" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={about.introLabel} />
 					</div>
 					<div>
-						<label for="about-title" class="field-label">Titel</label>
-						<input id="about-title" class="field mt-2" bind:value={about.title} />
+						<label for="about-title" class="block text-sm font-medium text-neutral-700">Titel</label>
+						<input id="about-title" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={about.title} />
 					</div>
 					<div>
-						<label for="about-description" class="field-label">Beschrijving</label>
-						<textarea id="about-description" rows="5" class="field mt-2" bind:value={about.description}></textarea>
+						<label for="about-description" class="block text-sm font-medium text-neutral-700">Beschrijving</label>
+						<textarea id="about-description" rows="5" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={about.description}></textarea>
 					</div>
 				</div>
 			</section>
 
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Historieblokken</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Historieblokken</p>
 				<div class="mt-5 space-y-4">
 					{#each about.features as feature, index}
-						<div class="border border-line p-4">
+						<div class="rounded-2xl border border-black/10 p-4">
 							<div class="grid gap-3 md:grid-cols-3">
-								<select class="field" bind:value={feature.icon}>
+								<select class="rounded-2xl border border-black/10 px-4 py-3" bind:value={feature.icon}>
 									{#each iconOptions as option}
 										<option value={option}>{option}</option>
 									{/each}
 								</select>
-								<input class="field" placeholder="Titel" bind:value={feature.title} />
-								<input class="field" placeholder="Korte omschrijving" bind:value={feature.description} />
+								<input class="rounded-2xl border border-black/10 px-4 py-3" placeholder="Titel" bind:value={feature.title} />
+								<input class="rounded-2xl border border-black/10 px-4 py-3" placeholder="Korte omschrijving" bind:value={feature.description} />
 							</div>
-							<button type="button" class="mt-3 text-sm font-medium text-red-600" on:click={() => removeFeature(index)}>Verwijder blok</button>
+							<button type="button" class="mt-3 text-xs uppercase tracking-[0.2em] text-red-500" on:click={() => removeFeature(index)}>Verwijder blok</button>
 						</div>
 					{/each}
-					<button type="button" class="plain-action" on:click={addFeature}>+ Blok</button>
+					<button type="button" class="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em]" on:click={addFeature}>+ Blok</button>
 				</div>
 			</section>
 
-			<section class="editor-panel">
-				<h2 class="editor-panel-title">Maria profiel</h2>
+			<section class="rounded-3xl border border-black/10 bg-white p-6">
+				<p class="section-eyebrow">Maria profiel</p>
 				<div class="mt-5 space-y-4">
 					<div>
-						<label for="team-title" class="field-label">Sectietitel</label>
-						<input id="team-title" class="field mt-2" bind:value={about.team.title} />
+						<label for="team-title" class="block text-sm font-medium text-neutral-700">Sectietitel</label>
+						<input id="team-title" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={about.team.title} />
 					</div>
 					<div>
-						<label for="team-description" class="field-label">Beschrijving</label>
-						<textarea id="team-description" rows="3" class="field mt-2" bind:value={about.team.description}></textarea>
+						<label for="team-description" class="block text-sm font-medium text-neutral-700">Beschrijving</label>
+						<textarea id="team-description" rows="3" class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3" bind:value={about.team.description}></textarea>
 					</div>
 					{#each about.team.members as member, index}
-						<div class="border border-line p-4">
+						<div class="rounded-2xl border border-black/10 p-4">
 							<AdminImageUploader label={`Profielfoto ${index + 1}`} bind:url={member.image.src} bind:alt={member.image.alt} />
 							<div class="mt-4 grid gap-3 md:grid-cols-2">
-								<input class="field" placeholder="Naam" bind:value={member.name} />
-								<input class="field" placeholder="Rol" bind:value={member.role} />
+								<input class="rounded-2xl border border-black/10 px-4 py-3" placeholder="Naam" bind:value={member.name} />
+								<input class="rounded-2xl border border-black/10 px-4 py-3" placeholder="Rol" bind:value={member.role} />
 							</div>
-							<button type="button" class="mt-3 text-sm font-medium text-red-600" on:click={() => removeMember(index)}>Verwijder profiel</button>
+							<button type="button" class="mt-3 text-xs uppercase tracking-[0.2em] text-red-500" on:click={() => removeMember(index)}>Verwijder profiel</button>
 						</div>
 					{/each}
-					<button type="button" class="plain-action" on:click={addMember}>+ Profiel</button>
+					<button type="button" class="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em]" on:click={addMember}>+ Profiel</button>
 				</div>
 			</section>
 		</form>

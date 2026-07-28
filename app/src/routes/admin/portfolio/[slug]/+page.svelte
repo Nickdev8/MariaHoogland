@@ -37,10 +37,52 @@
 	let successMessage = formState?.success ? 'Wijzigingen opgeslagen.' : '';
 	let errorMessage = formState?.error ?? '';
 	let pending = false;
+	let toastVisible = false;
+	let toastMessage = '';
+	let toastTone: 'info' | 'success' | 'error' = 'info';
+	let toastTimeout: ReturnType<typeof setTimeout> | undefined;
 	const draftKey = `admin:draft:project:${data.project.slug}`;
 	const formId = 'admin-project-form';
 	let draftTimeout: ReturnType<typeof setTimeout> | undefined;
 	$: isDirty = serializeProject(project) !== baselineSnapshot;
+
+	$: toastStyles =
+		toastTone === 'success'
+			? 'bg-emerald-600 text-white shadow-[0_20px_45px_rgba(16,185,129,0.35)]'
+			: toastTone === 'error'
+				? 'bg-red-500 text-white shadow-[0_20px_45px_rgba(239,68,68,0.35)]'
+				: 'bg-neutral-900 text-white shadow-[0_26px_65px_rgba(15,23,42,0.32)]';
+	$: toastAccent =
+		toastTone === 'success'
+			? 'bg-emerald-300'
+			: toastTone === 'error'
+				? 'bg-red-300'
+				: 'bg-white/80';
+
+	const clearToastTimeout = () => {
+		if (toastTimeout) {
+			clearTimeout(toastTimeout);
+			toastTimeout = undefined;
+		}
+	};
+
+	const showToast = (
+		message: string,
+		tone: 'info' | 'success' | 'error',
+		autoHide = true,
+		duration = 2600
+	) => {
+		toastMessage = message;
+		toastTone = tone;
+		toastVisible = true;
+		clearToastTimeout();
+		if (autoHide) {
+			toastTimeout = setTimeout(() => {
+				toastVisible = false;
+				toastTimeout = undefined;
+			}, duration);
+		}
+	};
 
 	const preparePayload = (event: Event) => {
 		const form = event.currentTarget as HTMLFormElement;
@@ -55,6 +97,7 @@
 		errorMessage = '';
 		pending = true;
 		preparePayload(event);
+		showToast('Opslaan...', 'info', false);
 	};
 
 	const saveEnhancer: SubmitFunction = ({ formData }) => {
@@ -68,11 +111,13 @@
 				errorMessage = '';
 				clearDraft();
 				baselineSnapshot = serializeProject(project);
+				showToast('Opgeslagen!', 'success');
 			} else if (result.type === 'failure') {
 				await update({ reset: false, invalidateAll: false });
 				successMessage = '';
 				errorMessage =
 					typeof result.data?.error === 'string' ? result.data.error : 'Opslaan mislukt.';
+				showToast(errorMessage, 'error', false);
 			} else {
 				await update();
 			}
@@ -124,7 +169,7 @@
 		if (draft && draft !== serverSnapshot) {
 			try {
 				project = normalizeProject(JSON.parse(draft) as Project);
-				successMessage = 'Concept hersteld.';
+				showToast('Concept hersteld.', 'info');
 				baselineSnapshot = serverSnapshot;
 				return;
 			} catch {
@@ -153,40 +198,40 @@
 	>
 		<input type="hidden" name="payload" />
 
-		<section class="editor-panel space-y-6">
+		<section class="rounded-3xl border border-neutral-200 bg-white/95 p-6 sm:p-8 space-y-6">
 			<div class="flex flex-wrap items-center justify-between gap-3">
 				<h2 class="text-lg font-semibold">Basisinformatie</h2>
 			</div>
 
 			<div class="grid gap-4 md:grid-cols-2">
 				<label class="space-y-2 text-sm">
-					<span class="field-label">Slug</span>
+					<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Slug</span>
 					<input
-						class="field"
+						class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 						bind:value={project.slug}
 						on:input={markDirty}
 					/>
 				</label>
 				<label class="space-y-2 text-sm">
-					<span class="field-label">Categorie</span>
+					<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Categorie</span>
 					<input
-						class="field"
+						class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 						bind:value={project.category}
 						on:input={markDirty}
 					/>
 				</label>
 				<label class="space-y-2 text-sm">
-					<span class="field-label">Titel</span>
+					<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Titel</span>
 					<input
-						class="field"
+						class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 						bind:value={project.title}
 						on:input={markDirty}
 					/>
 				</label>
 				<label class="space-y-2 text-sm">
-					<span class="field-label">Subtitel</span>
+					<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Subtitel</span>
 					<input
-						class="field"
+						class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 						bind:value={project.subtitle}
 						on:input={markDirty}
 					/>
@@ -194,17 +239,17 @@
 			</div>
 
 			<label class="space-y-2 text-sm">
-				<span class="field-label">Beschrijving (markdown)</span>
+				<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Beschrijving (markdown)</span>
 				<textarea
 					rows="6"
-					class="field"
+					class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 					bind:value={project.descriptionMarkdown}
 					on:input={markDirty}
 				></textarea>
 			</label>
 		</section>
 
-		<section class="editor-panel space-y-6">
+		<section class="rounded-3xl border border-neutral-200 bg-white/95 p-6 sm:p-8 space-y-6">
 			<h2 class="text-lg font-semibold">Afbeeldingen</h2>
 			<div class="grid gap-6 md:grid-cols-2">
 				<AdminImageUploader
@@ -213,9 +258,9 @@
 					on:change={markDirty}
 				/>
 				<label class="space-y-2 text-sm">
-					<span class="field-label">Caption</span>
+					<span class="text-xs uppercase tracking-[0.25em] text-neutral-400">Caption</span>
 					<input
-						class="field"
+						class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 						bind:value={project.caption}
 						on:input={markDirty}
 					/>
@@ -238,14 +283,14 @@
 							on:change={markDirty}
 						/>
 						<input
-							class="field"
+							class="w-full rounded-2xl border border-neutral-200 px-4 py-3"
 							placeholder="URL"
 							bind:value={project.gallery[imageIndex]}
 							on:input={markDirty}
 						/>
 						<button
 							type="button"
-							class="text-sm font-medium text-red-600"
+							class="text-xs uppercase tracking-[0.2em] text-red-500"
 							on:click={() => {
 								removeGalleryImage(imageIndex);
 								markDirty();
@@ -257,7 +302,7 @@
 				{/each}
 				<button
 					type="button"
-					class="plain-action"
+					class="rounded-full border border-neutral-200 px-4 py-2 text-xs uppercase tracking-[0.25em]"
 					on:click={() => {
 						addGalleryImage();
 						markDirty();
@@ -272,7 +317,7 @@
 			<div class="flex flex-wrap gap-2">
 				<a
 					href={`/${project.slug}`}
-					class="plain-action"
+					class="rounded-full border border-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-neutral-600 transition hover:border-neutral-400"
 				>
 					Bekijk project
 				</a>
@@ -280,7 +325,7 @@
 					type="submit"
 					formaction="?/delete"
 					formmethod="post"
-					class="border border-red-200 px-3 py-2 text-sm font-medium text-red-600 transition-colors hover:border-red-300"
+					class="rounded-full border border-red-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-red-600 transition hover:border-red-300"
 					on:click={(event) => {
 						if (!confirm(`Verwijder project "${project.title || project.slug}"?`)) {
 							event.preventDefault();
@@ -302,4 +347,10 @@
 
 	<AdminSaveDock dirty={isDirty} {pending} {formId} {successMessage} {errorMessage} />
 
+	{#if toastVisible}
+		<div class={`fixed bottom-24 right-6 z-50 max-w-xs rounded-2xl px-5 py-4 text-sm ${toastStyles}`}>
+			<div class={`mb-2 h-1 w-8 rounded-full ${toastAccent}`}></div>
+			{toastMessage}
+		</div>
+	{/if}
 </AdminShell>

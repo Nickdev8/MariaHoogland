@@ -3,139 +3,33 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-primary:           #3e4637;
-  --color-textcolor:         #1f1f1d;
-  --color-secondary:         #68645d;
-  --color-paper:             #f6f4ef;
-  --color-stone:             #ece8df;
-  --color-line:              #d8d3c8;
+  --color-primary:           #00ffff;
+  --color-textcolor:           #000;
+  --color-secondary:         #555555;
 }
 
-html {
-  background: var(--color-paper);
-}
-
-body {
-  background: var(--color-paper);
-  color: var(--color-textcolor);
-}
-
-.section-title {
-  font-size: clamp(1.75rem, 2.5vw, 2.35rem);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+.section-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   font-weight: 600;
   color: var(--color-textcolor);
 }
 
-.section-kicker {
-  font-size: 0.875rem;
+.section-title {
+  font-size: clamp(1.9rem, 3vw, 2.35rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   font-weight: 500;
-  color: var(--color-secondary);
+  color: var(--color-textcolor);
 }
 
 .site-link {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: var(--color-secondary);
   transition: color 150ms;
 }
 
 .site-link:hover {
   color: var(--color-textcolor);
-}
-
-.button-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.375rem;
-  border: 1px solid var(--color-primary);
-  background: var(--color-primary);
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #fff;
-  transition:
-    background-color 150ms,
-    border-color 150ms;
-}
-
-.button-primary:hover {
-  background: #2f352a;
-  border-color: #2f352a;
-}
-
-.button-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.375rem;
-  border: 1px solid var(--color-line);
-  background: transparent;
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--color-textcolor);
-  transition:
-    border-color 150ms,
-    background-color 150ms;
-}
-
-.button-secondary:hover {
-  border-color: var(--color-primary);
-  background: rgba(62, 70, 55, 0.05);
-}
-
-.field {
-  width: 100%;
-  border-radius: 0.375rem;
-  border: 1px solid var(--color-line);
-  background: #fff;
-  padding: 0.7rem 0.85rem;
-  color: var(--color-textcolor);
-}
-
-.field:focus {
-  border-color: var(--color-primary);
-  outline: 2px solid rgba(62, 70, 55, 0.15);
-  outline-offset: 0;
-}
-
-.field-label {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-textcolor);
-}
-
-.editor-panel {
-  border: 1px solid var(--color-line);
-  background: #fff;
-  padding: 1.5rem;
-}
-
-.editor-panel-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-textcolor);
-}
-
-.plain-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.375rem;
-  border: 1px solid var(--color-line);
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-textcolor);
-  transition:
-    border-color 150ms,
-    background-color 150ms;
-}
-
-.plain-action:hover {
-  border-color: var(--color-primary);
-  background: rgba(62, 70, 55, 0.05);
 }
