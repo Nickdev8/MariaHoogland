@@ -1,111 +1,17 @@
 <script lang="ts">
-	import CountUp from '$lib/CountUp.svelte';
-	import Carousel from '$lib/components/Carousel.svelte';
-	import { fade, slide } from 'svelte/transition';
 	import type { SiteContent } from '$lib/types/content';
-
-	export let data: {
-		content: SiteContent;
-	};
-
+	import type { ProjectWithHtml } from '$lib/server/projects';
+	export let data: { content: SiteContent; projects: ProjectWithHtml[] };
 	const home = data.content.home;
+	const services = [['Verbouwen','Een woning laten passen bij een nieuwe manier van leven.'],['Uitbreiden','Ruimte, licht en samenhang toevoegen.'],['Nieuwbouw','Een huis vanaf de eerste lijn zorgvuldig opzetten.'],['Vergunningen','Plannen verder brengen met heldere tekeningen.']];
 </script>
 
-<div
-	style={`
-		background-image: url(${home.hero.backgroundImage || '/images/mainbg.png'});
-		background-position: center left;
-		background-repeat: no-repeat;
-		background-size: cover;
-	`}
->
-	<section class="py-16 sm:py-24">
-		<div
-			class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 lg:grid-cols-2"
-		>
-			<div class="lg:pr-8">
-				<div class="max-w-xl">
-					<h2 class="text-3xl font-bold tracking-tight text-secondary sm:text-4xl">
-						{home.hero.title}
-					</h2>
-					<p class="mt-6 text-lg leading-8 text-secondary">
-						{home.hero.description}
-					</p>
-					<div class="mt-10 flex items-center gap-x-4">
-						<a
-							href={home.hero.primaryCta.href}
-							class="rounded-full bg-secondary px-5 py-2.5 text-sm font-light tracking-wide text-white shadow-sm transition hover:bg-secondary/80"
-							>{home.hero.primaryCta.label}</a
-						>
-						<a
-							href={home.hero.secondaryCta.href}
-							class="rounded-full border border-secondary/40 bg-transparent px-5 py-2.5 text-sm font-light tracking-wide text-secondary transition hover:border-secondary"
-							>{home.hero.secondaryCta.label}</a
-						>
-					</div>
-				</div>
-			</div>
-			<div class="grid grid-cols-2 gap-4">
-				{#each home.hero.images as image, index}
-					<img
-						src={image.src}
-						alt={image.alt}
-						class={`aspect-[4/5] w-full max-w-sm rounded-2xl object-cover shadow-md ${index === 1 ? 'mt-8' : ''}`}
-						in:slide={{ duration: 1000, delay: 200 + index * 200 }}
-					/>
-				{/each}
-			</div>
-		</div>
-	</section>
-</div>
+<section class="bg-[#f7f9fc] px-6 py-14 sm:px-8 sm:py-20"><div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end"><div class="max-w-xl"><p class="text-xs font-medium uppercase tracking-[.12em] text-secondary">Maria Hoogland Architectuur</p><h1 class="mt-5 text-[clamp(2.8rem,5.5vw,5.4rem)] font-medium leading-[.96] tracking-[-.06em]">Architectuur voor wat er al is — en wat er nog moet komen.</h1><p class="mt-6 text-lg leading-8 text-secondary">Van een eerste vraag over uw woning tot een plan voor nieuwbouw of vergunning.</p><a class="mt-8 inline-block border-b border-textcolor pb-1 text-sm text-textcolor no-underline" href="/portfolio">Bekijk projecten</a></div><img class="aspect-[3/4] w-full object-cover lg:aspect-[4/3]" src={home.hero.images[0]?.src ?? 'https://picsum.photos/seed/maria-v5-opening/1200/900'} alt={home.hero.images[0]?.alt ?? 'Architectuurproject'} /></div></section>
 
-{#if home.gallery.images.length}
-	<section class="bg-[#e8edf4] py-20 sm:py-24">
-		<div class="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[minmax(220px,.7fr)_minmax(0,1.3fr)] lg:items-end lg:px-8">
-			<div class="max-w-sm">
-				<p class="text-xs font-medium uppercase tracking-[0.12em] text-secondary">In beeld</p>
-				<h2 class="mt-4 text-[clamp(2rem,3.5vw,3.5rem)] font-medium leading-[.98] tracking-[-.05em] text-textcolor">{home.gallery.title}</h2>
-				<p class="mt-5 text-base leading-7 text-secondary">{home.gallery.description}</p>
-			</div>
-			<div><Carousel images={home.gallery.images} autoplay={4000} /></div>
-		</div>
-	</section>
-{/if}
+<section class="bg-white px-6 py-16 sm:px-8 sm:py-20"><div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.6fr_1.4fr]"><div><p class="text-xs font-medium uppercase tracking-[.12em] text-secondary">Waarmee ik help</p><p class="mt-4 max-w-sm text-2xl leading-tight tracking-[-.04em]">Van een losse vraag naar een plan dat verder kan.</p></div><div class="grid border-t border-black/10 sm:grid-cols-2">{#each services as [title, copy], index}<div class={`border-b border-black/10 py-6 ${index % 2 ? 'sm:pl-8' : 'sm:pr-8'} `}><h2 class="text-xl font-semibold tracking-tight">{title}</h2><p class="mt-3 max-w-sm leading-7 text-secondary">{copy}</p></div>{/each}</div></div></section>
 
-<section class="border-y border-black/10 bg-white" in:fade={{ duration: 1000, delay: 500 }}>
-	<div class="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-black/10 px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8">
-		{#each home.stats as stat}
-			<div class="py-10 text-left sm:px-8 sm:first:pl-0 sm:last:pr-0">
-				<h3 class="text-4xl font-semibold tracking-[-0.04em] sm:text-5xl"><CountUp value={stat.value} suffix={stat.suffix ? `${stat.suffix} ` : ''} /></h3>
-				<p class="mt-3 text-sm leading-6 text-secondary">{stat.label}</p>
-			</div>
-		{/each}
-	</div>
-</section>
+<section class="bg-[#e8edf4] px-6 py-20 sm:px-8 sm:py-28"><div class="mx-auto max-w-7xl"><div class="flex items-end justify-between gap-6"><div><p class="text-xs font-medium uppercase tracking-[.12em] text-secondary">Werk</p><h2 class="mt-4 text-[clamp(2.4rem,4.5vw,4.6rem)] font-medium leading-[.96] tracking-[-.06em]">Een praktijk in beelden.</h2></div><a class="hidden border-b border-textcolor pb-1 text-sm text-textcolor no-underline sm:block" href="/portfolio">Alle projecten</a></div><div class="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">{#each data.projects as project, index}<a class={`text-textcolor no-underline ${index === 0 ? 'col-span-2 row-span-2' : ''}`} href={`/${project.slug}`}><img class={`w-full object-cover ${index === 0 ? 'aspect-square' : 'aspect-[4/3]'}`} src={project.mainImage} alt={project.title} loading="lazy" /><div class="mt-3 border-t border-black/15 pt-2"><p class="text-xs text-secondary">{project.category}</p><h3 class="mt-1 text-sm font-semibold sm:text-base">{project.title}</h3></div></a>{/each}</div><a class="mt-10 inline-block border-b border-textcolor pb-1 text-sm text-textcolor no-underline sm:hidden" href="/portfolio">Alle projecten</a></div></section>
 
+<section class="bg-white px-6 py-20 sm:px-8 sm:py-24"><div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.8fr_1.2fr]"><img class="aspect-[4/3] w-full object-cover" src={home.hero.images[1]?.src ?? 'https://picsum.photos/seed/maria-v5-process/1000/750'} alt={home.hero.images[1]?.alt ?? 'Architectuurdetail'} /><div class="self-center"><p class="text-xs font-medium uppercase tracking-[.12em] text-secondary">Persoonlijk begeleid</p><h2 class="mt-4 max-w-xl text-[clamp(2.2rem,4vw,4rem)] font-medium leading-[.98] tracking-[-.055em]">U werkt rechtstreeks met Maria, van de eerste vraag tot het moment dat er gebouwd wordt.</h2><p class="mt-6 max-w-lg leading-7 text-secondary">Samen kijken we wat past bij de plek, uw wensen en de volgende stap.</p></div></div></section>
 
-<section class="bg-[#f7f9fc] py-16 sm:py-20">
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		<div class="mx-auto max-w-3xl text-center">
-			<h2 class="section-title">{home.testimonials.title}</h2>
-			<p class="mt-4 text-base leading-7 text-secondary sm:text-lg">
-				{home.testimonials.description}
-			</p>
-		</div>
-		<div class="mx-auto mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
-			{#each home.testimonials.items as testimonial}
-				<article class="flex h-full flex-col border border-black/8 bg-white px-5 py-6 sm:px-6">
-					<span class="font-serif text-5xl leading-none text-secondary/20">"</span>
-					<blockquote class="mt-3 flex-grow text-base leading-7 text-textcolor">
-						<p>{testimonial.quote}</p>
-					</blockquote>
-					<div class="mt-6 border-t border-black/10 pt-4">
-						<p class="text-xs font-light uppercase tracking-[0.24em] text-secondary">
-							{testimonial.name}
-						</p>
-					</div>
-				</article>
-			{/each}
-		</div>
-	</div>
-</section>
+<section class="bg-[#f7f9fc] px-6 py-16 sm:px-8"><div class="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end"><div><p class="text-xs font-medium uppercase tracking-[.12em] text-secondary">Eerste gesprek</p><h2 class="mt-4 max-w-2xl text-[clamp(2.2rem,4vw,4rem)] font-medium leading-[.98] tracking-[-.055em]">Heeft u plannen voor uw huis of gebouw?</h2></div><a class="border border-secondary px-5 py-3 text-sm text-textcolor no-underline hover:bg-secondary hover:text-white" href="/contact">Vertel over uw plannen</a></div></section>
