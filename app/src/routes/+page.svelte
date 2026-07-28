@@ -52,16 +52,13 @@
 <svelte:window on:scroll={updateParallax} />
 
 <svelte:head>
-	<title>Architect in Spaarndam, Haarlem & Amsterdam | Maria Hoogland</title>
+	<title>Architect Maria Hoogland</title>
 	<meta
 		name="description"
 		content="Maria Hoogland helpt met verbouwingen, nieuwbouw en vergunningen. Persoonlijke architectuur voor woningen en gebouwen in Spaarndam, Haarlem en Amsterdam."
 	/>
 	<meta property="og:type" content="website" />
-	<meta
-		property="og:title"
-		content="Architect in Spaarndam, Haarlem & Amsterdam | Maria Hoogland"
-	/>
+	<meta property="og:title" content="Architect Maria Hoogland" />
 	<meta
 		property="og:description"
 		content="Persoonlijke architectuur voor verbouwingen, nieuwbouw en vergunningen."
@@ -71,10 +68,7 @@
 		content="https://mariahoogland.nl/images/people/maria-garden-portrait.webp"
 	/>
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta
-		name="twitter:title"
-		content="Architect in Spaarndam, Haarlem & Amsterdam | Maria Hoogland"
-	/>
+	<meta name="twitter:title" content="Architect Maria Hoogland" />
 	<meta
 		name="twitter:description"
 		content="Persoonlijke architectuur voor verbouwingen, nieuwbouw en vergunningen."
