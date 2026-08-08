@@ -34,57 +34,56 @@
 	/>
 </svelte:head>
 
-<section
-	class="min-h-[calc(100svh-3.5rem)] bg-[#f7f9fc] px-6 py-16 text-textcolor sm:px-8 sm:py-24"
->
-	<div class="mx-auto max-w-7xl">
-		<h1 class="sr-only">Contact opnemen met architect Maria Hoogland</h1>
-		<div class="grid gap-16 lg:grid-cols-[minmax(14rem,.65fr)_minmax(0,1.35fr)] lg:gap-24">
-			<aside class="text-secondary" aria-label="Contactgegevens">
-				<div class="border-t border-black/15">
-					<div class="grid grid-cols-[20px_1fr] gap-3.5 border-b border-black/15 py-5">
+<section class="bg-[#f7f9fc] px-6 py-16 text-textcolor sm:px-8 sm:py-24">
+	<div class="mx-auto max-w-5xl">
+		<header class="border-b border-black/15 pb-8 sm:pb-10">
+			<h1 class="text-[clamp(2.5rem,4.8vw,4.75rem)] leading-[.96] font-medium tracking-[-.055em]">
+				{contact.title}
+			</h1>
+		</header>
+
+		<div class="grid border-b border-black/15 md:grid-cols-2">
+			<section class="border-b border-black/15 py-8 md:border-r md:border-b-0 md:pr-10 md:py-10" aria-label="E-mail">
+				<div class="grid grid-cols-[20px_1fr] gap-3.5">
+					<MailIcon size={19} strokeWidth={1.5} aria-hidden="true" />
+					<div>
+						<h2 class="text-base font-semibold text-textcolor">E-mail</h2>
+						<a
+							class="mt-2 inline-block text-lg leading-7 text-secondary underline decoration-black/25 underline-offset-4 transition-colors hover:text-textcolor hover:decoration-textcolor"
+							href={`mailto:${contact.email}`}>{contact.email}</a
+						>
+					</div>
+				</div>
+			</section>
+
+			<section class="py-8 md:pl-10 md:py-10" aria-label="Adres en telefoon">
+				<div class="grid gap-7 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+					<div class="grid grid-cols-[20px_1fr] gap-3.5">
 						<MapPin size={19} strokeWidth={1.5} aria-hidden="true" />
 						<div>
 							<h2 class="text-base font-semibold text-textcolor">Adres</h2>
-							<p class="mt-1 text-sm leading-6">{contact.address.lines.join(', ')}</p>
+							<p class="mt-1 text-sm leading-6 text-secondary">{contact.address.lines.join(', ')}</p>
 						</div>
 					</div>
-					<div class="grid grid-cols-[20px_1fr] gap-3.5 border-b border-black/15 py-5">
+					<div class="grid grid-cols-[20px_1fr] gap-3.5">
 						<PhoneIcon size={19} strokeWidth={1.5} aria-hidden="true" />
 						<div>
 							<h2 class="text-base font-semibold text-textcolor">Telefoon</h2>
 							<a
-								class="mt-1 block text-sm leading-6 hover:text-textcolor hover:underline hover:underline-offset-3"
+								class="mt-1 block text-sm leading-6 text-secondary underline decoration-black/20 underline-offset-3 transition-colors hover:text-textcolor hover:decoration-textcolor"
 								href={`tel:${contact.phone}`}>{contact.phone}</a
 							>
 						</div>
 					</div>
-					<div class="grid grid-cols-[20px_1fr] gap-3.5 border-b border-black/15 py-5">
-						<MailIcon size={19} strokeWidth={1.5} aria-hidden="true" />
-						<div>
-							<h2 class="text-base font-semibold text-textcolor">E-mail</h2>
-							<a
-								class="mt-1 block text-sm leading-6 hover:text-textcolor hover:underline hover:underline-offset-3"
-								href={`mailto:${contact.email}`}>{contact.email}</a
-							>
-						</div>
-					</div>
 				</div>
-				{#if contact.businessDetails.length}<div class="mt-8">
-						<h2 class="text-base font-semibold text-textcolor">Bedrijfsgegevens</h2>
-						{#each contact.businessDetails as detail}<p class="mt-1 text-sm leading-5">
-								{detail}
-							</p>{/each}
-					</div>{/if}
-			</aside>
-
-			<div class="max-w-2xl border-t border-black/20 pt-5">
-				<h2 class="text-2xl font-semibold tracking-tight text-textcolor">Stuur een e-mail</h2>
-				<a
-					class="mt-5 inline-block border border-secondary bg-secondary px-[18px] py-3 text-sm text-white transition-colors hover:bg-transparent hover:text-textcolor"
-					href={`mailto:${contact.email}`}>E-mail {contact.email}</a
-				>
-			</div>
+			</section>
 		</div>
-	</div>
+
+		{#if contact.businessDetails.length}<section class="grid gap-5 py-8 sm:grid-cols-[minmax(10rem,.55fr)_minmax(0,1.45fr)] sm:py-10" aria-label="Bedrijfsgegevens">
+				<h2 class="text-base font-semibold text-textcolor">Bedrijfsgegevens</h2>
+				<div class="grid gap-x-8 gap-y-1 text-sm leading-6 text-secondary sm:grid-cols-2">
+					{#each contact.businessDetails as detail}<p>{detail}</p>{/each}
+				</div>
+			</section>{/if}
+		</div>
 </section>

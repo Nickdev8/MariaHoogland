@@ -74,7 +74,6 @@ export type PortfolioContent = {
 
 export type ContactContent = {
 	title: string;
-	description: string;
 	address: {
 		lines: string[];
 	};
