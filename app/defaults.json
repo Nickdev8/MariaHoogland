@@ -25,7 +25,6 @@
 		},
 		"gallery": {
 			"title": "Impressies",
-			"description": "Details, materialen en lichtmomenten die de sfeer van mijn werk laten zien.",
 			"images": [
 				{
 					"src": "/images/projects/ijburg-riet-eiland/bathroom-water-view.jpeg",
@@ -120,7 +119,6 @@
 		],
 		"testimonials": {
 			"title": "Wat klanten zeggen",
-			"description": "Lees hoe anderen de samenwerking met Maria Hoogland hebben ervaren.",
 			"items": [
 				{
 					"quote": "Ik werk al meer dan 10 jaar met Maria op verschillende projecten, van verbouwingen tot commerciële projecten. Altijd een prettige en professionele samenwerking.",
@@ -188,7 +186,7 @@
 	},
 	"contact": {
 		"title": "Neem contact op",
-		"description": "Ik bespreek graag uw plannen. Bel of mail gerust, of gebruik het formulier. Ik reageer meestal binnen twee werkdagen.",
+		"description": "Ik bespreek graag uw plannen. Bel of mail gerust. Ik reageer meestal binnen twee werkdagen.",
 		"address": {
 			"lines": ["Lagedijk 10e", "2064KT SPAARNDAM"]
 		},
@@ -204,7 +202,6 @@
 	},
 	"footer": {
 		"aboutTitle": "Architectuur AMH",
-		"aboutDescription": "Karaktervolle woningen en rustige verbouwingen, met persoonlijke begeleiding van Maria Hoogland.",
 		"quickLinks": [
 			{
 				"label": "Home",

@@ -130,9 +130,6 @@
 				<h2 class="text-[clamp(2.2rem,4vw,4rem)] leading-[.98] font-medium tracking-[-.055em]">
 					{home.gallery.title}
 				</h2>
-				<p class="mt-5 text-base leading-7 text-secondary sm:text-lg">
-					{home.gallery.description}
-				</p>
 			</div>
 			<div class="mt-12">
 				<Carousel images={home.gallery.images} autoplay={4000} />
@@ -204,9 +201,6 @@
 				<h2 class="text-[clamp(2.2rem,4vw,4rem)] leading-[.98] font-medium tracking-[-.055em]">
 					{home.testimonials.title}
 				</h2>
-				<p class="mt-5 text-base leading-7 text-secondary sm:text-lg">
-					{home.testimonials.description}
-				</p>
 			</div>
 			<div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
 				{#each home.testimonials.items as testimonial}

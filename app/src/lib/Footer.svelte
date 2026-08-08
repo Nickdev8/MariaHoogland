@@ -12,7 +12,7 @@
 	const credit = {
 		name: 'Nick Esselman',
 		website: 'https://nickesselman.nl',
-		email: 'info@nickesselman.nl'
+		email: 'contact@nickeselman.nl'
 	};
 </script>
 
@@ -21,9 +21,6 @@
 		<div class="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-4">
 			<div>
 				<h5 class="section-eyebrow">{content.aboutTitle}</h5>
-				<p class="mt-4 max-w-sm text-sm leading-7 text-secondary">
-					{content.aboutDescription}
-				</p>
 			</div>
 
 			<div>

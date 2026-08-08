@@ -12,7 +12,6 @@
 		'Maria Hoogland is ir. ing. architect en begeleidt opdrachtgevers persoonlijk bij verbouwingen, nieuwbouw, woningrenovaties en vergunningstrajecten. Vanuit Spaarndam werkt zij aan projecten in Noord-Holland, waaronder Haarlem en Amsterdam.',
 		'Een goed ontwerp begint met luisteren: naar de plek, de mensen en wat een huis of gebouw in het dagelijks leven moet kunnen. Maria vertaalt die uitgangspunten naar heldere keuzes, tekeningen en een traject dat van eerste idee tot uitvoering overzichtelijk blijft.'
 	];
-	const bio = 'Persoonlijke begeleiding van eerste idee tot uitvoering.';
 </script>
 
 <svelte:head>
@@ -98,7 +97,6 @@
 					<h2 class="mt-1 text-lg font-semibold tracking-tight text-textcolor sm:text-xl">
 						{maria?.name ?? 'Maria Hoogland'}
 					</h2>
-					<p class="mt-1 max-w-52 text-xs leading-5 text-secondary">{bio}</p>
 				</div>
 			</div>
 		</aside>

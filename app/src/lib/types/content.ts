@@ -30,7 +30,6 @@ export type HomeContent = {
 	};
 	gallery: {
 		title: string;
-		description: string;
 		images: Image[];
 	};
 	featured: {
@@ -40,7 +39,6 @@ export type HomeContent = {
 	stats: Stat[];
 	testimonials: {
 		title: string;
-		description: string;
 		items: Testimonial[];
 	};
 };
@@ -93,7 +91,6 @@ export type FooterSocial = {
 
 export type FooterContent = {
 	aboutTitle: string;
-	aboutDescription: string;
 	quickLinks: Link[];
 	contactEmail: string;
 	contactPhone: string;
