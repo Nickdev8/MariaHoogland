@@ -6,11 +6,6 @@
 
 	const { children, data } = $props<{ children: () => unknown; data: LayoutData }>();
 
-	const toInternationalPhone = (phone: string) => {
-		const digits = phone.replace(/\D/g, '');
-		return digits.startsWith('0') ? `+31${digits.slice(1)}` : `+${digits}`;
-	};
-
 	const structuredData = $derived(
 		JSON.stringify({
 			'@context': 'https://schema.org',
@@ -23,16 +18,6 @@
 					url: data.site.url,
 					logo: `${data.site.url}/images/brand/header-logo.png`,
 					image: `${data.site.url}/images/people/maria-garden-portrait.webp`,
-					telephone: toInternationalPhone(data.contact.phone),
-					email: data.contact.email,
-					address: {
-						'@type': 'PostalAddress',
-						streetAddress: data.contact.address.lines[0],
-						postalCode: '2064 KT',
-						addressLocality: 'Spaarndam',
-						addressRegion: 'Noord-Holland',
-						addressCountry: 'NL'
-					},
 					areaServed: ['Spaarndam', 'Haarlem', 'Amsterdam'],
 					knowsAbout: ['verbouwing', 'nieuwbouw', 'vergunningen', 'woningrenovatie'],
 					sameAs: data.footer.socials.map((social) => social.href),

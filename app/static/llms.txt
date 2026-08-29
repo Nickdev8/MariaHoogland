@@ -7,7 +7,7 @@
 - [Home](https://mariahoogland.nl/): Architect voor verbouwingen, nieuwbouw en vergunningen.
 - [Over Maria Hoogland](https://mariahoogland.nl/about): Persoonlijke werkwijze, ervaring en achtergrond van de architect.
 - [Portfolio](https://mariahoogland.nl/portfolio): Geselecteerde projecten in nieuwbouw, verbouwing en renovatie.
-- [Contact](https://mariahoogland.nl/contact): Contactgegevens en e-mailadres voor een eerste gesprek.
+- [Contact](https://mariahoogland.nl/contact): Neem contact op voor een eerste gesprek.
 
 ## Feiten
 
@@ -15,6 +15,4 @@
 - Architect: Ir. ING Maria Hoogland
 - Vestigingsplaats: Spaarndam, Noord-Holland, Nederland
 - Expertise: verbouwing, nieuwbouw, woningrenovatie en vergunningen
-- BNA-lidnummer: 16076
-- Bureau Architectenregister: 1.070515.028
 - Website: https://mariahoogland.nl/

@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { Instagram, Linkedin } from '@lucide/svelte';
+	import { revealContactDetail } from '$lib/obfuscation';
 	import type { FooterContent } from '$lib/types/content';
 
 	export let content: FooterContent;
@@ -12,8 +14,19 @@
 	const credit = {
 		name: 'Nick Esselman',
 		website: 'https://nickesselman.nl',
-		email: 'contact@nickeselman.nl'
+		email: 'Y29udGFjdEBuaWNrZXNzZWxtYW4ubmw='
 	};
+	let detailsReady = false;
+	$: email = detailsReady ? revealContactDetail(content.contactEmail) : '';
+	$: emailParts = email.split('@');
+	$: phone = detailsReady ? revealContactDetail(content.contactPhone) : '';
+	$: phoneParts = phone.split(' ');
+	$: creditEmail = detailsReady ? revealContactDetail(credit.email) : '';
+	$: creditEmailParts = creditEmail.split('@');
+
+	onMount(() => {
+		detailsReady = true;
+	});
 </script>
 
 <footer class="border-t border-secondary/20 bg-[#e8edf4] text-textcolor">
@@ -24,7 +37,7 @@
 			</div>
 
 			<div>
-				<h5 class="section-eyebrow">Snelle Links</h5>
+				<h5 class="section-eyebrow">Snelle links</h5>
 				<ul class="mt-4 space-y-2">
 					{#each content.quickLinks as { label, href }}
 						<li>
@@ -36,25 +49,28 @@
 
 			<div>
 				<h5 class="section-eyebrow">Contact</h5>
-				<div class="mt-4 space-y-2 text-sm text-secondary">
-					<p>
-						<a
-							href={`mailto:${content.contactEmail}`}
-							class="transition-colors hover:text-textcolor"
-						>
-							{content.contactEmail}
-						</a>
-					</p>
-					<p>
-						<a href={`tel:${content.contactPhone}`} class="transition-colors hover:text-textcolor">
-							{content.contactPhone}
-						</a>
-					</p>
-				</div>
+				{#if detailsReady}
+					<div class="mt-4 space-y-2 text-sm text-secondary">
+						<p>
+							<a href={`mailto:${email}`} class="transition-colors hover:text-textcolor"
+								><span>{emailParts[0]}</span><span aria-hidden="true">@</span><span
+									>{emailParts[1]}</span
+								></a
+							>
+						</p>
+						<p>
+							<a
+								href={`tel:${phone}`}
+								class="flex flex-wrap gap-x-1 transition-colors hover:text-textcolor"
+								>{#each phoneParts as part}<span>{part}</span>{/each}</a
+							>
+						</p>
+					</div>
+				{/if}
 			</div>
 
 			<div>
-				<h5 class="section-eyebrow">Volg Mij</h5>
+				<h5 class="section-eyebrow">Volg mij</h5>
 				<div class="mt-4 flex items-center gap-3">
 					{#each content.socials as social}
 						<a
@@ -79,11 +95,13 @@
 				rel="noopener noreferrer"
 				class="font-semibold text-textcolor transition-colors hover:text-secondary">{credit.name}</a
 			>. Contact:
-			<a
-				href={`mailto:${credit.email}`}
-				class="font-semibold text-textcolor transition-colors hover:text-secondary"
-				>{credit.email}</a
-			>
+			{#if detailsReady}<a
+					href={`mailto:${creditEmail}`}
+					class="font-semibold text-textcolor transition-colors hover:text-secondary"
+					><span>{creditEmailParts[0]}</span><span aria-hidden="true">@</span><span
+						>{creditEmailParts[1]}</span
+					></a
+				>{/if}
 		</div>
 	</div>
 </footer>

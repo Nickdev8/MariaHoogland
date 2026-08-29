@@ -106,7 +106,7 @@
 					id="gallery-title"
 					class="mt-3 text-[clamp(2rem,4vw,4.2rem)] leading-[.98] font-medium tracking-[-.055em]"
 				>
-					Van idee tot detail.
+					Projectbeelden
 				</h2>
 			</div>
 			<div class="grid grid-cols-2 gap-2 md:grid-cols-12 md:gap-4">

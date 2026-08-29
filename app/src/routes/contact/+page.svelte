@@ -1,9 +1,22 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { MapPin, Phone as PhoneIcon, Mail as MailIcon } from '@lucide/svelte';
+	import { revealContactDetail } from '$lib/obfuscation';
 	import type { ContactContent } from '$lib/types/content';
 
 	export let data: { contact: ContactContent };
 	const { contact } = data;
+	let detailsReady = false;
+	$: addressLines = detailsReady ? contact.address.lines.map(revealContactDetail) : [];
+	$: phone = detailsReady ? revealContactDetail(contact.phone) : '';
+	$: email = detailsReady ? revealContactDetail(contact.email) : '';
+	$: emailParts = email.split('@');
+	$: phoneParts = phone.split(' ');
+	$: businessDetails = detailsReady ? contact.businessDetails.map(revealContactDetail) : [];
+
+	onMount(() => {
+		detailsReady = true;
+	});
 </script>
 
 <svelte:head>
@@ -43,47 +56,59 @@
 		</header>
 
 		<div class="grid border-b border-black/15 md:grid-cols-2">
-			<section class="border-b border-black/15 py-8 md:border-r md:border-b-0 md:pr-10 md:py-10" aria-label="E-mail">
+			<section
+				class="border-b border-black/15 py-8 md:border-r md:border-b-0 md:py-10 md:pr-10"
+				aria-label="E-mail"
+			>
 				<div class="grid grid-cols-[20px_1fr] gap-3.5">
 					<MailIcon size={19} strokeWidth={1.5} aria-hidden="true" />
 					<div>
 						<h2 class="text-base font-semibold text-textcolor">E-mail</h2>
-						<a
-							class="mt-2 inline-block text-lg leading-7 text-secondary underline decoration-black/25 underline-offset-4 transition-colors hover:text-textcolor hover:decoration-textcolor"
-							href={`mailto:${contact.email}`}>{contact.email}</a
-						>
+						{#if detailsReady}<a
+								class="mt-2 inline-block text-lg leading-7 text-secondary underline decoration-black/25 underline-offset-4 transition-colors hover:text-textcolor hover:decoration-textcolor"
+								href={`mailto:${email}`}
+								><span>{emailParts[0]}</span><span aria-hidden="true">@</span><span
+									>{emailParts[1]}</span
+								></a
+							>{/if}
 					</div>
 				</div>
 			</section>
 
-			<section class="py-8 md:pl-10 md:py-10" aria-label="Adres en telefoon">
+			<section class="py-8 md:py-10 md:pl-10" aria-label="Adres en telefoon">
 				<div class="grid gap-7 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
 					<div class="grid grid-cols-[20px_1fr] gap-3.5">
 						<MapPin size={19} strokeWidth={1.5} aria-hidden="true" />
 						<div>
 							<h2 class="text-base font-semibold text-textcolor">Adres</h2>
-							<p class="mt-1 text-sm leading-6 text-secondary">{contact.address.lines.join(', ')}</p>
+							{#if detailsReady}<div class="mt-1 text-sm leading-6 text-secondary">
+									{#each addressLines as line}<p>{line}</p>{/each}
+								</div>{/if}
 						</div>
 					</div>
 					<div class="grid grid-cols-[20px_1fr] gap-3.5">
 						<PhoneIcon size={19} strokeWidth={1.5} aria-hidden="true" />
 						<div>
 							<h2 class="text-base font-semibold text-textcolor">Telefoon</h2>
-							<a
-								class="mt-1 block text-sm leading-6 text-secondary underline decoration-black/20 underline-offset-3 transition-colors hover:text-textcolor hover:decoration-textcolor"
-								href={`tel:${contact.phone}`}>{contact.phone}</a
-							>
+							{#if detailsReady}<a
+									class="mt-1 flex flex-wrap gap-x-1 text-sm leading-6 text-secondary underline decoration-black/20 underline-offset-3 transition-colors hover:text-textcolor hover:decoration-textcolor"
+									href={`tel:${phone}`}
+									>{#each phoneParts as part}<span>{part}</span>{/each}</a
+								>{/if}
 						</div>
 					</div>
 				</div>
 			</section>
 		</div>
 
-		{#if contact.businessDetails.length}<section class="grid gap-5 py-8 sm:grid-cols-[minmax(10rem,.55fr)_minmax(0,1.45fr)] sm:py-10" aria-label="Bedrijfsgegevens">
+		{#if detailsReady && businessDetails.length}<section
+				class="grid gap-5 py-8 sm:grid-cols-[minmax(10rem,.55fr)_minmax(0,1.45fr)] sm:py-10"
+				aria-label="Bedrijfsgegevens"
+			>
 				<h2 class="text-base font-semibold text-textcolor">Bedrijfsgegevens</h2>
 				<div class="grid gap-x-8 gap-y-1 text-sm leading-6 text-secondary sm:grid-cols-2">
-					{#each contact.businessDetails as detail}<p>{detail}</p>{/each}
+					{#each businessDetails as detail}<p>{detail}</p>{/each}
 				</div>
 			</section>{/if}
-		</div>
+	</div>
 </section>

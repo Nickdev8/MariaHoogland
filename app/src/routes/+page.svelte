@@ -143,7 +143,7 @@
 		<div class="flex items-end justify-between gap-6">
 			<div>
 				<h2 class="text-[clamp(2.4rem,4.5vw,4.6rem)] leading-[.96] font-medium tracking-[-.06em]">
-					Een praktijk in beelden.
+					Projecten in beeld.
 				</h2>
 			</div>
 			<a

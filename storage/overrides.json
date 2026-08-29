@@ -78,16 +78,16 @@
     }
   },
   "footer": {
-    "contactEmail": "architect@mariahoogland.nl",
-    "contactPhone": "+31 6 457 760 29"
+    "contactEmail": "YXJjaGl0ZWN0QG1hcmlhaG9vZ2xhbmQubmw=",
+    "contactPhone": "KzMxIDYgNDU3IDc2MCAyOQ=="
   },
   "projects": [
     {
       "slug": "nieuwbouw-turnhal-hlc",
       "category": "Nieuwbouw",
       "title": "Nieuwbouw Turnhal HLC",
-      "subtitle": "Een nieuwe thuisbasis voor turnvereniging HLC.",
-      "descriptionMarkdown": "Voor turnvereniging HLC heb ik een nieuwe thuisbasis ontworpen. HLC gebruikt nu 35 locaties verspreid over de regio. Door de ontwikkeling van deze turnhal is er straks 1 locatie.\n\nDeze turnhal kan ook wedstrijden faciliteren op landelijk en regionaal niveau volgens de Eisen van de KNGU en NOC-NSF.\n\nBelangrijk in het ontwerp was de sociale interactie tussen de gebruikers en de veiligheid van de kinderen voor, tijdens en na de lessen. De openheid van de turnhal wachtruimtes en de routing in en om het gebouw zijn met zorg doordacht.\n\nDe ondersteunende functies zitten in het gemetselde voorgebouw met daarachter de turnhal die langzaam groen zal worden door de klimplanten. Dit zorgt voor vergroening van de omgeving. Het gemetselde gedeelte zocht dat het gebouw past in zijn omgeven.",
+      "subtitle": "Een vaste locatie voor turnvereniging HLC.",
+      "descriptionMarkdown": "Voor turnvereniging HLC ontwierp ik een eigen locatie. De vereniging gebruikt nu 35 locaties in de regio. Met de nieuwe turnhal komt alles samen op één plek.\n\nDe hal kan wedstrijden op landelijk en regionaal niveau organiseren volgens de eisen van de KNGU en NOC-NSF.\n\nIn het ontwerp kregen contact tussen gebruikers en de veiligheid van kinderen voor, tijdens en na de lessen veel aandacht. De wachtruimtes zijn open en de routes in en rond het gebouw zijn overzichtelijk.\n\nDe ondersteunende functies liggen in het gemetselde voorgebouw. Daarachter staat de turnhal, die met klimplanten groen zal worden. Het gemetselde deel laat het gebouw aansluiten op de omgeving.",
       "mainImage": "/images/projects/turnhal-hlc/exterior-render.jpeg",
       "gallery": [
         "/images/projects/turnhal-hlc/facade-elevation.jpeg",
@@ -101,8 +101,8 @@
       "slug": "nieuwbouw-woning-ijburg",
       "category": "Nieuwbouw",
       "title": "Nieuwbouw woning - IJburg, Riet-Eiland Oost",
-      "subtitle": "Een ontwerp van een splitlevel woning.",
-      "descriptionMarkdown": "Dit is een ontwerp van een splitlevel woning. Met een hele bijzondere indeling. Hij is ontworpen naar de wensen van de opdrachtgevers.\n\nDe grote kelder heeft 2 slaapkamers en ge gym, daarboven zijn 2 grote werkkamers.\n\nOp de begane grond is de grote woonkeuken van waaruit je zo de tuin in loopt.\n\nOp de 1ste verdieping bevind zich de woonkamer en daarboven de master bed-room met uitzicht over Amsterdam.",
+      "subtitle": "Een splitlevelwoning, ontworpen rond de wensen van de opdrachtgevers.",
+      "descriptionMarkdown": "Deze splitlevelwoning heeft een indeling die is afgestemd op de wensen van de opdrachtgevers.\n\nIn de ruime kelder liggen twee slaapkamers en een gym. Daarboven zijn twee grote werkkamers.\n\nOp de begane grond bevindt zich de woonkeuken, met een directe verbinding naar de tuin.\n\nDe woonkamer ligt op de eerste verdieping. Daarboven ligt de hoofdslaapkamer met uitzicht over Amsterdam.",
       "mainImage": "/images/projects/ijburg-riet-eiland/brick-house-exterior.jpeg",
       "gallery": [
         "/images/projects/ijburg-riet-eiland/section-drawing.png",
@@ -120,8 +120,8 @@
       "slug": "verbouwing-garage-tot-woning",
       "category": "Verbouwing",
       "title": "Verbouwing garage tot woning Haarlem Noord",
-      "subtitle": "Een oude garage omgetoverd tot een prachtige beneden- en bovenwoning.",
-      "descriptionMarkdown": "Een oude garage in Haarlem Noord is omgetoverd tot een prachtige beneden woning en een boven woning.\n\nEr is een hap uit gehaald, zodat er een tuin ontstond. Veel oude details zijn in het zicht gebleven en in ere hersteld.\n\nDe vloer is gevlinderd en er is een grote stalen pui geplaatst. Dit maakt het tot een moderne bijzondere woning.",
+      "subtitle": "Een voormalige garage als beneden- en bovenwoning.",
+      "descriptionMarkdown": "Een oude garage in Haarlem Noord is verbouwd tot een beneden- en bovenwoning.\n\nDoor een deel van het gebouw weg te nemen ontstond ruimte voor een tuin. Oude details bleven zichtbaar en zijn waar nodig hersteld.\n\nDe gevlinderde vloer en grote stalen pui geven de woning een open, eigentijds karakter.",
       "mainImage": "/images/projects/garagewoning-haarlem-noord/living-room-steel-doors.jpeg",
       "gallery": [
         "/images/projects/garagewoning-haarlem-noord/kitchen-island.jpeg",
@@ -138,9 +138,9 @@
     {
       "slug": "woning-renovatie-haarlem-noord",
       "category": "Renovatie",
-      "title": "Woning renovatie, uitbouw en dakopbouw – Haarlem Noord",
-      "subtitle": "Een ruime jaren '30 woning in de gewilde Kleverparkbuurt.",
-      "descriptionMarkdown": "Deze woning in Haarlem is volledig verbouwd. Er is een uitbouw en opbouw geplaatst, zodat het een ruime jaren 30 woning is geworden in de gewilde Kleverparkbuurt.\n\nDe grote woonkeuken met zicht op de tuin is het hart van het huis geworden. Waar plaats is voor een zeer grote tafel en een koopeiland.\n\nDoor een lichtstraat in het dak wordt het hele traphuis prachtig verlicht daar het daglicht.",
+      "title": "Woningrenovatie, uitbouw en dakopbouw, Haarlem Noord",
+      "subtitle": "Een jaren 30 woning in de Kleverparkbuurt.",
+      "descriptionMarkdown": "Deze woning in Haarlem is volledig verbouwd, met een uitbouw en dakopbouw. Daardoor ontstond een ruimere jaren 30 woning in de Kleverparkbuurt.\n\nDe woonkeuken kijkt uit op de tuin en biedt ruimte aan een grote tafel en kookeiland.\n\nEen lichtstraat in het dak brengt daglicht tot in het trappenhuis.",
       "mainImage": "/images/projects/renovatie-haarlem-noord/kitchen.jpeg",
       "gallery": [
         "/images/projects/renovatie-haarlem-noord/stairwell.jpeg",
@@ -159,8 +159,8 @@
       "slug": "uitbouw-haarlem",
       "category": "Uitbouw",
       "title": "Haarlemse Uitbouw",
-      "subtitle": "Een naadloze toevoeging aan een klassieke woning.",
-      "descriptionMarkdown": "Dit project omvatte het ontwerpen en realiseren van een moderne uitbouw die de leefruimte aanzienlijk vergrootte en meer daglicht in de woning bracht.\n\nDe uitdaging was om de moderne esthetiek te laten harmoniëren met het klassieke karakter van het bestaande huis.",
+      "subtitle": "Een moderne uitbouw bij een klassieke woning.",
+      "descriptionMarkdown": "Deze moderne uitbouw vergrootte de leefruimte en bracht meer daglicht in de woning.\n\nHet ontwerp sluit aan op het klassieke karakter van het bestaande huis.",
       "mainImage": "/images/projects/garagewoning-haarlem-noord/interior-steel-doors.jpeg",
       "gallery": [
         "/images/projects/garagewoning-haarlem-noord/interior-steel-doors.jpeg",
@@ -176,8 +176,8 @@
       "slug": "woning-ijburg",
       "category": "Nieuwbouw",
       "title": "Moderne Woning op IJburg",
-      "subtitle": "Licht en ruimte in een nieuwbouwomgeving.",
-      "descriptionMarkdown": "Ontwerp van een volledige nieuwbouwwoning op IJburg, Amsterdam.\n\nDe focus lag op het creëren van een open en lichte leefomgeving met een sterke relatie tussen interieur en exterieur.\n\nDuurzame materialen en energiezuinige oplossingen stonden centraal.",
+      "subtitle": "Een nieuwbouwwoning met licht en ruimte.",
+      "descriptionMarkdown": "Ontwerp voor een nieuwbouwwoning op IJburg in Amsterdam.\n\nDe woning heeft een open, lichte indeling met een directe relatie tussen binnen en buiten.\n\nDuurzame materialen en energiezuinige oplossingen maken deel uit van het ontwerp.",
       "mainImage": "/images/projects/garagewoning-haarlem-noord/rooflight.jpeg",
       "gallery": [],
       "caption": "De vide creëert een gevoel van ruimtelijkheid en verbindt de verdiepingen.",

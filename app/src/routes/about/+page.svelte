@@ -10,7 +10,7 @@
 	};
 	const historyText = [
 		'Maria Hoogland is ir. ing. architect en begeleidt opdrachtgevers persoonlijk bij verbouwingen, nieuwbouw, woningrenovaties en vergunningstrajecten. Vanuit Spaarndam werkt zij aan projecten in Noord-Holland, waaronder Haarlem en Amsterdam.',
-		'Een goed ontwerp begint met luisteren: naar de plek, de mensen en wat een huis of gebouw in het dagelijks leven moet kunnen. Maria vertaalt die uitgangspunten naar heldere keuzes, tekeningen en een traject dat van eerste idee tot uitvoering overzichtelijk blijft.'
+		'Maria begint ieder ontwerp met luisteren naar de plek, de mensen en wat een huis of gebouw in het dagelijks leven moet kunnen. Vervolgens vertaalt zij die uitgangspunten naar heldere keuzes, tekeningen en een overzichtelijk traject van eerste idee tot uitvoering.'
 	];
 </script>
 
