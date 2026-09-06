@@ -50,7 +50,7 @@
 	<div class="mx-auto max-w-[1280px]">
 		<a
 			class="inline-flex items-center gap-2 border-b border-transparent pb-1 text-sm text-secondary hover:border-secondary"
-			href="/portfolio"><ArrowLeft size={16} /> Alle projecten</a
+			href="/portfolio"><ArrowLeft size={16} /> Mijn werk</a
 		>
 		<header class="my-[54px] max-w-[900px]">
 			<p class="text-xs font-medium tracking-[0.08em] text-secondary uppercase">
@@ -69,6 +69,7 @@
 	<figure class="relative left-1/2 w-screen -translate-x-1/2 bg-[#e8edf4]">
 		<img
 			class="h-[min(70vw,810px)] w-full object-cover"
+			style={`object-position:${data.project.mainImagePosition ?? 'center'}`}
 			src={data.project.mainImage}
 			alt={data.project.title}
 		/>{#if data.project.caption}<figcaption

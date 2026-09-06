@@ -2,18 +2,24 @@
 	import { onMount } from 'svelte';
 	import CountUp from '$lib/CountUp.svelte';
 	import Carousel from '$lib/components/Carousel.svelte';
+	import TestimonialsCarousel from '$lib/components/TestimonialsCarousel.svelte';
 	import type { SiteContent } from '$lib/types/content';
 	import type { ProjectWithHtml } from '$lib/server/projects';
 	export let data: { content: SiteContent; projects: ProjectWithHtml[] };
 	const home = data.content.home;
-	const galleryProjects = data.projects.filter(
-		(project) => project.title !== 'Moderne Woning op IJburg'
-	);
+	const galleryProjectSlugs = [
+		'nieuwbouw-turnhal-hlc',
+		'nieuwbouw-woning-ijburg',
+		'verbouwing-garage-tot-woning',
+		'uitbouw-met-tuin',
+		'kennemer-lyceum'
+	];
+	const galleryProjects = galleryProjectSlugs
+		.map((slug) => data.projects.find((project) => project.slug === slug))
+		.filter((project): project is ProjectWithHtml => Boolean(project));
 	let hero: HTMLElement;
-	let statistics: HTMLElement;
 	let parallaxEnabled = false;
 	let backgroundOffset = 0;
-	let statisticsBackgroundOffset = 0;
 	let frame: number | undefined;
 
 	function updateParallax() {
@@ -22,10 +28,6 @@
 			if (hero) {
 				const top = hero.getBoundingClientRect().top;
 				backgroundOffset = Math.max(-180, Math.min(180, top * -0.35));
-			}
-			if (statistics) {
-				const top = statistics.getBoundingClientRect().top;
-				statisticsBackgroundOffset = Math.max(-150, Math.min(150, top * -0.38));
 			}
 			frame = undefined;
 		});
@@ -37,7 +39,6 @@
 			parallaxEnabled = !reducedMotion.matches;
 			if (!parallaxEnabled) {
 				backgroundOffset = 0;
-				statisticsBackgroundOffset = 0;
 			} else updateParallax();
 		};
 		setMotionPreference();
@@ -124,14 +125,14 @@
 </section>
 
 {#if home.gallery.images.length}
-	<section class="bg-[#e8edf4] px-6 py-20 sm:px-8 sm:py-24">
+	<section class="bg-[#e8edf4] px-6 py-14 sm:px-8 sm:py-16">
 		<div class="mx-auto max-w-7xl">
 			<div class="mx-auto max-w-3xl text-center">
 				<h2 class="text-[clamp(2.2rem,4vw,4rem)] leading-[.98] font-medium tracking-[-.055em]">
 					{home.gallery.title}
 				</h2>
 			</div>
-			<div class="mt-12">
+			<div class="mt-7">
 				<Carousel images={home.gallery.images} autoplay={4000} />
 			</div>
 		</div>
@@ -148,7 +149,7 @@
 			</div>
 			<a
 				class="hidden border-b border-textcolor pb-1 text-sm text-textcolor no-underline sm:block"
-				href="/portfolio">Alle projecten</a
+				href="/portfolio">Mijn werk</a
 			>
 		</div>
 		<div class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
@@ -169,55 +170,35 @@
 		</div>
 		<a
 			class="mt-10 inline-block border-b border-textcolor pb-1 text-sm text-textcolor no-underline sm:hidden"
-			href="/portfolio">Alle projecten</a
+			href="/portfolio">Mijn werk</a
 		>
 	</div>
 </section>
 
-<section bind:this={statistics} class="relative isolate overflow-hidden bg-neutral-600 text-white">
-	<img
-		class="absolute inset-x-0 top-[-160px] z-0 h-[calc(100%+320px)] w-full scale-110 object-cover brightness-[.7]"
-		style={`transform:translateY(${statisticsBackgroundOffset}px) scale(1.1)`}
-		src="/images/projects/ijburg-riet-eiland/kitchen-dining.jpeg"
-		alt=""
-	/>
-	<div class="absolute inset-0 z-10 bg-neutral-800/45"></div>
-	<div
-		class="relative z-20 mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/25 px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8"
-	>
-		{#each home.stats as stat}<div class="py-20 text-left sm:px-8 sm:first:pl-0 sm:last:pr-0">
+
+<section class="bg-[#e8edf4] text-textcolor">
+	<div class="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-black/15 px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8">
+		{#each home.stats as stat}
+			<div class="py-16 text-left sm:px-8 sm:first:pl-0 sm:last:pr-0">
 				<h2 class="text-4xl font-semibold tracking-[-.04em] sm:text-5xl">
 					<CountUp value={stat.value} suffix={stat.suffix ? `${stat.suffix} ` : ''} />
 				</h2>
-				<p class="mt-3 text-sm leading-6 text-white/75">{stat.label}</p>
-			</div>{/each}
+				<p class="mt-3 text-sm leading-6 text-secondary">{stat.label}</p>
+			</div>
+		{/each}
 	</div>
 </section>
 
 {#if home.testimonials.items.length}
-	<section class="bg-[#f7f9fc] px-6 py-20 sm:px-8 sm:py-24">
+	<section class="border-t border-black/15 bg-[#f7f9fc] px-6 py-16 sm:px-8 sm:py-20">
 		<div class="mx-auto max-w-7xl">
-			<div class="mx-auto max-w-3xl text-center">
+			<div class="border-b border-black/15 pb-7">
 				<h2 class="text-[clamp(2.2rem,4vw,4rem)] leading-[.98] font-medium tracking-[-.055em]">
 					{home.testimonials.title}
 				</h2>
 			</div>
-			<div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-				{#each home.testimonials.items as testimonial}
-					<article
-						class="flex flex-col rounded-2xl border border-black/8 bg-white px-5 py-6 sm:px-6"
-					>
-						<span class="font-serif text-5xl leading-none text-secondary/25">“</span>
-						<blockquote class="mt-3 flex-grow text-sm leading-7 text-textcolor">
-							<p>{testimonial.quote}</p>
-						</blockquote>
-						<div class="mt-6 border-t border-black/10 pt-4">
-							<p class="text-xs font-light tracking-[0.2em] text-secondary uppercase">
-								{testimonial.name}
-							</p>
-						</div>
-					</article>
-				{/each}
+			<div class="mt-8">
+				<TestimonialsCarousel items={home.testimonials.items} />
 			</div>
 		</div>
 	</section>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Instagram, Linkedin } from '@lucide/svelte';
+	import { ExternalLink, Instagram, Linkedin } from '@lucide/svelte';
 	import { revealContactDetail } from '$lib/obfuscation';
 	import type { FooterContent } from '$lib/types/content';
 
@@ -13,16 +13,13 @@
 
 	const credit = {
 		name: 'Nick Esselman',
-		website: 'https://nickesselman.nl',
-		email: 'Y29udGFjdEBuaWNrZXNzZWxtYW4ubmw='
+		website: 'https://nickesselman.nl'
 	};
 	let detailsReady = false;
 	$: email = detailsReady ? revealContactDetail(content.contactEmail) : '';
 	$: emailParts = email.split('@');
 	$: phone = detailsReady ? revealContactDetail(content.contactPhone) : '';
 	$: phoneParts = phone.split(' ');
-	$: creditEmail = detailsReady ? revealContactDetail(credit.email) : '';
-	$: creditEmailParts = creditEmail.split('@');
 
 	onMount(() => {
 		detailsReady = true;
@@ -94,14 +91,13 @@
 				target="_blank"
 				rel="noopener noreferrer"
 				class="font-semibold text-textcolor transition-colors hover:text-secondary">{credit.name}</a
-			>. Contact:
-			{#if detailsReady}<a
-					href={`mailto:${creditEmail}`}
-					class="font-semibold text-textcolor transition-colors hover:text-secondary"
-					><span>{creditEmailParts[0]}</span><span aria-hidden="true">@</span><span
-						>{creditEmailParts[1]}</span
-					></a
-				>{/if}
+			>. <a
+				href={credit.website}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-1 font-semibold text-textcolor transition-colors hover:text-secondary"
+				>nickesselman.nl <ExternalLink size={13} aria-hidden="true" /></a
+			>
 		</div>
 	</div>
 </footer>

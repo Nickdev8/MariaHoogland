@@ -47,7 +47,7 @@
 </script>
 
 <svelte:head>
-	<meta name="robots" content="index,follow" />
+	<meta name="robots" content="index,follow,noimageindex" />
 	<meta property="og:site_name" content="Maria Hoogland Architectuur" />
 	<meta property="og:locale" content="nl_NL" />
 	{#if data?.canonical}

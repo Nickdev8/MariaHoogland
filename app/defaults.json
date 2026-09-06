@@ -27,72 +27,89 @@
 			"title": "Impressies",
 			"images": [
 				{
-					"src": "/images/projects/ijburg-riet-eiland/bathroom-water-view.jpeg",
-					"alt": "Badkamer met uitzicht over het water in een woning op IJburg"
+					"src": "/images/projects/turnhal-hlc/7.webp",
+					"alt": "Entree van Turnhuis Haarlem",
+					"project": "Nieuwbouw Turnhal HLC"
 				},
 				{
-					"src": "/images/projects/ijburg-riet-eiland/kitchen-dining.jpeg",
-					"alt": "Woonkeuken in een nieuwbouwwoning op IJburg"
+					"src": "/images/projects/dorpscentrum-spaarndam/1.webp",
+					"alt": "Impressie van Dorpscentrum Spaarndam",
+					"project": "Dorpscentrum Spaarndam"
 				},
 				{
-					"src": "/images/projects/ijburg-riet-eiland/brick-house-street-view.jpeg",
-					"alt": "Bakstenen gevel van een nieuwbouwwoning op IJburg"
+					"src": "/images/projects/ijburg-riet-eiland/5.webp",
+					"alt": "Gevel van een nieuwbouwwoning op IJburg",
+					"project": "Nieuwbouw woning, IJburg"
 				},
 				{
-					"src": "/images/projects/ijburg-riet-eiland/brick-house-entrance.jpeg",
-					"alt": "Entree van een moderne woning op IJburg"
+					"src": "/images/projects/kennemer-lyceum/2.webp",
+					"alt": "Zolderruimte in het Kennemer Lyceum",
+					"project": "Kennemer Lyceum"
 				},
 				{
-					"src": "/images/projects/garagewoning-haarlem-noord/kitchen-island.jpeg",
-					"alt": "Keuken met eiland in een verbouwde garagewoning in Haarlem Noord"
+					"src": "/images/projects/garagewoning-haarlem-noord/15.webp",
+					"alt": "Interieur van een verbouwde garagewoning in Haarlem Noord",
+					"project": "Verbouwing garage tot woning, Haarlem Noord"
 				},
 				{
-					"src": "/images/projects/garagewoning-haarlem-noord/kitchen-garden-view.jpeg",
-					"alt": "Woonkeuken met zicht op de tuin in Haarlem Noord"
+					"src": "/images/projects/renovatie-haarlem-noord/8.webp",
+					"alt": "Gerenoveerde woning in Haarlem Noord",
+					"project": "Woningrenovatie, Haarlem Noord"
 				},
 				{
-					"src": "/images/projects/garagewoning-haarlem-noord/rooflight.jpeg",
-					"alt": "Daklicht boven de woonruimte in een garagewoning"
+					"src": "/images/projects/uitbouw-haarlem/3.webp",
+					"alt": "Uitbouw met veel daglicht",
+					"project": "Haarlemse Uitbouw"
 				},
 				{
-					"src": "/images/projects/garagewoning-haarlem-noord/living-room-steel-doors.jpeg",
-					"alt": "Woonruimte met stalen deuren in een garagewoning in Haarlem Noord"
+					"src": "/images/projects/uitbouw-tuin/1.webp",
+					"alt": "Uitbouw met zicht op de tuin",
+					"project": "Uitbouw met tuin"
 				},
 				{
-					"src": "/images/projects/garagewoning-haarlem-noord/terrace-steel-doors.jpeg",
-					"alt": "Terras met stalen deuren bij een verbouwde garagewoning"
+					"src": "/images/projects/uitbouw-woning/2.webp",
+					"alt": "Houten uitbouw bij een woning",
+					"project": "Uitbouw woning"
 				},
 				{
-					"src": "/images/projects/garagewoning-haarlem-noord/garden-courtyard.jpeg",
-					"alt": "Groene binnentuin bij een woning in Haarlem Noord"
+					"src": "/images/projects/entree-woning/1.webp",
+					"alt": "Entree van een verbouwde woning",
+					"project": "Woning met lichte entree"
 				},
 				{
-					"src": "/images/projects/garagewoning-haarlem-noord/interior-steel-doors.jpeg",
-					"alt": "Interieur met stalen deuren en daglicht in Haarlem Noord"
+					"src": "/images/projects/woning-santpoort/6.webp",
+					"alt": "Woonruimte na renovatie in Santpoort",
+					"project": "Woningrenovatie Santpoort"
 				},
 				{
-					"src": "/images/projects/renovatie-haarlem-noord/street-facade.jpeg",
-					"alt": "Straatgevel van een gerenoveerde jaren dertig woning in Haarlem Noord"
+					"src": "/images/projects/tinyhouse-santpoorterstraat/1.webp",
+					"alt": "Gevel van het tiny house aan de Santpoorterstraat",
+					"project": "Tiny house Santpoorterstraat"
 				},
 				{
-					"src": "/images/projects/renovatie-haarlem-noord/kitchen-garden.jpeg",
-					"alt": "Woonkeuken met tuinzicht na een renovatie in Haarlem Noord"
+					"src": "/images/projects/dakterras-ijmuiden/2.webp",
+					"alt": "Dakterras bij een woning in IJmuiden",
+					"project": "Dakterras IJmuiden"
 				},
 				{
-					"src": "/images/projects/renovatie-haarlem-noord/garden-patio.jpeg",
-					"alt": "Tuin en patio bij een woningrenovatie in Haarlem Noord"
+					"src": "/images/projects/woning-spaarndam/1.webp",
+					"alt": "Woning in Spaarndam",
+					"project": "Woning Spaarndam"
 				},
 				{
-					"src": "/images/projects/renovatie-haarlem-noord/kitchen.jpeg",
-					"alt": "Keuken in een gerenoveerde woning in Haarlem Noord"
+					"src": "/images/projects/sosieteit-zolder/2.webp",
+					"alt": "Zolderruimte van de sociëteit",
+					"project": "Sociëteit zolder"
 				},
 				{
-					"src": "/images/projects/ijburg-riet-eiland/brick-house-exterior.jpeg",
-					"alt": "Exterieur van een moderne nieuwbouwwoning op IJburg"
+					"src": "/images/projects/hogerwoerddwarsstraat/2.webp",
+					"alt": "Gerenoveerde woning aan de Hogerwoerddwarsstraat",
+					"project": "Woning Hogerwoerddwarsstraat"
 				},
 				{
-					"src": "/images/projects/garagewoning-haarlem-noord/living-room-steel-doors-alt.jpeg",
-					"alt": "Stalen deuren en lichtinval in een woning in Haarlem Noord"
+					"src": "/images/projects/traprenovatie/1.webp",
+					"alt": "Traprenovatie met daglicht",
+					"project": "Traprenovatie"
 				}
 			]
 		},
@@ -181,8 +198,8 @@
 		}
 	},
 	"portfolio": {
-		"title": "Portfolio",
-		"description": "Een selectie van mijn werk, van eerste idee tot uitvoering."
+		"title": "Mijn werk",
+		"description": ""
 	},
 	"contact": {
 		"title": "Neem contact op",
@@ -237,13 +254,31 @@
 			"title": "Nieuwbouw Turnhal HLC",
 			"subtitle": "Een vaste locatie voor turnvereniging HLC.",
 			"descriptionMarkdown": "Voor turnvereniging HLC ontwierp ik een eigen locatie. De vereniging gebruikt nu 35 locaties in de regio. Met de nieuwe turnhal komt alles samen op één plek.\n\nDe hal kan wedstrijden op landelijk en regionaal niveau organiseren volgens de eisen van de KNGU en NOC-NSF.\n\nIn het ontwerp kregen contact tussen gebruikers en de veiligheid van kinderen voor, tijdens en na de lessen veel aandacht. De wachtruimtes zijn open en de routes in en rond het gebouw zijn overzichtelijk.\n\nDe ondersteunende functies liggen in het gemetselde voorgebouw. Daarachter staat de turnhal, die met klimplanten groen zal worden. Het gemetselde deel laat het gebouw aansluiten op de omgeving.",
-			"mainImage": "/images/projects/turnhal-hlc/exterior-render.jpeg",
+			"mainImage": "/images/projects/turnhal-hlc/7.webp",
 			"gallery": [
-				"/images/projects/turnhal-hlc/facade-elevation.jpeg",
-				"/images/projects/turnhal-hlc/ground-floor-plan.jpeg"
+				"/images/projects/turnhal-hlc/2.webp",
+				"/images/projects/turnhal-hlc/3.webp",
+				"/images/projects/turnhal-hlc/4.webp",
+				"/images/projects/turnhal-hlc/5.webp",
+				"/images/projects/turnhal-hlc/6.webp",
+				"/images/projects/turnhal-hlc/7.webp",
+				"/images/projects/turnhal-hlc/8.webp"
 			],
 			"caption": "",
 			"featured": true,
+			"testimonials": []
+		},
+		{
+			"slug": "dorpscentrum-spaarndam",
+			"category": "Nieuwbouw",
+			"title": "Dorpscentrum Spaarndam",
+			"subtitle": "Een impressie van het nieuwe dorpscentrum.",
+			"descriptionMarkdown": "Een ontwerp voor het dorpscentrum in Spaarndam.",
+			"mainImage": "/images/projects/dorpscentrum-spaarndam/1.webp",
+			"mainImagePosition": "center 30%",
+			"gallery": [],
+			"caption": "",
+			"featured": false,
 			"testimonials": []
 		},
 		{
@@ -252,17 +287,31 @@
 			"title": "Nieuwbouw woning - IJburg, Riet-Eiland Oost",
 			"subtitle": "Een splitlevelwoning, ontworpen rond de wensen van de opdrachtgevers.",
 			"descriptionMarkdown": "Deze splitlevelwoning heeft een indeling die is afgestemd op de wensen van de opdrachtgevers.\n\nIn de ruime kelder liggen twee slaapkamers en een gym. Daarboven zijn twee grote werkkamers.\n\nOp de begane grond bevindt zich de woonkeuken, met een directe verbinding naar de tuin.\n\nDe woonkamer ligt op de eerste verdieping. Daarboven ligt de hoofdslaapkamer met uitzicht over Amsterdam.",
-			"mainImage": "/images/projects/ijburg-riet-eiland/brick-house-exterior.jpeg",
+			"mainImage": "/images/projects/ijburg-riet-eiland/2.webp",
 			"gallery": [
-				"/images/projects/ijburg-riet-eiland/section-drawing.png",
-				"/images/projects/ijburg-riet-eiland/floor-plan.png",
-				"/images/projects/ijburg-riet-eiland/bathroom-water-view.jpeg",
-				"/images/projects/ijburg-riet-eiland/kitchen-dining.jpeg",
-				"/images/projects/ijburg-riet-eiland/brick-house-street-view.jpeg",
-				"/images/projects/ijburg-riet-eiland/brick-house-entrance.jpeg"
+				"/images/projects/ijburg-riet-eiland/1.webp",
+				"/images/projects/ijburg-riet-eiland/3.webp",
+				"/images/projects/ijburg-riet-eiland/4.webp",
+				"/images/projects/ijburg-riet-eiland/5.webp",
+				"/images/projects/ijburg-riet-eiland/6.webp",
+				"/images/projects/ijburg-riet-eiland/7.webp",
+				"/images/projects/ijburg-riet-eiland/8.webp",
+				"/images/projects/ijburg-riet-eiland/9.webp"
 			],
 			"featured": true,
 			"caption": "",
+			"testimonials": []
+		},
+		{
+			"slug": "kennemer-lyceum",
+			"category": "Onderwijs",
+			"title": "Kennemer Lyceum",
+			"subtitle": "Werk aan het zolderverdiep, de trap en de entree van het lyceum.",
+			"descriptionMarkdown": "De werkzaamheden omvatten het zolderverdiep, de trap en de toegang tot het gebouw.",
+			"mainImage": "/images/projects/kennemer-lyceum/2.webp",
+			"gallery": ["/images/projects/kennemer-lyceum/1.webp", "/images/projects/kennemer-lyceum/3.webp", "/images/projects/kennemer-lyceum/4.webp", "/images/projects/kennemer-lyceum/5.webp"],
+			"caption": "",
+			"featured": false,
 			"testimonials": []
 		},
 		{
@@ -271,14 +320,29 @@
 			"title": "Verbouwing garage tot woning Haarlem Noord",
 			"subtitle": "Een voormalige garage als beneden- en bovenwoning.",
 			"descriptionMarkdown": "Een oude garage in Haarlem Noord is verbouwd tot een beneden- en bovenwoning.\n\nDoor een deel van het gebouw weg te nemen ontstond ruimte voor een tuin. Oude details bleven zichtbaar en zijn waar nodig hersteld.\n\nDe gevlinderde vloer en grote stalen pui geven de woning een open, eigentijds karakter.",
-			"mainImage": "/images/projects/garagewoning-haarlem-noord/living-room-steel-doors.jpeg",
+			"mainImage": "/images/projects/garagewoning-haarlem-noord/15.webp",
 			"gallery": [
-				"/images/projects/garagewoning-haarlem-noord/kitchen-island.jpeg",
-				"/images/projects/garagewoning-haarlem-noord/rooflight.jpeg",
-				"/images/projects/garagewoning-haarlem-noord/terrace-steel-doors.jpeg",
-				"/images/projects/garagewoning-haarlem-noord/garden-courtyard.jpeg",
-				"/images/projects/garagewoning-haarlem-noord/interior-steel-doors.jpeg",
-				"/images/projects/garagewoning-haarlem-noord/elevation-drawing.png"
+				"/images/projects/garagewoning-haarlem-noord/1.webp",
+				"/images/projects/garagewoning-haarlem-noord/2.webp",
+				"/images/projects/garagewoning-haarlem-noord/3.webp",
+				"/images/projects/garagewoning-haarlem-noord/4.webp",
+				"/images/projects/garagewoning-haarlem-noord/5.webp",
+				"/images/projects/garagewoning-haarlem-noord/6.webp",
+				"/images/projects/garagewoning-haarlem-noord/7.webp",
+				"/images/projects/garagewoning-haarlem-noord/8.webp",
+				"/images/projects/garagewoning-haarlem-noord/9.webp",
+				"/images/projects/garagewoning-haarlem-noord/10.webp",
+				"/images/projects/garagewoning-haarlem-noord/11.webp",
+				"/images/projects/garagewoning-haarlem-noord/12.webp",
+				"/images/projects/garagewoning-haarlem-noord/13.webp",
+				"/images/projects/garagewoning-haarlem-noord/14.webp",
+				"/images/projects/garagewoning-haarlem-noord/16.webp",
+				"/images/projects/garagewoning-haarlem-noord/17.webp",
+				"/images/projects/garagewoning-haarlem-noord/18.webp",
+				"/images/projects/garagewoning-haarlem-noord/19.webp",
+				"/images/projects/garagewoning-haarlem-noord/20.webp",
+				"/images/projects/garagewoning-haarlem-noord/21.webp",
+				"/images/projects/garagewoning-haarlem-noord/22.webp"
 			],
 			"featured": false,
 			"caption": "",
@@ -290,15 +354,15 @@
 			"title": "Woningrenovatie, uitbouw en dakopbouw, Haarlem Noord",
 			"subtitle": "Een jaren 30 woning in de Kleverparkbuurt.",
 			"descriptionMarkdown": "Deze woning in Haarlem is volledig verbouwd, met een uitbouw en dakopbouw. Daardoor ontstond een ruimere jaren 30 woning in de Kleverparkbuurt.\n\nDe woonkeuken kijkt uit op de tuin en biedt ruimte aan een grote tafel en kookeiland.\n\nEen lichtstraat in het dak brengt daglicht tot in het trappenhuis.",
-			"mainImage": "/images/projects/renovatie-haarlem-noord/kitchen.jpeg",
+			"mainImage": "/images/projects/renovatie-haarlem-noord/8.webp",
 			"gallery": [
-				"/images/projects/renovatie-haarlem-noord/stairwell.jpeg",
-				"/images/projects/renovatie-haarlem-noord/street-facade.jpeg",
-				"/images/projects/renovatie-haarlem-noord/section-detail.png",
-				"/images/projects/renovatie-haarlem-noord/floor-plan.png",
-				"/images/projects/renovatie-haarlem-noord/floor-plan-detail.png",
-				"/images/projects/renovatie-haarlem-noord/kitchen-garden.jpeg",
-				"/images/projects/renovatie-haarlem-noord/garden-patio.jpeg"
+				"/images/projects/renovatie-haarlem-noord/1.webp",
+				"/images/projects/renovatie-haarlem-noord/2.webp",
+				"/images/projects/renovatie-haarlem-noord/3.webp",
+				"/images/projects/renovatie-haarlem-noord/4.webp",
+				"/images/projects/renovatie-haarlem-noord/5.webp",
+				"/images/projects/renovatie-haarlem-noord/6.webp",
+				"/images/projects/renovatie-haarlem-noord/7.webp"
 			],
 			"featured": false,
 			"caption": "",
@@ -310,26 +374,170 @@
 			"title": "Haarlemse Uitbouw",
 			"subtitle": "Een moderne uitbouw bij een klassieke woning.",
 			"descriptionMarkdown": "Deze moderne uitbouw vergrootte de leefruimte en bracht meer daglicht in de woning.\n\nHet ontwerp sluit aan op het klassieke karakter van het bestaande huis.",
-			"mainImage": "/images/projects/garagewoning-haarlem-noord/interior-steel-doors.jpeg",
+			"mainImage": "/images/projects/uitbouw-haarlem/3.webp",
 			"gallery": [
-				"/images/projects/garagewoning-haarlem-noord/interior-steel-doors.jpeg",
-				"/images/projects/garagewoning-haarlem-noord/rooflight.jpeg",
-				"/images/projects/garagewoning-haarlem-noord/interior-steel-doors.jpeg",
-				"/images/projects/garagewoning-haarlem-noord/garden-courtyard.jpeg"
+				"/images/projects/uitbouw-haarlem/1.webp",
+				"/images/projects/uitbouw-haarlem/2.webp",
+				"/images/projects/uitbouw-haarlem/4.webp",
+				"/images/projects/uitbouw-haarlem/5.webp"
 			],
 			"caption": "De stalen deuren zorgen voor een sterke visuele verbinding met de tuin.",
 			"featured": false,
 			"testimonials": []
 		},
 		{
-			"slug": "woning-ijburg",
+			"slug": "uitbouw-met-tuin",
+			"category": "Uitbouw",
+			"title": "Uitbouw met tuin",
+			"subtitle": "Een uitbreiding die wonen en tuin met elkaar verbindt.",
+			"descriptionMarkdown": "Deze uitbouw maakt ruimte voor een lichte woonkeuken met zicht op de tuin.",
+			"mainImage": "/images/projects/uitbouw-tuin/1.webp",
+			"gallery": ["/images/projects/uitbouw-tuin/2.webp"],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "uitbouw-woning",
+			"category": "Uitbouw",
+			"title": "Uitbouw woning",
+			"subtitle": "Van bouwfase naar een warme, houten uitbreiding.",
+			"descriptionMarkdown": "De beelden laten de transformatie van de uitbouw zien.",
+			"mainImage": "/images/projects/uitbouw-woning/2.webp",
+			"gallery": ["/images/projects/uitbouw-woning/1.webp"],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "woning-met-lichte-entree",
+			"category": "Verbouwing",
+			"title": "Woning met lichte entree",
+			"subtitle": "Een vernieuwde woning met veel licht en een duidelijke verbinding naar buiten.",
+			"descriptionMarkdown": "De entree, woonruimte en buitenruimte vormen samen een helder geheel.",
+			"mainImage": "/images/projects/entree-woning/1.webp",
+			"gallery": ["/images/projects/entree-woning/2.webp", "/images/projects/entree-woning/3.webp", "/images/projects/entree-woning/4.webp", "/images/projects/entree-woning/5.webp"],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "woningrenovatie-santpoort",
+			"category": "Renovatie",
+			"title": "Woningrenovatie Santpoort",
+			"subtitle": "Een woning waarin bestaande elementen en een nieuwe leefruimte samenkomen.",
+			"descriptionMarkdown": "De renovatie brengt de keuken, woonkamer en tuin dichter bij elkaar.",
+			"mainImage": "/images/projects/woning-santpoort/6.webp",
+			"gallery": ["/images/projects/woning-santpoort/1.webp", "/images/projects/woning-santpoort/3.webp", "/images/projects/woning-santpoort/4.webp", "/images/projects/woning-santpoort/5.webp", "/images/projects/woning-santpoort/6.webp", "/images/projects/woning-santpoort/7.webp", "/images/projects/woning-santpoort/8.webp", "/images/projects/woning-santpoort/9.webp", "/images/projects/woning-santpoort/10.webp", "/images/projects/woning-santpoort/11.webp"],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "tinyhouse-santpoorterstraat",
+			"category": "Verbouwing",
+			"title": "Tiny house Santpoorterstraat",
+			"subtitle": "Een compact project in een karakteristiek pand.",
+			"descriptionMarkdown": "De foto’s volgen de verbouwing van gevel tot oplevering.",
+			"mainImage": "/images/projects/tinyhouse-santpoorterstraat/1.webp",
+			"gallery": ["/images/projects/tinyhouse-santpoorterstraat/2.webp", "/images/projects/tinyhouse-santpoorterstraat/3.webp"],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "dakterras-ijmuiden",
+			"category": "Verbouwing",
+			"title": "Dakterras IJmuiden",
+			"subtitle": "Een dakterras als volwaardige buitenruimte bij de woning.",
+			"descriptionMarkdown": "Een helder interieur sluit aan op een beschut dakterras.",
+			"mainImage": "/images/projects/dakterras-ijmuiden/2.webp",
+			"gallery": ["/images/projects/dakterras-ijmuiden/1.webp", "/images/projects/dakterras-ijmuiden/3.webp", "/images/projects/dakterras-ijmuiden/4.webp"],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "woning-spaarndam",
+			"category": "Verbouwing",
+			"title": "Woning Spaarndam",
+			"subtitle": "Een verbouwing met aandacht voor de bestaande woning.",
+			"descriptionMarkdown": "De beelden tonen de woning, het detailwerk en het vernieuwde exterieur.",
+			"mainImage": "/images/projects/woning-spaarndam/1.webp",
+			"gallery": ["/images/projects/woning-spaarndam/2.webp", "/images/projects/woning-spaarndam/3.webp"],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "sosieteit-zolder",
+			"category": "Verbouwing",
+			"title": "Sociëteit zolder",
+			"subtitle": "Een verbouwing van een zolderverdieping.",
+			"descriptionMarkdown": "De zolder kreeg een nieuwe indeling en een verzorgde afwerking.",
+			"mainImage": "/images/projects/sosieteit-zolder/2.webp",
+			"gallery": ["/images/projects/sosieteit-zolder/1.webp", "/images/projects/sosieteit-zolder/3.webp", "/images/projects/sosieteit-zolder/4.webp"],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "hogerwoerddwarsstraat",
+			"category": "Renovatie",
+			"title": "Woning Hogerwoerddwarsstraat",
+			"subtitle": "Een woningrenovatie met behoud van het karakter van de gevel.",
+			"descriptionMarkdown": "De beelden tonen de renovatie tijdens de uitvoering en na afronding.",
+			"mainImage": "/images/projects/hogerwoerddwarsstraat/2.webp",
+			"gallery": ["/images/projects/hogerwoerddwarsstraat/1.webp"],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "traprenovatie",
+			"category": "Renovatie",
+			"title": "Traprenovatie",
+			"subtitle": "Een nieuwe trap als ruimtelijk middelpunt van de woning.",
+			"descriptionMarkdown": "De trap verbindt de verdiepingen met daglicht en een open structuur.",
+			"mainImage": "/images/projects/traprenovatie/1.webp",
+			"gallery": ["/images/projects/traprenovatie/2.webp"],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "woning-haarlemmerliede",
 			"category": "Nieuwbouw",
-			"title": "Moderne Woning op IJburg",
-			"subtitle": "Een nieuwbouwwoning met licht en ruimte.",
-			"descriptionMarkdown": "Ontwerp voor een nieuwbouwwoning op IJburg in Amsterdam.\n\nDe woning heeft een open, lichte indeling met een directe relatie tussen binnen en buiten.\n\nDuurzame materialen en energiezuinige oplossingen maken deel uit van het ontwerp.",
-			"mainImage": "/images/projects/garagewoning-haarlem-noord/rooflight.jpeg",
+			"title": "Woning Haarlemmerliede",
+			"subtitle": "Een woning in aanbouw.",
+			"descriptionMarkdown": "Een moment uit de realisatie van de woning.",
+			"mainImage": "/images/projects/haarlemmerliede/1.webp",
 			"gallery": [],
-			"caption": "De vide creëert een gevoel van ruimtelijkheid en verbindt de verdiepingen.",
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "woning-vinnenstraat",
+			"category": "Renovatie",
+			"title": "Woning Vinnenstraat",
+			"subtitle": "Een woningrenovatie in uitvoering.",
+			"descriptionMarkdown": "Een moment uit de verbouwing van de woning.",
+			"mainImage": "/images/projects/vinnenstraat/1.webp",
+			"gallery": [],
+			"caption": "",
+			"featured": false,
+			"testimonials": []
+		},
+		{
+			"slug": "woningindeling",
+			"category": "Ontwerp",
+			"title": "Woningindeling",
+			"subtitle": "Een ruimtelijke studie voor een woning.",
+			"descriptionMarkdown": "Een driedimensionale studie van de indeling van een woning.",
+			"mainImage": "/images/projects/woningindeling/1.webp",
+			"gallery": [],
+			"caption": "",
 			"featured": false,
 			"testimonials": []
 		}

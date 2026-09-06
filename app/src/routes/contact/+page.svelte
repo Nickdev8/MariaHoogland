@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { MapPin, Phone as PhoneIcon, Mail as MailIcon } from '@lucide/svelte';
+	import { Instagram, Linkedin, MapPin, Phone as PhoneIcon, Mail as MailIcon } from '@lucide/svelte';
 	import { revealContactDetail } from '$lib/obfuscation';
-	import type { ContactContent } from '$lib/types/content';
+	import type { ContactContent, FooterContent } from '$lib/types/content';
 
-	export let data: { contact: ContactContent };
+	export let data: { contact: ContactContent; footer: FooterContent };
 	const { contact } = data;
+	const socials = data.footer.socials;
+	const resolveSocialIcon = (icon: string) => (icon.toLowerCase() === 'linkedin' ? Linkedin : Instagram);
 	let detailsReady = false;
 	$: addressLines = detailsReady ? contact.address.lines.map(revealContactDetail) : [];
 	$: phone = detailsReady ? revealContactDetail(contact.phone) : '';
@@ -110,5 +112,22 @@
 					{#each businessDetails as detail}<p>{detail}</p>{/each}
 				</div>
 			</section>{/if}
+
+		<section class="border-t border-black/15 py-8 sm:py-10" aria-label="Sociale media">
+			<h2 class="text-base font-semibold text-textcolor">Volg Maria</h2>
+			<div class="mt-4 flex items-center gap-3">
+				{#each socials as social}
+					<a
+						href={social.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-flex h-10 items-center gap-2 border border-secondary/30 px-3 text-sm text-secondary transition-colors hover:border-secondary hover:text-textcolor"
+					>
+						<svelte:component this={resolveSocialIcon(social.icon)} size={18} />
+						{social.label}
+					</a>
+				{/each}
+			</div>
+		</section>
 	</div>
 </section>

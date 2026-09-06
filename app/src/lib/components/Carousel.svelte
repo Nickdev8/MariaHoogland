@@ -130,8 +130,11 @@
 					src={image.src}
 					alt={image.alt}
 					loading="lazy"
-					class="h-48 w-full rounded-xl object-cover"
+					class="h-40 w-full rounded-xl object-cover sm:h-44"
 				/>
+				{#if image.project}
+					<p class="mt-2 text-sm leading-5 text-secondary">{image.project}</p>
+				{/if}
 			</div>
 		{/each}
 	</div>

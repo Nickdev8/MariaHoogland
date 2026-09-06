@@ -6,6 +6,7 @@ export type Link = {
 export type Image = {
 	src: string;
 	alt: string;
+	project?: string;
 };
 
 export type Stat = {
@@ -108,6 +109,7 @@ export type Project = {
 	subtitle: string;
 	descriptionMarkdown: string;
 	mainImage: string;
+	mainImagePosition?: string;
 	caption?: string;
 	gallery: string[];
 	testimonials?: ProjectTestimonial[];

@@ -6,7 +6,7 @@
 	const links = [
 		{ label: 'Home', href: '/' },
 		{ label: 'Over mij', href: '/about' },
-		{ label: 'Portfolio', href: '/portfolio' },
+		{ label: 'Mijn werk', href: '/portfolio' },
 		{ label: 'Contact', href: '/contact' }
 	];
 	const toggle = () => (isOpen = !isOpen);

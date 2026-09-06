@@ -5,13 +5,13 @@
 </script>
 
 <svelte:head>
-	<title>Portfolio architectuur | Verbouwing, nieuwbouw & renovatie</title>
+	<title>Mijn werk | Verbouwing, nieuwbouw & renovatie</title>
 	<meta
 		name="description"
 		content="Bekijk projecten van Maria Hoogland Architectuur: verbouwingen, nieuwbouw, woningrenovaties en architectuur in Noord-Holland."
 	/>
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Portfolio architectuur | Maria Hoogland" />
+	<meta property="og:title" content="Mijn werk | Maria Hoogland" />
 	<meta
 		property="og:description"
 		content="Projecten in verbouwing, nieuwbouw en woningrenovatie in Noord-Holland."
@@ -21,7 +21,7 @@
 		content="https://mariahoogland.nl/images/people/maria-garden-portrait.webp"
 	/>
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Portfolio architectuur | Maria Hoogland" />
+	<meta name="twitter:title" content="Mijn werk | Maria Hoogland" />
 	<meta
 		name="twitter:description"
 		content="Projecten in verbouwing, nieuwbouw en woningrenovatie in Noord-Holland."
@@ -32,21 +32,18 @@
 	/>
 </svelte:head>
 
-<section class="bg-[#f6f8fb] px-6 py-20 text-textcolor sm:px-8 sm:py-28">
+<section class="bg-[#f6f8fb] px-6 py-12 text-textcolor sm:px-8 sm:py-16">
 	<div class="mx-auto max-w-7xl">
-		<header
-			class="flex flex-col justify-between gap-7 border-b border-black/15 pb-8 md:flex-row md:items-end"
-		>
+		<header class="border-b border-black/15 pb-6">
 			<h1
 				class="max-w-3xl text-[clamp(2.5rem,4.8vw,4.75rem)] leading-[.96] font-medium tracking-[-.055em]"
 			>
 				{data.portfolio.title}
 			</h1>
-			<p class="max-w-md text-base leading-7 text-secondary">{data.portfolio.description}</p>
 		</header>
 
 		{#if data.projects.length}
-			<section class="pt-12 sm:pt-16" aria-label="Projecten">
+			<section class="pt-8 sm:pt-10" aria-label="Projecten">
 				<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
 					{#each data.projects as project}
 						<a
@@ -56,6 +53,7 @@
 							<div class="overflow-hidden rounded-lg bg-[#e8edf4]">
 								<img
 									class="aspect-[4/3] w-full object-cover transition-opacity duration-200 group-hover:opacity-85"
+									style={`object-position:${project.mainImagePosition ?? 'center'}`}
 									src={project.mainImage}
 									alt={project.title}
 									loading="lazy"
